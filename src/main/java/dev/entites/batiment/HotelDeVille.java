@@ -26,19 +26,19 @@ public class HotelDeVille {
     private final String descriptif = "Le descriptif de l'hotel de ville";
     
     /** niveau du batiment **/
-    private String niveau;
+    private Integer niveau;
     
     /** coût en pierre du batiment **/
-    private Integer coutPierre;
+    private Integer coutPierreAmelioration;
     
     /** coût en bois du batiment **/
-    private Integer coutBois;
+    private Integer coutBoisAmelioration;
     
     /** coût en or du batiment **/
-    private Integer coutOr;
+    private Integer coutOrAmelioration;
     
     /** coût en nourriture du batiment **/
-    private Integer coutNourriture;
+    private Integer coutNourritureAmelioration;
     
     /** nombre de villageois necessaires pour l'amélioration du batiment **/
     private Integer villageoisNecessaireAmelioration;
@@ -103,16 +103,17 @@ public class HotelDeVille {
     /** nombre maximal de table de mission possible à construire **/
     private Integer nombreMaximalTableDeMission;
     
+    
     public HotelDeVille() {
     	
     }
 
 	/**
 	 * @param niveau
-	 * @param coutPierre
-	 * @param coutBois
-	 * @param coutOr
-	 * @param coutNourriture
+	 * @param coutPierreAmelioration
+	 * @param coutBoisAmelioration
+	 * @param coutOrAmelioration
+	 * @param coutNourritureAmelioration
 	 * @param villageoisNecessaireAmelioration
 	 * @param tempsAmelioration
 	 * @param quantiteeStockagePierreChambreForte
@@ -135,10 +136,7 @@ public class HotelDeVille {
 	 * @param nombreMaximalBatimentUniversite
 	 * @param nombreMaximalTableDeMission
 	 */
-	public HotelDeVille(String niveau, Integer coutPierre, Integer coutBois, Integer coutOr,
-			Integer coutNourriture, Integer villageoisNecessaireAmelioration, Integer tempsAmelioration,
-			Integer quantiteeStockagePierreChambreForte, Integer quantiteeStockageBoisChambreForte,
-			Integer quantiteeStockageOrChambreForte, Integer quantiteeStockageNourritureChambreForte,
+	public HotelDeVille(Integer niveau,
 			Integer nombreMaximalBatimentChaumiere, Integer nombreMaximalBatimentCarriere,
 			Integer nombreMaximalBatimentCampDeBucheron, Integer nombreMaximalBatimentCampDeMineur,
 			Integer nombreMaximalBatimentFerme, Integer nombreMaximalBatimentEntrepot,
@@ -149,16 +147,6 @@ public class HotelDeVille {
 			Integer nombreMaximalTableDeMission) {
 		super();
 		this.niveau = niveau;
-		this.coutPierre = coutPierre;
-		this.coutBois = coutBois;
-		this.coutOr = coutOr;
-		this.coutNourriture = coutNourriture;
-		this.villageoisNecessaireAmelioration = villageoisNecessaireAmelioration;
-		this.tempsAmelioration = tempsAmelioration;
-		this.quantiteeStockagePierreChambreForte = quantiteeStockagePierreChambreForte;
-		this.quantiteeStockageBoisChambreForte = quantiteeStockageBoisChambreForte;
-		this.quantiteeStockageOrChambreForte = quantiteeStockageOrChambreForte;
-		this.quantiteeStockageNourritureChambreForte = quantiteeStockageNourritureChambreForte;
 		this.nombreMaximalBatimentChaumiere = nombreMaximalBatimentChaumiere;
 		this.nombreMaximalBatimentCarriere = nombreMaximalBatimentCarriere;
 		this.nombreMaximalBatimentCampDeBucheron = nombreMaximalBatimentCampDeBucheron;
@@ -177,406 +165,406 @@ public class HotelDeVille {
 	}
 
 	/**
-	 * @return the id
+	 * @return Retourne l'id
 	 */
 	public Integer getId() {
 		return id;
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param Définir l'id
 	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return the niveau
+	 * @return Retourne le niveau du bâtiment
 	 */
-	public String getNiveau() {
+	public Integer getNiveau() {
 		return niveau;
 	}
 
 	/**
-	 * @param niveau the niveau to set
+	 * @param Définir le niveau du bâtiment
 	 */
-	public void setNiveau(String niveau) {
+	public void setNiveau(Integer niveau) {
 		this.niveau = niveau;
 	}
 
 	/**
-	 * @return the coutPierre
+	 * @return Retourne le coût en pierre pour l'amélioration de 1 niveau du bâtiment
 	 */
-	public Integer getCoutPierre() {
-		return coutPierre;
+	public Integer getCoutPierreAmelioration() {
+		return (this.niveau*this.niveau)*(10_000*this.niveau);
 	}
 
 	/**
-	 * @param coutPierre the coutPierre to set
+	 * @param Défini le coût en pierre pour l'amélioration de 1 niveau du bâtiment
 	 */
-	public void setCoutPierre(Integer coutPierre) {
-		this.coutPierre = coutPierre;
+	public void setCoutPierreAmelioration(Integer coutPierreAmelioration) {
+		this.coutPierreAmelioration = coutPierreAmelioration;
 	}
 
 	/**
-	 * @return the coutBois
+	 * @return Retourne le coût en bois pour l'amélioration de 1 niveau du bâtiment
 	 */
-	public Integer getCoutBois() {
-		return coutBois;
+	public Integer getCoutBoisAmelioration() {
+		return (this.niveau*this.niveau)*(10_000*this.niveau);
 	}
 
 	/**
-	 * @param coutBois the coutBois to set
+	 * @param Défini le coût en bois pour l'amélioration de 1 niveau du bâtiment
 	 */
-	public void setCoutBois(Integer coutBois) {
-		this.coutBois = coutBois;
+	public void setCoutBoisAmelioration(Integer coutBoisAmelioration) {
+		this.coutBoisAmelioration = coutBoisAmelioration;
 	}
 
 	/**
-	 * @return the coutOr
+	 * @return Retourne le coût en or pour l'amélioration de 1 niveau du bâtiment
 	 */
-	public Integer getCoutOr() {
-		return coutOr;
+	public Integer getCoutOrAmelioration() {
+		return (this.niveau*this.niveau)*(10_000*this.niveau);
 	}
 
 	/**
-	 * @param coutOr the coutOr to set
+	 * @param Défini le coût en or pour l'amélioration de 1 niveau du bâtiment
 	 */
-	public void setCoutOr(Integer coutOr) {
-		this.coutOr = coutOr;
+	public void setCoutOrAmelioration(Integer coutOrAmelioration) {
+		this.coutOrAmelioration = coutOrAmelioration;
 	}
 
 	/**
-	 * @return the coutNourriture
+	 * @return Retourne le coût en nourriture pour l'amélioration de 1 niveau du bâtiment
 	 */
-	public Integer getCoutNourriture() {
-		return coutNourriture;
+	public Integer getCoutNourritureAmelioration() {
+		return (this.niveau*this.niveau)*(10_000*this.niveau);
 	}
 
 	/**
-	 * @param coutNourriture the coutNourriture to set
+	 * @param Défini le coût en nourriture pour l'amélioration de 1 niveau du bâtiment
 	 */
-	public void setCoutNourriture(Integer coutNourriture) {
-		this.coutNourriture = coutNourriture;
+	public void setCoutNourritureAmelioration(Integer coutNourritureAmelioration) {
+		this.coutNourritureAmelioration = coutNourritureAmelioration;
 	}
 
 	/**
-	 * @return the villageoisNecessaireAmelioration
+	 * @return Retourne le nombre de villageois necessaire pour l'amélioration de 1 niveau du bâtiment
 	 */
 	public Integer getVillageoisNecessaireAmelioration() {
-		return villageoisNecessaireAmelioration;
+		return (this.niveau*this.niveau)*(20*this.niveau);
 	}
 
 	/**
-	 * @param villageoisNecessaireAmelioration the villageoisNecessaireAmelioration to set
+	 * @param Défini le nombre de villageois necessaire pour l'amélioration de 1 niveau du bâtiment
 	 */
 	public void setVillageoisNecessaireAmelioration(Integer villageoisNecessaireAmelioration) {
 		this.villageoisNecessaireAmelioration = villageoisNecessaireAmelioration;
 	}
 
 	/**
-	 * @return the tempsAmelioration
+	 * @return Retourne le temps en secondes necessaire à l'amélioration de 1 niveau du bâtiment
 	 */
 	public Integer getTempsAmelioration() {
-		return tempsAmelioration;
+		return (this.niveau*this.niveau)*(360*this.niveau*this.niveau);
 	}
 
 	/**
-	 * @param tempsAmelioration the tempsAmelioration to set
+	 * @param Défini le temps en secondes necessaire à l'amélioration de 1 niveau du bâtiment
 	 */
 	public void setTempsAmelioration(Integer tempsAmelioration) {
 		this.tempsAmelioration = tempsAmelioration;
 	}
 
 	/**
-	 * @return the quantiteeStockagePierreChambreForte
+	 * @return Retourne la quantité de pierre stockable dans la chambre forte pour le niveau actuel
 	 */
 	public Integer getQuantiteeStockagePierreChambreForte() {
-		return quantiteeStockagePierreChambreForte;
+		return (this.niveau*this.niveau)*(1000*this.niveau);
 	}
 
 	/**
-	 * @param quantiteeStockagePierreChambreForte the quantiteeStockagePierreChambreForte to set
+	 * @return Défini la quantité de pierre stockable dans la chambre forte pour le niveau actuel
 	 */
 	public void setQuantiteeStockagePierreChambreForte(Integer quantiteeStockagePierreChambreForte) {
 		this.quantiteeStockagePierreChambreForte = quantiteeStockagePierreChambreForte;
 	}
 
 	/**
-	 * @return the quantiteeStockageBoisChambreForte
+	 * @return Retourne la quantité de bois stockable dans la chambre forte pour le niveau actuel
 	 */
 	public Integer getQuantiteeStockageBoisChambreForte() {
-		return quantiteeStockageBoisChambreForte;
+		return (this.niveau*this.niveau)*(1000*this.niveau);
 	}
 
 	/**
-	 * @param quantiteeStockageBoisChambreForte the quantiteeStockageBoisChambreForte to set
+	 * @return Défini la quantité de pierre stockable dans la chambre forte pour le niveau actuel
 	 */
 	public void setQuantiteeStockageBoisChambreForte(Integer quantiteeStockageBoisChambreForte) {
 		this.quantiteeStockageBoisChambreForte = quantiteeStockageBoisChambreForte;
 	}
 
 	/**
-	 * @return the quantiteeStockageOrChambreForte
+	 * @return Retourne la quantité d'or stockable dans la chambre forte pour le niveau actuel
 	 */
 	public Integer getQuantiteeStockageOrChambreForte() {
-		return quantiteeStockageOrChambreForte;
+		return (this.niveau*this.niveau)*(1000*this.niveau);
 	}
 
 	/**
-	 * @param quantiteeStockageOrChambreForte the quantiteeStockageOrChambreForte to set
+	 * @return Défini la quantité d'or stockable dans la chambre forte pour le niveau actuel
 	 */
 	public void setQuantiteeStockageOrChambreForte(Integer quantiteeStockageOrChambreForte) {
 		this.quantiteeStockageOrChambreForte = quantiteeStockageOrChambreForte;
 	}
 
 	/**
-	 * @return the quantiteeStockageNourritureChambreForte
+	 * @return Retourne la quantité de nourriture stockable dans la chambre forte pour le niveau actuel
 	 */
 	public Integer getQuantiteeStockageNourritureChambreForte() {
-		return quantiteeStockageNourritureChambreForte;
+		return (this.niveau*this.niveau)*(1000*this.niveau);
 	}
 
 	/**
-	 * @param quantiteeStockageNourritureChambreForte the quantiteeStockageNourritureChambreForte to set
+	 * @return Défini la quantité de nourriture stockable dans la chambre forte pour le niveau actuel
 	 */
 	public void setQuantiteeStockageNourritureChambreForte(Integer quantiteeStockageNourritureChambreForte) {
 		this.quantiteeStockageNourritureChambreForte = quantiteeStockageNourritureChambreForte;
 	}
 
 	/**
-	 * @return the nombreMaximalBatimentChaumiere
+	 * @return Retourne le nombre de bâtiment de type "Chaumiere" qu'il est possible de construire pour le niveau actuel
 	 */
 	public Integer getNombreMaximalBatimentChaumiere() {
 		return nombreMaximalBatimentChaumiere;
 	}
 
 	/**
-	 * @param nombreMaximalBatimentChaumiere the nombreMaximalBatimentChaumiere to set
+	 * @return Défini le nombre de bâtiment de type "Chaumiere" qu'il est possible de construire pour le niveau actuel
 	 */
 	public void setNombreMaximalBatimentChaumiere(Integer nombreMaximalBatimentChaumiere) {
 		this.nombreMaximalBatimentChaumiere = nombreMaximalBatimentChaumiere;
 	}
 
 	/**
-	 * @return the nombreMaximalBatimentCarriere
+	 * @return Retourne le nombre de bâtiment de type "Carrière" qu'il est possible de construire pour le niveau actuel
 	 */
 	public Integer getNombreMaximalBatimentCarriere() {
 		return nombreMaximalBatimentCarriere;
 	}
 
 	/**
-	 * @param nombreMaximalBatimentCarriere the nombreMaximalBatimentCarriere to set
+	 * @return Défini le nombre de bâtiment de type "Carrière" qu'il est possible de construire pour le niveau actuel
 	 */
 	public void setNombreMaximalBatimentCarriere(Integer nombreMaximalBatimentCarriere) {
 		this.nombreMaximalBatimentCarriere = nombreMaximalBatimentCarriere;
 	}
 
 	/**
-	 * @return the nombreMaximalBatimentCampDeBucheron
+	 * @return Retourne le nombre de bâtiment de type "Camp de bûcheron" qu'il est possible de construire pour le niveau actuel
 	 */
 	public Integer getNombreMaximalBatimentCampDeBucheron() {
 		return nombreMaximalBatimentCampDeBucheron;
 	}
 
 	/**
-	 * @param nombreMaximalBatimentCampDeBucheron the nombreMaximalBatimentCampDeBucheron to set
+	 * @return Défini le nombre de bâtiment de type "Camp de bûcheron" qu'il est possible de construire pour le niveau actuel
 	 */
 	public void setNombreMaximalBatimentCampDeBucheron(Integer nombreMaximalBatimentCampDeBucheron) {
 		this.nombreMaximalBatimentCampDeBucheron = nombreMaximalBatimentCampDeBucheron;
 	}
 
 	/**
-	 * @return the nombreMaximalBatimentCampDeMineur
+	 * @return Retourne le nombre de bâtiment de type "Camp de mineur" qu'il est possible de construire pour le niveau actuel
 	 */
 	public Integer getNombreMaximalBatimentCampDeMineur() {
 		return nombreMaximalBatimentCampDeMineur;
 	}
 
 	/**
-	 * @param nombreMaximalBatimentCampDeMineur the nombreMaximalBatimentCampDeMineur to set
+	 * @return Défini le nombre de bâtiment de type "Camp de mineur" qu'il est possible de construire pour le niveau actuel
 	 */
 	public void setNombreMaximalBatimentCampDeMineur(Integer nombreMaximalBatimentCampDeMineur) {
 		this.nombreMaximalBatimentCampDeMineur = nombreMaximalBatimentCampDeMineur;
 	}
 
 	/**
-	 * @return the nombreMaximalBatimentFerme
+	 * @return Retourne le nombre de bâtiment de type "Ferme" qu'il est possible de construire pour le niveau actuel
 	 */
 	public Integer getNombreMaximalBatimentFerme() {
 		return nombreMaximalBatimentFerme;
 	}
 
 	/**
-	 * @param nombreMaximalBatimentFerme the nombreMaximalBatimentFerme to set
+	 * @return Défini le nombre de bâtiment de type "Ferme" qu'il est possible de construire pour le niveau actuel
 	 */
 	public void setNombreMaximalBatimentFerme(Integer nombreMaximalBatimentFerme) {
 		this.nombreMaximalBatimentFerme = nombreMaximalBatimentFerme;
 	}
 
 	/**
-	 * @return the nombreMaximalBatimentEntrepot
+	 * @return Retourne le nombre de bâtiment de type "Entrepot" qu'il est possible de construire pour le niveau actuel
 	 */
 	public Integer getNombreMaximalBatimentEntrepot() {
 		return nombreMaximalBatimentEntrepot;
 	}
 
 	/**
-	 * @param nombreMaximalBatimentEntrepot the nombreMaximalBatimentEntrepot to set
+	 * @return Défini le nombre de bâtiment de type "Entrepot" qu'il est possible de construire pour le niveau actuel
 	 */
 	public void setNombreMaximalBatimentEntrepot(Integer nombreMaximalBatimentEntrepot) {
 		this.nombreMaximalBatimentEntrepot = nombreMaximalBatimentEntrepot;
 	}
 
 	/**
-	 * @return the nombreMaximalBatimentScierie
+	 * @return Retourne le nombre de bâtiment de type "Scierie" qu'il est possible de construire pour le niveau actuel
 	 */
 	public Integer getNombreMaximalBatimentScierie() {
 		return nombreMaximalBatimentScierie;
 	}
 
 	/**
-	 * @param nombreMaximalBatimentScierie the nombreMaximalBatimentScierie to set
+	 * @return Défini le nombre de bâtiment de type "Scierie" qu'il est possible de construire pour le niveau actuel
 	 */
 	public void setNombreMaximalBatimentScierie(Integer nombreMaximalBatimentScierie) {
 		this.nombreMaximalBatimentScierie = nombreMaximalBatimentScierie;
 	}
 
 	/**
-	 * @return the nombreMaximalBatimentBanque
+	 * @return Retourne le nombre de bâtiment de type "Banque" qu'il est possible de construire pour le niveau actuel
 	 */
 	public Integer getNombreMaximalBatimentBanque() {
 		return nombreMaximalBatimentBanque;
 	}
 
 	/**
-	 * @param nombreMaximalBatimentBanque the nombreMaximalBatimentBanque to set
+	 * @return Défini le nombre de bâtiment de type "Banque" qu'il est possible de construire pour le niveau actuel
 	 */
 	public void setNombreMaximalBatimentBanque(Integer nombreMaximalBatimentBanque) {
 		this.nombreMaximalBatimentBanque = nombreMaximalBatimentBanque;
 	}
 
 	/**
-	 * @return the nombreMaximalBatimentGrenier
+	 * @return Retourne le nombre de bâtiment de type "Grenier" qu'il est possible de construire pour le niveau actuel
 	 */
 	public Integer getNombreMaximalBatimentGrenier() {
 		return nombreMaximalBatimentGrenier;
 	}
 
 	/**
-	 * @param nombreMaximalBatimentGrenier the nombreMaximalBatimentGrenier to set
+	 * @return Défini le nombre de bâtiment de type "Grenier" qu'il est possible de construire pour le niveau actuel
 	 */
 	public void setNombreMaximalBatimentGrenier(Integer nombreMaximalBatimentGrenier) {
 		this.nombreMaximalBatimentGrenier = nombreMaximalBatimentGrenier;
 	}
 
 	/**
-	 * @return the nombreMaximalBatimentPort
+	 * @return Retourne le nombre de bâtiment de type "Port" qu'il est possible de construire pour le niveau actuel
 	 */
 	public Integer getNombreMaximalBatimentPort() {
 		return nombreMaximalBatimentPort;
 	}
 
 	/**
-	 * @param nombreMaximalBatimentPort the nombreMaximalBatimentPort to set
+	 * @return Défini le nombre de bâtiment de type "Port" qu'il est possible de construire pour le niveau actuel
 	 */
 	public void setNombreMaximalBatimentPort(Integer nombreMaximalBatimentPort) {
 		this.nombreMaximalBatimentPort = nombreMaximalBatimentPort;
 	}
 
 	/**
-	 * @return the nombreMaximalBatimentCaserneMillitaire
+	 * @return Retourne le nombre de bâtiment de type "Caserne millitaire" qu'il est possible de construire pour le niveau actuel
 	 */
 	public Integer getNombreMaximalBatimentCaserneMillitaire() {
 		return nombreMaximalBatimentCaserneMillitaire;
 	}
 
 	/**
-	 * @param nombreMaximalBatimentCaserneMillitaire the nombreMaximalBatimentCaserneMillitaire to set
+	 * @return Défini le nombre de bâtiment de type "Caserne millitaire" qu'il est possible de construire pour le niveau actuel
 	 */
 	public void setNombreMaximalBatimentCaserneMillitaire(Integer nombreMaximalBatimentCaserneMillitaire) {
 		this.nombreMaximalBatimentCaserneMillitaire = nombreMaximalBatimentCaserneMillitaire;
 	}
 
 	/**
-	 * @return the nombreMaximalBatimentAtelierDeSiege
+	 * @return Retourne le nombre de bâtiment de type "Atelier de siège" qu'il est possible de construire pour le niveau actuel
 	 */
 	public Integer getNombreMaximalBatimentAtelierDeSiege() {
 		return nombreMaximalBatimentAtelierDeSiege;
 	}
 
 	/**
-	 * @param nombreMaximalBatimentAtelierDeSiege the nombreMaximalBatimentAtelierDeSiege to set
+	 * @return Défini le nombre de bâtiment de type "Atelier de siège" qu'il est possible de construire pour le niveau actuel
 	 */
 	public void setNombreMaximalBatimentAtelierDeSiege(Integer nombreMaximalBatimentAtelierDeSiege) {
 		this.nombreMaximalBatimentAtelierDeSiege = nombreMaximalBatimentAtelierDeSiege;
 	}
 
 	/**
-	 * @return the nombreMaximalBatimentForge
+	 * @return Retourne le nombre de bâtiment de type "Forge" qu'il est possible de construire pour le niveau actuel
 	 */
 	public Integer getNombreMaximalBatimentForge() {
 		return nombreMaximalBatimentForge;
 	}
 
 	/**
-	 * @param nombreMaximalBatimentForge the nombreMaximalBatimentForge to set
+	 * @return Défini le nombre de bâtiment de type "Forge" qu'il est possible de construire pour le niveau actuel
 	 */
 	public void setNombreMaximalBatimentForge(Integer nombreMaximalBatimentForge) {
 		this.nombreMaximalBatimentForge = nombreMaximalBatimentForge;
 	}
 
 	/**
-	 * @return the nombreMaximalBatimentUniversite
+	 * @return Retourne le nombre de bâtiment de type "Universite" qu'il est possible de construire pour le niveau actuel
 	 */
 	public Integer getNombreMaximalBatimentUniversite() {
 		return nombreMaximalBatimentUniversite;
 	}
 
 	/**
-	 * @param nombreMaximalBatimentUniversite the nombreMaximalBatimentUniversite to set
+	 * @return Défini le nombre de bâtiment de type "Universite" qu'il est possible de construire pour le niveau actuel
 	 */
 	public void setNombreMaximalBatimentUniversite(Integer nombreMaximalBatimentUniversite) {
 		this.nombreMaximalBatimentUniversite = nombreMaximalBatimentUniversite;
 	}
 
 	/**
-	 * @return the nombreMaximalTableDeMission
+	 * @return Retourne le nombre de bâtiment de type "Table de mission" qu'il est possible de construire pour le niveau actuel
 	 */
 	public Integer getNombreMaximalTableDeMission() {
 		return nombreMaximalTableDeMission;
 	}
 
 	/**
-	 * @param nombreMaximalTableDeMission the nombreMaximalTableDeMission to set
+	 * @return Défini le nombre de bâtiment de type "Table de mission" qu'il est possible de construire pour le niveau actuel
 	 */
 	public void setNombreMaximalTableDeMission(Integer nombreMaximalTableDeMission) {
 		this.nombreMaximalTableDeMission = nombreMaximalTableDeMission;
 	}
 
 	/**
-	 * @return the idTypeBatiment
+	 * @return Retourne l'id du type de bâtiment
 	 */
 	public Integer getIdTypeBatiment() {
 		return idTypeBatiment;
 	}
 
 	/**
-	 * @return the icone
+	 * @return Retourne l'icône du bâtiment
 	 */
 	public String getIcone() {
 		return icone;
 	}
 
 	/**
-	 * @return the libelle
+	 * @return Retourne le libellé du bâtiment
 	 */
 	public String getLibelle() {
 		return libelle;
 	}
 
 	/**
-	 * @return the descriptif
+	 * @return Retourne le descriptif du bâtiment
 	 */
 	public String getDescriptif() {
 		return descriptif;

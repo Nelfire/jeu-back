@@ -68,7 +68,10 @@ public class StartupListener {
         this.joueurRepo.save(joueur1);
 
 	    // Création d'un hotel de ville
-        HotelDeVille h1 = new HotelDeVille(1, coutPierre, coutBois, coutOr, coutNourriture, villageoisNecessaireAmelioration, tempsAmelioration, quantiteeStockagePierreChambreForte, quantiteeStockageBoisChambreForte, quantiteeStockageOrChambreForte, quantiteeStockageNourritureChambreForte, nombreMaximalBatimentChaumiere, nombreMaximalBatimentCarriere, nombreMaximalBatimentCampDeBucheron, nombreMaximalBatimentCampDeMineur, nombreMaximalBatimentFerme, nombreMaximalBatimentEntrepot, nombreMaximalBatimentScierie, nombreMaximalBatimentBanque, nombreMaximalBatimentGrenier, nombreMaximalBatimentPort, nombreMaximalBatimentCaserneMillitaire, nombreMaximalBatimentAtelierDeSiege, nombreMaximalBatimentForge, nombreMaximalBatimentUniversite, nombreMaximalTableDeMission)
+        HotelDeVille h1 = new HotelDeVille();
+        HotelDeVille h2 = new HotelDeVille();
+        System.out.println("Niveau :" + h1.getCoutPierreAmelioration());
+        System.out.println("Niveau :" + h2.getCoutPierreAmelioration());
 
         
         
