@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import dev.entites.Joueur;
 import dev.entites.Role;
 import dev.entites.RoleJoueur;
-import dev.entites.batiment.HotelDeVille;
+import dev.entites.batiment.divers.HotelDeVille;
 import dev.repository.JoueurRepo;
 
 

@@ -1,4 +1,4 @@
-package dev.entites.batiment;
+package dev.entites.batiment.divers;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
