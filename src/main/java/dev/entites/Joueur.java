@@ -9,9 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import dev.entites.joueur.Armee;
+import dev.entites.joueur.Base;
 
 @Entity
 public class Joueur {
@@ -21,7 +23,23 @@ public class Joueur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "joueur_base", 
+      joinColumns = 
+        { @JoinColumn(name = "joueur_id", referencedColumnName = "id") },
+      inverseJoinColumns = 
+        { @JoinColumn(name = "base_id", referencedColumnName = "id") })
+    private Base base;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "joueur_armee", 
+      joinColumns = 
+        { @JoinColumn(name = "joueur_id", referencedColumnName = "id") },
+      inverseJoinColumns = 
+        { @JoinColumn(name = "armee_id", referencedColumnName = "id") })
+    private Armee armee;
+    
     /** icone du joueur **/
     private String icone;
 
@@ -96,7 +114,8 @@ public class Joueur {
     }
 
 	/**
-	 * @param id
+	 * @param base
+	 * @param armee
 	 * @param icone
 	 * @param pseudo
 	 * @param email
@@ -120,13 +139,14 @@ public class Joueur {
 	 * @param tempsDeJeu
 	 * @param roles
 	 */
-	public Joueur(Integer id, String icone, String pseudo, String email, String motDePasse, String descriptif,
+	public Joueur(Base base, Armee armee, String icone, String pseudo, String email, String motDePasse, String descriptif,
 			Integer niveau, Integer experience, Integer pierrePossession, Integer boisPossession, Integer orPossession,
 			Integer nourriturePossession, Integer gemmePossession, Integer pierreMaximum, Integer boisMaximum,
 			Integer orMaximum, Integer nourritureMaximum, Integer pierreBoostProduction, Integer boisBoostProduction,
 			Integer orBoostProduction, Integer nourritureBoostProduction, Integer tempsDeJeu, List<RoleJoueur> roles) {
 		super();
-		this.id = id;
+		this.base = base;
+		this.armee = armee;
 		this.icone = icone;
 		this.pseudo = pseudo;
 		this.email = email;

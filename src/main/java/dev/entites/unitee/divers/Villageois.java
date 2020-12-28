@@ -250,6 +250,13 @@ public class Villageois {
 	public Integer getNiveauBatimentNecessaireFormation() {
 		return niveauBatimentNecessaireFormation;
 	}
+
+	/**
+	 * @return the idUnitee
+	 */
+	public Integer getIdUnitee() {
+		return idUnitee;
+	}
 	
 	
     
