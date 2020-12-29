@@ -17,7 +17,7 @@ public class Guilde {
 
 	/** id de la guilde **/
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
     /** libellé de la guilde **/

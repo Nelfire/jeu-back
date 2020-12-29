@@ -15,7 +15,9 @@ import javax.persistence.OneToOne;
 
 import dev.entites.joueur.Armee;
 import dev.entites.joueur.Base;
+import dev.entites.social.ChatGuilde;
 import dev.entites.social.Guilde;
+import dev.entites.social.ListeAmis;
 
 @Entity
 public class Joueur {
@@ -58,6 +60,17 @@ public class Joueur {
         { @JoinColumn(name = "guilde_id", referencedColumnName = "id") })
     private Guilde chefGuilde;
 	
+    @OneToMany(mappedBy = "joueur", cascade = CascadeType.PERSIST)
+	private List<ChatGuilde> messagesGuilde;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "joueur_listeAmis", 
+      joinColumns = 
+        { @JoinColumn(name = "joueur_id", referencedColumnName = "id") },
+      inverseJoinColumns = 
+        { @JoinColumn(name = "listeAmis_id", referencedColumnName = "id") })
+    private ListeAmis listeAmis;
+    
     /** icone du joueur **/
     private String icone;
 

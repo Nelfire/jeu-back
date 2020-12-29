@@ -19,6 +19,7 @@ import dev.entites.batiment.divers.HotelDeVille;
 import dev.entites.joueur.Armee;
 import dev.entites.joueur.Base;
 import dev.entites.social.Guilde;
+import dev.entites.unitee.Unitee;
 import dev.entites.unitee.infanterie.Archer;
 import dev.entites.unitee.infanterie.FantassinEpee;
 import dev.repository.JoueurRepo;
@@ -45,6 +46,7 @@ import dev.repository.joueur.ArmeeRepo;
 import dev.repository.joueur.BaseRepo;
 import dev.repository.social.GuildeRepo;
 import dev.repository.social.ListeAmisRepo;
+import dev.repository.unitee.UniteeRepo;
 import dev.repository.unitee.cavalerie.CavalierExpertRepo;
 import dev.repository.unitee.cavalerie.CavalierRepo;
 import dev.repository.unitee.cavalerie.PaladinRepo;
@@ -74,168 +76,41 @@ public class StartupListener {
 	
 	private String appVersion;
     private PasswordEncoder passwordEncoder;
+    // ---- Unitee ----
+    private UniteeRepo uniteeRepo;
     // ---- Batiment ----
     private BatimentRepo batimentRepo;
     // - divers -
-//    private ChaumiereRepo chaumiereRepo;
-//    private HotelDeVilleRepo hotelDeVilleRepo;
-//    private MarcheRepo marcheRepo;
-//    private TableExpeditionRepo tableExpeditionRepo;
-//    // - millitaire -
-//    private AtelierDeSiegeRepo atelierDeSiegeRepo;
-//    private CaserneMillitaireRepo caserneMillitaireRepo;
-//    private EcurieRepo ecurieRepo;
-//    private PortRepo portRepo;
-//    // - recherche -
-//    private ForgeRepo forgeRepo;
-//    private UniversiteRepo universiteRepo;
-//    // - ressource -
-//    private CampDeBucheronRepo campDeBucheronRepo;
-//    private CampDeMineurRepo campDeMineurRepo;
-//    private CarriereRepo carriereRepo;
-//    private FermeRepo fermeRepo;
-//    // - stockage -
-//    private BanqueRepo banqueRepo;
-//    private EntrepotRepo entrepotRepo;
-//    private GrenierRepo grenierRepo;
-//    private ScierieRepo scierieRepo;
     // ---- Joueur ----
     private JoueurRepo joueurRepo;
     private BaseRepo baseRepo;
     private ArmeeRepo armeeRepo;
     // ---- Social ----
     private GuildeRepo guildeRepo;
-//    private ListeAmisRepo listeAmisRepo;
-//    // ---- Unitee ----
-//    // - Cavalerie -
-//    private CavalierExpertRepo cavalierExpertRepo;
-//    private CavalierRepo cavalierRepo;
-//    private PaladinRepo paladinRepo;
-//    // - Divers -
-//    private MuleDeCommerceRepo muleDeCommerceRepo;
-//    private PretreRepo pretreRepo;
-//    private VillageoisRepo villageoisRepo;
-//    // - Infanterie -
-//    private ArcherCompositeRepo archerCompositeRepo;
-//    private ArcherEliteRepo archerEliteRepo;
-//    private ArcherRepo archerRepo;
-//    private FantassinEpeeRepo fantassinEpeeRepo;
-//    private FantassinHacheRepo fantassinHacheRepo;
-//    private LegionnaireRepo legionnaireRepo;
-//    // - Navale -
-//    private NavireDeGuerreRepo navireDeGuerreRepo;
-//    private NavireDePecheRepo navireDePecheRepo;
-//    private NavireEclaireurRepo navireEclaireurRepo;
-//    // - Siege -
-//    private BalisteRepo balisteRepo;
-//    private CatapulteRepo catapulteRepo;
-//    private ElephanDeGuerreRepo elephanDeGuerreRepo;
- 
+    private ListeAmisRepo listeAmisRepo;
     public StartupListener(@Value("${app.version}") String appVersion, 
     		PasswordEncoder passwordEncoder,
+    		UniteeRepo uniteeRepo,
     		BatimentRepo batimentRepo,
-//    		ChaumiereRepo chaumiereRepo,
-//    		HotelDeVilleRepo hotelDeVilleRepo,
-//    		MarcheRepo marcheRepo,
-//    		TableExpeditionRepo tableExpeditionRepo,
-//    		AtelierDeSiegeRepo atelierDeSiegeRepo,
-//    		CaserneMillitaireRepo caserneMillitaireRepo,
-//    		EcurieRepo ecurieRepo,
-//    		PortRepo portRepo,
-//    		ForgeRepo forgeRepo,
-//    		UniversiteRepo universiteRepo,
-//    		CampDeBucheronRepo campDeBucheronRepo,
-//    		CampDeMineurRepo campDeMineurRepo,
-//    		CarriereRepo carriereRepo,
-//    		FermeRepo fermeRepo,
-//    		BanqueRepo banqueRepo,
-//    		EntrepotRepo entrepotRepo,
-//    		GrenierRepo grenierRepo,
-//    		ScierieRepo scierieRepo,
+
     		JoueurRepo joueurRepo,
     		BaseRepo baseRepo,
     		ArmeeRepo armeeRepo,
-    		GuildeRepo guildeRepo
-//    		ListeAmisRepo listeAmisRepo,
-//    		CavalierExpertRepo cavalierExpertRepo,
-//    		CavalierRepo cavalierRepo,
-//    		PaladinRepo paladinRepo,
-//    		MuleDeCommerceRepo muleDeCommerceRepo,
-//    		PretreRepo pretreRepo,
-//    		VillageoisRepo villageoisRepo,
-//    		ArcherCompositeRepo archerCompositeRepo,
-//    		ArcherEliteRepo archerEliteRepo,
-//    		ArcherRepo archerRepo,
-//    		FantassinEpeeRepo fantassinEpeeRepo,
-//    		FantassinHacheRepo fantassinHacheRepo,
-//    		LegionnaireRepo legionnaireRepo,
-//    		NavireDeGuerreRepo navireDeGuerreRepo,
-//    		NavireDePecheRepo navireDePecheRepo,
-//    		NavireEclaireurRepo navireEclaireurRepo,
-//    		BalisteRepo balisteRepo,
-//    		CatapulteRepo catapulteRepo,
-//    		ElephanDeGuerreRepo elephanDeGuerreRepo
-    		) {
+    		GuildeRepo guildeRepo,
+    		ListeAmisRepo listeAmisRepo) {
         this.appVersion = appVersion;
-        this.passwordEncoder = passwordEncoder;
+        this.passwordEncoder = passwordEncoder;        
+        // --- UNITEE ---
+        this.uniteeRepo = uniteeRepo;
         // --- BATIMENT ---
         this.batimentRepo = batimentRepo;
-        // - divers -
-//        this.chaumiereRepo = chaumiereRepo;
-//        this.hotelDeVilleRepo = hotelDeVilleRepo;
-//        this.marcheRepo = marcheRepo;
-//        this.tableExpeditionRepo = tableExpeditionRepo;
-//        // - millitaire -
-//        this.atelierDeSiegeRepo = atelierDeSiegeRepo;
-//        this.caserneMillitaireRepo = caserneMillitaireRepo;
-//        this.ecurieRepo = ecurieRepo;
-//        this.portRepo = portRepo;
-//        // - recherche -
-//        this.forgeRepo = forgeRepo;
-//        this.universiteRepo = universiteRepo;
-//        // - ressource -
-//        this.campDeBucheronRepo = campDeBucheronRepo;
-//        this.campDeMineurRepo = campDeMineurRepo;
-//        this.carriereRepo = carriereRepo;
-//        this.fermeRepo = fermeRepo;
-//        // - stockage -
-//        this.banqueRepo = banqueRepo;
-//        this.entrepotRepo = entrepotRepo;
-//        this.grenierRepo = grenierRepo;
-//        this.scierieRepo = scierieRepo;
 //        // ---- Joueur ----
         this.joueurRepo = joueurRepo;
         this.baseRepo = baseRepo;
         this.armeeRepo = armeeRepo;
 //        // ---- Social ----
         this.guildeRepo = guildeRepo;
-//        this.listeAmisRepo = listeAmisRepo;
-//        // ---- Unitee ----
-//        // - Cavalerie -
-//        this.cavalierExpertRepo = cavalierExpertRepo;
-//        this.cavalierRepo = cavalierRepo;
-//        this.paladinRepo = paladinRepo;
-//        // - Divers -
-//        this.muleDeCommerceRepo = muleDeCommerceRepo;
-//        this.pretreRepo = pretreRepo;
-//        this.villageoisRepo = villageoisRepo;
-//        // - Infanterie -
-//        this.archerCompositeRepo = archerCompositeRepo;
-//        this.archerEliteRepo = archerEliteRepo;
-//        this.archerRepo = archerRepo;
-//        this.fantassinEpeeRepo = fantassinEpeeRepo;
-//        this.fantassinHacheRepo = fantassinHacheRepo;
-//        this.legionnaireRepo = legionnaireRepo;
-//        // - Navale -
-//        this.navireDeGuerreRepo = navireDeGuerreRepo;
-//        this.navireDePecheRepo = navireDePecheRepo;
-//        this.navireEclaireurRepo = navireEclaireurRepo;
-//        // - Siege -
-//        this.balisteRepo = balisteRepo;
-//        this.catapulteRepo = catapulteRepo;
-//        this.elephanDeGuerreRepo = elephanDeGuerreRepo;
-        
-        
+        this.listeAmisRepo = listeAmisRepo;  
     }
 
     @EventListener(ContextRefreshedEvent.class)
@@ -268,14 +143,7 @@ public class StartupListener {
         joueur1.setRoles(Arrays.asList(new RoleJoueur(joueur1, Role.ROLE_ADMINISTRATEUR), new RoleJoueur(joueur1, Role.ROLE_JOUEUR)));
         this.joueurRepo.save(joueur1);
         
-        // ----- UNITEE -----
-//        Archer archer1 = new Archer(1);
-//        Archer archer2 = new Archer(3);
-//        this.archerRepo.save(archer1);
-//        this.archerRepo.save(archer2);
-//        List<Integer> listeUnitee = new ArrayList<>();
-//        listeUnitee.add(archer1.getId());
-//        listeUnitee.add(archer2.getId());
+
         
         // ----- BATIMENT -----
         Batiment ferme = new Batiment(6,1);
@@ -294,18 +162,31 @@ public class StartupListener {
 		List<Batiment> listeBatiments = new ArrayList<>();
 		listeBatiments.add(hdv);
 		listeBatiments.add(ferme);
+		
         // ----- BASE -----
 		Base baseJoueur1 = new Base(joueur1,listeBatiments);
         this.baseRepo.save(baseJoueur1);
-		System.out.println("Informations base du joueur : " + baseJoueur1.getBatiments());
+		System.out.println(baseJoueur1.toString());
+        
+        // ----- UNITEE -----
+        Unitee villageois1 = new Unitee(1,1);
+        Unitee archer1 = new Unitee(5,1);
+        this.uniteeRepo.save(villageois1);
+        this.uniteeRepo.save(archer1);
         
         // ----- ARMEE -----
-
+		List<Unitee> listeUniteesJoueur1 = new ArrayList<>();
+		listeUniteesJoueur1.add(villageois1);
+		listeUniteesJoueur1.add(archer1);
+		Armee armeeJoueur1 = new Armee(joueur1, listeUniteesJoueur1);
+		this.armeeRepo.save(armeeJoueur1);
+		System.out.println(armeeJoueur1.toString());
+				
+		// ----- GUILDE -----
         Guilde guilde1 = new Guilde("Les loulous de l'espace","xxx","Coucou les loulous");
         guilde1.setChefGuilde(joueur1);
         this.guildeRepo.save(guilde1);
         System.out.println(guilde1.getChefGuilde());
-
         System.out.println(joueur1.getGuilde());
         System.out.println(joueur1.getChefGuilde());
         

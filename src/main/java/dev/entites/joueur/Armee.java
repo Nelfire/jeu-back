@@ -21,7 +21,7 @@ public class Armee {
 	// Déclarations
     /** id de la Armee **/
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @OneToOne(mappedBy = "armee")

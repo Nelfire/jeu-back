@@ -20,7 +20,7 @@ public class Base {
 	// Déclarations
     /** id de la base **/
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @OneToOne(mappedBy = "base")
