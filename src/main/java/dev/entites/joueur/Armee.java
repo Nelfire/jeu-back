@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 import dev.entites.Joueur;
+import dev.entites.unitee.Unitee;
 
 @Entity
 public class Armee {
@@ -27,18 +28,17 @@ public class Armee {
     private Joueur joueur;
     
     @Column
-    @ElementCollection(targetClass=Integer.class)
-    private List<Integer> idUnitees;
+    @ElementCollection(targetClass=Unitee.class)
+    private List<Unitee> unitee;
 
 	/**
-	 * @param id
 	 * @param joueur
-	 * @param idUnitees
+	 * @param unitee
 	 */
-	public Armee(Joueur joueur, List<Integer> idUnitees) {
+	public Armee(Joueur joueur, List<Unitee> unitee) {
 		super();
 		this.joueur = joueur;
-		this.idUnitees = idUnitees;
+		this.unitee = unitee;
 	}
 
 	/**
@@ -70,23 +70,24 @@ public class Armee {
 	}
 
 	/**
-	 * @return the idUnitees
+	 * @return the unitee
 	 */
-	public List<Integer> getIdUnitees() {
-		return idUnitees;
+	public List<Unitee> getUnitee() {
+		return unitee;
 	}
 
 	/**
-	 * @param idUnitees the idUnitees to set
+	 * @param unitee the unitee to set
 	 */
-	public void setIdUnitees(List<Integer> idUnitees) {
-		this.idUnitees = idUnitees;
+	public void setUnitee(List<Unitee> unitee) {
+		this.unitee = unitee;
 	}
 
 	@Override
 	public String toString() {
-		return "Armee [id=" + id + ", joueur=" + joueur + ", idUnitees=" + idUnitees + "]";
+		return "Informations armée du joueur : [id=" + id + ", joueur=" + joueur + ", unitee=" + unitee + "]";
 	}
+
     
     
 

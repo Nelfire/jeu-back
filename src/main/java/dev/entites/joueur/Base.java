@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 import dev.entites.Joueur;
+import dev.entites.batiment.Batiment;
 
 @Entity
 public class Base {
@@ -26,18 +27,18 @@ public class Base {
     private Joueur joueur;
     
     @Column
-    @ElementCollection(targetClass=Integer.class)
-    private List<Integer> idBatiments;
+    @ElementCollection(targetClass=Batiment.class)
+    private List<Batiment> batiment;
 
 	/**
 	 * @param id
 	 * @param joueur
 	 * @param idBatiments
 	 */
-	public Base(Joueur joueur, List<Integer> idBatiments) {
+	public Base(Joueur joueur, List<Batiment> batiment) {
 		super();
 		this.joueur = joueur;
-		this.idBatiments = idBatiments;
+		this.batiment = batiment;
 	}
 
 	/**
@@ -71,23 +72,23 @@ public class Base {
 	/**
 	 * @return the idBatiments
 	 */
-	public List<Integer> getIdBatiments() {
-		return idBatiments;
+	public List<Batiment> getBatiments() {
+		return batiment;
 	}
 
 	/**
 	 * @param idBatiments the idBatiments to set
 	 */
-	public void setIdBatiments(List<Integer> idBatiments) {
-		this.idBatiments = idBatiments;
+	public void setIdBatiments(List<Batiment> batiment) {
+		this.batiment = batiment;
 	}
 
+	@Override
+	public String toString() {
+		return "Informations base du joueur : [id=" + id + ", joueur=" + joueur + ", batiment=" + batiment + "]";
+	}
 
     
-	
-	
-    
-
     
     
 }

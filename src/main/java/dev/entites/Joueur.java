@@ -9,11 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import dev.entites.joueur.Armee;
 import dev.entites.joueur.Base;
+import dev.entites.social.Guilde;
 
 @Entity
 public class Joueur {
@@ -24,6 +26,7 @@ public class Joueur {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
+ // Un joueur ne peut avoir qu'une seule base
     @OneToOne(cascade = CascadeType.ALL)
     @JoinTable(name = "joueur_base", 
       joinColumns = 
@@ -32,6 +35,7 @@ public class Joueur {
         { @JoinColumn(name = "base_id", referencedColumnName = "id") })
     private Base base;
     
+    // Un joueur ne peut avoir qu'une seule armée
     @OneToOne(cascade = CascadeType.ALL)
     @JoinTable(name = "joueur_armee", 
       joinColumns = 
@@ -40,6 +44,20 @@ public class Joueur {
         { @JoinColumn(name = "armee_id", referencedColumnName = "id") })
     private Armee armee;
     
+	/** Tous les joueurs peuvent appartenir à une guilde **/
+	@ManyToOne
+	@JoinColumn(name = "guilde_id")
+	private Guilde guilde;
+	
+	/** **/
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "joueur_guilde", 
+      joinColumns = 
+        { @JoinColumn(name = "joueur_id", referencedColumnName = "id") },
+      inverseJoinColumns = 
+        { @JoinColumn(name = "guilde_id", referencedColumnName = "id") })
+    private Guilde chefGuilde;
+	
     /** icone du joueur **/
     private String icone;
 
@@ -491,6 +509,62 @@ public class Joueur {
 	 */
 	public void setRoles(List<RoleJoueur> roles) {
 		this.roles = roles;
+	}
+
+	/**
+	 * @return the base
+	 */
+	public Base getBase() {
+		return base;
+	}
+
+	/**
+	 * @param base the base to set
+	 */
+	public void setBase(Base base) {
+		this.base = base;
+	}
+
+	/**
+	 * @return the armee
+	 */
+	public Armee getArmee() {
+		return armee;
+	}
+
+	/**
+	 * @param armee the armee to set
+	 */
+	public void setArmee(Armee armee) {
+		this.armee = armee;
+	}
+
+	/**
+	 * @return the guilde
+	 */
+	public Guilde getGuilde() {
+		return guilde;
+	}
+
+	/**
+	 * @param guilde the guilde to set
+	 */
+	public void setGuilde(Guilde guilde) {
+		this.guilde = guilde;
+	}
+
+	/**
+	 * @return the chefGuilde
+	 */
+	public Guilde getChefGuilde() {
+		return chefGuilde;
+	}
+
+	/**
+	 * @param chefGuilde the chefGuilde to set
+	 */
+	public void setChefGuilde(Guilde chefGuilde) {
+		this.chefGuilde = chefGuilde;
 	}
     
     
