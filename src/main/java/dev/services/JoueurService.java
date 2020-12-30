@@ -81,9 +81,9 @@ public class JoueurService {
 //		return listeJoueurs;
 //	}
 	
-//	public JoueurInfoDto getInfoJoueurEmail(String email) {
-//		Joueur coll = joueurRepo.findByEmail(email).orElseThrow(() -> new JoueurAuthentifieNonRecupereException("Erreur."));
-//		JoueurInfoDto col = new JoueurInfoDto(email, coll.getNom(), coll.getPrenom());
-//		return col;
-//	}
+	public JoueurInfoDto getInfoJoueurEmail(String email) {
+		Joueur col = joueurRepo.findByEmail(email).orElseThrow(() -> new JoueurAuthentifieNonRecupereException("Erreur."));
+		JoueurInfoDto co = new JoueurInfoDto(col.getId(),col.getIcone(),col.getPseudo(),email,col.getDescriptif(),col.getNiveau(),col.getExperience(),col.getPierrePossession(),col.getBoisPossession(),col.getOrPossession(),col.getNourriturePossession(),col.getGemmePossession(),col.getPierreMaximum(),col.getBoisMaximum(),col.getOrMaximum(),col.getNourritureMaximum(),col.getPierreBoostProduction(),col.getBoisBoostProduction(),col.getOrBoostProduction(),col.getNourritureBoostProduction(),col.getTempsDeJeu());
+		return co;
+	}
 }

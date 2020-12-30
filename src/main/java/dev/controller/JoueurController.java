@@ -14,12 +14,6 @@ import dev.controller.dto.JoueurDto;
 import dev.controller.dto.JoueurInfoDto;
 import dev.services.JoueurService;
 
-/**
- * Controller de l'entité joueur
- * 
- * @author KOMINIARZ Anaïs, SAGAN Jonathan, BATIGNES Pierre, GIRARD Vincent.
- *
- */
 @RestController
 @RequestMapping("joueur")
 public class JoueurController {
@@ -53,9 +47,9 @@ public class JoueurController {
 //	}
 	
 
-//	@GetMapping("/email")
-//	public JoueurInfoDto getInfoJoueurEmail(@RequestParam("email") String email) {
-//		return this.joueurService.getInfoJoueurEmail(email);
-//	}
+	@GetMapping("/email")
+	public JoueurInfoDto getInfoJoueurEmail(@RequestParam("email") String email) {
+		return this.joueurService.getInfoJoueurEmail(email);
+	}
 
 }
