@@ -423,7 +423,7 @@ public class JoueurInfoDto {
 	}
 
 	/**
-	 * @param pierreBoostProduction the pierreBoostProduction to set
+	 * @param pierreBoostProduction thee pierreBoostProduction to set
 	 */
 	public void setPierreBoostProduction(Integer pierreBoostProduction) {
 		this.pierreBoostProduction = pierreBoostProduction;
@@ -448,7 +448,7 @@ public class JoueurInfoDto {
 	 */
 	public Integer getOrBoostProduction() {
 		return orBoostProduction;
-	} 
+	}
 
 	/**
 	 * @param orBoostProduction the orBoostProduction to set
