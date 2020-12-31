@@ -409,7 +409,7 @@ public class JoueurInfoDto {
 	}
 
 	/**
-	 * @param nourritureMaximum the nourritureMaximum to set
+	 * @param nourritureMaximum the  nourritureMaximum to set
 	 */
 	public void setNourritureMaximum(Integer nourritureMaximum) {
 		this.nourritureMaximum = nourritureMaximum;
