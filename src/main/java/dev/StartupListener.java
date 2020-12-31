@@ -146,18 +146,62 @@ public class StartupListener {
 
         
         // ----- BATIMENT -----
-        Batiment ferme = new Batiment(6,1);
+        /* 
+     	1 - Hotel de ville	
+    	2 - Chaumière (augmenter limite population)
+    	3 - Carrière (farm pierre)
+    	4 - Camp de bucheron (farm bois)		
+    	5 - Camp de mineur (farm or)
+    	6 - Ferme (farm nourriture)
+    	7 - Stockage Pierre (Entrepot)	
+    	8 - Stockage Bois (Scierie)
+    	9 - Stockage Or (Banque)
+    	10 - Stockage Nourriture (Grenier)
+    	11 - Caserne Militaire	
+    	12 - Ecurie
+    	13 - Port
+    	14 - Atelier de siege
+    	15 - Forge		
+    	16 - Universite
+    	17 - Marché
+    	18 - Table d'expéditions
+         */
         Batiment hdv = new Batiment(1,1);
-        System.out.println(ferme.getApportRessourceHeure());
-        System.out.println("Nombre exploitants autorisé : "+ferme.getNombreExploitantsAutorise());
-        System.out.println("Nombre exploitants actifs : "+ferme.getNombreExploitantsActif());
-        System.out.println("Apport Ressources : "+ferme.getApportRessourceHeure());
-        ferme.setNombreExploitantsActif(3);
-        System.out.println("Nombre exploitants autorisé : "+ferme.getNombreExploitantsAutorise());
-        System.out.println("Nombre exploitants actifs : "+ferme.getNombreExploitantsActif());
-        System.out.println("Apport Ressources : "+ferme.getApportRessourceHeure());
+        Batiment chaumiere = new Batiment(2,1);
+        Batiment carriere = new Batiment(3,1);
+        Batiment campDeBucheron = new Batiment(4,1);
+        Batiment campDeMineur = new Batiment(5,1);
+        Batiment ferme = new Batiment(6,1);
+        Batiment entrepot = new Batiment(7,1);
+        Batiment scierie = new Batiment(8,1);
+        Batiment banque = new Batiment(9,1);
+        Batiment grenier = new Batiment(10,1);
+        Batiment caserneMillitaire = new Batiment(11,1);
+        Batiment ecurie = new Batiment(12,1);
+        Batiment port = new Batiment(13,1);
+        Batiment atelierDeSiere = new Batiment(14,1);
+        Batiment forge = new Batiment(15,1);
+        Batiment universite = new Batiment(16,1);
+        Batiment marche = new Batiment(17,1);
+        Batiment tableExpedition = new Batiment(18,1);
         this.batimentRepo.save(hdv);
+        this.batimentRepo.save(chaumiere);
+        this.batimentRepo.save(carriere);
+        this.batimentRepo.save(campDeBucheron);
+        this.batimentRepo.save(campDeMineur);
         this.batimentRepo.save(ferme);
+        this.batimentRepo.save(entrepot);
+        this.batimentRepo.save(scierie);
+        this.batimentRepo.save(banque);
+        this.batimentRepo.save(grenier);
+        this.batimentRepo.save(caserneMillitaire);
+        this.batimentRepo.save(ecurie);
+        this.batimentRepo.save(port);
+        this.batimentRepo.save(atelierDeSiere);
+        this.batimentRepo.save(forge);
+        this.batimentRepo.save(universite);
+        this.batimentRepo.save(marche);
+        this.batimentRepo.save(tableExpedition);
         
 		List<Batiment> listeBatiments = new ArrayList<>();
 		listeBatiments.add(hdv);

@@ -1,15 +1,13 @@
-package dev.entites.batiment;
+package dev.controller.dto;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
-public class Batiment {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class BatimentDto {
+
     private Integer id;
 
     /* 
@@ -98,7 +96,7 @@ public class Batiment {
     private Integer nombreExploitantsAutorise;
 
     /** nombre d'exploitants actuel actifs sur le bâtiment **/
-    private Integer nombreExploitantsActif = 0;
+    private Integer nombreExploitantsActif;
     
     /** montant de l'apport de ressource par heure (pour 100% exploitants) **/
     private Integer apportRessourceHeure;
@@ -106,14 +104,14 @@ public class Batiment {
     /** niveau necessaire de l'hotel de ville pour la construction du bâtiment **/
     private Integer niveauHotelDeVilleNecessaireConstruction;
 
-	public Batiment() {
+	public BatimentDto() {
 	}
 	
 	/**
 	 * @param idTypeBatiment
 	 * @param niveau
 	 */
-	public Batiment(Integer idTypeBatiment, Integer niveau) {
+	public BatimentDto(Integer idTypeBatiment, Integer niveau) {
 		super();
 		this.idTypeBatiment = idTypeBatiment;
 		this.niveau = niveau;
@@ -1692,7 +1690,6 @@ public class Batiment {
 	public void setNiveauHotelDeVilleNecessaireConstruction(Integer niveauHotelDeVilleNecessaireConstruction) {
 		this.niveauHotelDeVilleNecessaireConstruction = niveauHotelDeVilleNecessaireConstruction;
 	}
-
 
     
     
