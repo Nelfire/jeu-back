@@ -448,7 +448,7 @@ public class JoueurInfoDto {
 	 */
 	public Integer getOrBoostProduction() {
 		return orBoostProduction;
-	}
+	} 
 
 	/**
 	 * @param orBoostProduction the orBoostProduction to set
