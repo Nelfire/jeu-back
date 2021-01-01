@@ -23,12 +23,15 @@ public class BatimentJoueurService {
 		this.batimentJoueurRepo = batimentJoueurRepo;
 	}
 	
-	public List<BatimentJoueurDto> listerMesBatiments(Joueur joueur) {
+	public List<BatimentJoueurDto> listerMesBatiments(Integer idJoueur) {
+		System.out.println(idJoueur);
+		
 		List<BatimentJoueurDto> listeMesBatiments = new ArrayList<>();
 
-		for (BatimentJoueur batiment : batimentJoueurRepo.findByJoueur(joueur)) {
+		for (BatimentJoueur batiment : batimentJoueurRepo.findByJoueurId(idJoueur)) {
 
 			BatimentJoueurDto batimentJoueurDto = new BatimentJoueurDto();
+			batimentJoueurDto.setId(batiment.getId());
 			batimentJoueurDto.setJoueur(batiment.getJoueur());
 			batimentJoueurDto.setBatiment(batiment.getBatiment());
 			batimentJoueurDto.setNiveau(batiment.getNiveau());

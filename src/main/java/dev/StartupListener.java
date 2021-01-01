@@ -164,9 +164,11 @@ public class StartupListener {
 		listeBatiments.add(hdv);
 		listeBatiments.add(ferme);
 		System.out.println(hdv.toString());
-		
+
 		BatimentJoueur batimentJoueur1 = new BatimentJoueur(joueur1, hdv, 2, null);
+		BatimentJoueur batimentJoueur2 = new BatimentJoueur(joueur1, port, 2, null);
 		this.batimentJoueurRepo.save(batimentJoueur1);
+		this.batimentJoueurRepo.save(batimentJoueur2);
 		System.out.println(batimentJoueur1.toString());
 		
         // ----- BASE -----

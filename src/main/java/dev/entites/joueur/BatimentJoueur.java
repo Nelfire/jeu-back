@@ -70,7 +70,9 @@ public class BatimentJoueur {
     private Integer apportRessourceHeure;
     
     
-	
+    public BatimentJoueur() {
+    	
+    }
 	/**
 	 * @param joueur
 	 * @param batiment

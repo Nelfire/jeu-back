@@ -27,8 +27,9 @@ public class BatimentJoueurController {
 		this.batimentJoueurService = batimentJoueurService;
 	}
 	
-	@GetMapping("/joueur")
-	public List<BatimentJoueurDto> listerMesBatiments(@RequestParam("joueur") Joueur joueur) {
-		return this.batimentJoueurService.listerMesBatiments(joueur);
+	// http://localhost:8080/batimentsJoueur/idJoueur?idJoueur=1
+	@GetMapping("/idJoueur")
+	public List<BatimentJoueurDto> listerMesBatiments(@RequestParam("idJoueur") Integer idJoueur) {
+		return this.batimentJoueurService.listerMesBatiments(idJoueur);
 	}
 }
