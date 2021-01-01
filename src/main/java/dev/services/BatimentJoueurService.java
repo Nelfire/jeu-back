@@ -24,33 +24,11 @@ public class BatimentJoueurService {
 	}
 	
 	public List<BatimentJoueurDto> listerMesBatiments(Integer idJoueur) {
-		System.out.println(idJoueur);
 		
 		List<BatimentJoueurDto> listeMesBatiments = new ArrayList<>();
-
 		for (BatimentJoueur batiment : batimentJoueurRepo.findByJoueurId(idJoueur)) {
-
-			BatimentJoueurDto batimentJoueurDto = new BatimentJoueurDto();
-			batimentJoueurDto.setId(batiment.getId());
-			batimentJoueurDto.setJoueur(batiment.getJoueur());
-			batimentJoueurDto.setBatiment(batiment.getBatiment());
-			batimentJoueurDto.setNiveau(batiment.getNiveau());
-			batimentJoueurDto.setOuvrierNecessaireAmelioration(batiment.getOuvrierNecessaireAmelioration());
-			batimentJoueurDto.setTempsAmelioration(batiment.getTempsAmelioration());
-			batimentJoueurDto.setCoutPierreAmelioration(batiment.getCoutPierreAmelioration());
-			batimentJoueurDto.setCoutBoisAmelioration(batiment.getCoutBoisAmelioration());
-			batimentJoueurDto.setCoutOrAmelioration(batiment.getCoutOrAmelioration());
-			batimentJoueurDto.setCoutNourritureAmelioration(batiment.getCoutNourritureAmelioration());
-			batimentJoueurDto.setQuantiteeStockagePierre(batiment.getQuantiteeStockagePierre());
-			batimentJoueurDto.setQuantiteeStockageBois(batiment.getQuantiteeStockageBois());
-			batimentJoueurDto.setQuantiteeStockageOr(batiment.getQuantiteeStockageOr());
-			batimentJoueurDto.setQuantiteeStockageNourriture(batiment.getQuantiteeStockageNourriture());
-			batimentJoueurDto.setNombreExploitantsAutorise(batiment.getNombreExploitantsAutorise());
-			batimentJoueurDto.setNombreExploitantsActif(batiment.getNombreExploitantsActif());
-			batimentJoueurDto.setApportRessourceHeure(batiment.getApportRessourceHeure());
-
-			listeMesBatiments.add(batimentJoueurDto);
-
+			BatimentJoueurDto batimentJoueurDto = new BatimentJoueurDto(batiment.getJoueur(), batiment.getBatiment(),batiment.getNiveau(),batiment.getNombreExploitantsActif());
+			listeMesBatiments.add(batimentJoueurDto);	
 		}
 		return listeMesBatiments;
 	}

@@ -1,7 +1,5 @@
 package dev.controller.dto;
 
-import java.util.stream.Collectors;
-
 import dev.entites.Joueur;
 import dev.entites.batiment.Batiment;
 import dev.entites.joueur.BatimentJoueur;
@@ -77,12 +75,10 @@ public class BatimentJoueurDto {
 	 * @param nombreExploitantsActif
 	 * @param apportRessourceHeure
 	 */
-	public BatimentJoueurDto(BatimentJoueur batimentJoueur) {
-		super();
-		this.id = batimentJoueur.getId();
-		this.joueur = batimentJoueur.getJoueur();
-		this.batiment = batimentJoueur.getBatiment();
-		this.niveau = batimentJoueur.getNiveau();
+	public BatimentJoueurDto(Joueur joueur, Batiment batiment, Integer niveau, Integer nombreExploitantsActif ) {
+		this.joueur = joueur;
+		this.batiment = batiment;
+		this.niveau = niveau;
 	
 		switch (batiment.getIdTypeBatiment()) {
 		// Hotel de ville

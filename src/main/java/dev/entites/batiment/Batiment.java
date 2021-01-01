@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import dev.entites.joueur.BatimentJoueur;
 
 @Entity
@@ -19,27 +22,28 @@ public class Batiment {
     private Integer id;
 
     /** Un batiment peut concerner plusieurs batimentsJoueur **/
-    @OneToMany(mappedBy = "batiment", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "batiment")
+    @JsonIgnore 
 	private List<BatimentJoueur> batimentJoueur;
     
     /* 
- 	1 - Hotel de ville	
-	2 - Chaumière (augmenter limite population)
-	3 - Carrière (farm pierre)
-	4 - Camp de bucheron (farm bois)		
-	5 - Camp de mineur (farm or)
-	6 - Ferme (farm nourriture)
-	7 - Stockage Pierre (Entrepot)	
-	8 - Stockage Bois (Scierie)
-	9 - Stockage Or (Banque)
-	10 - Stockage Nourriture (Grenier)
-	11 - Caserne Militaire	
-	12 - Ecurie
-	13 - Port
-	14 - Atelier de siege
-	15 - Forge		
-	16 - Universite
-	17 - Marché
+ 	1 /- Hotel de ville	
+	2 /- Chaumière (augmenter limite population)
+	3 /- Carrière (farm pierre)
+	4 /- Camp de bucheron (farm bois)		
+	5 /- Camp de mineur (farm or)
+	6 /- Ferme (farm nourriture)
+	7 /- Stockage Pierre (Entrepot)	
+	8 /- Stockage Bois (Scierie)
+	9 /- Stockage Or (Banque)
+	10 /- Stockage Nourriture (Grenier)
+	11 /- Caserne Militaire	
+	12 /- Ecurie
+	13 /- Port
+	14 /- Atelier de siege
+	15 /- Forge		
+	16 /- Universite
+	17 /- Marché
 	18 - Table d'expéditions
      */
     private Integer idTypeBatiment;
@@ -93,7 +97,7 @@ public class Batiment {
 		switch (this.idTypeBatiment) {
 			// Hotel de ville
 			case 1:
-				this.icone = "xxxxxxxx";
+				this.icone = "HotelDeVille.png";
 				this.libelle = "Hotel de ville";
 				this.descriptif = "Descriptif de l'Hotel de ville";
 				this.ouvrierNecessaireConstruction = 99;

@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import dev.entites.joueur.Armee;
 import dev.entites.joueur.BatimentJoueur;
 import dev.entites.social.ChatGuilde;
@@ -30,7 +33,8 @@ public class Joueur {
     private Integer id;
     
     /** Un joueur peut avoir plusieurs batimentsJoueur **/
-    @OneToMany(mappedBy = "joueur", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "joueur")
+    @JsonIgnore
 	private List<BatimentJoueur> batimentJoueur;
 
     // Un joueur ne peut avoir qu'une seule armée
@@ -133,6 +137,7 @@ public class Joueur {
 
     /** roles du joueur **/
     @OneToMany(mappedBy = "joueur", cascade = CascadeType.PERSIST)
+    @JsonIgnore
     private List<RoleJoueur> roles;
 
     

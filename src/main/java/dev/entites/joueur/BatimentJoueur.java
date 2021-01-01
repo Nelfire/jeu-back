@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import dev.entites.Joueur;
 import dev.entites.batiment.Batiment;
 
@@ -18,11 +21,13 @@ public class BatimentJoueur {
     private Integer id;
     
     /** Un joueur peut avoir plusieurs BatimentJoueur **/
+
 	@ManyToOne
 	@JoinColumn(name = "joueur_id")
     private Joueur joueur;
 
 	/** Un batiment peut avoir plusieurs BatimentJoueur **/
+
 	@ManyToOne
 	@JoinColumn(name = "batiment_id")
     private Batiment batiment;
@@ -699,21 +704,6 @@ public class BatimentJoueur {
 	 */
 	public void setApportRessourceHeure(Integer apportRessourceHeure) {
 		this.apportRessourceHeure = apportRessourceHeure;
-	}
-
-
-
-	@Override
-	public String toString() {
-		return "BatimentJoueur [id=" + id + ", joueur=" + joueur + ", batiment=" + batiment + ", niveau=" + niveau
-				+ ", ouvrierNecessaireAmelioration=" + ouvrierNecessaireAmelioration + ", tempsAmelioration="
-				+ tempsAmelioration + ", coutPierreAmelioration=" + coutPierreAmelioration + ", coutBoisAmelioration="
-				+ coutBoisAmelioration + ", coutOrAmelioration=" + coutOrAmelioration + ", coutNourritureAmelioration="
-				+ coutNourritureAmelioration + ", quantiteeStockagePierre=" + quantiteeStockagePierre
-				+ ", quantiteeStockageBois=" + quantiteeStockageBois + ", quantiteeStockageOr=" + quantiteeStockageOr
-				+ ", quantiteeStockageNourriture=" + quantiteeStockageNourriture + ", nombreExploitantsAutorise="
-				+ nombreExploitantsAutorise + ", nombreExploitantsActif=" + nombreExploitantsActif
-				+ ", apportRessourceHeure=" + apportRessourceHeure + "]";
 	}
 
 
