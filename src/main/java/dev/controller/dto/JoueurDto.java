@@ -4,15 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.persistence.CascadeType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
 import dev.entites.Joueur;
 import dev.entites.Role;
-import dev.entites.RoleJoueur;
 
 public class JoueurDto {
 

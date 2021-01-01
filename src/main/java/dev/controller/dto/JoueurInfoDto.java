@@ -1,13 +1,8 @@
 package dev.controller.dto;
 
-
-import java.util.List;
-
 import dev.entites.joueur.Armee;
 import dev.entites.joueur.Base;
-import dev.entites.social.ChatGuilde;
 import dev.entites.social.Guilde;
-import dev.entites.social.ListeAmis;
 
 public class JoueurInfoDto {
 

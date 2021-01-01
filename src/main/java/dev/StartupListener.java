@@ -1,6 +1,5 @@
 package dev;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,56 +14,17 @@ import dev.entites.Joueur;
 import dev.entites.Role;
 import dev.entites.RoleJoueur;
 import dev.entites.batiment.Batiment;
-import dev.entites.batiment.divers.HotelDeVille;
 import dev.entites.joueur.Armee;
-import dev.entites.joueur.Base;
+import dev.entites.joueur.BatimentJoueur;
 import dev.entites.social.Guilde;
 import dev.entites.unitee.Unitee;
-import dev.entites.unitee.infanterie.Archer;
-import dev.entites.unitee.infanterie.FantassinEpee;
 import dev.repository.JoueurRepo;
 import dev.repository.batiment.BatimentRepo;
-import dev.repository.batiment.divers.ChaumiereRepo;
-import dev.repository.batiment.divers.HotelDeVilleRepo;
-import dev.repository.batiment.divers.MarcheRepo;
-import dev.repository.batiment.divers.TableExpeditionRepo;
-import dev.repository.batiment.millitaire.AtelierDeSiegeRepo;
-import dev.repository.batiment.millitaire.CaserneMillitaireRepo;
-import dev.repository.batiment.millitaire.EcurieRepo;
-import dev.repository.batiment.millitaire.PortRepo;
-import dev.repository.batiment.recherche.ForgeRepo;
-import dev.repository.batiment.recherche.UniversiteRepo;
-import dev.repository.batiment.ressource.CampDeBucheronRepo;
-import dev.repository.batiment.ressource.CampDeMineurRepo;
-import dev.repository.batiment.ressource.CarriereRepo;
-import dev.repository.batiment.ressource.FermeRepo;
-import dev.repository.batiment.stockage.BanqueRepo;
-import dev.repository.batiment.stockage.EntrepotRepo;
-import dev.repository.batiment.stockage.GrenierRepo;
-import dev.repository.batiment.stockage.ScierieRepo;
 import dev.repository.joueur.ArmeeRepo;
-import dev.repository.joueur.BaseRepo;
+import dev.repository.joueur.BatimentJoueurRepo;
 import dev.repository.social.GuildeRepo;
 import dev.repository.social.ListeAmisRepo;
 import dev.repository.unitee.UniteeRepo;
-import dev.repository.unitee.cavalerie.CavalierExpertRepo;
-import dev.repository.unitee.cavalerie.CavalierRepo;
-import dev.repository.unitee.cavalerie.PaladinRepo;
-import dev.repository.unitee.divers.MuleDeCommerceRepo;
-import dev.repository.unitee.divers.PretreRepo;
-import dev.repository.unitee.divers.VillageoisRepo;
-import dev.repository.unitee.infanterie.ArcherCompositeRepo;
-import dev.repository.unitee.infanterie.ArcherEliteRepo;
-import dev.repository.unitee.infanterie.ArcherRepo;
-import dev.repository.unitee.infanterie.FantassinEpeeRepo;
-import dev.repository.unitee.infanterie.FantassinHacheRepo;
-import dev.repository.unitee.infanterie.LegionnaireRepo;
-import dev.repository.unitee.navale.NavireDeGuerreRepo;
-import dev.repository.unitee.navale.NavireDePecheRepo;
-import dev.repository.unitee.navale.NavireEclaireurRepo;
-import dev.repository.unitee.siege.BalisteRepo;
-import dev.repository.unitee.siege.CatapulteRepo;
-import dev.repository.unitee.siege.ElephanDeGuerreRepo;
 
 
 /**
@@ -74,7 +34,6 @@ import dev.repository.unitee.siege.ElephanDeGuerreRepo;
 @Component
 public class StartupListener {
 	
-	private String appVersion;
     private PasswordEncoder passwordEncoder;
     // ---- Unitee ----
     private UniteeRepo uniteeRepo;
@@ -82,35 +41,33 @@ public class StartupListener {
     private BatimentRepo batimentRepo;
     // - divers -
     // ---- Joueur ----
+    private BatimentJoueurRepo batimentJoueurRepo;
     private JoueurRepo joueurRepo;
-    private BaseRepo baseRepo;
     private ArmeeRepo armeeRepo;
     // ---- Social ----
     private GuildeRepo guildeRepo;
-    private ListeAmisRepo listeAmisRepo;
     public StartupListener(@Value("${app.version}") String appVersion, 
     		PasswordEncoder passwordEncoder,
     		UniteeRepo uniteeRepo,
     		BatimentRepo batimentRepo,
 
+    		BatimentJoueurRepo batimentJoueurRepo,
+
     		JoueurRepo joueurRepo,
-    		BaseRepo baseRepo,
     		ArmeeRepo armeeRepo,
     		GuildeRepo guildeRepo,
     		ListeAmisRepo listeAmisRepo) {
-        this.appVersion = appVersion;
         this.passwordEncoder = passwordEncoder;        
         // --- UNITEE ---
         this.uniteeRepo = uniteeRepo;
         // --- BATIMENT ---
         this.batimentRepo = batimentRepo;
 //        // ---- Joueur ----
+        this.batimentJoueurRepo = batimentJoueurRepo;
         this.joueurRepo = joueurRepo;
-        this.baseRepo = baseRepo;
         this.armeeRepo = armeeRepo;
 //        // ---- Social ----
         this.guildeRepo = guildeRepo;
-        this.listeAmisRepo = listeAmisRepo;  
     }
 
     @EventListener(ContextRefreshedEvent.class)
@@ -166,24 +123,24 @@ public class StartupListener {
     	17 - Marché
     	18 - Table d'expéditions
          */
-        Batiment hdv = new Batiment(1,1);
-        Batiment chaumiere = new Batiment(2,1);
-        Batiment carriere = new Batiment(3,1);
-        Batiment campDeBucheron = new Batiment(4,1);
-        Batiment campDeMineur = new Batiment(5,1);
-        Batiment ferme = new Batiment(6,1);
-        Batiment entrepot = new Batiment(7,1);
-        Batiment scierie = new Batiment(8,1);
-        Batiment banque = new Batiment(9,1);
-        Batiment grenier = new Batiment(10,1);
-        Batiment caserneMillitaire = new Batiment(11,1);
-        Batiment ecurie = new Batiment(12,1);
-        Batiment port = new Batiment(13,1);
-        Batiment atelierDeSiere = new Batiment(14,1);
-        Batiment forge = new Batiment(15,1);
-        Batiment universite = new Batiment(16,1);
-        Batiment marche = new Batiment(17,1);
-        Batiment tableExpedition = new Batiment(18,1);
+        Batiment hdv = new Batiment(1);
+        Batiment chaumiere = new Batiment(2);
+        Batiment carriere = new Batiment(3);
+        Batiment campDeBucheron = new Batiment(4);
+        Batiment campDeMineur = new Batiment(5);
+        Batiment ferme = new Batiment(6);
+        Batiment entrepot = new Batiment(7);
+        Batiment scierie = new Batiment(8);
+        Batiment banque = new Batiment(9);
+        Batiment grenier = new Batiment(10);
+        Batiment caserneMillitaire = new Batiment(11);
+        Batiment ecurie = new Batiment(12);
+        Batiment port = new Batiment(13);
+        Batiment atelierDeSiere = new Batiment(14);
+        Batiment forge = new Batiment(15);
+        Batiment universite = new Batiment(16);
+        Batiment marche = new Batiment(17);
+        Batiment tableExpedition = new Batiment(18);
         this.batimentRepo.save(hdv);
         this.batimentRepo.save(chaumiere);
         this.batimentRepo.save(carriere);
@@ -206,11 +163,16 @@ public class StartupListener {
 		List<Batiment> listeBatiments = new ArrayList<>();
 		listeBatiments.add(hdv);
 		listeBatiments.add(ferme);
+		System.out.println(hdv.toString());
+		
+		BatimentJoueur batimentJoueur1 = new BatimentJoueur(joueur1, hdv, 2, null);
+		this.batimentJoueurRepo.save(batimentJoueur1);
+		System.out.println(batimentJoueur1.toString());
 		
         // ----- BASE -----
-		Base baseJoueur1 = new Base(joueur1,listeBatiments);
-        this.baseRepo.save(baseJoueur1);
-		System.out.println(baseJoueur1.toString());
+//		Base baseJoueur1 = new Base(joueur1,listeBatiments);
+//        this.baseRepo.save(baseJoueur1);
+//		System.out.println(baseJoueur1.toString());
         
         // ----- UNITEE -----
         Unitee villageois1 = new Unitee(1,1);
@@ -224,15 +186,15 @@ public class StartupListener {
 		listeUniteesJoueur1.add(archer1);
 		Armee armeeJoueur1 = new Armee(joueur1, listeUniteesJoueur1);
 		this.armeeRepo.save(armeeJoueur1);
-		System.out.println(armeeJoueur1.toString());
+//		System.out.println(armeeJoueur1.toString());
 				
 		// ----- GUILDE -----
         Guilde guilde1 = new Guilde("Les loulous de l'espace","xxx","Coucou les loulous");
         guilde1.setChefGuilde(joueur1);
         this.guildeRepo.save(guilde1);
-        System.out.println(guilde1.getChefGuilde());
-        System.out.println(joueur1.getGuilde());
-        System.out.println(joueur1.getChefGuilde());
+//        System.out.println(guilde1.getChefGuilde());
+//        System.out.println(joueur1.getGuilde());
+//        System.out.println(joueur1.getChefGuilde());
         
          
     }

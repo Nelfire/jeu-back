@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import dev.entites.joueur.Armee;
-import dev.entites.joueur.Base;
+import dev.entites.joueur.BatimentJoueur;
 import dev.entites.social.ChatGuilde;
 import dev.entites.social.Guilde;
 import dev.entites.social.ListeAmis;
@@ -22,21 +22,17 @@ import dev.entites.social.ListeAmis;
 @Entity
 public class Joueur {
 
+	// https://www.youtube.com/watch?time_continue=903&v=sFtXlT7ftgo&feature=emb_logo
 	// Déclarations
     /** id du joueur **/
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
- // Un joueur ne peut avoir qu'une seule base
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "joueur_base", 
-      joinColumns = 
-        { @JoinColumn(name = "joueur_id", referencedColumnName = "id") },
-      inverseJoinColumns = 
-        { @JoinColumn(name = "base_id", referencedColumnName = "id") })
-    private Base base;
-    
+    /** Un joueur peut avoir plusieurs batimentsJoueur **/
+    @OneToMany(mappedBy = "joueur", cascade = CascadeType.PERSIST)
+	private List<BatimentJoueur> batimentJoueur;
+
     // Un joueur ne peut avoir qu'une seule armée
     @OneToOne(cascade = CascadeType.ALL)
     @JoinTable(name = "joueur_armee", 
@@ -170,13 +166,12 @@ public class Joueur {
 	 * @param tempsDeJeu
 	 * @param roles
 	 */
-	public Joueur(Base base, Armee armee, String icone, String pseudo, String email, String motDePasse, String descriptif,
+	public Joueur(Armee armee, String icone, String pseudo, String email, String motDePasse, String descriptif,
 			Integer niveau, Integer experience, Integer pierrePossession, Integer boisPossession, Integer orPossession,
 			Integer nourriturePossession, Integer gemmePossession, Integer pierreMaximum, Integer boisMaximum,
 			Integer orMaximum, Integer nourritureMaximum, Integer pierreBoostProduction, Integer boisBoostProduction,
 			Integer orBoostProduction, Integer nourritureBoostProduction, Integer tempsDeJeu, List<RoleJoueur> roles) {
 		super();
-		this.base = base;
 		this.armee = armee;
 		this.icone = icone;
 		this.pseudo = pseudo;
@@ -524,19 +519,6 @@ public class Joueur {
 		this.roles = roles;
 	}
 
-	/**
-	 * @return the base
-	 */
-	public Base getBase() {
-		return base;
-	}
-
-	/**
-	 * @param base the base to set
-	 */
-	public void setBase(Base base) {
-		this.base = base;
-	}
 
 	/**
 	 * @return the armee

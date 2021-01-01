@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 import dev.entites.Joueur;
-import dev.entites.batiment.Batiment;
 
 @Entity
 public class ListeAmis {

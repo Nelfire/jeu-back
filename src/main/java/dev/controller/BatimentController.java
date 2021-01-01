@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.controller.dto.BatimentDto;
-import dev.controller.dto.JoueurDto;
 import dev.services.BatimentService;
-import dev.services.JoueurService;
 
 @RestController
 @RequestMapping("batiment")
