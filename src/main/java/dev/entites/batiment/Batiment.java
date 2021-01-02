@@ -97,7 +97,7 @@ public class Batiment {
 		switch (this.idTypeBatiment) {
 			// Hotel de ville
 			case 1:
-				this.icone = "HotelDeVille.png";
+				this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876575979667456/HotelDeVille.png";
 				this.libelle = "Hotel de ville";
 				this.descriptif = "Descriptif de l'Hotel de ville";
 				this.ouvrierNecessaireConstruction = 99;
@@ -110,7 +110,7 @@ public class Batiment {
 			break;
 			//Chaumière (augmenter limite population)
 			case 2:
-				this.icone = "xxxxxxxx";
+				this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876520338161704/Chaumiere.png";
 				this.libelle = "Chaumière";
 				this.descriptif = "Descriptif de la Chaumière";
 				this.ouvrierNecessaireConstruction = 99;
@@ -123,7 +123,7 @@ public class Batiment {
 			break;
 			// Carrière (farm pierre)
 			case 3:
-				this.icone = "xxxxxxxx";
+				this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876505230540860/Carriere.png";
 				this.libelle = "Carrière";
 				this.descriptif = "Descriptif de la Carrière";
 				this.ouvrierNecessaireConstruction = 99;
@@ -136,7 +136,7 @@ public class Batiment {
 			break;
 			// Camp de bucheron (farm bois)		
 			case 4:
-				this.icone = "xxxxxxxx";
+				this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876491850711040/CampDeBucheron.png";
 				this.libelle = "Camp de bucheron";
 				this.descriptif = "Descriptif du Camp de bucheron";
 				this.ouvrierNecessaireConstruction = 99;
@@ -149,7 +149,7 @@ public class Batiment {
 			break;
 			// Camp de mineur (farm or)
 			case 5:
-				this.icone = "xxxxxxxx";
+				this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876498183323678/CampDeMineur.png";
 				this.libelle = "Camp de mineur";
 				this.descriptif = "Descriptif du Camp de mineur";
 				this.ouvrierNecessaireConstruction = 99;
@@ -162,7 +162,7 @@ public class Batiment {
 			break;
 			// Ferme (farm nourriture)
 			case 6:
-				this.icone = "xxxxxxxx";
+				this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876556509839360/Ferme.png";
 				this.libelle = "Ferme";
 				this.descriptif = "Descriptif de la Ferme";
 				this.ouvrierNecessaireConstruction = 99;
@@ -175,7 +175,7 @@ public class Batiment {
 			break;
 			// Stockage Pierre (Entrepot)	
 			case 7:
-				this.icone = "xxxxxxxx";
+				this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876485034311690/Banque.png";
 				this.libelle = "Entrepot";
 				this.descriptif = "Descriptif de l'Entrepot";
 				this.ouvrierNecessaireConstruction = 99;
@@ -188,7 +188,7 @@ public class Batiment {
 			break;
 			// Stockage Bois (Scierie)
 			case 8:
-				this.icone = "xxxxxxxx";
+				this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876485034311690/Banque.png";
 				this.libelle = "Scierie";
 				this.descriptif = "Descriptif de la Scierie";
 				this.ouvrierNecessaireConstruction = 99;
@@ -201,7 +201,7 @@ public class Batiment {
 			break;
 			// Stockage Or (Banque)
 			case 9:
-				this.icone = "xxxxxxxx";
+				this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876485034311690/Banque.png";
 				this.libelle = "Banque";
 				this.descriptif = "Descriptif de la Banque";
 				this.ouvrierNecessaireConstruction = 99;
@@ -214,7 +214,7 @@ public class Batiment {
 			break;
 			// Stockage Nourriture (Grenier)
 			case 10:
-				this.icone = "xxxxxxxx";
+				this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876485034311690/Banque.png";
 				this.libelle = "Grenier";
 				this.descriptif = "Descriptif du Grenier";
 				this.ouvrierNecessaireConstruction = 99;
@@ -227,7 +227,7 @@ public class Batiment {
 			break;
 			// Caserne Militaire	
 			case 11:
-				this.icone = "xxxxxxxx";
+				this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876513039417404/CaserneMillitaire.png";
 				this.libelle = "Caserne Militaire";
 				this.descriptif = "Descriptif de la Caserne Militaire";
 				this.ouvrierNecessaireConstruction = 99;
@@ -240,7 +240,7 @@ public class Batiment {
 			break;
 			// Ecurie
 			case 12:
-				this.icone = "xxxxxxxx";
+				this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876520338161704/Chaumiere.png";
 				this.libelle = "Ecurie";
 				this.descriptif = "Descriptif de l'Ecurie";
 				this.ouvrierNecessaireConstruction = 99;
@@ -253,7 +253,7 @@ public class Batiment {
 			break;
 			// Port
 			case 13:
-				this.icone = "xxxxxxxx";
+				this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876596741865522/Port.png";
 				this.libelle = "Port";
 				this.descriptif = "Descriptif du Port";
 				this.ouvrierNecessaireConstruction = 99;
@@ -266,7 +266,7 @@ public class Batiment {
 			break;
 			// Atelier de siege
 			case 14:
-				this.icone = "xxxxxxxx";
+				this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876478667751444/AtelierDeSiege.png";
 				this.libelle = "Atelier de siege";
 				this.descriptif = "Descriptif de l'Atelier de siege";
 				this.ouvrierNecessaireConstruction = 99;
@@ -279,7 +279,7 @@ public class Batiment {
 			break;
 			// Forge
 			case 15:
-				this.icone = "xxxxxxxx";
+				this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876568375001098/Forge.png";
 				this.libelle = "Forge";
 				this.descriptif = "Descriptif de la Forge";
 				this.ouvrierNecessaireConstruction = 99;
@@ -292,7 +292,7 @@ public class Batiment {
 			break;
 			// Universite
 			case 16:
-				this.icone = "xxxxxxxx";
+				this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876610632220702/Universite.png";
 				this.libelle = "Universite";
 				this.descriptif = "Descriptif de l'Universite";
 				this.ouvrierNecessaireConstruction = 99;
@@ -305,7 +305,7 @@ public class Batiment {
 			break;
 			// Marché
 			case 17:
-				this.icone = "xxxxxxxx";
+				this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876590022590504/Marche.png";
 				this.libelle = "Marché";
 				this.descriptif = "Descriptif du Marché";
 				this.ouvrierNecessaireConstruction = 99;
@@ -318,7 +318,7 @@ public class Batiment {
 			break;
 			// Table d'expéditions
 			case 18:
-				this.icone = "xxxxxxxx";
+				this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876603564818432/TableExpedition.png";
 				this.libelle = "Table d'expéditions";
 				this.descriptif = "Descriptif de la Table d'expéditions";
 				this.ouvrierNecessaireConstruction = 99;

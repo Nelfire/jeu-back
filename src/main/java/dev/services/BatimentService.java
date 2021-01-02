@@ -33,15 +33,22 @@ public class BatimentService {
 			batimentDto.setDescriptif(batiment.getDescriptif());
 			batimentDto.setOuvrierNecessaireConstruction(batiment.getOuvrierNecessaireConstruction());
 			batimentDto.setTempsDeConstruction(batiment.getTempsDeConstruction());
-			batimentDto.setCoutPierreConstruction(batiment.getIdTypeBatiment());
-			batimentDto.setCoutBoisConstruction(batiment.getIdTypeBatiment());
-			batimentDto.setCoutOrConstruction(batiment.getIdTypeBatiment());
-			batimentDto.setCoutNourritureConstruction(batiment.getIdTypeBatiment());
+			batimentDto.setCoutPierreConstruction(batiment.getCoutPierreConstruction());
+			batimentDto.setCoutBoisConstruction(batiment.getCoutBoisConstruction());
+			batimentDto.setCoutOrConstruction(batiment.getCoutOrConstruction());
+			batimentDto.setCoutNourritureConstruction(batiment.getCoutNourritureConstruction());
+			batimentDto.setNiveauHotelDeVilleNecessaireConstruction(batiment.getNiveauHotelDeVilleNecessaireConstruction());
 
 			listeBatiments.add(batimentDto);
 
 		}
 		return listeBatiments;
+	}
+	
+	public BatimentDto detailsBatiment(Integer idTypeBatiment) {
+		Batiment batiment =  batimentRepo.findByIdTypeBatiment(idTypeBatiment);
+		BatimentDto bat = new BatimentDto(batiment.getIdTypeBatiment());
+		return bat;
 	}
 
 }

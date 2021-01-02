@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.controller.dto.BatimentDto;
@@ -24,9 +25,14 @@ public class BatimentController {
 	public BatimentController(BatimentService batimentService) {
 		this.batimentService = batimentService;
 	}
-	
+
 	@GetMapping
 	public List<BatimentDto> getAllBatiments() {
 		return this.batimentService.listerBatiments();
+	}
+
+	@GetMapping("/idTypeBatiment")
+	public BatimentDto detailsBatiment(@RequestParam("idTypeBatiment") Integer idTypeBatiment) {
+		return this.batimentService.detailsBatiment(idTypeBatiment);
 	}
 }
