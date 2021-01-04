@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import dev.controller.dto.BatimentDto;
+import dev.controller.dto.BatimentJoueurDto;
 import dev.entites.batiment.Batiment;
+import dev.entites.joueur.BatimentJoueur;
 import dev.repository.batiment.BatimentRepo;
 
 @Service

@@ -28,7 +28,7 @@ public class BatimentJoueurDto {
     private Integer coutBoisAmelioration;
     
     /** coût en or amelioration du batiment **/
-    private Integer coutOrAmelioration;
+    private Integer coutOreAmelioration;
 
     /** coût en nourriture amelioration du batiment **/
     private Integer coutNourritureAmelioration;
@@ -40,7 +40,7 @@ public class BatimentJoueurDto {
     private Integer quantiteeStockageBois;
     
     /** quantitée d'or stockable dans la chambre forte du batiment**/
-    private Integer quantiteeStockageOr;
+    private Integer quantiteeStockageOre;
     
     /** quantitée de nourriture stockable dans la chambre forte du batiment**/
     private Integer quantiteeStockageNourriture;
@@ -51,8 +51,14 @@ public class BatimentJoueurDto {
     /** nombre d'exploitants actuel actifs sur le bâtiment **/
     private Integer nombreExploitantsActif;
     
-    /** montant de l'apport de ressource par heure (pour 100% exploitants) **/
-    private Integer apportRessourceHeure;
+    /** montant de l'apport de ressource (pierre) par heure (pour 100% exploitants) **/
+    private Integer apportPierreHeure;
+    /** montant de l'apport de ressource (bois) par heure (pour 100% exploitants) **/
+    private Integer apportBoisHeure;
+    /** montant de l'apport de ressource (or) par heure (pour 100% exploitants) **/
+    private Integer apportOreHeure;
+    /** montant de l'apport de ressource (nourriture) par heure (pour 100% exploitants) **/
+    private Integer apportNourritureHeure;
 
     public BatimentJoueurDto() {
     	
@@ -65,11 +71,11 @@ public class BatimentJoueurDto {
 	 * @param tempsAmelioration
 	 * @param coutPierreAmelioration
 	 * @param coutBoisAmelioration
-	 * @param coutOrAmelioration
+	 * @param coutOreAmelioration
 	 * @param coutNourritureAmelioration
 	 * @param quantiteeStockagePierre
 	 * @param quantiteeStockageBois
-	 * @param quantiteeStockageOr
+	 * @param quantiteeStockageOre
 	 * @param quantiteeStockageNourriture
 	 * @param nombreExploitantsAutorise
 	 * @param nombreExploitantsActif
@@ -88,16 +94,19 @@ public class BatimentJoueurDto {
 			this.tempsAmelioration = 99*this.niveau;
 			this.coutPierreAmelioration = 99*this.niveau;
 			this.coutBoisAmelioration = 99*this.niveau;
-			this.coutOrAmelioration = 99*this.niveau;
+			this.coutOreAmelioration = 99*this.niveau;
 			this.coutNourritureAmelioration = 99*this.niveau;
 			this.quantiteeStockagePierre = 99*this.niveau;
 			this.quantiteeStockageBois = 99*this.niveau;
-			this.quantiteeStockageOr = 99*this.niveau;
+			this.quantiteeStockageOre = 99*this.niveau;
 			this.quantiteeStockageNourriture = 99*this.niveau;
 			this.nombreExploitantsAutorise = 0;
 			this.nombreExploitantsActif = 0;
 			// ??????????????????????
-			this.apportRessourceHeure = 0;
+			this.apportPierreHeure = 30000;
+			this.apportBoisHeure = 30000;
+			this.apportOreHeure = 30000;
+			this.apportNourritureHeure = 30000;
 			break;
 		case 2:
 			// Chaumière
@@ -105,16 +114,19 @@ public class BatimentJoueurDto {
 			this.tempsAmelioration = 99*this.niveau;
 			this.coutPierreAmelioration = 99*this.niveau;
 			this.coutBoisAmelioration = 99*this.niveau;
-			this.coutOrAmelioration = 99*this.niveau;
+			this.coutOreAmelioration = 99*this.niveau;
 			this.coutNourritureAmelioration = 99*this.niveau;
 			this.quantiteeStockagePierre = 0;
 			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOr = 0;
+			this.quantiteeStockageOre = 0;
 			this.quantiteeStockageNourriture = 0;
 			this.nombreExploitantsAutorise = 99*this.niveau;
 			this.nombreExploitantsActif = nombreExploitantsActif;
 			// ??????????????????????
-			this.apportRessourceHeure = ((99*this.niveau)*(nombreExploitantsActif))/this.nombreExploitantsAutorise;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 			break;
 		case 3:
 			// Carrière
@@ -122,16 +134,19 @@ public class BatimentJoueurDto {
 			this.tempsAmelioration = 99*this.niveau;
 			this.coutPierreAmelioration = 99*this.niveau;
 			this.coutBoisAmelioration = 99*this.niveau;
-			this.coutOrAmelioration = 99*this.niveau;
+			this.coutOreAmelioration = 99*this.niveau;
 			this.coutNourritureAmelioration = 99*this.niveau;
 			this.quantiteeStockagePierre = 0;
 			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOr = 0;
+			this.quantiteeStockageOre = 0;
 			this.quantiteeStockageNourriture = 0;
 			this.nombreExploitantsAutorise = 99*this.niveau;
 			this.nombreExploitantsActif = nombreExploitantsActif;
 			// ??????????????????????
-			this.apportRessourceHeure = ((99*this.niveau)*(nombreExploitantsActif))/this.nombreExploitantsAutorise;
+			this.apportPierreHeure = (120000*this.niveau);
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 			break;
 		case 4:
 			// Camp de bucheron
@@ -139,16 +154,19 @@ public class BatimentJoueurDto {
 			this.tempsAmelioration = 99*this.niveau;
 			this.coutPierreAmelioration = 99*this.niveau;
 			this.coutBoisAmelioration = 99*this.niveau;
-			this.coutOrAmelioration = 99*this.niveau;
+			this.coutOreAmelioration = 99*this.niveau;
 			this.coutNourritureAmelioration = 99*this.niveau;
 			this.quantiteeStockagePierre = 0;
 			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOr = 0;
+			this.quantiteeStockageOre = 0;
 			this.quantiteeStockageNourriture = 0;
 			this.nombreExploitantsAutorise = 99*this.niveau;
 			this.nombreExploitantsActif = nombreExploitantsActif;
 			// ??????????????????????
-			this.apportRessourceHeure = ((99*this.niveau)*(nombreExploitantsActif))/this.nombreExploitantsAutorise;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = (120000*this.niveau);
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 			break;
 		case 5:
 			// Camp de mineur
@@ -156,16 +174,19 @@ public class BatimentJoueurDto {
 			this.tempsAmelioration = 99*this.niveau;
 			this.coutPierreAmelioration = 99*this.niveau;
 			this.coutBoisAmelioration = 99*this.niveau;
-			this.coutOrAmelioration = 99*this.niveau;
+			this.coutOreAmelioration = 99*this.niveau;
 			this.coutNourritureAmelioration = 99*this.niveau;
 			this.quantiteeStockagePierre = 0;
 			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOr = 0;
+			this.quantiteeStockageOre = 0;
 			this.quantiteeStockageNourriture = 0;
 			this.nombreExploitantsAutorise = 99*this.niveau;
 			this.nombreExploitantsActif = nombreExploitantsActif;
 			// ??????????????????????
-			this.apportRessourceHeure = ((99*this.niveau)*(nombreExploitantsActif))/this.nombreExploitantsAutorise;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = (120000*this.niveau);
+			this.apportNourritureHeure = 0;
 			break;
 		case 6:
 			// Ferme
@@ -173,15 +194,19 @@ public class BatimentJoueurDto {
 			this.tempsAmelioration = 0;
 			this.coutPierreAmelioration = 0;
 			this.coutBoisAmelioration = 0;
-			this.coutOrAmelioration = 0;
+			this.coutOreAmelioration = 0;
 			this.coutNourritureAmelioration = 0;
 			this.quantiteeStockagePierre = 0;
 			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOr = 0;
+			this.quantiteeStockageOre = 0;
 			this.quantiteeStockageNourriture = 0;
 			this.nombreExploitantsAutorise = 0;
 			this.nombreExploitantsActif = 0;
-			this.apportRessourceHeure = 0;
+			
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = (120000*this.niveau);
 			break;
 		case 7:
 			// Entrepot (Stockage Pierre)
@@ -189,15 +214,18 @@ public class BatimentJoueurDto {
 			this.tempsAmelioration = 99*this.niveau;
 			this.coutPierreAmelioration = 99*this.niveau;
 			this.coutBoisAmelioration = 99*this.niveau;
-			this.coutOrAmelioration = 99*this.niveau;
+			this.coutOreAmelioration = 99*this.niveau;
 			this.coutNourritureAmelioration = 99*this.niveau;
 			this.quantiteeStockagePierre = 99*this.niveau;
 			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOr = 0;
+			this.quantiteeStockageOre = 0;
 			this.quantiteeStockageNourriture = 0;
 			this.nombreExploitantsAutorise = 0;
 			this.nombreExploitantsActif = 0;
-			this.apportRessourceHeure = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 			break;
 		case 8:
 			// Scierie (Stockage Bois)
@@ -205,31 +233,37 @@ public class BatimentJoueurDto {
 			this.tempsAmelioration = 99*this.niveau;
 			this.coutPierreAmelioration = 99*this.niveau;
 			this.coutBoisAmelioration = 99*this.niveau;
-			this.coutOrAmelioration = 99*this.niveau;
+			this.coutOreAmelioration = 99*this.niveau;
 			this.coutNourritureAmelioration = 99*this.niveau;
 			this.quantiteeStockagePierre = 0;
 			this.quantiteeStockageBois = 99*this.niveau;
-			this.quantiteeStockageOr = 0;
+			this.quantiteeStockageOre = 0;
 			this.quantiteeStockageNourriture = 0;
 			this.nombreExploitantsAutorise = 0;
 			this.nombreExploitantsActif = 0;
-			this.apportRessourceHeure = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 			break;
 		case 9:
-			// Banque (Stockage Or)
+			// Banque (Stockage Ore)
 			this.ouvrierNecessaireAmelioration = 99*this.niveau;
 			this.tempsAmelioration = 99*this.niveau;
 			this.coutPierreAmelioration = 99*this.niveau;
 			this.coutBoisAmelioration = 99*this.niveau;
-			this.coutOrAmelioration = 99*this.niveau;
+			this.coutOreAmelioration = 99*this.niveau;
 			this.coutNourritureAmelioration = 99*this.niveau;
 			this.quantiteeStockagePierre = 0;
 			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOr = 99*this.niveau;
+			this.quantiteeStockageOre = 99*this.niveau;
 			this.quantiteeStockageNourriture = 0;
 			this.nombreExploitantsAutorise = 0;
 			this.nombreExploitantsActif = 0;
-			this.apportRessourceHeure = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 			break;
 		case 10:
 			// Grenier (Stockage Nourriture)
@@ -237,15 +271,18 @@ public class BatimentJoueurDto {
 			this.tempsAmelioration = 99*this.niveau;
 			this.coutPierreAmelioration = 99*this.niveau;
 			this.coutBoisAmelioration = 99*this.niveau;
-			this.coutOrAmelioration = 99*this.niveau;
+			this.coutOreAmelioration = 99*this.niveau;
 			this.coutNourritureAmelioration = 99*this.niveau;
 			this.quantiteeStockagePierre = 0;
 			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOr = 0;
+			this.quantiteeStockageOre = 0;
 			this.quantiteeStockageNourriture = 99*this.niveau;
 			this.nombreExploitantsAutorise = 0;
 			this.nombreExploitantsActif = 0;
-			this.apportRessourceHeure = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 			break;
 		case 11:
 			// Caserne Militaire
@@ -253,15 +290,18 @@ public class BatimentJoueurDto {
 			this.tempsAmelioration = 99*this.niveau;
 			this.coutPierreAmelioration = 99*this.niveau;
 			this.coutBoisAmelioration = 99*this.niveau;
-			this.coutOrAmelioration = 99*this.niveau;
+			this.coutOreAmelioration = 99*this.niveau;
 			this.coutNourritureAmelioration = 99*this.niveau;
 			this.quantiteeStockagePierre = 0;
 			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOr = 0;
+			this.quantiteeStockageOre = 0;
 			this.quantiteeStockageNourriture = 0;
 			this.nombreExploitantsAutorise = 0;
 			this.nombreExploitantsActif = 0;
-			this.apportRessourceHeure = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 			break;
 		case 12:
 			// Ecurie
@@ -269,15 +309,18 @@ public class BatimentJoueurDto {
 			this.tempsAmelioration = 99*this.niveau;
 			this.coutPierreAmelioration = 99*this.niveau;
 			this.coutBoisAmelioration = 99*this.niveau;
-			this.coutOrAmelioration = 99*this.niveau;
+			this.coutOreAmelioration = 99*this.niveau;
 			this.coutNourritureAmelioration = 99*this.niveau;
 			this.quantiteeStockagePierre = 0;
 			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOr = 0;
+			this.quantiteeStockageOre = 0;
 			this.quantiteeStockageNourriture = 0;
 			this.nombreExploitantsAutorise = 0;
 			this.nombreExploitantsActif = 0;
-			this.apportRessourceHeure = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 			break;
 		case 13:
 			// Port
@@ -285,15 +328,18 @@ public class BatimentJoueurDto {
 			this.tempsAmelioration = 99*this.niveau;
 			this.coutPierreAmelioration = 99*this.niveau;
 			this.coutBoisAmelioration = 99*this.niveau;
-			this.coutOrAmelioration = 99*this.niveau;
+			this.coutOreAmelioration = 99*this.niveau;
 			this.coutNourritureAmelioration = 99*this.niveau;
 			this.quantiteeStockagePierre = 0;
 			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOr = 0;
+			this.quantiteeStockageOre = 0;
 			this.quantiteeStockageNourriture = 0;
 			this.nombreExploitantsAutorise = 0;
 			this.nombreExploitantsActif = 0;
-			this.apportRessourceHeure = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 			break;
 		case 14:
 			// Atelier de siege
@@ -301,15 +347,18 @@ public class BatimentJoueurDto {
 			this.tempsAmelioration = 99*this.niveau;
 			this.coutPierreAmelioration = 99*this.niveau;
 			this.coutBoisAmelioration = 99*this.niveau;
-			this.coutOrAmelioration = 99*this.niveau;
+			this.coutOreAmelioration = 99*this.niveau;
 			this.coutNourritureAmelioration = 99*this.niveau;
 			this.quantiteeStockagePierre = 0;
 			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOr = 0;
+			this.quantiteeStockageOre = 0;
 			this.quantiteeStockageNourriture = 0;
 			this.nombreExploitantsAutorise = 0;
 			this.nombreExploitantsActif = 0;
-			this.apportRessourceHeure = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 			break;
 		case 15:
 			// Forge
@@ -317,15 +366,18 @@ public class BatimentJoueurDto {
 			this.tempsAmelioration = 99*this.niveau;
 			this.coutPierreAmelioration = 99*this.niveau;
 			this.coutBoisAmelioration = 99*this.niveau;
-			this.coutOrAmelioration = 99*this.niveau;
+			this.coutOreAmelioration = 99*this.niveau;
 			this.coutNourritureAmelioration = 99*this.niveau;
 			this.quantiteeStockagePierre = 0;
 			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOr = 0;
+			this.quantiteeStockageOre = 0;
 			this.quantiteeStockageNourriture = 0;
 			this.nombreExploitantsAutorise = 0;
 			this.nombreExploitantsActif = 0;
-			this.apportRessourceHeure = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 			break;
 		case 16:
 			// Universite
@@ -333,15 +385,18 @@ public class BatimentJoueurDto {
 			this.tempsAmelioration = 99*this.niveau;
 			this.coutPierreAmelioration = 99*this.niveau;
 			this.coutBoisAmelioration = 99*this.niveau;
-			this.coutOrAmelioration = 99*this.niveau;
+			this.coutOreAmelioration = 99*this.niveau;
 			this.coutNourritureAmelioration = 99*this.niveau;
 			this.quantiteeStockagePierre = 0;
 			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOr = 0;
+			this.quantiteeStockageOre = 0;
 			this.quantiteeStockageNourriture = 0;
 			this.nombreExploitantsAutorise = 0;
 			this.nombreExploitantsActif = 0;
-			this.apportRessourceHeure = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 			break;
 		case 17:
 			// Marché
@@ -349,15 +404,18 @@ public class BatimentJoueurDto {
 			this.tempsAmelioration = 99*this.niveau;
 			this.coutPierreAmelioration = 99*this.niveau;
 			this.coutBoisAmelioration = 99*this.niveau;
-			this.coutOrAmelioration = 99*this.niveau;
+			this.coutOreAmelioration = 99*this.niveau;
 			this.coutNourritureAmelioration = 99*this.niveau;
 			this.quantiteeStockagePierre = 0;
 			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOr = 0;
+			this.quantiteeStockageOre = 0;
 			this.quantiteeStockageNourriture = 0;
 			this.nombreExploitantsAutorise = 0;
 			this.nombreExploitantsActif = 0;
-			this.apportRessourceHeure = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 			break;
 		case 18:
 			// Table d'expéditions
@@ -365,15 +423,18 @@ public class BatimentJoueurDto {
 			this.tempsAmelioration = 99*this.niveau;
 			this.coutPierreAmelioration = 99*this.niveau;
 			this.coutBoisAmelioration = 99*this.niveau;
-			this.coutOrAmelioration = 99*this.niveau;
+			this.coutOreAmelioration = 99*this.niveau;
 			this.coutNourritureAmelioration = 99*this.niveau;
 			this.quantiteeStockagePierre = 0;
 			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOr = 0;
+			this.quantiteeStockageOre = 0;
 			this.quantiteeStockageNourriture = 0;
 			this.nombreExploitantsAutorise = 0;
 			this.nombreExploitantsActif = 0;
-			this.apportRessourceHeure = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 			break;
 		}
 	}
@@ -474,16 +535,16 @@ public class BatimentJoueurDto {
 		this.coutBoisAmelioration = coutBoisAmelioration;
 	}
 	/**
-	 * @return the coutOrAmelioration
+	 * @return the coutOreAmelioration
 	 */
-	public Integer getCoutOrAmelioration() {
-		return coutOrAmelioration;
+	public Integer getCoutOreAmelioration() {
+		return coutOreAmelioration;
 	}
 	/**
-	 * @param coutOrAmelioration the coutOrAmelioration to set
+	 * @param coutOreAmelioration the coutOreAmelioration to set
 	 */
-	public void setCoutOrAmelioration(Integer coutOrAmelioration) {
-		this.coutOrAmelioration = coutOrAmelioration;
+	public void setCoutOreAmelioration(Integer coutOreAmelioration) {
+		this.coutOreAmelioration = coutOreAmelioration;
 	}
 	/**
 	 * @return the coutNourritureAmelioration
@@ -522,16 +583,16 @@ public class BatimentJoueurDto {
 		this.quantiteeStockageBois = quantiteeStockageBois;
 	}
 	/**
-	 * @return the quantiteeStockageOr
+	 * @return the quantiteeStockageOre
 	 */
-	public Integer getQuantiteeStockageOr() {
-		return quantiteeStockageOr;
+	public Integer getQuantiteeStockageOre() {
+		return quantiteeStockageOre;
 	}
 	/**
-	 * @param quantiteeStockageOr the quantiteeStockageOr to set
+	 * @param quantiteeStockageOre the quantiteeStockageOre to set
 	 */
-	public void setQuantiteeStockageOr(Integer quantiteeStockageOr) {
-		this.quantiteeStockageOr = quantiteeStockageOr;
+	public void setQuantiteeStockageOre(Integer quantiteeStockageOre) {
+		this.quantiteeStockageOre = quantiteeStockageOre;
 	}
 	/**
 	 * @return the quantiteeStockageNourriture
@@ -570,17 +631,54 @@ public class BatimentJoueurDto {
 		this.nombreExploitantsActif = nombreExploitantsActif;
 	}
 	/**
-	 * @return the apportRessourceHeure
+	 * @return the apportPierreHeure
 	 */
-	public Integer getApportRessourceHeure() {
-		return apportRessourceHeure;
+	public Integer getApportPierreHeure() {
+		return apportPierreHeure;
 	}
 	/**
-	 * @param apportRessourceHeure the apportRessourceHeure to set
+	 * @param apportPierreHeure the apportPierreHeure to set
 	 */
-	public void setApportRessourceHeure(Integer apportRessourceHeure) {
-		this.apportRessourceHeure = apportRessourceHeure;
+	public void setApportPierreHeure(Integer apportPierreHeure) {
+		this.apportPierreHeure = apportPierreHeure;
 	}
+	/**
+	 * @return the apportBoisHeure
+	 */
+	public Integer getApportBoisHeure() {
+		return apportBoisHeure;
+	}
+	/**
+	 * @param apportBoisHeure the apportBoisHeure to set
+	 */
+	public void setApportBoisHeure(Integer apportBoisHeure) {
+		this.apportBoisHeure = apportBoisHeure;
+	}
+	/**
+	 * @return the apportOreHeure
+	 */
+	public Integer getApportOreHeure() {
+		return apportOreHeure;
+	}
+	/**
+	 * @param apportOreHeure the apportOreHeure to set
+	 */
+	public void setApportOreHeure(Integer apportOreHeure) {
+		this.apportOreHeure = apportOreHeure;
+	}
+	/**
+	 * @return the apportNourritureHeure
+	 */
+	public Integer getApportNourritureHeure() {
+		return apportNourritureHeure;
+	}
+	/**
+	 * @param apportNourritureHeure the apportNourritureHeure to set
+	 */
+	public void setApportNourritureHeure(Integer apportNourritureHeure) {
+		this.apportNourritureHeure = apportNourritureHeure;
+	}
+
 
 	
     

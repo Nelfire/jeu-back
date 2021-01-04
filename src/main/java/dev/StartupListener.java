@@ -167,8 +167,10 @@ public class StartupListener {
 
 		BatimentJoueur batimentJoueur1 = new BatimentJoueur(joueur1, hdv, 2, null);
 		BatimentJoueur batimentJoueur2 = new BatimentJoueur(joueur1, port, 4, null);
+		BatimentJoueur batimentJoueur3 = new BatimentJoueur(joueur1, carriere, 1, 99);
 		this.batimentJoueurRepo.save(batimentJoueur1);
 		this.batimentJoueurRepo.save(batimentJoueur2);
+		this.batimentJoueurRepo.save(batimentJoueur3);
 		System.out.println(batimentJoueur1.toString());
 		
         // ----- BASE -----
