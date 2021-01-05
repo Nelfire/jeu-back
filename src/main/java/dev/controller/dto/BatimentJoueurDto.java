@@ -81,7 +81,8 @@ public class BatimentJoueurDto {
 	 * @param nombreExploitantsActif
 	 * @param apportRessourceHeure
 	 */
-	public BatimentJoueurDto(Joueur joueur, Batiment batiment, Integer niveau, Integer nombreExploitantsActif ) {
+	public BatimentJoueurDto(Integer id, Joueur joueur, Batiment batiment, Integer niveau, Integer nombreExploitantsActif ) {
+		this.id = id;
 		this.joueur = joueur;
 		this.batiment = batiment;
 		this.niveau = niveau;

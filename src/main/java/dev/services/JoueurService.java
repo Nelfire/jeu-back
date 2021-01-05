@@ -162,6 +162,7 @@ public class JoueurService {
 		jou.setBoisPossession(jou.getBoisPossession()+apportBoisSeconde);
 		jou.setOrPossession(jou.getOrPossession()+apportOrSeconde);
 		jou.setNourriturePossession(jou.getNourriturePossession()+apportNourritureSeconde);
+		jou.setTempsDeJeu(jou.getTempsDeJeu()+1);
 		
 //		Joueur joueur = new Joueur(jou.getArmee(),jou.getIcone(),jou.getPseudo(),jou.getEmail(),jou.getMotDePasse(),jou.getDescriptif(),jou.getNiveau(),jou.getExperience(),jou.getPierrePossession(),jou.getBoisPossession(),jou.getOrPossession(),jou.getNourriturePossession(),jou.getGemmePossession(),jou.getPierreMaximum(),jou.getBoisMaximum(),jou.getOrMaximum(),jou.getNourritureMaximum(),jou.getPierreBoostProduction(),jou.getBoisBoostProduction(),jou.getOrBoostProduction(),jou.getNourritureBoostProduction(),jou.getTempsDeJeu(),jou.getRoles());
 		

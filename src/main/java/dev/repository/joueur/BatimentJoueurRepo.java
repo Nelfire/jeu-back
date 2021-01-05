@@ -12,6 +12,7 @@ import dev.entites.joueur.BatimentJoueur;
 public interface BatimentJoueurRepo extends JpaRepository<BatimentJoueur, Integer> {
 
 	List<BatimentJoueur> findByJoueurId(Integer id);
+	BatimentJoueur findByBatimentIdTypeBatiment(Integer id);
 
 	List<BatimentJoueur> findByApportPierreHeureGreaterThan(Integer apportPierreHeure);
 	List<BatimentJoueur> findByApportBoisHeureGreaterThan(Integer apportBoisHeure);

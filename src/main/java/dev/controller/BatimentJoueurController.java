@@ -2,10 +2,13 @@ package dev.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,11 +38,17 @@ public class BatimentJoueurController {
 	public BatimentJoueurController(BatimentJoueurService batimentJoueurService) {
 		this.batimentJoueurService = batimentJoueurService;
 	}
-	
+
 	// http://localhost:8080/batimentsJoueur/idJoueur?idJoueur=1
 	@GetMapping("/idJoueur")
 	public List<BatimentJoueurDto> listerMesBatiments(@RequestParam("idJoueur") Integer idJoueur) {
 		return this.batimentJoueurService.listerMesBatiments(idJoueur);
+	}
+
+	// http://localhost:8080/batimentsJoueur/idBatiment?idBatiment=1
+	@GetMapping("/idTypeBatiment")
+	public BatimentJoueurDto rechercheBatimentJoueur(@RequestParam("idTypeBatiment") Integer idTypeBatiment) {
+		return this.batimentJoueurService.rechercheBatimentJoueur(idTypeBatiment);
 	}
 	
 	
@@ -49,6 +58,12 @@ public class BatimentJoueurController {
 		System.out.println("Je passe la");
 		BatimentJoueurCreationDto saveBatiment = batimentJoueurService.creationBatimentJoueur(batimentJoueurCreationDto);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).header("resultat", "Batiment construit").body(saveBatiment);
+	}
+	
+	@PutMapping("/modification")
+	public BatimentJoueurDto putBatimentJoueur(@RequestBody @Valid BatimentJoueurDto batimentJoueurDto, @RequestParam("id") Integer id) {
+		System.out.println("Modifications COntroller");
+		return this.batimentJoueurService.putBatimentJoueur(batimentJoueurDto, id);
 	}
 		
 		
