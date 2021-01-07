@@ -793,6 +793,16 @@ public class BatimentJoueur {
 	public void setApportNourritureHeure(Integer apportNourritureHeure) {
 		this.apportNourritureHeure = apportNourritureHeure;
 	}
+	@Override
+	public String toString() {
+		return "id : "+id+
+			"coutPierreAmelioration : "+coutPierreAmelioration+
+			"coutBoisAmelioration"+coutBoisAmelioration+
+			"coutOreAmelioration : "+coutOreAmelioration+
+			"coutNourritureAmelioration : "+coutNourritureAmelioration+
+			"niveau : "+niveau
+			;
+	}
 
 
 

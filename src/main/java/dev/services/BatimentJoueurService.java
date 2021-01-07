@@ -51,10 +51,8 @@ public class BatimentJoueurService {
 	
 	public BatimentJoueurDto rechercheBatimentJoueur(Integer idBatiment) {
 		
-		// --- RECUPERATION JOUEUR CONNECTE ---
-		String email = SecurityContextHolder.getContext().getAuthentication().getName();
-		Joueur jou = joueurRepo.findByEmail(email).orElseThrow(() -> new JoueurAuthentifieNonRecupereException("Le joueur authentifié n'a pas pu être récupéré"));
-		// ------------------------------------
+		// Récupération du joueur connecté.
+		Joueur jou = recuperationJoueur();
 		
 		BatimentJoueurDto batimentJoueurDto = new BatimentJoueurDto();
 		for (BatimentJoueur batiment : batimentJoueurRepo.findByJoueurId(jou.getId())) {
@@ -85,6 +83,15 @@ public class BatimentJoueurService {
 		return batimentJoueurDto;
 		
 	}
+
+	// Récupération du joueur connecté.
+	private Joueur recuperationJoueur() {
+		// --- RECUPERATION JOUEUR CONNECTE ---
+		String email = SecurityContextHolder.getContext().getAuthentication().getName();
+		Joueur jou = joueurRepo.findByEmail(email).orElseThrow(() -> new JoueurAuthentifieNonRecupereException("Le joueur authentifié n'a pas pu être récupéré"));
+		// ------------------------------------
+		return jou;
+	}
 	
 	public BatimentJoueurDto rechercheBatimentJoueurParId(Integer id) {
 		BatimentJoueur batimentJoueur = batimentJoueurRepo.findById(id).orElseThrow(() -> new BatimentJoueurNonRecupereException("Le joueur authentifié n'a pas pu être récupéré"));
@@ -96,11 +103,9 @@ public class BatimentJoueurService {
 	
 	// Créer un batiment joueur
 	public BatimentJoueurCreationDto creationBatimentJoueur(BatimentJoueurCreationDto batimentJoueurCreationDto) {
-		// Récupération email du joueur connecté
-		String email = SecurityContextHolder.getContext().getAuthentication().getName();
-
-		// Récupération du joueur connecté, via l'email
-		Joueur jou = joueurRepo.findByEmail(email).orElseThrow(() -> new JoueurAuthentifieNonRecupereException("Le collègue authentifié n'a pas été récupéré"));
+		
+		// Récupération du joueur connecté.
+		Joueur jou = recuperationJoueur();
 		
 		// Recherche du batiment correspondant à la création
 		Batiment batiment = batimentRepo.findByIdTypeBatiment(batimentJoueurCreationDto.getIdBatiment());
@@ -133,17 +138,16 @@ public class BatimentJoueurService {
 	
 	
 	/**
-	 * MODIFICATION D'UNE ABSENCE
+	 * MODIFICATION D'UN BATIMENT JOUEUR
 	 * 
 	 * @param abenceDto
 	 * @param id
 	 * @return
 	 */
 	public BatimentJoueurDto putBatimentJoueur(@Valid BatimentJoueurDto shelb, Integer id) {
-		// --- RECUPERATION JOUEUR CONNECTE ---
-		String email = SecurityContextHolder.getContext().getAuthentication().getName();
-		Joueur jou = joueurRepo.findByEmail(email).orElseThrow(() -> new JoueurAuthentifieNonRecupereException("Le joueur authentifié n'a pas pu être récupéré"));
-		// ------------------------------------
+		
+		// Récupération du joueur connecté.
+		Joueur jou = recuperationJoueur();
 		
 		BatimentJoueurDto batimentJoueurDto = this.rechercheBatimentJoueurParId(id);
 		batimentJoueurDto.setNiveau(batimentJoueurDto.getNiveau()+1);
@@ -154,7 +158,6 @@ public class BatimentJoueurService {
 				batimentJoueurDto.getNiveau(),
 				batimentJoueurDto.getNombreExploitantsActif());
 		batimentJoueur.setId(batimentJoueurDto.getId());
-		batimentJoueur.setCoutNourritureAmelioration(99999);
 		
 		jou.setPierrePossession(jou.getPierrePossession()-batimentJoueurDto.getCoutPierreAmelioration());
 		jou.setBoisPossession(jou.getBoisPossession()-batimentJoueurDto.getCoutBoisAmelioration());
@@ -164,6 +167,7 @@ public class BatimentJoueurService {
 		Joueur joueur = new Joueur(jou.getArmee(),jou.getIcone(),jou.getPseudo(),jou.getEmail(),jou.getMotDePasse(),jou.getDescriptif(),jou.getNiveau(),jou.getExperience(),jou.getPierrePossession(),jou.getBoisPossession(),jou.getOrPossession(),jou.getNourriturePossession(),jou.getGemmePossession(),jou.getPierreMaximum(),jou.getBoisMaximum(),jou.getOrMaximum(),jou.getNourritureMaximum(),jou.getPierreBoostProduction(),jou.getBoisBoostProduction(),jou.getOrBoostProduction(),jou.getNourritureBoostProduction(),jou.getTempsDeJeu(),jou.getRoles());
 		joueur.setId(jou.getId());
 
+		System.out.println(batimentJoueur.toString());
 		this.joueurRepo.save(joueur);
 		this.batimentJoueurRepo.save(batimentJoueur);
 
