@@ -47,9 +47,9 @@ public class JoueurController {
 //	}
 	
 
-	@GetMapping("/email")
-	public JoueurInfoDto getInfoJoueurEmail(@RequestParam("email") String email) {
-		return this.joueurService.getInfoJoueurEmail(email);
+	@GetMapping("/infosJoueur")
+	public JoueurInfoDto getInfoJoueur() {
+		return this.joueurService.getInfoJoueur();
 	}
 
 }

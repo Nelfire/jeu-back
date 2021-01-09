@@ -19,9 +19,11 @@ import dev.entites.batiment.Batiment;
 import dev.entites.joueur.BatimentJoueur;
 import dev.exceptions.BatimentJoueurNonRecupereException;
 import dev.exceptions.JoueurAuthentifieNonRecupereException;
+import dev.exceptions.RessourceManquanteException;
 import dev.repository.JoueurRepo;
 import dev.repository.batiment.BatimentRepo;
 import dev.repository.joueur.BatimentJoueurRepo;
+import dev.services.JoueurService;
 
 @Service
 public class BatimentJoueurService {
@@ -29,14 +31,16 @@ public class BatimentJoueurService {
 	private BatimentJoueurRepo batimentJoueurRepo;
 	private BatimentRepo batimentRepo;
 	private JoueurRepo joueurRepo;
+	private JoueurService joueurService;
 
 	/**
 	 * @param batimentJoueurRepo
 	 */
-	public BatimentJoueurService(BatimentJoueurRepo batimentJoueurRepo, BatimentRepo batimentRepo, JoueurRepo joueurRepo) {
+	public BatimentJoueurService(BatimentJoueurRepo batimentJoueurRepo, BatimentRepo batimentRepo, JoueurRepo joueurRepo, JoueurService joueurService) {
 		this.batimentJoueurRepo = batimentJoueurRepo;
 		this.batimentRepo = batimentRepo;
 		this.joueurRepo = joueurRepo;
+		this.joueurService = joueurService;
 	}
 	
 	public List<BatimentJoueurDto> listerMesBatiments(Integer idJoueur) {
@@ -52,7 +56,7 @@ public class BatimentJoueurService {
 	public BatimentJoueurDto rechercheBatimentJoueur(Integer idBatiment) {
 		
 		// Récupération du joueur connecté.
-		Joueur jou = recuperationJoueur();
+		Joueur jou = joueurService.recuperationJoueur();
 		
 		BatimentJoueurDto batimentJoueurDto = new BatimentJoueurDto();
 		for (BatimentJoueur batiment : batimentJoueurRepo.findByJoueurId(jou.getId())) {
@@ -84,14 +88,7 @@ public class BatimentJoueurService {
 		
 	}
 
-	// Récupération du joueur connecté.
-	private Joueur recuperationJoueur() {
-		// --- RECUPERATION JOUEUR CONNECTE ---
-		String email = SecurityContextHolder.getContext().getAuthentication().getName();
-		Joueur jou = joueurRepo.findByEmail(email).orElseThrow(() -> new JoueurAuthentifieNonRecupereException("Le joueur authentifié n'a pas pu être récupéré"));
-		// ------------------------------------
-		return jou;
-	}
+
 	
 	public BatimentJoueurDto rechercheBatimentJoueurParId(Integer id) {
 		BatimentJoueur batimentJoueur = batimentJoueurRepo.findById(id).orElseThrow(() -> new BatimentJoueurNonRecupereException("Le joueur authentifié n'a pas pu être récupéré"));
@@ -103,9 +100,12 @@ public class BatimentJoueurService {
 	
 	// Créer un batiment joueur
 	public BatimentJoueurCreationDto creationBatimentJoueur(BatimentJoueurCreationDto batimentJoueurCreationDto) {
-		
+		Integer quantiteePierreManquante;
+		Integer quantiteeBoisManquant;
+		Integer quantiteeOrManquant;
+		Integer quantiteeNourritureManquante;
 		// Récupération du joueur connecté.
-		Joueur jou = recuperationJoueur();
+		Joueur jou = joueurService.recuperationJoueur();
 		
 		// Recherche du batiment correspondant à la création
 		Batiment batiment = batimentRepo.findByIdTypeBatiment(batimentJoueurCreationDto.getIdBatiment());
@@ -115,6 +115,26 @@ public class BatimentJoueurService {
 
 		// -------- /!\ TESTES A FAIRE : -------- 
 		// - SI RESSOURCES SUFFISANTES 
+		// -- Pierre manquante :
+		if(jou.getPierrePossession() < batiment.getCoutPierreConstruction()) {
+			quantiteePierreManquante = batiment.getCoutPierreConstruction()-jou.getPierrePossession();
+			throw new RessourceManquanteException("Il vous manque "+quantiteePierreManquante+" de pierre pour construire ce bâtiment.");
+		}		
+		// -- Bois manquant :
+		else if(jou.getBoisPossession() < batiment.getCoutBoisConstruction()) {
+			quantiteeBoisManquant = batiment.getCoutBoisConstruction()-jou.getBoisPossession();
+			throw new RessourceManquanteException("Il vous manque "+quantiteeBoisManquant+" de bois pour construire ce bâtiment.");
+		}
+		// -- Or manquant :
+		else if(jou.getOrPossession() < batiment.getCoutOrConstruction()) {
+			quantiteeOrManquant = batiment.getCoutOrConstruction()-jou.getOrPossession();
+			throw new RessourceManquanteException("Il vous manque "+quantiteeOrManquant+" d'or pour construire ce bâtiment.");
+		}
+		// -- Nourriture manquante :
+		else if(jou.getNourriturePossession() < batiment.getCoutNourritureConstruction()) {
+			quantiteeNourritureManquante = batiment.getCoutNourritureConstruction()-jou.getNourriturePossession();
+			throw new RessourceManquanteException("Il vous manque "+quantiteeNourritureManquante+" de nourriture pour construire ce bâtiment.");
+		}
 		// - SI OUVRIERS SUFFISANTS 
 		// - SI LVL HDV SUFFISANTS 
 		jou.setPierrePossession(jou.getPierrePossession()-batiment.getCoutPierreConstruction());
@@ -145,9 +165,12 @@ public class BatimentJoueurService {
 	 * @return
 	 */
 	public BatimentJoueurDto putBatimentJoueur(@Valid BatimentJoueurDto shelb, Integer id) {
-		
+		Integer quantiteePierreManquante;
+		Integer quantiteeBoisManquant;
+		Integer quantiteeOrManquant;
+		Integer quantiteeNourritureManquante;
 		// Récupération du joueur connecté.
-		Joueur jou = recuperationJoueur();
+		Joueur jou = joueurService.recuperationJoueur();
 		
 		BatimentJoueurDto batimentJoueurDto = this.rechercheBatimentJoueurParId(id);
 		batimentJoueurDto.setNiveau(batimentJoueurDto.getNiveau()+1);
@@ -159,10 +182,37 @@ public class BatimentJoueurService {
 				batimentJoueurDto.getNombreExploitantsActif());
 		batimentJoueur.setId(batimentJoueurDto.getId());
 		
+		// - SI RESSOURCES SUFFISANTES 
+		// -- Pierre manquante :
+		if(jou.getPierrePossession() < batimentJoueurDto.getCoutPierreAmelioration()) {
+			quantiteePierreManquante = batimentJoueurDto.getCoutPierreAmelioration()-jou.getPierrePossession();
+			throw new RessourceManquanteException("Il vous manque "+quantiteePierreManquante+" de pierre pour améliorer ce bâtiment.");
+		}		
+		// -- Bois manquant :
+		else if(jou.getBoisPossession() < batimentJoueurDto.getCoutBoisAmelioration()) {
+			quantiteeBoisManquant = batimentJoueurDto.getCoutBoisAmelioration()-jou.getBoisPossession();
+			throw new RessourceManquanteException("Il vous manque "+quantiteeBoisManquant+" de bois pour améliorer ce bâtiment.");
+		}
+		// -- Or manquant :
+		else if(jou.getOrPossession() < batimentJoueurDto.getCoutOreAmelioration()) {
+			quantiteeOrManquant = batimentJoueurDto.getCoutOreAmelioration()-jou.getOrPossession();
+			throw new RessourceManquanteException("Il vous manque "+quantiteeOrManquant+" d'or pour améliorer ce bâtiment.");
+		}
+		// -- Nourriture manquante :
+		else if(jou.getNourriturePossession() < batimentJoueurDto.getCoutNourritureAmelioration()) {
+			quantiteeNourritureManquante = batimentJoueurDto.getCoutNourritureAmelioration()-jou.getNourriturePossession();
+			throw new RessourceManquanteException("Il vous manque "+quantiteeNourritureManquante+" de nourriture pour améliorer ce bâtiment.");
+		}
+		
 		jou.setPierrePossession(jou.getPierrePossession()-batimentJoueurDto.getCoutPierreAmelioration());
 		jou.setBoisPossession(jou.getBoisPossession()-batimentJoueurDto.getCoutBoisAmelioration());
 		jou.setOrPossession(jou.getOrPossession()-batimentJoueurDto.getCoutOreAmelioration());
 		jou.setNourriturePossession(jou.getNourriturePossession()-batimentJoueurDto.getCoutNourritureAmelioration());
+
+		jou.setPierreMaximum(jou.getPierreMaximum()+batimentJoueurDto.getQuantiteeStockagePierre());
+		jou.setBoisMaximum(jou.getBoisMaximum()+batimentJoueurDto.getQuantiteeStockageBois());
+		jou.setOrMaximum(jou.getOrMaximum()+batimentJoueurDto.getQuantiteeStockageOre());
+		jou.setNourritureMaximum(jou.getNourritureMaximum()+batimentJoueurDto.getQuantiteeStockageNourriture());
 		
 		Joueur joueur = new Joueur(jou.getArmee(),jou.getIcone(),jou.getPseudo(),jou.getEmail(),jou.getMotDePasse(),jou.getDescriptif(),jou.getNiveau(),jou.getExperience(),jou.getPierrePossession(),jou.getBoisPossession(),jou.getOrPossession(),jou.getNourriturePossession(),jou.getGemmePossession(),jou.getPierreMaximum(),jou.getBoisMaximum(),jou.getOrMaximum(),jou.getNourritureMaximum(),jou.getPierreBoostProduction(),jou.getBoisBoostProduction(),jou.getOrBoostProduction(),jou.getNourritureBoostProduction(),jou.getTempsDeJeu(),jou.getRoles());
 		joueur.setId(jou.getId());

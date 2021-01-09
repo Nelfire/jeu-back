@@ -55,7 +55,6 @@ public class BatimentJoueurController {
 	// http://localhost:8080/batimentsJoueur/idJoueur?idJoueur=1
 	@PostMapping
 	public ResponseEntity<?> creationBatimentJoueur(@RequestBody BatimentJoueurCreationDto batimentJoueurCreationDto) {
-		System.out.println("Je passe la");
 		BatimentJoueurCreationDto saveBatiment = batimentJoueurService.creationBatimentJoueur(batimentJoueurCreationDto);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).header("resultat", "Batiment construit").body(saveBatiment);
 	}
