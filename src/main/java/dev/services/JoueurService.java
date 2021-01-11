@@ -1,6 +1,7 @@
 package dev.services;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -128,10 +129,15 @@ public class JoueurService {
 		// -- PIERRE --
 		// ------------
 		// CALCUL APPORT PAR HEURE DU JOUEUR
-		Integer apportPierreHeure = 0;
+		Integer apportPierreHeure = 1;
 		// -- TOUS LES BATIMENTS QUI RAPPORTENT DE LA PIERRE
 		for (BatimentJoueur batimentPierre : batimentJoueurRepo.findByApportPierreHeureGreaterThan(1)) {
-			apportPierreHeure = apportPierreHeure + batimentPierre.getApportPierreHeure();
+			// Si le batiment est en cours d'amélioration, je prend pas en compte son apport de ressources
+			long maintenant = new Date().getTime();
+			long fin = batimentPierre.getDateFinConstruction();
+			if(maintenant>fin) {
+				apportPierreHeure = apportPierreHeure + batimentPierre.getApportPierreHeure();
+			}
 		}
 		// -- APPORT PIERRE PAR SECONDES
 		Integer apportPierreSeconde = apportPierreHeure / 3600;
@@ -140,10 +146,15 @@ public class JoueurService {
 		// -- BOIS --
 		// ------------
 		// CALCUL APPORT PAR HEURE DU JOUEUR
-		Integer apportBoisHeure = 0;
+		Integer apportBoisHeure = 1;
 		// -- TOUS LES BATIMENTS QUI RAPPORTENT DU BOIS
 		for (BatimentJoueur batimentBois : batimentJoueurRepo.findByApportBoisHeureGreaterThan(1)) {
-			apportBoisHeure = apportBoisHeure + batimentBois.getApportBoisHeure();
+			// Si le batiment est en cours d'amélioration, je prend pas en compte son apport de ressources
+			long maintenant = new Date().getTime();
+			long fin = batimentBois.getDateFinConstruction();
+			if(maintenant>fin) {
+				apportBoisHeure = apportBoisHeure + batimentBois.getApportBoisHeure();
+			}
 		}
 		// -- APPORT BOIS PAR SECONDES
 		Integer apportBoisSeconde = apportBoisHeure / 3600;
@@ -152,10 +163,15 @@ public class JoueurService {
 		// -- OR --
 		// ------------
 		// CALCUL APPORT PAR HEURE DU JOUEUR
-		Integer apportOrHeure = 0;
+		Integer apportOrHeure = 1;
 		// -- TOUS LES BATIMENTS QUI RAPPORTENT DE L'OR
 		for (BatimentJoueur batimentOr : batimentJoueurRepo.findByApportOreHeureGreaterThan(1)) {
-			apportOrHeure = apportOrHeure + batimentOr.getApportOreHeure();
+			// Si le batiment est en cours d'amélioration, je prend pas en compte son apport de ressources
+			long maintenant = new Date().getTime();
+			long fin = batimentOr.getDateFinConstruction();
+			if(maintenant>fin) {
+				apportOrHeure = apportOrHeure + batimentOr.getApportOreHeure();
+			}
 		}
 		// -- APPORT OR PAR SECONDES
 		Integer apportOrSeconde = apportOrHeure / 3600;
@@ -164,10 +180,15 @@ public class JoueurService {
 		// -- NOURRITURE --
 		// ------------
 		// CALCUL APPORT PAR HEURE DU JOUEUR
-		Integer apportNourritureHeure = 0;
+		Integer apportNourritureHeure = 1;
 		// -- TOUS LES BATIMENTS QUI RAPPORTENT DE LA NOURRITURE
 		for (BatimentJoueur batimentNourriture : batimentJoueurRepo.findByApportNourritureHeureGreaterThan(1)) {
-			apportNourritureHeure = apportNourritureHeure + batimentNourriture.getApportNourritureHeure();
+			// Si le batiment est en cours d'amélioration, je prend pas en compte son apport de ressources
+			long maintenant = new Date().getTime();
+			long fin = batimentNourriture.getDateFinConstruction();
+			if(maintenant>fin) {
+				apportNourritureHeure = apportNourritureHeure + batimentNourriture.getApportNourritureHeure();
+			}
 		}
 		// -- APPORT NOURRITURE PAR SECONDES
 		Integer apportNourritureSeconde = apportNourritureHeure / 3600;

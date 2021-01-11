@@ -74,10 +74,10 @@ public class BatimentDto {
 			this.descriptif = "Descriptif de l'Hotel de ville";
 			this.ouvrierNecessaireConstruction = 5;
 			this.tempsDeConstruction = 99;
-			this.coutPierreConstruction = 5500;
-			this.coutBoisConstruction = 5500;
-			this.coutOrConstruction = 2000;
-			this.coutNourritureConstruction = 1000;
+			this.coutPierreConstruction = 20;
+			this.coutBoisConstruction = 20;
+			this.coutOrConstruction = 20;
+			this.coutNourritureConstruction = 20;
 			this.niveauHotelDeVilleNecessaireConstruction = 0;
 		break;
 		//Chaumière (augmenter limite population)
@@ -100,10 +100,10 @@ public class BatimentDto {
 			this.descriptif = "Descriptif de la Carrière";
 			this.ouvrierNecessaireConstruction = 5;
 			this.tempsDeConstruction = 300;
-			this.coutPierreConstruction = 2500;
-			this.coutBoisConstruction = 2000;
-			this.coutOrConstruction = 500;
-			this.coutNourritureConstruction = 1000;
+			this.coutPierreConstruction = 1;
+			this.coutBoisConstruction = 1;
+			this.coutOrConstruction = 1;
+			this.coutNourritureConstruction = 1;
 			this.niveauHotelDeVilleNecessaireConstruction = 1;
 		break;
 		// Camp de bucheron (farm bois)		

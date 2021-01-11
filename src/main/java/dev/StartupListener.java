@@ -1,7 +1,9 @@
 package dev;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -165,9 +167,12 @@ public class StartupListener {
 		listeBatiments.add(ferme);
 		System.out.println(hdv.toString());
 
-		BatimentJoueur batimentJoueur1 = new BatimentJoueur(joueur1, hdv, 2, null);
-		BatimentJoueur batimentJoueur2 = new BatimentJoueur(joueur1, port, 4, null);
-		BatimentJoueur batimentJoueur3 = new BatimentJoueur(joueur1, carriere, 1, 99);
+		long debut = new Date().getTime();
+		long fin = new Date().getTime();
+		
+		BatimentJoueur batimentJoueur1 = new BatimentJoueur(joueur1, hdv, 2, null, debut, fin);
+		BatimentJoueur batimentJoueur2 = new BatimentJoueur(joueur1, port, 4,  null, debut, fin);
+		BatimentJoueur batimentJoueur3 = new BatimentJoueur(joueur1, carriere, 7,  null, debut, fin);
 		this.batimentJoueurRepo.save(batimentJoueur1);
 		this.batimentJoueurRepo.save(batimentJoueur2);
 		this.batimentJoueurRepo.save(batimentJoueur3);
@@ -192,6 +197,10 @@ public class StartupListener {
 		this.armeeRepo.save(armeeJoueur1);
 //		System.out.println(armeeJoueur1.toString());
 				
+		Date date = new Date();
+		System.out.println(date);
+		date.setSeconds(date.getSeconds()+600);
+		System.out.println(date);
 		// ----- GUILDE -----
         Guilde guilde1 = new Guilde("Les loulous de l'espace","xxx","Coucou les loulous");
         guilde1.setChefGuilde(joueur1);

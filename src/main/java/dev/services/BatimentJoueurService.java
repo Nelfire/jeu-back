@@ -2,6 +2,7 @@ package dev.services;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,7 +48,7 @@ public class BatimentJoueurService {
 		
 		List<BatimentJoueurDto> listeMesBatiments = new ArrayList<>();
 		for (BatimentJoueur batiment : batimentJoueurRepo.findByJoueurId(idJoueur)) {
-			BatimentJoueurDto batimentJoueurDto = new BatimentJoueurDto(batiment.getId(), batiment.getJoueur(), batiment.getBatiment(),batiment.getNiveau(),batiment.getNombreExploitantsActif());
+			BatimentJoueurDto batimentJoueurDto = new BatimentJoueurDto(batiment.getId(), batiment.getJoueur(), batiment.getBatiment(),batiment.getNiveau(),batiment.getNombreExploitantsActif(), batiment.getDateDebutConstruction(), batiment.getDateFinConstruction());
 			listeMesBatiments.add(batimentJoueurDto);	
 		}
 		return listeMesBatiments;
@@ -82,6 +83,8 @@ public class BatimentJoueurService {
 				batimentJoueurDto.setApportBoisHeure(batiment.getApportBoisHeure());
 				batimentJoueurDto.setApportOreHeure(batiment.getApportOreHeure());
 				batimentJoueurDto.setApportNourritureHeure(batiment.getApportNourritureHeure());
+				batimentJoueurDto.setDateDebutConstruction(batiment.getDateDebutConstruction());
+				batimentJoueurDto.setDateFinConstruction(batiment.getDateFinConstruction());
 			}
 		}
 		return batimentJoueurDto;
@@ -93,12 +96,14 @@ public class BatimentJoueurService {
 	public BatimentJoueurDto rechercheBatimentJoueurParId(Integer id) {
 		BatimentJoueur batimentJoueur = batimentJoueurRepo.findById(id).orElseThrow(() -> new BatimentJoueurNonRecupereException("Le joueur authentifié n'a pas pu être récupéré"));
 		
-		BatimentJoueurDto bat = new BatimentJoueurDto(id,batimentJoueur.getJoueur(),batimentJoueur.getBatiment(),batimentJoueur.getNiveau(),batimentJoueur.getNombreExploitantsActif());
+		BatimentJoueurDto bat = new BatimentJoueurDto(id,batimentJoueur.getJoueur(),batimentJoueur.getBatiment(),batimentJoueur.getNiveau(),batimentJoueur.getNombreExploitantsActif(), batimentJoueur.getDateDebutConstruction(), batimentJoueur.getDateFinConstruction());
 	
 		return bat;
 	}
 	
-	// Créer un batiment joueur
+	/**
+	 * CREATION D'UN BATIMENT JOUEUR (Construction)
+	 */
 	public BatimentJoueurCreationDto creationBatimentJoueur(BatimentJoueurCreationDto batimentJoueurCreationDto) {
 		Integer quantiteePierreManquante;
 		Integer quantiteeBoisManquant;
@@ -142,9 +147,17 @@ public class BatimentJoueurService {
 		jou.setOrPossession(jou.getOrPossession()-batiment.getCoutOrConstruction());
 		jou.setNourriturePossession(jou.getNourriturePossession()-batiment.getCoutNourritureConstruction());
 		
+		// -- Temps d'amélioration
+		// -- Temps d'amélioration
+		long debut = new Date().getTime();
+		long fin = new Date().getTime()+(batiment.getTempsDeConstruction()*1000);
+
+		System.out.println(debut);
+		System.out.println(fin);
+		
 		Joueur joueur = new Joueur(jou.getArmee(),jou.getIcone(),jou.getPseudo(),jou.getEmail(),jou.getMotDePasse(),jou.getDescriptif(),jou.getNiveau(),jou.getExperience(),jou.getPierrePossession(),jou.getBoisPossession(),jou.getOrPossession(),jou.getNourriturePossession(),jou.getGemmePossession(),jou.getPierreMaximum(),jou.getBoisMaximum(),jou.getOrMaximum(),jou.getNourritureMaximum(),jou.getPierreBoostProduction(),jou.getBoisBoostProduction(),jou.getOrBoostProduction(),jou.getNourritureBoostProduction(),jou.getTempsDeJeu(),jou.getRoles());
 		joueur.setId(jou.getId());
-		BatimentJoueur batimentJoueur = new BatimentJoueur(jou,batiment,1,0);
+		BatimentJoueur batimentJoueur = new BatimentJoueur(jou,batiment,1,0,debut,fin);
 		
 		// Sauvegarde 
 		this.batimentJoueurRepo.save(batimentJoueur);
@@ -158,11 +171,7 @@ public class BatimentJoueurService {
 	
 	
 	/**
-	 * MODIFICATION D'UN BATIMENT JOUEUR
-	 * 
-	 * @param abenceDto
-	 * @param id
-	 * @return
+	 * MODIFICATION D'UN BATIMENT JOUEUR (Amélioration)
 	 */
 	public BatimentJoueurDto putBatimentJoueur(@Valid BatimentJoueurDto shelb, Integer id) {
 		Integer quantiteePierreManquante;
@@ -179,8 +188,17 @@ public class BatimentJoueurService {
 		BatimentJoueur batimentJoueur = new BatimentJoueur(batimentJoueurDto.getJoueur(),
 				batimentJoueurDto.getBatiment(),
 				batimentJoueurDto.getNiveau(),
-				batimentJoueurDto.getNombreExploitantsActif());
+				batimentJoueurDto.getNombreExploitantsActif(),
+				batimentJoueurDto.getDateDebutConstruction(),
+				batimentJoueurDto.getDateFinConstruction());
 		batimentJoueur.setId(batimentJoueurDto.getId());
+		// -- Temps d'amélioration
+		long debut = new Date().getTime();
+		long fin = new Date().getTime()+(batimentJoueurDto.getTempsAmelioration()*1000);
+		// -- Détermine la date de fin de l'amélioration
+//		fin.setSeconds(fin.getSeconds()+batimentJoueurDto.getTempsAmelioration());
+		batimentJoueur.setDateDebutConstruction(debut);
+		batimentJoueur.setDateFinConstruction(fin);
 		
 		// - SI RESSOURCES SUFFISANTES 
 		// -- Pierre manquante :
@@ -217,11 +235,11 @@ public class BatimentJoueurService {
 		Joueur joueur = new Joueur(jou.getArmee(),jou.getIcone(),jou.getPseudo(),jou.getEmail(),jou.getMotDePasse(),jou.getDescriptif(),jou.getNiveau(),jou.getExperience(),jou.getPierrePossession(),jou.getBoisPossession(),jou.getOrPossession(),jou.getNourriturePossession(),jou.getGemmePossession(),jou.getPierreMaximum(),jou.getBoisMaximum(),jou.getOrMaximum(),jou.getNourritureMaximum(),jou.getPierreBoostProduction(),jou.getBoisBoostProduction(),jou.getOrBoostProduction(),jou.getNourritureBoostProduction(),jou.getTempsDeJeu(),jou.getRoles());
 		joueur.setId(jou.getId());
 
+		System.out.println(debut);
+		System.out.println(fin);
 		System.out.println(batimentJoueur.toString());
 		this.joueurRepo.save(joueur);
 		this.batimentJoueurRepo.save(batimentJoueur);
-
-	
 		return batimentJoueurDto;
 	}
 	

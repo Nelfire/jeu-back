@@ -1,5 +1,7 @@
 package dev.controller.dto;
 
+import java.util.Date;
+
 import dev.entites.Joueur;
 import dev.entites.batiment.Batiment;
 import dev.entites.joueur.BatimentJoueur;
@@ -59,6 +61,10 @@ public class BatimentJoueurDto {
     private Integer apportOreHeure;
     /** montant de l'apport de ressource (nourriture) par heure (pour 100% exploitants) **/
     private Integer apportNourritureHeure;
+    
+
+    private Long dateDebutConstruction;
+    private Long dateFinConstruction;
 
     public BatimentJoueurDto() {
     	
@@ -81,11 +87,13 @@ public class BatimentJoueurDto {
 	 * @param nombreExploitantsActif
 	 * @param apportRessourceHeure
 	 */
-	public BatimentJoueurDto(Integer id, Joueur joueur, Batiment batiment, Integer niveau, Integer nombreExploitantsActif ) {
+	public BatimentJoueurDto(Integer id, Joueur joueur, Batiment batiment, Integer niveau, Integer nombreExploitantsActif , Long dateDebutConstruction, Long dateFinConstruction) {
 		this.id = id;
 		this.joueur = joueur;
 		this.batiment = batiment;
 		this.niveau = niveau;
+		this.dateDebutConstruction = dateDebutConstruction;
+		this.dateFinConstruction = dateFinConstruction;
 	
 		switch (batiment.getIdTypeBatiment()) {
 		// Hotel de ville
@@ -104,10 +112,10 @@ public class BatimentJoueurDto {
 			this.nombreExploitantsAutorise = 0;
 			this.nombreExploitantsActif = 0;
 			// ??????????????????????
-			this.apportPierreHeure = 30000;
-			this.apportBoisHeure = 30000;
-			this.apportOreHeure = 30000;
-			this.apportNourritureHeure = 30000;
+			this.apportPierreHeure = 10000;
+			this.apportBoisHeure = 10000;
+			this.apportOreHeure = 10000;
+			this.apportNourritureHeure = 10000;
 			break;
 		case 2:
 			// Chaumière
@@ -678,6 +686,30 @@ public class BatimentJoueurDto {
 	 */
 	public void setApportNourritureHeure(Integer apportNourritureHeure) {
 		this.apportNourritureHeure = apportNourritureHeure;
+	}
+	/**
+	 * @return the dateDebutConstruction
+	 */
+	public Long getDateDebutConstruction() {
+		return dateDebutConstruction;
+	}
+	/**
+	 * @param dateDebutConstruction the dateDebutConstruction to set
+	 */
+	public void setDateDebutConstruction(Long dateDebutConstruction) {
+		this.dateDebutConstruction = dateDebutConstruction;
+	}
+	/**
+	 * @return the dateFinConstruction
+	 */
+	public Long getDateFinConstruction() {
+		return dateFinConstruction;
+	}
+	/**
+	 * @param dateFinConstruction the dateFinConstruction to set
+	 */
+	public void setDateFinConstruction(Long dateFinConstruction) {
+		this.dateFinConstruction = dateFinConstruction;
 	}
 
 
