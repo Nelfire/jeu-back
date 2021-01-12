@@ -40,6 +40,14 @@ public class BatimentService {
 			batimentDto.setCoutOrConstruction(batiment.getCoutOrConstruction());
 			batimentDto.setCoutNourritureConstruction(batiment.getCoutNourritureConstruction());
 			batimentDto.setNiveauHotelDeVilleNecessaireConstruction(batiment.getNiveauHotelDeVilleNecessaireConstruction());
+			batimentDto.setQuantiteeStockagePierre(batiment.getQuantiteeStockagePierre());
+			batimentDto.setQuantiteeStockageBois(batiment.getQuantiteeStockageBois());
+			batimentDto.setQuantiteeStockageOre(batiment.getQuantiteeStockageOre());
+			batimentDto.setQuantiteeStockageNourriture(batiment.getQuantiteeStockageNourriture());
+			batimentDto.setApportPierreHeure(batiment.getApportPierreHeure());
+			batimentDto.setApportBoisHeure(batiment.getApportBoisHeure());
+			batimentDto.setApportOreHeure(batiment.getApportOreHeure());
+			batimentDto.setApportNourritureHeure(batiment.getApportNourritureHeure());
 
 			listeBatiments.add(batimentDto);
 

@@ -56,6 +56,23 @@ public class BatimentDto {
     
     /** niveau necessaire de l'hotel de ville pour la construction du bâtiment **/
     private Integer niveauHotelDeVilleNecessaireConstruction;
+    
+    /** quantitée de pierre stockable dans la chambre forte du batiment**/
+    private Integer quantiteeStockagePierre;
+    /** quantitée de bois stockable dans la chambre forte du batiment**/
+    private Integer quantiteeStockageBois;
+    /** quantitée d'or stockable dans la chambre forte du batiment**/
+    private Integer quantiteeStockageOre;
+    /** quantitée de nourriture stockable dans la chambre forte du batiment**/
+    private Integer quantiteeStockageNourriture;
+    /** montant de l'apport de ressource (pierre) par heure (pour 100% exploitants) **/
+    private Integer apportPierreHeure;
+    /** montant de l'apport de ressource (bois) par heure (pour 100% exploitants) **/
+    private Integer apportBoisHeure;
+    /** montant de l'apport de ressource (or) par heure (pour 100% exploitants) **/
+    private Integer apportOreHeure;
+    /** montant de l'apport de ressource (nourriture) par heure (pour 100% exploitants) **/
+    private Integer apportNourritureHeure;
 
 	public BatimentDto() {
 	}
@@ -79,6 +96,14 @@ public class BatimentDto {
 			this.coutOrConstruction = 20;
 			this.coutNourritureConstruction = 20;
 			this.niveauHotelDeVilleNecessaireConstruction = 0;
+			this.quantiteeStockagePierre = 10_000;
+			this.quantiteeStockageBois = 10_000;
+			this.quantiteeStockageOre = 10_000;
+			this.quantiteeStockageNourriture = 10_000;
+			this.apportPierreHeure = 1500;
+			this.apportBoisHeure = 1500;
+			this.apportOreHeure = 1500;
+			this.apportNourritureHeure = 1500;
 		break;
 		//Chaumière (augmenter limite population)
 		case 2:
@@ -92,6 +117,14 @@ public class BatimentDto {
 			this.coutOrConstruction = 500;
 			this.coutNourritureConstruction = 1000;
 			this.niveauHotelDeVilleNecessaireConstruction = 1;
+			this.quantiteeStockagePierre = 0;
+			this.quantiteeStockageBois = 0;
+			this.quantiteeStockageOre = 0;
+			this.quantiteeStockageNourriture = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 		break;
 		// Carrière (farm pierre)
 		case 3:
@@ -105,6 +138,14 @@ public class BatimentDto {
 			this.coutOrConstruction = 1;
 			this.coutNourritureConstruction = 1;
 			this.niveauHotelDeVilleNecessaireConstruction = 1;
+			this.quantiteeStockagePierre = 0;
+			this.quantiteeStockageBois = 0;
+			this.quantiteeStockageOre = 0;
+			this.quantiteeStockageNourriture = 0;
+			this.apportPierreHeure = 25_000;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 		break;
 		// Camp de bucheron (farm bois)		
 		case 4:
@@ -118,6 +159,14 @@ public class BatimentDto {
 			this.coutOrConstruction = 500;
 			this.coutNourritureConstruction = 1000;
 			this.niveauHotelDeVilleNecessaireConstruction = 1;
+			this.quantiteeStockagePierre = 0;
+			this.quantiteeStockageBois = 0;
+			this.quantiteeStockageOre = 0;
+			this.quantiteeStockageNourriture = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 25_000;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 		break;
 		// Camp de mineur (farm or)
 		case 5:
@@ -131,6 +180,14 @@ public class BatimentDto {
 			this.coutOrConstruction = 500;
 			this.coutNourritureConstruction = 1000;
 			this.niveauHotelDeVilleNecessaireConstruction = 1;
+			this.quantiteeStockagePierre = 0;
+			this.quantiteeStockageBois = 0;
+			this.quantiteeStockageOre = 0;
+			this.quantiteeStockageNourriture = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 25_000;
+			this.apportNourritureHeure = 0;
 		break;
 		// Ferme (farm nourriture)
 		case 6:
@@ -138,12 +195,20 @@ public class BatimentDto {
 			this.libelle = "Ferme";
 			this.descriptif = "Descriptif de la Ferme";
 			this.ouvrierNecessaireConstruction = 5; 
-			this.tempsDeConstruction = 300;
-			this.coutPierreConstruction = 2500;
-			this.coutBoisConstruction = 2000;
-			this.coutOrConstruction = 500;
-			this.coutNourritureConstruction = 1000;
+			this.tempsDeConstruction = 10;
+			this.coutPierreConstruction = 20;
+			this.coutBoisConstruction = 20;
+			this.coutOrConstruction = 20;
+			this.coutNourritureConstruction = 20;
 			this.niveauHotelDeVilleNecessaireConstruction = 1;
+			this.quantiteeStockagePierre = 0;
+			this.quantiteeStockageBois = 0;
+			this.quantiteeStockageOre = 0;
+			this.quantiteeStockageNourriture = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 25_000;
 		break;
 		// Stockage Pierre (Entrepot)	
 		case 7:
@@ -151,12 +216,20 @@ public class BatimentDto {
 			this.libelle = "Entrepot";
 			this.descriptif = "Descriptif de l'Entrepot";
 			this.ouvrierNecessaireConstruction = 5;
-			this.tempsDeConstruction = 300;
-			this.coutPierreConstruction = 2500;
-			this.coutBoisConstruction = 2000;
-			this.coutOrConstruction = 500;
-			this.coutNourritureConstruction = 1000;
+			this.tempsDeConstruction = 10;
+			this.coutPierreConstruction = 20;
+			this.coutBoisConstruction = 20;
+			this.coutOrConstruction = 20;
+			this.coutNourritureConstruction = 20;
 			this.niveauHotelDeVilleNecessaireConstruction = 2;
+			this.quantiteeStockagePierre = 50_000;
+			this.quantiteeStockageBois = 0;
+			this.quantiteeStockageOre = 0;
+			this.quantiteeStockageNourriture = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 		break;
 		// Stockage Bois (Scierie)
 		case 8:
@@ -170,6 +243,14 @@ public class BatimentDto {
 			this.coutOrConstruction = 500;
 			this.coutNourritureConstruction = 1000;
 			this.niveauHotelDeVilleNecessaireConstruction = 2;
+			this.quantiteeStockagePierre = 0;
+			this.quantiteeStockageBois = 50_000;
+			this.quantiteeStockageOre = 0;
+			this.quantiteeStockageNourriture = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 		break;
 		// Stockage Or (Banque)
 		case 9:
@@ -183,6 +264,14 @@ public class BatimentDto {
 			this.coutOrConstruction = 500;
 			this.coutNourritureConstruction = 1000;
 			this.niveauHotelDeVilleNecessaireConstruction = 2;
+			this.quantiteeStockagePierre = 0;
+			this.quantiteeStockageBois = 0;
+			this.quantiteeStockageOre = 50_000;
+			this.quantiteeStockageNourriture = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 		break;
 		// Stockage Nourriture (Grenier)
 		case 10:
@@ -196,6 +285,14 @@ public class BatimentDto {
 			this.coutOrConstruction = 500;
 			this.coutNourritureConstruction = 1000;
 			this.niveauHotelDeVilleNecessaireConstruction = 2;
+			this.quantiteeStockagePierre = 0;
+			this.quantiteeStockageBois = 0;
+			this.quantiteeStockageOre = 0;
+			this.quantiteeStockageNourriture = 50_000;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 		break;
 		// Caserne Militaire	
 		case 11:
@@ -209,6 +306,14 @@ public class BatimentDto {
 			this.coutOrConstruction = 500;
 			this.coutNourritureConstruction = 1000;
 			this.niveauHotelDeVilleNecessaireConstruction = 2;
+			this.quantiteeStockagePierre = 0;
+			this.quantiteeStockageBois = 0;
+			this.quantiteeStockageOre = 0;
+			this.quantiteeStockageNourriture = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 		break;
 		// Ecurie
 		case 12:
@@ -222,6 +327,14 @@ public class BatimentDto {
 			this.coutOrConstruction = 500;
 			this.coutNourritureConstruction = 1000;
 			this.niveauHotelDeVilleNecessaireConstruction = 3;
+			this.quantiteeStockagePierre = 0;
+			this.quantiteeStockageBois = 0;
+			this.quantiteeStockageOre = 0;
+			this.quantiteeStockageNourriture = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 		break;
 		// Port
 		case 13:
@@ -235,6 +348,14 @@ public class BatimentDto {
 			this.coutOrConstruction = 500;
 			this.coutNourritureConstruction = 1000;
 			this.niveauHotelDeVilleNecessaireConstruction = 4;
+			this.quantiteeStockagePierre = 0;
+			this.quantiteeStockageBois = 0;
+			this.quantiteeStockageOre = 0;
+			this.quantiteeStockageNourriture = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 		break;
 		// Atelier de siege
 		case 14:
@@ -248,6 +369,14 @@ public class BatimentDto {
 			this.coutOrConstruction = 500;
 			this.coutNourritureConstruction = 1000;
 			this.niveauHotelDeVilleNecessaireConstruction = 5;
+			this.quantiteeStockagePierre = 0;
+			this.quantiteeStockageBois = 0;
+			this.quantiteeStockageOre = 0;
+			this.quantiteeStockageNourriture = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 		break;
 		// Forge
 		case 15:
@@ -261,6 +390,14 @@ public class BatimentDto {
 			this.coutOrConstruction = 500;
 			this.coutNourritureConstruction = 1000;
 			this.niveauHotelDeVilleNecessaireConstruction = 5;
+			this.quantiteeStockagePierre = 0;
+			this.quantiteeStockageBois = 0;
+			this.quantiteeStockageOre = 0;
+			this.quantiteeStockageNourriture = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 		break;
 		// Universite
 		case 16:
@@ -274,6 +411,14 @@ public class BatimentDto {
 			this.coutOrConstruction = 500;
 			this.coutNourritureConstruction = 1000;
 			this.niveauHotelDeVilleNecessaireConstruction = 5;
+			this.quantiteeStockagePierre = 0;
+			this.quantiteeStockageBois = 0;
+			this.quantiteeStockageOre = 0;
+			this.quantiteeStockageNourriture = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 		break;
 		// Marché
 		case 17:
@@ -287,6 +432,14 @@ public class BatimentDto {
 			this.coutOrConstruction = 500;
 			this.coutNourritureConstruction = 1000;
 			this.niveauHotelDeVilleNecessaireConstruction = 5;
+			this.quantiteeStockagePierre = 0;
+			this.quantiteeStockageBois = 0;
+			this.quantiteeStockageOre = 0;
+			this.quantiteeStockageNourriture = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 		break;
 		// Table d'expéditions
 		case 18:
@@ -300,6 +453,14 @@ public class BatimentDto {
 			this.coutOrConstruction = 500;
 			this.coutNourritureConstruction = 1000;
 			this.niveauHotelDeVilleNecessaireConstruction = 6;
+			this.quantiteeStockagePierre = 0;
+			this.quantiteeStockageBois = 0;
+			this.quantiteeStockageOre = 0;
+			this.quantiteeStockageNourriture = 0;
+			this.apportPierreHeure = 0;
+			this.apportBoisHeure = 0;
+			this.apportOreHeure = 0;
+			this.apportNourritureHeure = 0;
 		break;
 			
 		}
@@ -471,6 +632,118 @@ public class BatimentDto {
 	 */
 	public void setNiveauHotelDeVilleNecessaireConstruction(Integer niveauHotelDeVilleNecessaireConstruction) {
 		this.niveauHotelDeVilleNecessaireConstruction = niveauHotelDeVilleNecessaireConstruction;
+	}
+
+	/**
+	 * @return the quantiteeStockagePierre
+	 */
+	public Integer getQuantiteeStockagePierre() {
+		return quantiteeStockagePierre;
+	}
+
+	/**
+	 * @param quantiteeStockagePierre the quantiteeStockagePierre to set
+	 */
+	public void setQuantiteeStockagePierre(Integer quantiteeStockagePierre) {
+		this.quantiteeStockagePierre = quantiteeStockagePierre;
+	}
+
+	/**
+	 * @return the quantiteeStockageBois
+	 */
+	public Integer getQuantiteeStockageBois() {
+		return quantiteeStockageBois;
+	}
+
+	/**
+	 * @param quantiteeStockageBois the quantiteeStockageBois to set
+	 */
+	public void setQuantiteeStockageBois(Integer quantiteeStockageBois) {
+		this.quantiteeStockageBois = quantiteeStockageBois;
+	}
+
+	/**
+	 * @return the quantiteeStockageOre
+	 */
+	public Integer getQuantiteeStockageOre() {
+		return quantiteeStockageOre;
+	}
+
+	/**
+	 * @param quantiteeStockageOre the quantiteeStockageOre to set
+	 */
+	public void setQuantiteeStockageOre(Integer quantiteeStockageOre) {
+		this.quantiteeStockageOre = quantiteeStockageOre;
+	}
+
+	/**
+	 * @return the quantiteeStockageNourriture
+	 */
+	public Integer getQuantiteeStockageNourriture() {
+		return quantiteeStockageNourriture;
+	}
+
+	/**
+	 * @param quantiteeStockageNourriture the quantiteeStockageNourriture to set
+	 */
+	public void setQuantiteeStockageNourriture(Integer quantiteeStockageNourriture) {
+		this.quantiteeStockageNourriture = quantiteeStockageNourriture;
+	}
+
+	/**
+	 * @return the apportPierreHeure
+	 */
+	public Integer getApportPierreHeure() {
+		return apportPierreHeure;
+	}
+
+	/**
+	 * @param apportPierreHeure the apportPierreHeure to set
+	 */
+	public void setApportPierreHeure(Integer apportPierreHeure) {
+		this.apportPierreHeure = apportPierreHeure;
+	}
+
+	/**
+	 * @return the apportBoisHeure
+	 */
+	public Integer getApportBoisHeure() {
+		return apportBoisHeure;
+	}
+
+	/**
+	 * @param apportBoisHeure the apportBoisHeure to set
+	 */
+	public void setApportBoisHeure(Integer apportBoisHeure) {
+		this.apportBoisHeure = apportBoisHeure;
+	}
+
+	/**
+	 * @return the apportOreHeure
+	 */
+	public Integer getApportOreHeure() {
+		return apportOreHeure;
+	}
+
+	/**
+	 * @param apportOreHeure the apportOreHeure to set
+	 */
+	public void setApportOreHeure(Integer apportOreHeure) {
+		this.apportOreHeure = apportOreHeure;
+	}
+
+	/**
+	 * @return the apportNourritureHeure
+	 */
+	public Integer getApportNourritureHeure() {
+		return apportNourritureHeure;
+	}
+
+	/**
+	 * @param apportNourritureHeure the apportNourritureHeure to set
+	 */
+	public void setApportNourritureHeure(Integer apportNourritureHeure) {
+		this.apportNourritureHeure = apportNourritureHeure;
 	}
 
 	

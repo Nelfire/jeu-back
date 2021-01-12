@@ -114,12 +114,12 @@ public class BatimentJoueurService {
 		
 		// Recherche du batiment correspondant à la création
 		Batiment batiment = batimentRepo.findByIdTypeBatiment(batimentJoueurCreationDto.getIdBatiment());
-		
+		System.out.println(batiment.toString());
 		// Création de la ligne batimentJoueur
 		// Retrait ressource
 
 		// -------- /!\ TESTES A FAIRE : -------- 
-		// - SI RESSOURCES SUFFISANTES 
+		// - SI RESSOURCES INSUFFISANTES 
 		// -- Pierre manquante :
 		if(jou.getPierrePossession() < batiment.getCoutPierreConstruction()) {
 			quantiteePierreManquante = batiment.getCoutPierreConstruction()-jou.getPierrePossession();
@@ -159,10 +159,15 @@ public class BatimentJoueurService {
 		joueur.setId(jou.getId());
 		BatimentJoueur batimentJoueur = new BatimentJoueur(jou,batiment,1,0,debut,fin);
 		
+		jou.setPierreMaximum(jou.getPierreMaximum()+batiment.getQuantiteeStockagePierre());
+		jou.setBoisMaximum(jou.getBoisMaximum()+batiment.getQuantiteeStockageBois());
+		jou.setOrMaximum(jou.getOrMaximum()+batiment.getQuantiteeStockageOre());
+		jou.setNourritureMaximum(jou.getNourritureMaximum()+batiment.getQuantiteeStockageNourriture());
+		
 		// Sauvegarde 
 		this.batimentJoueurRepo.save(batimentJoueur);
-		this.joueurRepo.save(joueur);
-		
+		this.joueurRepo.save(jou);
+		System.out.println(batimentJoueur.toString());
 		// Return
 		return new BatimentJoueurCreationDto(batimentJoueur.getBatiment().getIdTypeBatiment());
 	}
