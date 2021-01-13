@@ -78,6 +78,9 @@ public class BatimentJoueur {
     private Integer apportOreHeure;
     /** montant de l'apport de ressource (nourriture) par heure (pour 100% exploitants) **/
     private Integer apportNourritureHeure;
+    
+    /** augmentation de la population maximale **/
+    private Integer apportPopulation;
 
     private Long dateDebutConstruction;
     private Long dateFinConstruction;
@@ -133,6 +136,7 @@ public class BatimentJoueur {
 			this.apportBoisHeure = 2*((batiment.getApportBoisHeure()*this.niveau)*this.niveau);
 			this.apportOreHeure = 2*((batiment.getApportOreHeure()*this.niveau)*this.niveau);
 			this.apportNourritureHeure = 2*((batiment.getApportNourritureHeure()*this.niveau)*this.niveau);
+			this.apportPopulation = 2*((batiment.getApportPopulation()*this.niveau)*this.niveau);
 			break;
 		case 2:
 			// Chaumière
@@ -153,6 +157,7 @@ public class BatimentJoueur {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 2*((batiment.getApportPopulation()*this.niveau)*this.niveau);
 			break;
 		case 3:
 			// Carrière
@@ -173,6 +178,7 @@ public class BatimentJoueur {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 			break;
 		case 4:
 			// Camp de bucheron
@@ -193,6 +199,7 @@ public class BatimentJoueur {
 			this.apportBoisHeure = ((batiment.getApportBoisHeure()*this.niveau)*this.niveau);
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 			break;
 		case 5:
 			// Camp de mineur
@@ -213,6 +220,7 @@ public class BatimentJoueur {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 2*((batiment.getApportOreHeure()*this.niveau)*this.niveau);
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 			break;
 		case 6:
 			// Ferme
@@ -233,6 +241,7 @@ public class BatimentJoueur {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = (batiment.getApportNourritureHeure()*this.niveau)*2;
+			this.apportPopulation = 0;
 			break;
 		case 7:
 			// Entrepot (Stockage Pierre)
@@ -252,6 +261,7 @@ public class BatimentJoueur {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 			break;
 		case 8:
 			// Scierie (Stockage Bois)
@@ -271,6 +281,7 @@ public class BatimentJoueur {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 			break;
 		case 9:
 			// Banque (Stockage Ore)
@@ -290,6 +301,7 @@ public class BatimentJoueur {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 			break;
 		case 10:
 			// Grenier (Stockage Nourriture)
@@ -309,6 +321,7 @@ public class BatimentJoueur {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 			break;
 		case 11:
 			// Caserne Militaire
@@ -328,6 +341,7 @@ public class BatimentJoueur {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 			break;
 		case 12:
 			// Ecurie
@@ -347,6 +361,7 @@ public class BatimentJoueur {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 			break;
 		case 13:
 			// Port
@@ -366,6 +381,7 @@ public class BatimentJoueur {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 			break;
 		case 14:
 			// Atelier de siege
@@ -385,6 +401,7 @@ public class BatimentJoueur {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 			break;
 		case 15:
 			// Forge
@@ -404,6 +421,7 @@ public class BatimentJoueur {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 			break;
 		case 16:
 			// Universite
@@ -423,6 +441,7 @@ public class BatimentJoueur {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 			break;
 		case 17:
 			// Marché
@@ -442,6 +461,7 @@ public class BatimentJoueur {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 			break;
 		case 18:
 			// Table d'expéditions
@@ -461,6 +481,7 @@ public class BatimentJoueur {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 			break;
 		}
 	}
@@ -833,6 +854,18 @@ public class BatimentJoueur {
 	 */
 	public void setDateFinConstruction(Long dateFinConstruction) {
 		this.dateFinConstruction = dateFinConstruction;
+	}
+	/**
+	 * @return the apportPopulation
+	 */
+	public Integer getApportPopulation() {
+		return apportPopulation;
+	}
+	/**
+	 * @param apportPopulation the apportPopulation to set
+	 */
+	public void setApportPopulation(Integer apportPopulation) {
+		this.apportPopulation = apportPopulation;
 	}
 
 

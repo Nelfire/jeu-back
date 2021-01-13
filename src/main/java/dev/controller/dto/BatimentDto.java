@@ -74,6 +74,9 @@ public class BatimentDto {
     /** montant de l'apport de ressource (nourriture) par heure (pour 100% exploitants) **/
     private Integer apportNourritureHeure;
 
+    /** augmentation de la population maximale **/
+    private Integer apportPopulation;
+    
 	public BatimentDto() {
 	}
 	
@@ -104,6 +107,7 @@ public class BatimentDto {
 			this.apportBoisHeure = 1500;
 			this.apportOreHeure = 1500;
 			this.apportNourritureHeure = 1500;
+			this.apportPopulation = 20;
 		break;
 		//Chaumière (augmenter limite population)
 		case 2:
@@ -125,6 +129,7 @@ public class BatimentDto {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 50;
 		break;
 		// Carrière (farm pierre)
 		case 3:
@@ -146,6 +151,7 @@ public class BatimentDto {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 		break;
 		// Camp de bucheron (farm bois)		
 		case 4:
@@ -167,6 +173,7 @@ public class BatimentDto {
 			this.apportBoisHeure = 25_000;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 		break;
 		// Camp de mineur (farm or)
 		case 5:
@@ -188,6 +195,7 @@ public class BatimentDto {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 25_000;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 		break;
 		// Ferme (farm nourriture)
 		case 6:
@@ -209,6 +217,7 @@ public class BatimentDto {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 25_000;
+			this.apportPopulation = 0;
 		break;
 		// Stockage Pierre (Entrepot)	
 		case 7:
@@ -230,6 +239,7 @@ public class BatimentDto {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 		break;
 		// Stockage Bois (Scierie)
 		case 8:
@@ -251,6 +261,7 @@ public class BatimentDto {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 		break;
 		// Stockage Or (Banque)
 		case 9:
@@ -272,6 +283,7 @@ public class BatimentDto {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 		break;
 		// Stockage Nourriture (Grenier)
 		case 10:
@@ -293,6 +305,7 @@ public class BatimentDto {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 		break;
 		// Caserne Militaire	
 		case 11:
@@ -314,6 +327,7 @@ public class BatimentDto {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 		break;
 		// Ecurie
 		case 12:
@@ -335,6 +349,7 @@ public class BatimentDto {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 		break;
 		// Port
 		case 13:
@@ -356,6 +371,7 @@ public class BatimentDto {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 		break;
 		// Atelier de siege
 		case 14:
@@ -377,6 +393,7 @@ public class BatimentDto {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 		break;
 		// Forge
 		case 15:
@@ -398,6 +415,7 @@ public class BatimentDto {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 		break;
 		// Universite
 		case 16:
@@ -419,6 +437,7 @@ public class BatimentDto {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 		break;
 		// Marché
 		case 17:
@@ -440,6 +459,7 @@ public class BatimentDto {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 		break;
 		// Table d'expéditions
 		case 18:
@@ -461,6 +481,7 @@ public class BatimentDto {
 			this.apportBoisHeure = 0;
 			this.apportOreHeure = 0;
 			this.apportNourritureHeure = 0;
+			this.apportPopulation = 0;
 		break;
 			
 		}

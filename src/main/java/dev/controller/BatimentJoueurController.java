@@ -35,6 +35,7 @@ public class BatimentJoueurController {
 	 * 
 	 * @param joueurService
 	 */
+	
 	public BatimentJoueurController(BatimentJoueurService batimentJoueurService) {
 		this.batimentJoueurService = batimentJoueurService;
 	}
@@ -63,6 +64,12 @@ public class BatimentJoueurController {
 	public BatimentJoueurDto putBatimentJoueur(@RequestBody @Valid BatimentJoueurDto batimentJoueurDto, @RequestParam("id") Integer id) {
 		System.out.println("Modifications COntroller");
 		return this.batimentJoueurService.putBatimentJoueur(batimentJoueurDto, id);
+	}
+	
+	// Recherche de la population maximale du joueur
+	@GetMapping("/popultationMaximale")
+	public Integer RecherchePopulationMaximaleJoueur() {
+		return this.batimentJoueurService.RecherchePopulationMaximaleJoueur();
 	}
 		
 		

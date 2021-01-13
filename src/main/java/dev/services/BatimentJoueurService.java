@@ -3,6 +3,7 @@ package dev.services;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -246,6 +247,21 @@ public class BatimentJoueurService {
 		this.joueurRepo.save(joueur);
 		this.batimentJoueurRepo.save(batimentJoueur);
 		return batimentJoueurDto;
+	}
+	
+	public Integer RecherchePopulationMaximaleJoueur() {
+		Integer populationMaximaleJoueur = 0;
+		Joueur jou = joueurService.recuperationJoueur();
+		System.out.println("Coucou"+populationMaximaleJoueur);
+		List<BatimentJoueur> batimentsJoueur = batimentJoueurRepo.findByJoueurId(jou.getId());
+		for (BatimentJoueur batimentJoueur : batimentsJoueur) {
+			if(batimentJoueur.getBatiment().getIdTypeBatiment()==1 || batimentJoueur.getBatiment().getIdTypeBatiment()==2) {
+				populationMaximaleJoueur = populationMaximaleJoueur + batimentJoueur.getApportPopulation();
+			}
+		}
+
+		System.out.println("Coucou"+populationMaximaleJoueur);
+		return populationMaximaleJoueur;
 	}
 	
 	
