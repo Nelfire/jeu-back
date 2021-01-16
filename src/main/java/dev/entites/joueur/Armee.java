@@ -1,6 +1,7 @@
 package dev.entites.joueur;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -29,13 +30,17 @@ public class Armee {
     
     @Column
     @ElementCollection(targetClass=Unitee.class)
-    private List<Unitee> unitee;
+    private Map<Unitee, Integer> unitee;
 
+    // Constructeur vide
+	public Armee() {
+		super();
+	}
 	/**
 	 * @param joueur
 	 * @param unitee
 	 */
-	public Armee(Joueur joueur, List<Unitee> unitee) {
+	public Armee(Joueur joueur, Map<Unitee,Integer> unitee) {
 		super();
 		this.joueur = joueur;
 		this.unitee = unitee;
@@ -72,14 +77,14 @@ public class Armee {
 	/**
 	 * @return the unitee
 	 */
-	public List<Unitee> getUnitee() {
+	public Map<Unitee,Integer> getUnitee() {
 		return unitee;
 	}
 
 	/**
 	 * @param unitee the unitee to set
 	 */
-	public void setUnitee(List<Unitee> unitee) {
+	public void setUnitee(Map<Unitee,Integer> unitee) {
 		this.unitee = unitee;
 	}
 

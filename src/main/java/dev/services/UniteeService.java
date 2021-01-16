@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import dev.controller.UniteeControler;
 import dev.controller.dto.BatimentDto;
 import dev.controller.dto.UniteeDto;
+import dev.entites.Joueur;
 import dev.entites.batiment.Batiment;
+import dev.entites.joueur.Armee;
 import dev.entites.unitee.Unitee;
 import dev.repository.unitee.UniteeRepo;
 
@@ -19,13 +21,15 @@ import dev.repository.unitee.UniteeRepo;
 public class UniteeService {
 
 	UniteeRepo uniteeRepo;
+	JoueurService joueurService;
 	/**
 	 * @param uniteeControler
 	 * @param uniteeRepo
 	 */
-	public UniteeService(UniteeRepo uniteeRepo) {
+	public UniteeService(UniteeRepo uniteeRepo, JoueurService joueurService) {
 		super();
 		this.uniteeRepo = uniteeRepo;
+		this.joueurService = joueurService;
 	}
 	
 	

@@ -46,9 +46,8 @@ public class UniteeControler {
 	
 	@PutMapping("/modificationUnitee")
 	public UniteeDto administrationModificationUnitee (@RequestBody @Valid UniteeDto uniteeDto, @RequestParam("id") Integer id) {
-		System.out.println("Ligne 49");
-		System.out.println(uniteeDto.toString());
 		return this.uniteeService.administrationModificationUnitee(uniteeDto,id);
 	}
+
 
 }
