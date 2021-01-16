@@ -183,18 +183,66 @@ public class StartupListener {
 //        this.baseRepo.save(baseJoueur1);
 //		System.out.println(baseJoueur1.toString());
         
+		// Type =
+		// 1 = Divers
+		// 2 = Infanterie
+		// 3 - Cavalerie
+		// 4 - Siège
+		// 5 - Navale
         // ----- UNITEE -----
-        Unitee villageois1 = new Unitee(1,1);
-        Unitee archer1 = new Unitee(5,1);
-        this.uniteeRepo.save(villageois1);
-        this.uniteeRepo.save(archer1);
-        
+		Unitee villageois = new Unitee(1,1,"https://media.discordapp.net/attachments/794876433842831361/799986427348647964/Villageois.png","Villageois","Descriptif du villageois",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee archer = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986264299405342/Archer.png","Archer","Descriptif de l'archer",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee archerComposite = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986256377151518/Archer_Composite.png","Archer composite","Descriptif de l'archer composite",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee fantassinEpee = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986321065771018/Fantassin_epee.png","Fantassin épée","Descriptif du fantassin épée",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee guerrierElite = new Unitee(2,14,"https://media.discordapp.net/attachments/794876433842831361/799986316292784159/Guerrier_elite.png","Guerrier élite","Descriptif du guerrier élite",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee hommeDArme = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986373188255764/Homme_darme.png","Homme d'arme","Descriptif de l'homme d'arme",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee lanceurDeHache = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986377042165770/Lanceur_de_hache.png","Lanceur de hache","Descriptif du lanceur de hache",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee phalange = new Unitee(2,1,"https://media.discordapp.net/attachments/794876433842831361/799986392570658816/Phalange.png","Phalange","Descriptif du phalange",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee milicien = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986387787972648/Milicien.png","Milicien","Descriptif du milicien",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee piquier = new Unitee(2,1,"https://media.discordapp.net/attachments/794876433842831361/799986398294704168/Piquier.png","Piquier","Descriptif du piquier",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee pretre = new Unitee(2,1,"https://media.discordapp.net/attachments/794876433842831361/799986403055370280/Pretre.png","Prêtre","Descriptif du prêtre",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee samourail = new Unitee(2,14,"https://media.discordapp.net/attachments/794876433842831361/799986417350606908/Samourail.png","Samourail","Descriptif du samouraile",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee templier = new Unitee(2,14,"https://media.discordapp.net/attachments/794876433842831361/799986422894428220/Templier.png","Templier","Descriptif du templier",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee cavalier = new Unitee(3,12,"https://media.discordapp.net/attachments/794876433842831361/799986300571615272/Cavalier.png","Cavalier","Descriptif du cavalier",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee cavalierArcher = new Unitee(3,12,"https://media.discordapp.net/attachments/794876433842831361/799986294889381888/Cavalier_Archer.png","Cavalier archer","Descriptif du cavalier archer",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee champion = new Unitee(3,12,"https://media.discordapp.net/attachments/794876433842831361/799986305832058900/Champion.png","Champion","Descriptif du champion",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee catapulte = new Unitee(4,14,"https://media.discordapp.net/attachments/794876433842831361/799986288237084692/Catapulte.png","Catapultre","Descriptif de la catapulte",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee elephantDeCombat = new Unitee(4,14,"https://media.discordapp.net/attachments/794876433842831361/799994500356505660/Elephant_de_combat.png","Eléphant de combat","Descriptif de l'éléphant de combat",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee bateauDePeche = new Unitee(5,13,"https://media.discordapp.net/attachments/794876433842831361/799986281508896799/Bateau_de_peche.png","Bateau de pêche","Descriptif du bateau de pêche",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee bateauIncendiaire = new Unitee(5,13,"https://media.discordapp.net/attachments/794876433842831361/799986349704740884/Bateau_incendiaire.png","Bateau incendiaire","Descriptif du bateau incendiaire",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee bateauDeDestruction = new Unitee(5,13,"https://media.discordapp.net/attachments/794876433842831361/799986366645272636/Bateau_de_destruction.png","Bateau de destruction","Descriptif du bateau de destruction",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee galionACanon = new Unitee(5,13,"https://cdn.discordapp.com/attachments/794876433842831361/799986355332448267/Galion_a_canon.png","Galion à canon","Descriptif du galion à canon",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee galion = new Unitee(5,13,"https://cdn.discordapp.com/attachments/794876433842831361/799990362932117524/Galion.png","Galion","Descriptif du galion",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+        this.uniteeRepo.save(villageois);
+        this.uniteeRepo.save(archer);
+        this.uniteeRepo.save(archerComposite);
+        this.uniteeRepo.save(fantassinEpee);
+        this.uniteeRepo.save(guerrierElite);
+        this.uniteeRepo.save(hommeDArme);
+        this.uniteeRepo.save(lanceurDeHache);
+        this.uniteeRepo.save(phalange);
+        this.uniteeRepo.save(milicien);
+        this.uniteeRepo.save(piquier);
+        this.uniteeRepo.save(pretre);
+        this.uniteeRepo.save(samourail);
+        this.uniteeRepo.save(templier);
+        this.uniteeRepo.save(cavalier);
+        this.uniteeRepo.save(cavalierArcher);
+        this.uniteeRepo.save(champion);
+        this.uniteeRepo.save(catapulte);
+        this.uniteeRepo.save(elephantDeCombat);
+        this.uniteeRepo.save(bateauDePeche);
+        this.uniteeRepo.save(bateauIncendiaire);
+        this.uniteeRepo.save(bateauDeDestruction);
+        this.uniteeRepo.save(galionACanon);
+        this.uniteeRepo.save(galion);
+
         // ----- ARMEE -----
-		List<Unitee> listeUniteesJoueur1 = new ArrayList<>();
-		listeUniteesJoueur1.add(villageois1);
-		listeUniteesJoueur1.add(archer1);
-		Armee armeeJoueur1 = new Armee(joueur1, listeUniteesJoueur1);
-		this.armeeRepo.save(armeeJoueur1);
+//		List<Unitee> listeUniteesJoueur1 = new ArrayList<>();
+//		listeUniteesJoueur1.add(villageois1);
+//		listeUniteesJoueur1.add(archer1);
+//		Armee armeeJoueur1 = new Armee(joueur1, listeUniteesJoueur1);
+//		this.armeeRepo.save(armeeJoueur1);
 //		System.out.println(armeeJoueur1.toString());
 				
 		Date date = new Date();

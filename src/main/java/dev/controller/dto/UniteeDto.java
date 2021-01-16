@@ -1,15 +1,8 @@
-package dev.entites.unitee;
+package dev.controller.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import dev.entites.unitee.Unitee;
 
-@Entity
-public class Unitee {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UniteeDto {
     private Integer id;
     
     /** id unitee : 
@@ -87,18 +80,15 @@ public class Unitee {
     private Integer apportRessourceOrHeure;
     private Integer apportRessourceNourritureHeure;
     
-    
-	public Unitee() {
-		super();
-
+	public UniteeDto() {
 	}
 	/**
+	 * @param id
 	 * @param idTypeUnitee
 	 * @param idBatimentProvenance
 	 * @param icone
 	 * @param libelle
 	 * @param descriptif
-	 * @param niveau
 	 * @param coutPierreFormation
 	 * @param coutBoisFormation
 	 * @param coutOrFormation
@@ -115,33 +105,29 @@ public class Unitee {
 	 * @param apportRessourceOrHeure
 	 * @param apportRessourceNourritureHeure
 	 */
-	public Unitee(Integer idTypeUnitee, Integer idBatimentProvenance, String icone, String libelle, String descriptif,
-			Integer coutPierreFormation, Integer coutBoisFormation, Integer coutOrFormation,
-			Integer coutNourritureFormation, Integer coutHumain, Integer tempsFormation, Integer vie, Integer attaque,
-			Integer portee, Integer armure, Integer niveauBatimentNecessaireFormation,
-			Integer apportRessourcePierreHeure, Integer apportRessourceBoisHeure, Integer apportRessourceOrHeure,
-			Integer apportRessourceNourritureHeure) {
+	public UniteeDto(Unitee unitee) {
 		super();
-		this.idTypeUnitee = idTypeUnitee;
-		this.idBatimentProvenance = idBatimentProvenance;
-		this.icone = icone;
-		this.libelle = libelle;
-		this.descriptif = descriptif;
-		this.coutPierreFormation = coutPierreFormation;
-		this.coutBoisFormation = coutBoisFormation;
-		this.coutOrFormation = coutOrFormation;
-		this.coutNourritureFormation = coutNourritureFormation;
-		this.coutHumain = coutHumain;
-		this.tempsFormation = tempsFormation;
-		this.vie = vie;
-		this.attaque = attaque;
-		this.portee = portee;
-		this.armure = armure;
-		this.niveauBatimentNecessaireFormation = niveauBatimentNecessaireFormation;
-		this.apportRessourcePierreHeure = apportRessourcePierreHeure;
-		this.apportRessourceBoisHeure = apportRessourceBoisHeure;
-		this.apportRessourceOrHeure = apportRessourceOrHeure;
-		this.apportRessourceNourritureHeure = apportRessourceNourritureHeure;
+		this.id = unitee.getId();
+		this.idTypeUnitee = unitee.getIdTypeUnitee();
+		this.idBatimentProvenance = unitee.getIdBatimentProvenance();
+		this.icone = unitee.getIcone();
+		this.libelle = unitee.getLibelle();
+		this.descriptif = unitee.getDescriptif();
+		this.coutPierreFormation = unitee.getCoutPierreFormation();
+		this.coutBoisFormation = unitee.getCoutBoisFormation();
+		this.coutOrFormation = unitee.getCoutOrFormation();
+		this.coutNourritureFormation = unitee.getCoutNourritureFormation();
+		this.coutHumain = unitee.getCoutHumain();
+		this.tempsFormation = unitee.getTempsFormation();
+		this.vie = unitee.getVie();
+		this.attaque = unitee.getAttaque();
+		this.portee = unitee.getPortee();
+		this.armure = unitee.getArmure();
+		this.niveauBatimentNecessaireFormation = unitee.getNiveauBatimentNecessaireFormation();
+		this.apportRessourcePierreHeure = unitee.getApportRessourcePierreHeure();
+		this.apportRessourceBoisHeure = unitee.getApportRessourceBoisHeure();
+		this.apportRessourceOrHeure = unitee.getApportRessourceOrHeure();
+		this.apportRessourceNourritureHeure = unitee.getApportRessourceNourritureHeure();
 	}
 	/**
 	 * @return the id
@@ -395,8 +381,19 @@ public class Unitee {
 	public void setApportRessourceNourritureHeure(Integer apportRessourceNourritureHeure) {
 		this.apportRessourceNourritureHeure = apportRessourceNourritureHeure;
 	}
+	@Override
+	public String toString() {
+		return "UniteeDto [id=" + id + ", idTypeUnitee=" + idTypeUnitee + ", idBatimentProvenance="
+				+ idBatimentProvenance + ", icone=" + icone + ", libelle=" + libelle + ", descriptif=" + descriptif
+				+ ", coutPierreFormation=" + coutPierreFormation + ", coutBoisFormation=" + coutBoisFormation
+				+ ", coutOrFormation=" + coutOrFormation + ", coutNourritureFormation=" + coutNourritureFormation
+				+ ", coutHumain=" + coutHumain + ", tempsFormation=" + tempsFormation + ", vie=" + vie + ", attaque="
+				+ attaque + ", portee=" + portee + ", armure=" + armure + ", niveauBatimentNecessaireFormation="
+				+ niveauBatimentNecessaireFormation + ", apportRessourcePierreHeure=" + apportRessourcePierreHeure
+				+ ", apportRessourceBoisHeure=" + apportRessourceBoisHeure + ", apportRessourceOrHeure="
+				+ apportRessourceOrHeure + ", apportRessourceNourritureHeure=" + apportRessourceNourritureHeure + "]";
+	}
     
-    
+	
     
 }
-
