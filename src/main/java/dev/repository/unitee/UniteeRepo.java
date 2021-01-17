@@ -9,7 +9,6 @@ import dev.entites.unitee.Unitee;
 
 public interface UniteeRepo extends JpaRepository<Unitee, Integer> {
 	
-	
 	Optional<Unitee> findById(Integer id);
 
 }

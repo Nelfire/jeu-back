@@ -1,9 +1,12 @@
 package dev.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,13 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.controller.dto.ArmeeDto;
+import dev.controller.dto.ArmeeJoueurCreationDto;
+import dev.controller.dto.BatimentJoueurCreationDto;
 import dev.controller.dto.UniteeDto;
+import dev.entites.joueur.Armee;
 import dev.services.ArmeeService;
 
 @RestController
 @RequestMapping("armee")
 public class ArmeeController {
-	
 	ArmeeService armeeService;
 
 	/**
@@ -29,9 +35,17 @@ public class ArmeeController {
 	}
 
 	// Production d'une ou plusieures unitées pour l'armée du joueur
-	@PutMapping("/production")
-	public Integer produireUnitee(@RequestBody @Valid Integer quantitee, @RequestParam("id") Integer idUnitee) {
-		return this.armeeService.produireUnitee(quantitee,idUnitee);
+	@PostMapping
+	public ResponseEntity<?> produireUnitee(@RequestBody ArmeeJoueurCreationDto batimentJoueurCreationDto) {
+		System.out.println("Ligne 35");
+		ArmeeJoueurCreationDto saveUnitee = armeeService.produireUnitee(batimentJoueurCreationDto);
+		return ResponseEntity.status(HttpStatus.ACCEPTED).header("resultat", "Unitée construite").body(saveUnitee);
+
+	}
+	
+	@GetMapping("/listerArmeesDuJoueur")
+	public List<ArmeeDto> listerArmeesDuJoueur() {
+		return this.armeeService.listerArmeesDuJoueur();
 	}
 	
 }

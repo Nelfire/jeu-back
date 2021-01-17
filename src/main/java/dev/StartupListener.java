@@ -1,10 +1,11 @@
 package dev;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -179,11 +180,7 @@ public class StartupListener {
 		System.out.println(batimentJoueur1.toString());
 		
         // ----- BASE -----
-//		Base baseJoueur1 = new Base(joueur1,listeBatiments);
-//        this.baseRepo.save(baseJoueur1);
-//		System.out.println(baseJoueur1.toString());
-        
-		// Type =
+      	// Type =
 		// 1 = Divers
 		// 2 = Infanterie
 		// 3 - Cavalerie
@@ -241,14 +238,12 @@ public class StartupListener {
 //		List<Unitee> listeUniteesJoueur1 = new ArrayList<>();
 //		listeUniteesJoueur1.add(villageois1);
 //		listeUniteesJoueur1.add(archer1);
-//		Armee armeeJoueur1 = new Armee(joueur1, listeUniteesJoueur1);
+//        Map<Unitee,Integer> unitees = new HashMap<>();
+//        unitees.put(villageois, 69);
+//		Armee armeeJoueur1 = new Armee(joueur1, unitees);
 //		this.armeeRepo.save(armeeJoueur1);
 //		System.out.println(armeeJoueur1.toString());
 				
-		Date date = new Date();
-		System.out.println(date);
-		date.setSeconds(date.getSeconds()+600);
-		System.out.println(date);
 		// ----- GUILDE -----
         Guilde guilde1 = new Guilde("Les loulous de l'espace","xxx","Coucou les loulous");
         guilde1.setChefGuilde(joueur1);

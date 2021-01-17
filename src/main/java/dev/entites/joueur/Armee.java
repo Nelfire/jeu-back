@@ -9,8 +9,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import dev.controller.dto.ArmeeJoueurCreationDto;
 import dev.entites.Joueur;
 import dev.entites.unitee.Unitee;
 
@@ -25,25 +28,35 @@ public class Armee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(mappedBy = "armee")
+	@ManyToOne
+	@JoinColumn(name = "joueur_id")
     private Joueur joueur;
     
-    @Column
-    @ElementCollection(targetClass=Unitee.class)
-    private Map<Unitee, Integer> unitee;
+//    @Column
+//    @ElementCollection(targetClass=Unitee.class)
+	@ManyToOne
+	@JoinColumn(name = "unitee_id")
+    private Unitee unitee;
+    
+    private Integer quantitee;
 
     // Constructeur vide
 	public Armee() {
 		super();
 	}
+
 	/**
+	 * @param id
 	 * @param joueur
 	 * @param unitee
+	 * @param quantitee
 	 */
-	public Armee(Joueur joueur, Map<Unitee,Integer> unitee) {
+	public Armee(Integer id, Joueur joueur, Unitee unitee, Integer quantitee) {
 		super();
+		this.id = id;
 		this.joueur = joueur;
 		this.unitee = unitee;
+		this.quantitee = quantitee;
 	}
 
 	/**
@@ -77,24 +90,38 @@ public class Armee {
 	/**
 	 * @return the unitee
 	 */
-	public Map<Unitee,Integer> getUnitee() {
+	public Unitee getUnitee() {
 		return unitee;
 	}
 
 	/**
 	 * @param unitee the unitee to set
 	 */
-	public void setUnitee(Map<Unitee,Integer> unitee) {
+	public void setUnitee(Unitee unitee) {
 		this.unitee = unitee;
+	}
+
+	/**
+	 * @return the quantitee
+	 */
+	public Integer getQuantitee() {
+		return quantitee;
+	}
+
+	/**
+	 * @param quantitee the quantitee to set
+	 */
+	public void setQuantitee(Integer quantitee) {
+		this.quantitee = quantitee;
 	}
 
 	@Override
 	public String toString() {
-		return "Informations armée du joueur : [id=" + id + ", joueur=" + joueur + ", unitee=" + unitee + "]";
+		return "Armee [id=" + id + ", joueur=" + joueur + ", unitee=" + unitee + ", quantitee=" + quantitee + "]";
 	}
 
-    
-    
-
+	
+	
+	
 }
 

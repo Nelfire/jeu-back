@@ -14,17 +14,24 @@ import dev.entites.unitee.Unitee;
 public class ArmeeDto {
     private Integer id;
     private Joueur joueur;
-    private Map<Unitee, Integer> unitee;
+    private Unitee unitee;
+    private Integer quantitee;
+    
+    public ArmeeDto() {
+    	
+    }
 	/**
 	 * @param id
 	 * @param joueur
 	 * @param unitee
+	 * @param quantitee
 	 */
-	public ArmeeDto(Armee armee) {
+	public ArmeeDto(Integer id, Joueur joueur, Unitee unitee, Integer quantitee) {
 		super();
-		this.id = armee.getId();
-		this.joueur = armee.getJoueur();
-		this.unitee = armee.getUnitee();
+		this.id = id;
+		this.joueur = joueur;
+		this.unitee = unitee;
+		this.quantitee = quantitee;
 	}
 	/**
 	 * @return the id
@@ -53,17 +60,27 @@ public class ArmeeDto {
 	/**
 	 * @return the unitee
 	 */
-	public Map<Unitee, Integer> getUnitee() {
+	public Unitee getUnitee() {
 		return unitee;
 	}
 	/**
 	 * @param unitee the unitee to set
 	 */
-	public void setUnitee(Map<Unitee, Integer> unitee) {
+	public void setUnitee(Unitee unitee) {
 		this.unitee = unitee;
 	}
+	/**
+	 * @return the quantitee
+	 */
+	public Integer getQuantitee() {
+		return quantitee;
+	}
+	/**
+	 * @param quantitee the quantitee to set
+	 */
+	public void setQuantitee(Integer quantitee) {
+		this.quantitee = quantitee;
+	}
 
-	
     
-	
 }

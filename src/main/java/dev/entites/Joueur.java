@@ -36,15 +36,20 @@ public class Joueur {
     @OneToMany(mappedBy = "joueur")
     @JsonIgnore
 	private List<BatimentJoueur> batimentJoueur;
+    
+    /** Un joueur peut avoir plusieurs batimentsJoueur **/
+    @OneToMany(mappedBy = "joueur")
+    @JsonIgnore
+	private List<Armee> armee;
 
     // Un joueur ne peut avoir qu'une seule armée
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "joueur_armee", 
-      joinColumns = 
-        { @JoinColumn(name = "joueur_id", referencedColumnName = "id") },
-      inverseJoinColumns = 
-        { @JoinColumn(name = "armee_id", referencedColumnName = "id") })
-    private Armee armee;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinTable(name = "joueur_armee", 
+//      joinColumns = 
+//        { @JoinColumn(name = "joueur_id", referencedColumnName = "id") },
+//      inverseJoinColumns = 
+//        { @JoinColumn(name = "armee_id", referencedColumnName = "id") })
+//    private Armee armee;
     
 	/** Tous les joueurs peuvent appartenir à une guilde **/
 	@ManyToOne
@@ -171,7 +176,7 @@ public class Joueur {
 	 * @param tempsDeJeu
 	 * @param roles
 	 */
-	public Joueur(Armee armee, String icone, String pseudo, String email, String motDePasse, String descriptif,
+	public Joueur(List<Armee> armee, String icone, String pseudo, String email, String motDePasse, String descriptif,
 			Integer niveau, Integer experience, Integer pierrePossession, Integer boisPossession, Integer orPossession,
 			Integer nourriturePossession, Integer gemmePossession, Integer pierreMaximum, Integer boisMaximum,
 			Integer orMaximum, Integer nourritureMaximum, Integer pierreBoostProduction, Integer boisBoostProduction,
@@ -525,17 +530,19 @@ public class Joueur {
 	}
 
 
+	
+
 	/**
 	 * @return the armee
 	 */
-	public Armee getArmee() {
+	public List<Armee> getArmee() {
 		return armee;
 	}
 
 	/**
 	 * @param armee the armee to set
 	 */
-	public void setArmee(Armee armee) {
+	public void setArmee(List<Armee> armee) {
 		this.armee = armee;
 	}
 
