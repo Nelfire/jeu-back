@@ -34,15 +34,19 @@ public class ArmeeController {
 		this.armeeService = armeeService;
 	}
 
-	// Production d'une ou plusieures unitées pour l'armée du joueur
+	/**
+	 * CREATION ARMEE DU JOUEUR (Nouvelles unitées)
+	 * */
 	@PostMapping
 	public ResponseEntity<?> produireUnitee(@RequestBody ArmeeJoueurCreationDto batimentJoueurCreationDto) {
-		System.out.println("Ligne 35");
 		ArmeeJoueurCreationDto saveUnitee = armeeService.produireUnitee(batimentJoueurCreationDto);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).header("resultat", "Unitée construite").body(saveUnitee);
 
 	}
 	
+	/**
+	 * LISTER LES ARMEES DU JOUEURS
+	 * */
 	@GetMapping("/listerArmeesDuJoueur")
 	public List<ArmeeDto> listerArmeesDuJoueur() {
 		return this.armeeService.listerArmeesDuJoueur();

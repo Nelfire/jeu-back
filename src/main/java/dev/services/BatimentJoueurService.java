@@ -45,10 +45,11 @@ public class BatimentJoueurService {
 		this.joueurService = joueurService;
 	}
 	
-	public List<BatimentJoueurDto> listerMesBatiments(Integer idJoueur) {
+	public List<BatimentJoueurDto> listerMesBatiments() {
+		Joueur jou = joueurService.recuperationJoueur();
 		
 		List<BatimentJoueurDto> listeMesBatiments = new ArrayList<>();
-		for (BatimentJoueur batiment : batimentJoueurRepo.findByJoueurId(idJoueur)) {
+		for (BatimentJoueur batiment : batimentJoueurRepo.findByJoueurId(jou.getId())) {
 			BatimentJoueurDto batimentJoueurDto = new BatimentJoueurDto(batiment.getId(), batiment.getJoueur(), batiment.getBatiment(),batiment.getNiveau(),batiment.getNombreExploitantsActif(), batiment.getDateDebutConstruction(), batiment.getDateFinConstruction());
 			listeMesBatiments.add(batimentJoueurDto);	
 		}
