@@ -16,8 +16,10 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import dev.entites.expedition.Expedition;
 import dev.entites.joueur.Armee;
 import dev.entites.joueur.BatimentJoueur;
+import dev.entites.joueur.ExpeditionJoueur;
 import dev.entites.social.ChatGuilde;
 import dev.entites.social.Guilde;
 import dev.entites.social.ListeAmis;
@@ -36,6 +38,11 @@ public class Joueur {
     @OneToMany(mappedBy = "joueur")
     @JsonIgnore
 	private List<BatimentJoueur> batimentJoueur;
+    
+    /** Un joueur peut avoir plusieures expeditionJoueur **/
+    @OneToMany(mappedBy = "joueur")
+    @JsonIgnore
+	private List<ExpeditionJoueur> expeditionJoueur;
     
     /** Un joueur peut avoir plusieurs batimentsJoueur **/
     @OneToMany(mappedBy = "joueur")

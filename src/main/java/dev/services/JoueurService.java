@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -82,20 +83,21 @@ public class JoueurService {
 		return listeJoueurs;
 	}
 
-//	public List<JoueurInfoDto> getAllInfoJoueurs() {
-//		List<JoueurInfoDto> listeJoueurs = new ArrayList<>();
-//
-//		for (Joueur joueur : joueurRepo.findAll()) {
-//
-//			JoueurInfoDto joueurDto = new JoueurInfoDto();
-//			joueurDto.setEmail(joueur.getEmail());
-//			joueurDto.setNom(joueur.getNom());
-//			joueurDto.setPrenom(joueur.getPrenom());
-//			listeJoueurs.add(joueurDto);
-//
-//		}
-//		return listeJoueurs;
-//	}
+	public List<JoueurInfoDto> getAllInfoJoueurs() {
+		List<JoueurInfoDto> listeJoueurs = new ArrayList<>();
+
+		for (Joueur joueur : joueurRepo.findAll((Sort.by(Sort.Direction.DESC, "niveau")))) {
+
+			JoueurInfoDto joueurDto = new JoueurInfoDto();
+			joueurDto.setIcone(joueur.getIcone());
+			joueurDto.setPseudo(joueur.getPseudo());
+			joueurDto.setNiveau(joueur.getNiveau());
+			joueurDto.setTempsDeJeu(joueur.getTempsDeJeu());
+			listeJoueurs.add(joueurDto);
+
+		}
+		return listeJoueurs;
+	}
 
 	/*
 	 * public JoueurInfoDto getInfoJoueurEmail(String email) { Joueur col =

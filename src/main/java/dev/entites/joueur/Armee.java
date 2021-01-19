@@ -11,7 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import dev.controller.dto.ArmeeJoueurCreationDto;
 import dev.entites.Joueur;
@@ -31,9 +34,12 @@ public class Armee {
 	@ManyToOne
 	@JoinColumn(name = "joueur_id")
     private Joueur joueur;
+	
+    /** Une armées ne concerne qu'une expeditionjoueur **/
+	@ManyToOne
+	@JoinColumn(name = "expeditionJoueur_id")
+    private ExpeditionJoueur expeditionJoueur;
     
-//    @Column
-//    @ElementCollection(targetClass=Unitee.class)
 	@ManyToOne
 	@JoinColumn(name = "unitee_id")
     private Unitee unitee;
@@ -51,9 +57,8 @@ public class Armee {
 	 * @param unitee
 	 * @param quantitee
 	 */
-	public Armee(Integer id, Joueur joueur, Unitee unitee, Integer quantitee) {
+	public Armee(Joueur joueur, Unitee unitee, Integer quantitee) {
 		super();
-		this.id = id;
 		this.joueur = joueur;
 		this.unitee = unitee;
 		this.quantitee = quantitee;

@@ -1,7 +1,6 @@
 package dev.controller.dto;
 
 import dev.entites.joueur.Armee;
-import dev.entites.joueur.Base;
 import dev.entites.social.Guilde;
 
 public class JoueurInfoDto {
@@ -11,8 +10,6 @@ public class JoueurInfoDto {
     /** id du joueur **/
     private Integer id;
     
- // Un joueur ne peut avoir qu'une seule base
-    private Base base;
     
     // Un joueur ne peut avoir qu'une seule armée
     private Armee armee;
@@ -82,6 +79,9 @@ public class JoueurInfoDto {
     /** temps de connexion (en secondes) du joueur **/
     private Integer tempsDeJeu;
 
+    public JoueurInfoDto() {
+    	
+    }
 	/**
 	 * @param id
 	 * @param base
@@ -156,19 +156,6 @@ public class JoueurInfoDto {
 		this.id = id;
 	}
 
-	/**
-	 * @return the base
-	 */
-	public Base getBase() {
-		return base;
-	}
-
-	/**
-	 * @param base the base to set
-	 */
-	public void setBase(Base base) {
-		this.base = base;
-	}
 
 	/**
 	 * @return the armee

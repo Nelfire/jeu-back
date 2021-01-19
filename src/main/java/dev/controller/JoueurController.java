@@ -41,10 +41,10 @@ public class JoueurController {
 	}
 	
 
-//	@GetMapping("/all")
-//	public List<JoueurInfoDto> getAllInfoJoueur() {
-//		return this.joueurService.getAllInfoJoueurs();
-//	}
+	@GetMapping("/all")
+	public List<JoueurInfoDto> getAllInfoJoueur() {
+		return this.joueurService.getAllInfoJoueurs();
+	}
 	
 
 	@GetMapping("/infosJoueur")

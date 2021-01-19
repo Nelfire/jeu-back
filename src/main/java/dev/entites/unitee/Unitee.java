@@ -20,7 +20,7 @@ public class Unitee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    /** Une unitee peut concerner plusieurss armees **/
+    /** Une unitee peut concerner plusieures armées **/
     @OneToMany(mappedBy = "unitee")
     @JsonIgnore 
 	private List<Armee> armee;

@@ -17,14 +17,18 @@ import dev.entites.Joueur;
 import dev.entites.Role;
 import dev.entites.RoleJoueur;
 import dev.entites.batiment.Batiment;
+import dev.entites.expedition.Expedition;
 import dev.entites.joueur.Armee;
 import dev.entites.joueur.BatimentJoueur;
+import dev.entites.joueur.ExpeditionJoueur;
 import dev.entites.social.Guilde;
 import dev.entites.unitee.Unitee;
 import dev.repository.JoueurRepo;
 import dev.repository.batiment.BatimentRepo;
+import dev.repository.expedition.ExpeditionRepo;
 import dev.repository.joueur.ArmeeRepo;
 import dev.repository.joueur.BatimentJoueurRepo;
+import dev.repository.joueur.ExpeditionJoueurRepo;
 import dev.repository.social.GuildeRepo;
 import dev.repository.social.ListeAmisRepo;
 import dev.repository.unitee.UniteeRepo;
@@ -49,6 +53,8 @@ public class StartupListener {
     private ArmeeRepo armeeRepo;
     // ---- Social ----
     private GuildeRepo guildeRepo;
+    private ExpeditionRepo expeditionRepo;
+    private ExpeditionJoueurRepo expeditionJoueurRepo;
     public StartupListener(@Value("${app.version}") String appVersion, 
     		PasswordEncoder passwordEncoder,
     		UniteeRepo uniteeRepo,
@@ -59,7 +65,9 @@ public class StartupListener {
     		JoueurRepo joueurRepo,
     		ArmeeRepo armeeRepo,
     		GuildeRepo guildeRepo,
-    		ListeAmisRepo listeAmisRepo) {
+    		ListeAmisRepo listeAmisRepo,
+    		ExpeditionRepo expeditionRepo,
+    		ExpeditionJoueurRepo expeditionJoueurRepo) {
         this.passwordEncoder = passwordEncoder;        
         // --- UNITEE ---
         this.uniteeRepo = uniteeRepo;
@@ -71,6 +79,8 @@ public class StartupListener {
         this.armeeRepo = armeeRepo;
 //        // ---- Social ----
         this.guildeRepo = guildeRepo;
+        this.expeditionRepo = expeditionRepo;
+        this.expeditionJoueurRepo = expeditionJoueurRepo;
     }
 
     @EventListener(ContextRefreshedEvent.class)
@@ -238,10 +248,7 @@ public class StartupListener {
         this.uniteeRepo.save(galionACanon);
         this.uniteeRepo.save(galion);
 
-        // ----- ARMEE -----
-//		List<Unitee> listeUniteesJoueur1 = new ArrayList<>();
-//		listeUniteesJoueur1.add(villageois1);
-//		listeUniteesJoueur1.add(archer1);
+
 //        Map<Unitee,Integer> unitees = new HashMap<>();
 //        unitees.put(villageois, 69);
 //		Armee armeeJoueur1 = new Armee(joueur1, unitees);
@@ -256,6 +263,17 @@ public class StartupListener {
 //        System.out.println(joueur1.getGuilde());
 //        System.out.println(joueur1.getChefGuilde());
         
+
+        Expedition expedition1 = new Expedition(60, 100, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10);
+        this.expeditionRepo.save(expedition1);
+        
+        // ----- LISTE UNITEES -----
+		
+        List<Armee> armees = new ArrayList<>();
+		Armee armee = new Armee(joueur1, pretre, 15);
+		armees.add(armee);
+        ExpeditionJoueur expeditionJoueur1 = new ExpeditionJoueur(joueur1, expedition1,50000L,50000L,armees);
+        this.expeditionJoueurRepo.save(expeditionJoueur1);
          
     }
 
