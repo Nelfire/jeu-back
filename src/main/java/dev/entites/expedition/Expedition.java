@@ -26,6 +26,9 @@ public class Expedition {
     @OneToMany(mappedBy = "expedition")
     @JsonIgnore
 	private List<ExpeditionJoueur> expeditionJoueur;
+    private String icone;
+    private String libelle;
+    private String description;
     
 	private Integer dureeExpedition;
 	// Difficultée
@@ -53,8 +56,11 @@ public class Expedition {
 		
 	}
 
+
 	/**
-	 * @param joueur
+	 * @param expeditionJoueur
+	 * @param libelle
+	 * @param description
 	 * @param dureeExpedition
 	 * @param pourcentageReussite
 	 * @param difficultee
@@ -71,12 +77,15 @@ public class Expedition {
 	 * @param recompenseNourriture
 	 * @param recompenseGemme
 	 */
-	public Expedition(
-			Integer dureeExpedition, Integer pourcentageReussite, Integer difficultee,
-			Integer degats, Integer vie, Integer armure, Integer coutPierre, Integer coutBois, Integer coutOr,
-			Integer coutNourriture, Integer recompensePierre, Integer recompenseBois, Integer recompenseOr,
-			Integer recompenseNourriture, Integer recompenseGemme) {
+	public Expedition(String icone, String libelle, String description,
+			Integer dureeExpedition, Integer pourcentageReussite, Integer difficultee, Integer degats, Integer vie,
+			Integer armure, Integer coutPierre, Integer coutBois, Integer coutOr, Integer coutNourriture,
+			Integer recompensePierre, Integer recompenseBois, Integer recompenseOr, Integer recompenseNourriture,
+			Integer recompenseGemme) {
 		super();
+		this.icone = icone;
+		this.libelle = libelle;
+		this.description = description;
 		this.dureeExpedition = dureeExpedition;
 		this.pourcentageReussite = pourcentageReussite;
 		this.difficultee = difficultee;
@@ -93,6 +102,8 @@ public class Expedition {
 		this.recompenseNourriture = recompenseNourriture;
 		this.recompenseGemme = recompenseGemme;
 	}
+
+
 
 	/**
 	 * @return the id
@@ -317,6 +328,70 @@ public class Expedition {
 	 */
 	public void setRecompenseGemme(Integer recompenseGemme) {
 		this.recompenseGemme = recompenseGemme;
+	}
+
+
+	/**
+	 * @return the expeditionJoueur
+	 */
+	public List<ExpeditionJoueur> getExpeditionJoueur() {
+		return expeditionJoueur;
+	}
+
+
+	/**
+	 * @param expeditionJoueur the expeditionJoueur to set
+	 */
+	public void setExpeditionJoueur(List<ExpeditionJoueur> expeditionJoueur) {
+		this.expeditionJoueur = expeditionJoueur;
+	}
+
+
+	/**
+	 * @return the libelle
+	 */
+	public String getLibelle() {
+		return libelle;
+	}
+
+
+	/**
+	 * @param libelle the libelle to set
+	 */
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+	/**
+	 * @return the icone
+	 */
+	public String getIcone() {
+		return icone;
+	}
+
+
+	/**
+	 * @param icone the icone to set
+	 */
+	public void setIcone(String icone) {
+		this.icone = icone;
 	}
 
 	

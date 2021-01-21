@@ -26,24 +26,29 @@ public class Unitee {
 	private List<Armee> armee;
     
     /** id unitee : 
-	1 - Villageois
-	2 - Fantassin Hache		
-	3 - Fantassin Epée		
-	4 - Légionnaire		
-	5 - Archer		
-	6 - Archer composite		
-	7 - Archer élite
-	8 - Cavalier		
-	9 - Cavalier Expert		
-	10 - Paladin
-	11 - Navire de pêche		
-	12 - Navire éclaireur		
-	13 - Navire de guerre
-	14 - Catapulte		
-	15 - Baliste		
-	16 - Eléphan de Guerre
-	17 - Mûle de commerce		
-	18 - Prêtre
+    //1 villageois 
+	//2 archer 
+	//3 archerComposite
+	//4 fantassinEpee
+	//5 hommeDArme 
+	//6 lanceurDeHache
+	//7 milicien 
+	//8 piquier 
+	//9 cavalierArcher
+	//10 cavalier
+	//11 champion 
+	//12 bateauDePeche 
+	//13 bateauIncendiaire 
+	//14 bateauDeDestruction
+	//15 galionACanon
+	//16 galion
+	//17 guerrierElite
+	//18 phalange
+	//19 samourail
+	//20 templier
+	//21 catapulte
+	//22 elephantDeCombat
+	//23 pretre
      *  **/
     private Integer idTypeUnitee;
     

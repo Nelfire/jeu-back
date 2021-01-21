@@ -39,6 +39,8 @@ public class ExpeditionJoueur {
 	@OneToMany(mappedBy = "expeditionJoueur")
 	@JsonIgnore
     private List<Armee> armeeEnvoiJoueur;
+	
+	private Boolean recompenseRecuperee;
     
     public ExpeditionJoueur() {
     	
@@ -49,13 +51,14 @@ public class ExpeditionJoueur {
 	 * @param dateDebutExpedition
 	 * @param dateFinExpedition
 	 */
-	public ExpeditionJoueur(Joueur joueur, Expedition expedition, Long dateDebutExpedition, Long dateFinExpedition, List<Armee> armeeEnvoiJoueur) {
+	public ExpeditionJoueur(Joueur joueur, Expedition expedition, Long dateDebutExpedition, Long dateFinExpedition, List<Armee> armeeEnvoiJoueur, Boolean recompenseRecuperee) {
 		super();
 		this.joueur = joueur;
 		this.expedition = expedition;
 		this.dateDebutExpedition = dateDebutExpedition;
 		this.dateFinExpedition = dateFinExpedition;
 		this.armeeEnvoiJoueur = armeeEnvoiJoueur;
+		this.recompenseRecuperee = recompenseRecuperee;
 	}
 
 	/**
@@ -140,6 +143,20 @@ public class ExpeditionJoueur {
 	 */
 	public void setArmeeEnvoiJoueur(List<Armee> armeeEnvoiJoueur) {
 		this.armeeEnvoiJoueur = armeeEnvoiJoueur;
+	}
+
+	/**
+	 * @return the recompenseRecuperee
+	 */
+	public Boolean getRecompenseRecuperee() {
+		return recompenseRecuperee;
+	}
+
+	/**
+	 * @param recompenseRecuperee the recompenseRecuperee to set
+	 */
+	public void setRecompenseRecuperee(Boolean recompenseRecuperee) {
+		this.recompenseRecuperee = recompenseRecuperee;
 	}
 
 	

@@ -2,11 +2,18 @@ package dev.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.controller.dto.CompositionArmeeExpedition;
 import dev.entites.joueur.ExpeditionJoueur;
+import dev.entites.unitee.Unitee;
 import dev.services.ExpeditionJoueurService;
 
 @RestController
@@ -25,5 +32,14 @@ public class ExpeditionJoueurController {
 		return this.expeditionJoueurService.listerExpeditionJoueur();
 	}
 	
+	@PostMapping
+	public ResponseEntity<?> envoiUniteeEnExpedition(@RequestBody CompositionArmeeExpedition compositionArmeeExpedition) {
+		CompositionArmeeExpedition composition = expeditionJoueurService.envoiUniteeEnExpedition(compositionArmeeExpedition);
+		return ResponseEntity.status(HttpStatus.ACCEPTED).header("resultat", "Unitee Créée").body(composition);
+	}
 	
+	@GetMapping("/recupererRecompense")
+	public String recupererRecompense(@RequestParam("idExpedition") Integer idExpedition) {
+		return this.expeditionJoueurService.recupererRecompense(idExpedition);
+	}
 }

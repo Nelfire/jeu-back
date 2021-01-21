@@ -197,6 +197,29 @@ public class StartupListener {
 		// 4 - Siège
 		// 5 - Navale
         // ----- UNITEE -----
+	    //1 villageois 
+		//2 archer 
+		//3 archerComposite
+		//4 fantassinEpee
+		//5 hommeDArme 
+		//6 lanceurDeHache
+		//7 milicien 
+		//8 piquier 
+		//9 cavalierArcher
+		//10 cavalier
+		//11 champion 
+		//12 bateauDePeche 
+		//13 bateauIncendiaire 
+		//14 bateauDeDestruction
+		//15 galionACanon
+		//16 galion
+		//17 guerrierElite
+		//18 phalange
+		//19 samourail
+		//20 templier
+		//21 catapulte
+		//22 elephantDeCombat
+		//23 pretre
 		Unitee villageois = new Unitee(1,1,"https://media.discordapp.net/attachments/794876433842831361/799986427348647964/Villageois.png","Villageois","Descriptif du villageois",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
 		Unitee archer = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986264299405342/Archer.png","Archer","Descriptif de l'archer",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
 		Unitee archerComposite = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986256377151518/Archer_Composite.png","Archer composite","Descriptif de l'archer composite",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
@@ -264,16 +287,19 @@ public class StartupListener {
 //        System.out.println(joueur1.getChefGuilde());
         
 
-        Expedition expedition1 = new Expedition(60, 100, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10);
+        Expedition expedition1 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 1","Descriptif de l'expedition 1",60, 100, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10);
+        Expedition expedition2 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 2","Descriptif de l'expedition 2",3600, 100, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10);
+        Expedition expedition3 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 3","Descriptif de l'expedition 3",60, 100, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10);
+        Expedition expedition4 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 4","Descriptif de l'expedition 4",60, 100, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10);
         this.expeditionRepo.save(expedition1);
-        
-        // ----- LISTE UNITEES -----
-		
-        List<Armee> armees = new ArrayList<>();
-		Armee armee = new Armee(joueur1, pretre, 15);
-		armees.add(armee);
-        ExpeditionJoueur expeditionJoueur1 = new ExpeditionJoueur(joueur1, expedition1,50000L,50000L,armees);
-        this.expeditionJoueurRepo.save(expeditionJoueur1);
+        this.expeditionRepo.save(expedition2);
+        this.expeditionRepo.save(expedition3);
+        this.expeditionRepo.save(expedition4);
+
+        Armee armeeChampion = new Armee(joueur1,champion,20);
+        Armee armeeArcher = new Armee(joueur1,archer,30);
+        this.armeeRepo.save(armeeChampion);
+        this.armeeRepo.save(armeeArcher);
          
     }
 

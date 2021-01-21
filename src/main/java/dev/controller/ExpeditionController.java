@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.entites.expedition.Expedition;
@@ -26,6 +27,11 @@ public class ExpeditionController {
 	@GetMapping
 	public List<Expedition> listerExpedition() {
 		return this.expeditionService.listerExpedition();
+	}
+	
+	@GetMapping("/detailsExpedition")
+	public Expedition detailExpedition(@RequestParam("id") Integer idExpedition) {
+		return this.expeditionService.detailExpedition(idExpedition);
 	}
 	
 	
