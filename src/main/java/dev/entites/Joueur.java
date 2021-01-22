@@ -12,11 +12,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import dev.entites.expedition.Expedition;
 import dev.entites.joueur.Armee;
 import dev.entites.joueur.BatimentJoueur;
 import dev.entites.joueur.ExpeditionJoueur;
@@ -49,15 +45,6 @@ public class Joueur {
     @JsonIgnore
 	private List<Armee> armee;
 
-    // Un joueur ne peut avoir qu'une seule armée
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinTable(name = "joueur_armee", 
-//      joinColumns = 
-//        { @JoinColumn(name = "joueur_id", referencedColumnName = "id") },
-//      inverseJoinColumns = 
-//        { @JoinColumn(name = "armee_id", referencedColumnName = "id") })
-//    private Armee armee;
-    
 	/** Tous les joueurs peuvent appartenir à une guilde **/
 	@ManyToOne
 	@JoinColumn(name = "guilde_id")

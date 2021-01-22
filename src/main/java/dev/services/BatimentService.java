@@ -2,13 +2,9 @@ package dev.services;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.stereotype.Service;
-
 import dev.controller.dto.BatimentDto;
-import dev.controller.dto.BatimentJoueurDto;
 import dev.entites.batiment.Batiment;
-import dev.entites.joueur.BatimentJoueur;
 import dev.repository.batiment.BatimentRepo;
 
 @Service
@@ -23,11 +19,13 @@ public class BatimentService {
 		this.batimentRepo = batimentRepo;
 	}
 	
+	/**
+	 * LISTER TOUS LES BATIMENTS EXISTANTS
+	 */
 	public List<BatimentDto> listerBatiments() {
 		List<BatimentDto> listeBatiments = new ArrayList<>();
 
 		for (Batiment batiment : batimentRepo.findAll()) {
-
 			BatimentDto batimentDto = new BatimentDto();
 			batimentDto.setIdTypeBatiment(batiment.getIdTypeBatiment());
 			batimentDto.setIcone(batiment.getIcone());
@@ -50,11 +48,13 @@ public class BatimentService {
 			batimentDto.setApportNourritureHeure(batiment.getApportNourritureHeure());
 
 			listeBatiments.add(batimentDto);
-
 		}
 		return listeBatiments;
 	}
 	
+	/**
+	 * DETAIL D'UN BATIMENT (Via ID)
+	 */
 	public BatimentDto detailsBatiment(Integer idTypeBatiment) {
 		Batiment batiment =  batimentRepo.findByIdTypeBatiment(idTypeBatiment);
 		BatimentDto bat = new BatimentDto(batiment.getIdTypeBatiment());

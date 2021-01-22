@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
+import java.util.Random;
 import org.springframework.stereotype.Service;
-
 import dev.controller.dto.CompositionArmeeExpedition;
 import dev.entites.Joueur;
 import dev.entites.expedition.Expedition;
@@ -14,6 +13,7 @@ import dev.entites.joueur.Armee;
 import dev.entites.joueur.ExpeditionJoueur;
 import dev.exceptions.RecompenseDejaPercuException;
 import dev.exceptions.RessourceManquanteException;
+import dev.exceptions.UniteeManquanteException;
 import dev.repository.JoueurRepo;
 import dev.repository.expedition.ExpeditionRepo;
 import dev.repository.joueur.ArmeeRepo;
@@ -21,6 +21,10 @@ import dev.repository.joueur.ExpeditionJoueurRepo;
 
 @Service
 public class ExpeditionJoueurService {
+	/*
+	 * A FAIRE :
+	 * MODIFIER LE FONCTIONNEMENT DE envoiUniteeEnExpedition, POUR RACOURSIR
+	 */
 
 	ExpeditionJoueurRepo expeditionJoueurRepo;
 	ArmeeRepo armeeRepo;
@@ -40,7 +44,9 @@ public class ExpeditionJoueurService {
 		this.expeditionRepo = expeditionRepo;
 	}
 	
-	// Lister les expéditions
+	/**
+	 * LISTES TOUTES LES EXPEDITIONS DU JOUEUR
+	 */
 	public List<ExpeditionJoueur> listerExpeditionJoueur() {
 		// Récupération du joueur
 		Joueur jou = joueurService.recuperationJoueur();
@@ -53,6 +59,9 @@ public class ExpeditionJoueurService {
 		return listeExpeditionJoueur;
 	}
 	
+	/**
+	 * RECHERCHE EXPEDITION JOUEUR PAR ID
+	 */
 	public ExpeditionJoueur rechercherExpeditionJoueurById(Integer id) {
 		// Recherche de l'expedition joueur correspondante
 		Optional<ExpeditionJoueur> expeJoueur = expeditionJoueurRepo.findById(id);
@@ -65,20 +74,23 @@ public class ExpeditionJoueurService {
 		expeditionJoueur.setDateFinExpedition(expeJoueur.get().getDateFinExpedition());
 		expeditionJoueur.setArmeeEnvoiJoueur(expeJoueur.get().getArmeeEnvoiJoueur());
 		expeditionJoueur.setRecompenseRecuperee(expeJoueur.get().getRecompenseRecuperee());
+		expeditionJoueur.setPourcentageReussite(expeJoueur.get().getPourcentageReussite());
+		expeditionJoueur.setEtatExpedition(expeJoueur.get().getEtatExpedition());
 		return expeditionJoueur;
 	}
 	
 	public CompositionArmeeExpedition envoiUniteeEnExpedition(CompositionArmeeExpedition compositionArmeeExpedition) {
 		
-		// Recherche Expedition correspondante
+		// RÉCUPÉRATION DU JOUEUR
+		Joueur jou = joueurService.recuperationJoueur();
+		// RECHERCHE EXPEDITION CORRESPONDANTE
 		Optional<Expedition> expe = expeditionRepo.findById(compositionArmeeExpedition.getIdExpedition());
-		// Creation d'une expedition type, à partir de cette recherche
+		// CREATION D'UNE EXPEDITION TYPE, À PARTIR DE CETTE RECHERCHE
 		Expedition expedition = new Expedition();
 		expedition.setId(expe.get().getId());
 		expedition.setIcone(expe.get().getIcone());
 		expedition.setLibelle(expe.get().getLibelle());
 		expedition.setDureeExpedition(expe.get().getDureeExpedition());
-		expedition.setPourcentageReussite(expe.get().getPourcentageReussite());
 		expedition.setDifficultee(expe.get().getDifficultee());
 		expedition.setDegats(expe.get().getDegats());
 		expedition.setVie(expe.get().getVie());
@@ -93,247 +105,431 @@ public class ExpeditionJoueurService {
 		expedition.setRecompenseNourriture(expe.get().getRecompenseNourriture());
 		expedition.setRecompenseGemme(expe.get().getRecompenseGemme());
 		
-		// Initialisations
+		// INITIALISATION
+		// - Dégats que le jouer va emettre lors de l'attaque, pour calculer le % réussite
+		Integer degatsEmis = 0;
+		// - Coût global de l'expédition
 		Integer coutPierre = expe.get().getCoutPierre();
 		Integer coutBois = expe.get().getCoutBois();
 		Integer coutOr = expe.get().getCoutOr();
 		Integer coutNourriture = expe.get().getCoutNourriture();
-		
-		// Récupération du joueur
-		Joueur jou = joueurService.recuperationJoueur();
 		Armee armee = new Armee();
-		
-		// Préparation liste des armées que le joueur va envoyer
+		// - Temps expédition
+		long debut = new Date().getTime();
+		long fin = new Date().getTime()+(expedition.getDureeExpedition()*1000);
+		// - Liste des armées que le joueur va envoyer
 		List<Armee> listeArmees = new ArrayList<>();
+
+		// TEST : LE JOUEUR À T'IL ASSEZ DE RESSOURCES POUR LANCER L'EXPEDITION ???
+		if(jou.getPierrePossession() < expedition.getCoutPierre()) {
+			throw new RessourceManquanteException("Pierre insuffisante pour lancer l'expédition.");
+		} else if(jou.getBoisPossession() < expedition.getCoutBois()) {
+			throw new RessourceManquanteException("Bois insuffisant pour lancer l'expédition.");
+		} else if(jou.getOrPossession() < expedition.getCoutOr()) {
+			throw new RessourceManquanteException("Or insuffisant pour lancer l'expédition.");
+		} else if(jou.getNourriturePossession() < expedition.getCoutNourriture()) {
+			throw new RessourceManquanteException("Nourriture insuffisante pour lancer l'expédition.");
+		}
+
 		
-		// Retrait de ressources
+		
+		// RETRAIT UNITEES
+		// - Parcourir les armées que possède déjà le joueur, pour y soustraire les unitées qu'il envoi en expédition
+		for (Armee arme : armeeRepo.findByJoueur(jou)) {
+			if(arme.getUnitee().getId()==1) // Villageois
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreVillageois()<0) {
+					throw new UniteeManquanteException("Vous manquez de villageois.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreVillageois());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreVillageois());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==2)  // Archer
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreArcher()<0) {
+					throw new UniteeManquanteException("Vous manquez d'archers.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreArcher());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreArcher());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==3)  // ArcherComposite
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreArcherComposite()<0) {
+					throw new UniteeManquanteException("Vous manquez d'archers composite.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreArcherComposite());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreArcherComposite());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==4)  // FantassinEpee
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreFantassinEpee()<0) {
+					throw new UniteeManquanteException("Vous manquez de fantassins épée.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreFantassinEpee());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreFantassinEpee());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==5)  // nombreHommeDArme
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreHommeDArme()<0) {
+					throw new UniteeManquanteException("Vous manquez d'hommes d'arme.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreHommeDArme());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreHommeDArme());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==6)  // nombreLanceurDeHache
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreLanceurDeHache()<0) {
+					throw new UniteeManquanteException("Vous manquez de lanceurs de hache.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreLanceurDeHache());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreLanceurDeHache());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==7)  // nombreMilicien
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreMilicien()<0) {
+					throw new UniteeManquanteException("Vous manquez de miliciens.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreMilicien());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreMilicien());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==8)  // nombrePiquier
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombrePiquier()<0) {
+					throw new UniteeManquanteException("Vous manquez de piquiers.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombrePiquier());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombrePiquier());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==9)  // nombreCavalierArcher
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreCavalierArcher()<0) {
+					throw new UniteeManquanteException("Vous manquez de cavaliers archer.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreCavalierArcher());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreCavalierArcher());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==10)  // nombreCavalier
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreCavalier()<0) {
+					throw new UniteeManquanteException("Vous manquez de cavaliers.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreCavalier());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreCavalier());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==11)  // nombreChampion
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreChampion()<0) {
+					throw new UniteeManquanteException("Vous manquez de champions.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreChampion());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreChampion());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==12)  // nombreBateauDePeche
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreBateauDePeche()<0) {
+					throw new UniteeManquanteException("Vous manquez de bâteaux de pêche.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreBateauDePeche());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreBateauDePeche());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==13)  // nombreBateauIncendiaire
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreBateauIncendiaire()<0) {
+					throw new UniteeManquanteException("Vous manquez de bâteaux incendiaire.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreBateauIncendiaire());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreBateauIncendiaire());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==14)  // nombreBateauDeDestruction
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreBateauDeDestruction()<0) {
+					throw new UniteeManquanteException("Vous manquez de bâteaux de destruction.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreBateauDeDestruction());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreBateauDeDestruction());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==15)  // nombreGalionACanon
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreGalionACanon()<0) {
+					throw new UniteeManquanteException("Vous manquez de galions à canon.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreGalionACanon());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreGalionACanon());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==16)  // nombreGalion
+			{
+				System.out.println(arme.getQuantitee()-compositionArmeeExpedition.getNombreGalion());
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreGalion()<0) {
+					throw new UniteeManquanteException("Vous manquez de galions.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreGalion());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreGalion());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==17)  // nombreGuerrierElite
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreGuerrierElite()<0) {
+					throw new UniteeManquanteException("Vous manquez de guerriers élite.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreGuerrierElite());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreGuerrierElite());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==18)  // nombrePhalange
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombrePhalange()<0) {
+					throw new UniteeManquanteException("Vous manquez de phalanges.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombrePhalange());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombrePhalange());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==19)  // nombreSamourail
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreSamourail()<0) {
+					throw new UniteeManquanteException("Vous manquez de samourails.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreSamourail());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreSamourail());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==20)  // nombreTemplier
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreTemplier()<0) {
+					throw new UniteeManquanteException("Vous manquez de templiers.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreTemplier());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreTemplier());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==21)  // nombreCatapulte
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreCatapulte()<0) {
+					throw new UniteeManquanteException("Vous manquez de catapultes.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreCatapulte());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreCatapulte());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==22)  // nombreElephantDeCombat
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreElephantDeCombat()<0) {
+					throw new UniteeManquanteException("Vous manquez d'éléphants de combat.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreElephantDeCombat());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreElephantDeCombat());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			} 
+			else if(arme.getUnitee().getId()==23)  // nombrePretre
+			{
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombrePretre()<0) {
+					throw new UniteeManquanteException("Vous manquez de prêtres.");
+
+				} else {
+					// - Calcul des dégats émis
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombrePretre());
+					armee.setId(arme.getId());
+					armee.setJoueur(jou);
+					armee.setUnitee(arme.getUnitee());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombrePretre());
+					armeeRepo.save(armee);
+					listeArmees.add(armee);
+				}
+			}
+
+		}
+		
+		// SI AUCUN DÉGATS N'EST ÉMIS, C'EST QU'AUCUNE UNITÉE N'A ÉTÉ SÉLECTIONNÉE : EXCEPTION
+		if(degatsEmis==0) {
+			throw new UniteeManquanteException("Vous n'avez sélectionné aucune unitée");
+		}
+		
+		// LE PROCESSUS DE L'EXPÉDITION CONTINUE : RETRAIT DE RESSOURCES AU JOUEUR
 		jou.setPierrePossession(jou.getPierrePossession()-coutPierre);
 		jou.setBoisPossession(jou.getBoisPossession()-coutBois);
 		jou.setOrPossession(jou.getOrPossession()-coutOr);
 		jou.setNourriturePossession(jou.getNourriturePossession()-coutNourriture);
-		
-		// Mise à jour du joueur
 		Joueur joueur = new Joueur(jou.getArmee(),jou.getIcone(),jou.getPseudo(),jou.getEmail(),jou.getMotDePasse(),jou.getDescriptif(),jou.getNiveau(),jou.getExperience(),jou.getPierrePossession(),jou.getBoisPossession(),jou.getOrPossession(),jou.getNourriturePossession(),jou.getGemmePossession(),jou.getPierreMaximum(),jou.getBoisMaximum(),jou.getOrMaximum(),jou.getNourritureMaximum(),jou.getPierreBoostProduction(),jou.getBoisBoostProduction(),jou.getOrBoostProduction(),jou.getNourritureBoostProduction(),jou.getTempsDeJeu(),jou.getRoles());
 		joueur.setId(jou.getId());
 		joueurRepo.save(joueur);
 		
-		// ---------- RETRAIT UNITEES ----------
-		// Parcourir les armées que possède déjà le joueur, pour y soustraire les unitées qu'il envoi en expédition
-		for (Armee arme : armeeRepo.findByJoueur(jou)) {
-			if(arme.getUnitee().getId()==1) // Villageois
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreVillageois());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==2)  // Archer
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreArcher());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==3)  // ArcherComposite
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreArcherComposite());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==4)  // FantassinEpee
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreFantassinEpee());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==5)  // nombreHommeDArme
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreHommeDArme());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==6)  // nombreLanceurDeHache
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreLanceurDeHache());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==7)  // nombreMilicien
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreMilicien());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==8)  // nombrePiquier
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombrePiquier());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==9)  // nombreCavalierArcher
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreCavalierArcher());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==10)  // nombreCavalier
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreCavalier());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==11)  // nombreChampion
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreChampion());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==12)  // nombreBateauDePeche
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreBateauDePeche());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==13)  // nombreBateauIncendiaire
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreBateauIncendiaire());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==14)  // nombreBateauDeDestruction
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreBateauDeDestruction());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==15)  // nombreGalionACanon
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreGalionACanon());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==16)  // nombreGalion
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreGalion());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==17)  // nombreGuerrierElite
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreGuerrierElite());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==18)  // nombrePhalange
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombrePhalange());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==19)  // nombreSamourail
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreSamourail());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==20)  // nombreTemplier
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreTemplier());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==21)  // nombreCatapulte
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreCatapulte());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==22)  // nombreElephantDeCombat
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreElephantDeCombat());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			} 
-			else if(arme.getUnitee().getId()==23)  // nombrePretre
-			{
-				armee.setId(arme.getId());
-				armee.setJoueur(jou);
-				armee.setUnitee(arme.getUnitee());
-				armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombrePretre());
-				armeeRepo.save(armee);
-				listeArmees.add(armee);
-			}
-
-		}
-		// Génération des dates début/fin
-		long debut = new Date().getTime();
-		long fin = new Date().getTime()+(expedition.getDureeExpedition()*1000);
-		
-		// Création de l'expedition joueur
+		// CALCUL DU POURCENTAGE DE RÉUSSITE DE L'EXPÉDITION
+	    int vieRestanteExpedition = expedition.getVie() - degatsEmis;
+	    int pourcentageReussite = 100 - (((vieRestanteExpedition * 100) / expedition.getVie()));
+	    if (vieRestanteExpedition < 0) {
+	      pourcentageReussite = 100;
+	    }
+	    
+		// CRÉATION DE L'EXPEDITION JOUEUR
 		ExpeditionJoueur expeditionJoueur = new ExpeditionJoueur();
 		expeditionJoueur.setJoueur(jou);
 		expeditionJoueur.setExpedition(expedition);
@@ -341,22 +537,38 @@ public class ExpeditionJoueurService {
 		expeditionJoueur.setDateFinExpedition(fin);
 		expeditionJoueur.setArmeeEnvoiJoueur(listeArmees);
 		expeditionJoueur.setRecompenseRecuperee(false);
+		expeditionJoueur.setPourcentageReussite(pourcentageReussite);
 		
+		// DÉFINIR L'ÉTAT DE RÉUSSITE OU DE DÉFAITE DE L'EXPÉDITION EN FONCTION DU POURCENTAGE DE RÉUSSITE
+	    Random rand = new Random();
+	    int nombreRandom = rand.nextInt(100);
+	    if (nombreRandom <= pourcentageReussite)
+	    { 
+	    	// - Défini l'état de l'expédition comme "Victoire"
+			expeditionJoueur.setEtatExpedition(0);
+	    }
+	    else
+	    { 
+	    	// - Défini l'état de l'expédition comme "Echec"
+	    	expeditionJoueur.setEtatExpedition(2);
+	    }
+		
+	    // SAUVEGARDE FINALE DE L'EXPÉDITION JOUEUR
 		expeditionJoueurRepo.save(expeditionJoueur);
 		return null;
 	}
 	
 	public String recupererRecompense(Integer idExpedition) {
 		
-		// Récupération informations expeditionJouer
+		// RÉCUPÉRATION INFORMATIONS EXPEDITIONJOUER
 		ExpeditionJoueur expdJoueur = this.rechercherExpeditionJoueurById(idExpedition);
 		
-		// Vérification récompense disponnible (Si elle à pas déjà été perçu)
+		// VÉRIFICATION RÉCOMPENSE DISPONNIBLE (SI ELLE À PAS DÉJÀ ÉTÉ PERÇU)
 		if(expdJoueur.getRecompenseRecuperee() == true) {
 			throw new RecompenseDejaPercuException("Vous avez déjà perçu cette récompense.");
 		}
 		
-		// Création d'une expeditionJoueur à partir de notre recherche
+		// CRÉATION D'UNE EXPEDITIONJOUEUR À PARTIR DE NOTRE RECHERCHE
 		ExpeditionJoueur expeditionJoueur = new ExpeditionJoueur();
 		expeditionJoueur.setId(expdJoueur.getId());
 		expeditionJoueur.setJoueur(expdJoueur.getJoueur());
@@ -364,24 +576,30 @@ public class ExpeditionJoueurService {
 		expeditionJoueur.setDateDebutExpedition(expdJoueur.getDateDebutExpedition());
 		expeditionJoueur.setDateFinExpedition(expdJoueur.getDateFinExpedition());
 		expeditionJoueur.setArmeeEnvoiJoueur(expdJoueur.getArmeeEnvoiJoueur());
-		// On change l'état de la récompense
+		// ON CHANGE L'ÉTAT DE LA RÉCOMPENSE
 		expeditionJoueur.setRecompenseRecuperee(true);
-		
-		// Récupération joueur, pour y attribuer les ressources
-		Joueur jou = joueurService.recuperationJoueur();
-		jou.setPierrePossession(jou.getPierrePossession() + expdJoueur.getExpedition().getRecompensePierre());
-		jou.setBoisPossession(jou.getBoisPossession() + expdJoueur.getExpedition().getRecompenseBois());
-		jou.setOrPossession(jou.getOrPossession() + expdJoueur.getExpedition().getRecompenseOr());
-		jou.setNourriturePossession(jou.getNourriturePossession() + expdJoueur.getExpedition().getRecompenseNourriture());
-		jou.setGemmePossession(jou.getGemmePossession() + expdJoueur.getExpedition().getRecompenseGemme());
-		
-		// Sauvegarges
+		expeditionJoueur.setPourcentageReussite(expdJoueur.getPourcentageReussite());
+		expeditionJoueur.setEtatExpedition(expdJoueur.getEtatExpedition());
+
+		// DANS LE CAS OU L'EXPÉDITION EST UN SUCCES, ATTIBUTION DES RESSOURCES AU JOUEUR (PIERRE, BOIS, OR, NOURRITURE, GEMME)
+	    if (expdJoueur.getEtatExpedition() == 0) 
+	    {
+			Joueur jou = joueurService.recuperationJoueur();
+			jou.setPierrePossession(jou.getPierrePossession() + expdJoueur.getExpedition().getRecompensePierre());
+			jou.setBoisPossession(jou.getBoisPossession() + expdJoueur.getExpedition().getRecompenseBois());
+			jou.setOrPossession(jou.getOrPossession() + expdJoueur.getExpedition().getRecompenseOr());
+			jou.setNourriturePossession(jou.getNourriturePossession() + expdJoueur.getExpedition().getRecompenseNourriture());
+			jou.setGemmePossession(jou.getGemmePossession() + expdJoueur.getExpedition().getRecompenseGemme());
+			// - Changement de l'état, pour définir l'expédition comme "réussite"
+			expeditionJoueur.setEtatExpedition(1);
+			// - Sauvegardes des informations joueur
+			joueurRepo.save(jou);
+	    }
+
+		// SAUVEGARDE DE L'EXPÉDITION JOUEUR
 		expeditionJoueurRepo.save(expeditionJoueur);
-		joueurRepo.save(jou);
+		
 		return "Ok";
-		
-		
-	
 	}
 	
 }

@@ -1,18 +1,12 @@
 package dev;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
 import dev.entites.Joueur;
 import dev.entites.Role;
 import dev.entites.RoleJoueur;
@@ -20,7 +14,6 @@ import dev.entites.batiment.Batiment;
 import dev.entites.expedition.Expedition;
 import dev.entites.joueur.Armee;
 import dev.entites.joueur.BatimentJoueur;
-import dev.entites.joueur.ExpeditionJoueur;
 import dev.entites.social.Guilde;
 import dev.entites.unitee.Unitee;
 import dev.repository.JoueurRepo;
@@ -54,7 +47,6 @@ public class StartupListener {
     // ---- Social ----
     private GuildeRepo guildeRepo;
     private ExpeditionRepo expeditionRepo;
-    private ExpeditionJoueurRepo expeditionJoueurRepo;
     public StartupListener(@Value("${app.version}") String appVersion, 
     		PasswordEncoder passwordEncoder,
     		UniteeRepo uniteeRepo,
@@ -80,16 +72,11 @@ public class StartupListener {
 //        // ---- Social ----
         this.guildeRepo = guildeRepo;
         this.expeditionRepo = expeditionRepo;
-        this.expeditionJoueurRepo = expeditionJoueurRepo;
     }
 
     @EventListener(ContextRefreshedEvent.class)
     public void onStart() {
    
-    	 
-    /* ********************************************************************************* */
-
-        
     	// ----- JOUEUR -----
         Joueur joueur1 = new Joueur();
         joueur1.setIcone("https://yscorporate.com/wp-content/uploads/2019/01/Photo-profil-professionnelle-par-photographe-entreprise10.jpg");
@@ -112,8 +99,6 @@ public class StartupListener {
         joueur1.setGemmePossession(50);
         joueur1.setRoles(Arrays.asList(new RoleJoueur(joueur1, Role.ROLE_ADMINISTRATEUR), new RoleJoueur(joueur1, Role.ROLE_JOUEUR)));
         this.joueurRepo.save(joueur1);
-        
-
         
         // ----- BATIMENT -----
         /* 
@@ -173,10 +158,10 @@ public class StartupListener {
         this.batimentRepo.save(marche);
         this.batimentRepo.save(tableExpedition);
         
-		List<Batiment> listeBatiments = new ArrayList<>();
-		listeBatiments.add(hdv);
-		listeBatiments.add(ferme);
-		System.out.println(hdv.toString());
+//		List<Batiment> listeBatiments = new ArrayList<>();
+//		listeBatiments.add(hdv);
+//		listeBatiments.add(ferme);
+//		System.out.println(hdv.toString());
 
 		long debut = new Date().getTime();
 		long fin = new Date().getTime();
@@ -187,15 +172,7 @@ public class StartupListener {
 		this.batimentJoueurRepo.save(batimentJoueur1);
 		this.batimentJoueurRepo.save(batimentJoueur2);
 		this.batimentJoueurRepo.save(batimentJoueur3);
-		System.out.println(batimentJoueur1.toString());
 		
-        // ----- BASE -----
-      	// Type =
-		// 1 = Divers
-		// 2 = Infanterie
-		// 3 - Cavalerie
-		// 4 - Siège
-		// 5 - Navale
         // ----- UNITEE -----
 	    //1 villageois 
 		//2 archer 
@@ -251,51 +228,49 @@ public class StartupListener {
         this.uniteeRepo.save(archer);
         this.uniteeRepo.save(archerComposite);
         this.uniteeRepo.save(fantassinEpee);
-        this.uniteeRepo.save(guerrierElite);
         this.uniteeRepo.save(hommeDArme);
         this.uniteeRepo.save(lanceurDeHache);
-        this.uniteeRepo.save(phalange);
         this.uniteeRepo.save(milicien);
         this.uniteeRepo.save(piquier);
-        this.uniteeRepo.save(pretre);
-        this.uniteeRepo.save(samourail);
-        this.uniteeRepo.save(templier);
-        this.uniteeRepo.save(cavalier);
         this.uniteeRepo.save(cavalierArcher);
+        this.uniteeRepo.save(cavalier);
         this.uniteeRepo.save(champion);
-        this.uniteeRepo.save(catapulte);
-        this.uniteeRepo.save(elephantDeCombat);
+        
         this.uniteeRepo.save(bateauDePeche);
         this.uniteeRepo.save(bateauIncendiaire);
         this.uniteeRepo.save(bateauDeDestruction);
         this.uniteeRepo.save(galionACanon);
         this.uniteeRepo.save(galion);
+        
+        this.uniteeRepo.save(guerrierElite);
+        this.uniteeRepo.save(phalange);
+        this.uniteeRepo.save(samourail);
+        this.uniteeRepo.save(templier);
+        this.uniteeRepo.save(catapulte);
+        this.uniteeRepo.save(elephantDeCombat);
 
+        this.uniteeRepo.save(pretre);
 
-//        Map<Unitee,Integer> unitees = new HashMap<>();
-//        unitees.put(villageois, 69);
-//		Armee armeeJoueur1 = new Armee(joueur1, unitees);
-//		this.armeeRepo.save(armeeJoueur1);
-//		System.out.println(armeeJoueur1.toString());
 				
 		// ----- GUILDE -----
         Guilde guilde1 = new Guilde("Les loulous de l'espace","xxx","Coucou les loulous");
         guilde1.setChefGuilde(joueur1);
         this.guildeRepo.save(guilde1);
-//        System.out.println(guilde1.getChefGuilde());
-//        System.out.println(joueur1.getGuilde());
-//        System.out.println(joueur1.getChefGuilde());
+		//System.out.println(guilde1.getChefGuilde());
+		//System.out.println(joueur1.getGuilde());
+		//System.out.println(joueur1.getChefGuilde());
         
-
-        Expedition expedition1 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 1","Descriptif de l'expedition 1",60, 100, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10);
-        Expedition expedition2 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 2","Descriptif de l'expedition 2",3600, 100, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10);
-        Expedition expedition3 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 3","Descriptif de l'expedition 3",60, 100, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10);
-        Expedition expedition4 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 4","Descriptif de l'expedition 4",60, 100, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10);
+        // ----- EXPEDITIONS -----
+        Expedition expedition1 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 1","Descriptif de l'expedition 1",60, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10);
+        Expedition expedition2 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 2","Descriptif de l'expedition 2",3600, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10);
+        Expedition expedition3 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 3","Descriptif de l'expedition 3",60, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10);
+        Expedition expedition4 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 4","Descriptif de l'expedition 4",60, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10);
         this.expeditionRepo.save(expedition1);
         this.expeditionRepo.save(expedition2);
         this.expeditionRepo.save(expedition3);
         this.expeditionRepo.save(expedition4);
 
+        // ----- ARMEES -----
         Armee armeeChampion = new Armee(joueur1,champion,20);
         Armee armeeArcher = new Armee(joueur1,archer,30);
         this.armeeRepo.save(armeeChampion);

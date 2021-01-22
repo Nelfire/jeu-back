@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.controller.dto.JoueurDto;
@@ -18,7 +17,6 @@ import dev.services.JoueurService;
 @RequestMapping("joueur")
 public class JoueurController {
 
-	// Déclarations
 	private JoueurService joueurService;
 
 	/**
@@ -31,22 +29,24 @@ public class JoueurController {
 	}
 
 	/**
-	 * RECUPERER TOUS LES COLLEGUES
-	 * 
-	 * @return
+	 * RECUPERER TOUS LES JOUEURS
 	 */
 	@GetMapping
 	public List<JoueurDto> getAllJoueur() {
 		return this.joueurService.getAllJoueurs();
 	}
 	
-
+	/**
+	 * RECUPERATION DES INFORMATIONS DES JOUEURS
+	 */
 	@GetMapping("/all")
 	public List<JoueurInfoDto> getAllInfoJoueur() {
 		return this.joueurService.getAllInfoJoueurs();
 	}
 	
-
+	/**
+	 * RECUPERATION INFORMATIONS JOUEUR CONNECTE
+	 */
 	@GetMapping("/infosJoueur")
 	public JoueurInfoDto getInfoJoueur() {
 		return this.joueurService.getInfoJoueur();

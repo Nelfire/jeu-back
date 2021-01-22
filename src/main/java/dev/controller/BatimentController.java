@@ -26,11 +26,17 @@ public class BatimentController {
 		this.batimentService = batimentService;
 	}
 
+	/**
+	 * LISTER TOUS LES BATIMENTS EXISTANTS
+	 */
 	@GetMapping
 	public List<BatimentDto> getAllBatiments() {
 		return this.batimentService.listerBatiments();
 	}
 
+	/**
+	 * DETAIL D'UN BATIMENT (Via ID)
+	 */
 	@GetMapping("/idTypeBatiment")
 	public BatimentDto detailsBatiment(@RequestParam("idTypeBatiment") Integer idTypeBatiment) {
 		return this.batimentService.detailsBatiment(idTypeBatiment);

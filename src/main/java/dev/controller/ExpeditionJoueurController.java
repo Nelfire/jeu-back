@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.controller.dto.CompositionArmeeExpedition;
 import dev.entites.joueur.ExpeditionJoueur;
-import dev.entites.unitee.Unitee;
 import dev.services.ExpeditionJoueurService;
 
 @RestController
@@ -26,18 +25,26 @@ public class ExpeditionJoueurController {
 		this.expeditionJoueurService = expeditionJoueurService;
 	}
 	
-	// Lister les expéditions
+	/**
+	 * LISTES TOUTES LES EXPEDITIONS DU JOUEUR
+	 */
 	@GetMapping
 	public List<ExpeditionJoueur> listerExpeditionJoueur() {
 		return this.expeditionJoueurService.listerExpeditionJoueur();
 	}
 	
+	/**
+	 * ENVOI D'UNITEES EN EXPEDITION
+	 */
 	@PostMapping
 	public ResponseEntity<?> envoiUniteeEnExpedition(@RequestBody CompositionArmeeExpedition compositionArmeeExpedition) {
 		CompositionArmeeExpedition composition = expeditionJoueurService.envoiUniteeEnExpedition(compositionArmeeExpedition);
-		return ResponseEntity.status(HttpStatus.ACCEPTED).header("resultat", "Unitee Créée").body(composition);
+		return ResponseEntity.status(HttpStatus.ACCEPTED).header("resultat", "Expédition lancée").body(composition);
 	}
 	
+	/**
+	 * RECUPERATION DE LA RECOMPENSE D'EXPEDITION
+	 */
 	@GetMapping("/recupererRecompense")
 	public String recupererRecompense(@RequestParam("idExpedition") Integer idExpedition) {
 		return this.expeditionJoueurService.recupererRecompense(idExpedition);

@@ -23,16 +23,19 @@ public class ExpeditionController {
 		this.joueurService = joueurService;
 	}
 	
-	// Lister les expéditions
+	/**
+	 * LISTER TOUTES LES EXPEDITIONS EXISTANTES
+	 */
 	@GetMapping
 	public List<Expedition> listerExpedition() {
 		return this.expeditionService.listerExpedition();
 	}
 	
+	/**
+	 * DETAILS D'UNE EXPEDITION (Via ID)
+	 */
 	@GetMapping("/detailsExpedition")
 	public Expedition detailExpedition(@RequestParam("id") Integer idExpedition) {
 		return this.expeditionService.detailExpedition(idExpedition);
 	}
-	
-	
 }

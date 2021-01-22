@@ -41,8 +41,10 @@ public class ArmeeService {
 	 * CREATION ARMEE DU JOUEUR (Nouvelles unitées)
 	 * */
 	public ArmeeJoueurCreationDto produireUnitee(ArmeeJoueurCreationDto armeeJoueurCreationDto) {
-		System.out.println("Ligne 44");
-		// Initialisations
+		// RÉCUPÉRATION DU JOUEUR CONNECTÉ
+		Joueur jou = this.joueurService.recuperationJoueur();
+		
+		// INITIALISATIONS
 		Boolean flag = false;
 		Integer idArmee = 0;
 		Integer quantitee = 0;
@@ -51,10 +53,7 @@ public class ArmeeService {
 		Integer quantiteeOrManquant;
 		Integer quantiteeNourritureManquante;
 		
-		// Récupération des infos joueur (Pour soustraire les ressources).
-		Joueur jou = this.joueurService.recuperationJoueur();
-		
-		// Informations sur l'unitée que le joueur veut créer
+		// INFORMATIONS SUR L'UNITÉE QUE LE JOUEUR VEUT CRÉER
 		UniteeDto un = this.uniteeService.detailsUnitee(armeeJoueurCreationDto.getIdUnitee());
 		Unitee uni = new Unitee();
 		uni.setId(un.getId());
@@ -79,14 +78,13 @@ public class ArmeeService {
 		uni.setApportRessourceOrHeure(un.getApportRessourceOrHeure());
 		uni.setApportRessourceNourritureHeure(un.getApportRessourceNourritureHeure());
 
-		// Initialisations des coûts de formations (Coût unitée ressource x quantitée)
+		// INITIALISATIONS DES COÛTS DE FORMATIONS (COÛT UNITÉE RESSOURCE X QUANTITÉE)
 		Integer coutPierreOperation = uni.getCoutPierreFormation() * armeeJoueurCreationDto.getQuantitee();
 		Integer coutBoisOperation = uni.getCoutBoisFormation() * armeeJoueurCreationDto.getQuantitee();
 		Integer coutOrOperation = uni.getCoutOrFormation() * armeeJoueurCreationDto.getQuantitee();
 		Integer coutNourritureOperation = uni.getCoutNourritureFormation() * armeeJoueurCreationDto.getQuantitee();
-		System.out.println(coutOrOperation);
 
-		/* Vérifications : La joueur à t'il assez de ressources ?? */
+		/* VÉRIFICATIONS : LE JOUEUR À T'IL ASSEZ DE RESSOURCES ?? */
 		// - SI RESSOURCES INSUFFISANTES 
 		// -- Pierre manquante :
 		if(jou.getPierrePossession() < coutPierreOperation) {
@@ -109,10 +107,9 @@ public class ArmeeService {
 			throw new RessourceManquanteException("Il vous manque "+quantiteeNourritureManquante+" de nourriture pour lancer la production.");
 		}
 		
-		
-		// Parcourir les armées que possède déjà le joueur
+		// PARCOURIR LES ARMÉES QUE POSSÈDE DÉJÀ LE JOUEUR
 		for (Armee arme : armeeRepo.findByJoueur(jou)) {
-			// S'il possède déjà un type d'unitée, récupération de données (L'id de l'armée, et la quantitée d'unitées)
+			// - S'il possède déjà un type d'unitée, récupération des données (L'id de l'armée, et la quantitée d'unitées)
 			if(arme.getUnitee().getId()==armeeJoueurCreationDto.getIdUnitee()) {
 				flag = true;
 				idArmee = arme.getId();
@@ -121,32 +118,35 @@ public class ArmeeService {
 		}
 		
 		Armee armee = new Armee();
-		// Si le joueur possède déjà ce type d'unitée, alors on aditionne les quantitées (nouvelle + ancienne) + J'écrase l'armée déjà existante
+		// SI LE JOUEUR POSSÈDE DÉJÀ CE TYPE D'UNITÉE, ALORS ON ADITIONNE LES QUANTITÉES (NOUVELLE + ANCIENNE) + ÉCRASE L'ARMÉE DÉJÀ EXISTANTE
 		if(flag==true) {
 			armee.setId(idArmee);
 			armee.setQuantitee(quantitee + armeeJoueurCreationDto.getQuantitee());
-			System.out.println("Possede deja unitee");
 		}
-		else // Sinon, je créer une nouvelle armée, pour ce genre d'unitée
+		else // SINON, CRÉATION D'UNE NOUVELLE ARMÉE, POUR CE GENRE D'UNITÉE
 		{
 			armee.setQuantitee(armeeJoueurCreationDto.getQuantitee());
-			System.out.println("Possede pas unitee");
 		}
 		
-		// Je met à jour le joueur, pour y enlever les ressources
+		// MISE A JOUR DU JOUEUR
+		// - Retrait de ressources
 		jou.setPierrePossession(jou.getPierrePossession()-coutPierreOperation);
 		jou.setBoisPossession(jou.getBoisPossession()-coutBoisOperation);
 		jou.setOrPossession(jou.getOrPossession()-coutOrOperation);
 		jou.setNourriturePossession(jou.getNourriturePossession()-coutNourritureOperation);
+		
 		Joueur joueur = new Joueur(jou.getArmee(),jou.getIcone(),jou.getPseudo(),jou.getEmail(),jou.getMotDePasse(),jou.getDescriptif(),jou.getNiveau(),jou.getExperience(),jou.getPierrePossession(),jou.getBoisPossession(),jou.getOrPossession(),jou.getNourriturePossession(),jou.getGemmePossession(),jou.getPierreMaximum(),jou.getBoisMaximum(),jou.getOrMaximum(),jou.getNourritureMaximum(),jou.getPierreBoostProduction(),jou.getBoisBoostProduction(),jou.getOrBoostProduction(),jou.getNourritureBoostProduction(),jou.getTempsDeJeu(),jou.getRoles());
 		joueur.setId(jou.getId());
-		this.joueurRepo.save(joueur);
-
-		// J'enregistre l'armée
+		
+		// MISE A JOUR DE L'ARMEE
 		armee.setJoueur(jou);
 		armee.setUnitee(uni);
-		armeeRepo.save(armee);
 		
+		// SAUVEGARDES
+		this.joueurRepo.save(joueur);
+		this.armeeRepo.save(armee);
+		
+		// RETOUR
 		return new ArmeeJoueurCreationDto(armee.getUnitee().getId(), armee.getQuantitee());
 	}
 	
@@ -154,7 +154,7 @@ public class ArmeeService {
 	 * LISTER LES ARMEES DU JOUEURS
 	 * */
 	public List<ArmeeDto> listerArmeesDuJoueur() {
-		// Récupération des infos joueur (Pour soustraire les ressources).
+		// RÉCUPÉRATION DU JOUEUR CONNECTÉ
 		Joueur jou = this.joueurService.recuperationJoueur();
 		
 		List<ArmeeDto> listeArmeesDuJoueur = new ArrayList<>();
@@ -167,6 +167,8 @@ public class ArmeeService {
 			
 			listeArmeesDuJoueur.add(armeeDto);
 		}
+		
+		// RETOUR
 		return listeArmeesDuJoueur;
 	}
 }

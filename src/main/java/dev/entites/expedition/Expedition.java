@@ -6,13 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import dev.entites.Joueur;
 import dev.entites.joueur.ExpeditionJoueur;
 
 @Entity
@@ -32,7 +27,6 @@ public class Expedition {
     
 	private Integer dureeExpedition;
 	// Difficultée
-	private Integer pourcentageReussite;
 	private Integer difficultee;
 	// -- Dégats qu'émet l'expédition
 	private Integer degats;
@@ -78,7 +72,7 @@ public class Expedition {
 	 * @param recompenseGemme
 	 */
 	public Expedition(String icone, String libelle, String description,
-			Integer dureeExpedition, Integer pourcentageReussite, Integer difficultee, Integer degats, Integer vie,
+			Integer dureeExpedition, Integer difficultee, Integer degats, Integer vie,
 			Integer armure, Integer coutPierre, Integer coutBois, Integer coutOr, Integer coutNourriture,
 			Integer recompensePierre, Integer recompenseBois, Integer recompenseOr, Integer recompenseNourriture,
 			Integer recompenseGemme) {
@@ -87,7 +81,6 @@ public class Expedition {
 		this.libelle = libelle;
 		this.description = description;
 		this.dureeExpedition = dureeExpedition;
-		this.pourcentageReussite = pourcentageReussite;
 		this.difficultee = difficultee;
 		this.degats = degats;
 		this.vie = vie;
@@ -134,19 +127,6 @@ public class Expedition {
 		this.dureeExpedition = dureeExpedition;
 	}
 
-	/**
-	 * @return the pourcentageReussite
-	 */
-	public Integer getPourcentageReussite() {
-		return pourcentageReussite;
-	}
-
-	/**
-	 * @param pourcentageReussite the pourcentageReussite to set
-	 */
-	public void setPourcentageReussite(Integer pourcentageReussite) {
-		this.pourcentageReussite = pourcentageReussite;
-	}
 
 	/**
 	 * @return the difficultee

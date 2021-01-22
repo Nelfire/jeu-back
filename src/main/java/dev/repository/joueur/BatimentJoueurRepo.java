@@ -1,11 +1,7 @@
 package dev.repository.joueur;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import dev.controller.dto.BatimentJoueurDto;
 import dev.entites.joueur.BatimentJoueur;
 
 

@@ -1,7 +1,5 @@
 package dev.controller.dto;
 
-import dev.entites.expedition.Expedition;
-
 public class CompositionArmeeExpedition {
 
 	private Integer idExpedition;
@@ -28,10 +26,8 @@ public class CompositionArmeeExpedition {
     private Integer nombreCatapulte;
     private Integer nombreElephantDeCombat;
     private Integer nombrePretre;
+    private Integer pourcentageReussite;
     
-    
-
-
 	/**
 	 * @return the idExpedition
 	 */
@@ -175,6 +171,12 @@ public class CompositionArmeeExpedition {
 	 */
 	public Integer getNombrePretre() {
 		return nombrePretre;
+	}
+	/**
+	 * @return the pourcentageReussite
+	 */
+	public Integer getPourcentageReussite() {
+		return pourcentageReussite;
 	}
 	
 

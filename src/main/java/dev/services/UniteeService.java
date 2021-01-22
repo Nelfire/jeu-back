@@ -5,15 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
-
 import org.springframework.stereotype.Service;
-
-import dev.controller.UniteeControler;
-import dev.controller.dto.BatimentDto;
 import dev.controller.dto.UniteeDto;
-import dev.entites.Joueur;
-import dev.entites.batiment.Batiment;
-import dev.entites.joueur.Armee;
 import dev.entites.unitee.Unitee;
 import dev.repository.unitee.UniteeRepo;
 
@@ -32,26 +25,18 @@ public class UniteeService {
 		this.joueurService = joueurService;
 	}
 	
-	
+	/**
+	 * CREATION D'UN NOUVEAU TYPE D'UNITEE (Menu administrateur)
+	 */
 	public Unitee administrationCreerUnitee(Unitee unitee) {
-		System.out.println("Bloup");
 		Unitee unite = new Unitee(unitee.getIdTypeUnitee(),unitee.getIdBatimentProvenance(),unitee.getIcone(),unitee.getLibelle() ,unitee.getDescriptif(), unitee.getCoutPierreFormation(), unitee.getCoutBoisFormation(), unitee.getCoutOrFormation(), unitee.getCoutNourritureFormation(), unitee.getCoutHumain(), unitee.getTempsFormation(), unitee.getVie(), unitee.getAttaque(), unitee.getPortee(), unitee.getArmure(), unitee.getNiveauBatimentNecessaireFormation(), unitee.getApportRessourcePierreHeure(), unitee.getApportRessourceBoisHeure(), unitee.getApportRessourceOrHeure(), unitee.getApportRessourceNourritureHeure());
 		uniteeRepo.save(unite);
 		return unite;
 	}
 	
-//	public UniteeDto getUniteeById(Integer id) {
-//		UniteeDto unit = null;
-//
-//		for (Unitee unitee : uniteeRepo.findAll()) {
-//			if (unitee.getId() == id) {
-//				unit = new UniteeDto(id, jourFerme.getDate(), jourFerme.getType(), jourFerme.getStatut(), jourFerme.getCommentaire());
-//			}
-//		}
-//
-//		return unit;
-//	}
-	
+	/**
+	 * LISTER TOUTES LES UNITEES EXISTANTES
+	 */
 	public List<UniteeDto> listerDifferentesUnitees() {
 		List<UniteeDto> listeUnitees = new ArrayList<>();
 		for (Unitee unitee : uniteeRepo.findAll()) {
@@ -82,15 +67,22 @@ public class UniteeService {
 		return listeUnitees;
 	}
 	
+	/**
+	 * DETAIL D'UN UNITEE (Via ID)
+	 */
 	public UniteeDto detailsUnitee(Integer idUnitee) {
 		Optional<Unitee> unitee = uniteeRepo.findById(idUnitee);
 		UniteeDto uni = new UniteeDto(unitee.get());
 		return uni;
 	}
 	
+	/**
+	 * MODIFICATION D'UN TYPE D'UNITEE (Menu administrateur, Via ID)
+	 */
 	public UniteeDto administrationModificationUnitee(@Valid UniteeDto uniteeDto, Integer id) {
 		UniteeDto unitee = this.detailsUnitee(id);
-		
+
+		unitee.setId(uniteeDto.getId());
 		unitee.setIdTypeUnitee(uniteeDto.getIdTypeUnitee());
 		unitee.setIdBatimentProvenance(uniteeDto.getIdBatimentProvenance());
 		unitee.setIcone(uniteeDto.getIcone());

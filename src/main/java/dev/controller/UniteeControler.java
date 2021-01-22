@@ -28,22 +28,34 @@ public class UniteeControler {
 		this.uniteeService = uniteeService;
 	}
 
+	/**
+	 * CREATION D'UN NOUVEAU TYPE D'UNITEE (Menu administrateur)
+	 */
 	@PostMapping
 	public ResponseEntity<?> administrationCreerUnitee(@RequestBody Unitee unitee) {
 		Unitee creerUnitee = uniteeService.administrationCreerUnitee(unitee);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).header("resultat", "Unitee Créée").body(creerUnitee);
 	}
 	
+	/**
+	 * LISTER TOUTES LES UNITEES EXISTANTES
+	 */
 	@GetMapping
 	public List<UniteeDto> listerDifferentesUnitees() {
 		return this.uniteeService.listerDifferentesUnitees();
 	}
 	
+	/**
+	 * DETAIL D'UN UNITEE (Via ID)
+	 */
 	@GetMapping("/detailsUnitee")
 	public UniteeDto detailsUnitee(@RequestParam("id") Integer idUnitee) {
 		return this.uniteeService.detailsUnitee(idUnitee);
 	}
 	
+	/**
+	 * MODIFICATION D'UN TYPE D'UNITEE (Menu administrateur, Via ID)
+	 */
 	@PutMapping("/modificationUnitee")
 	public UniteeDto administrationModificationUnitee (@RequestBody @Valid UniteeDto uniteeDto, @RequestParam("id") Integer id) {
 		return this.uniteeService.administrationModificationUnitee(uniteeDto,id);

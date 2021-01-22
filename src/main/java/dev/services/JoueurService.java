@@ -3,12 +3,9 @@ package dev.services;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
-import dev.controller.dto.BatimentJoueurDto;
 import dev.controller.dto.JoueurDto;
 import dev.controller.dto.JoueurInfoDto;
 import dev.entites.Joueur;
@@ -34,20 +31,18 @@ public class JoueurService {
 		this.batimentJoueurRepo = batimentJoueurRepo;
 	}
 
-	// Récupération du joueur connecté.
+	/**
+	 * RECUPERATION DES INFORMATIONS DU JOUEUR CONNECTE
+	 */
 	public Joueur recuperationJoueur() {
-		// --- RECUPERATION JOUEUR CONNECTE ---
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
 		Joueur jou = joueurRepo.findByEmail(email).orElseThrow(
 				() -> new JoueurAuthentifieNonRecupereException("Le joueur authentifié n'a pas pu être récupéré"));
-		// ------------------------------------
 		return jou;
 	}
 
 	/**
-	 * Lister tous les joueurs
-	 * 
-	 * @return
+	 * LISTER TOUS LES JOUEURS
 	 */
 	public List<JoueurDto> getAllJoueurs() {
 		List<JoueurDto> listeJoueurs = new ArrayList<>();
@@ -83,6 +78,9 @@ public class JoueurService {
 		return listeJoueurs;
 	}
 
+	/**
+	 * LISTER INFORMATIONS (Moins d'infos)
+	 */
 	public List<JoueurInfoDto> getAllInfoJoueurs() {
 		List<JoueurInfoDto> listeJoueurs = new ArrayList<>();
 
@@ -99,33 +97,12 @@ public class JoueurService {
 		return listeJoueurs;
 	}
 
-	/*
-	 * public JoueurInfoDto getInfoJoueurEmail(String email) { Joueur col =
-	 * joueurRepo.findByEmail(email).orElseThrow(() -> new
-	 * JoueurAuthentifieNonRecupereException("Erreur.")); // Aller récupérer tous
-	 * les batiments du joueurs qui donnent du bois.
-	 * 
-	 * List<BatimentJoueur> batimentsPierre = new ArrayList<>();
-	 * 
-	 * Integer apportPierre = 0; for (BatimentJoueur batimentPierre :
-	 * batimentJoueurRepo.findByApportPierreHeureGreaterThan(1)) { apportPierre =
-	 * apportPierre+batimentPierre.getApportPierreHeure(); } JoueurInfoDto co = new
-	 * JoueurInfoDto(col.getId(),col.getIcone(),col.getPseudo(),email,col.
-	 * getDescriptif(),col.getNiveau(),col.getExperience(),col.getPierrePossession()
-	 * ,col.getBoisPossession(),col.getOrPossession(),col.getNourriturePossession(),
-	 * col.getGemmePossession(),col.getPierreMaximum(),col.getBoisMaximum(),col.
-	 * getOrMaximum(),col.getNourritureMaximum(),col.getPierreBoostProduction(),col.
-	 * getBoisBoostProduction(),col.getOrBoostProduction(),col.
-	 * getNourritureBoostProduction(),col.getTempsDeJeu()); return co; }
+	/**
+	 * RECUPERATION INFORMATIONS JOUEUR CONNECTE
 	 */
-
 	public JoueurInfoDto getInfoJoueur() {
-		// Récupération du joueur connecté.
+		// RÉCUPÉRATION DU JOUEUR CONNECTÉ
 		Joueur jou = recuperationJoueur();
-		// Aller récupérer tous les batiments du joueurs qui donnent du bois.
-
-		// Liste tous les batiments qui rapportent de la pierre
-		List<BatimentJoueur> batimentsPierre = new ArrayList<>();
 
 		// ------------
 		// -- PIERRE --
@@ -134,7 +111,7 @@ public class JoueurService {
 		Integer apportPierreHeure = 1;
 		// -- TOUS LES BATIMENTS QUI RAPPORTENT DE LA PIERRE
 		for (BatimentJoueur batimentPierre : batimentJoueurRepo.findByApportPierreHeureGreaterThan(1)) {
-			// Si le batiment est en cours d'amélioration, je prend pas en compte son apport de ressources
+			// Si le batiment est en cours d'amélioration, apport de ressources pas pris en compte
 			long maintenant = new Date().getTime();
 			long fin = batimentPierre.getDateFinConstruction();
 			if(maintenant>fin) {
@@ -151,7 +128,7 @@ public class JoueurService {
 		Integer apportBoisHeure = 1;
 		// -- TOUS LES BATIMENTS QUI RAPPORTENT DU BOIS
 		for (BatimentJoueur batimentBois : batimentJoueurRepo.findByApportBoisHeureGreaterThan(1)) {
-			// Si le batiment est en cours d'amélioration, je prend pas en compte son apport de ressources
+			// Si le batiment est en cours d'amélioration, apport de ressources pas pris en compte
 			long maintenant = new Date().getTime();
 			long fin = batimentBois.getDateFinConstruction();
 			if(maintenant>fin) {
@@ -168,7 +145,7 @@ public class JoueurService {
 		Integer apportOrHeure = 1;
 		// -- TOUS LES BATIMENTS QUI RAPPORTENT DE L'OR
 		for (BatimentJoueur batimentOr : batimentJoueurRepo.findByApportOreHeureGreaterThan(1)) {
-			// Si le batiment est en cours d'amélioration, je prend pas en compte son apport de ressources
+			// Si le batiment est en cours d'amélioration, apport de ressources pas pris en compte
 			long maintenant = new Date().getTime();
 			long fin = batimentOr.getDateFinConstruction();
 			if(maintenant>fin) {
@@ -185,7 +162,7 @@ public class JoueurService {
 		Integer apportNourritureHeure = 1;
 		// -- TOUS LES BATIMENTS QUI RAPPORTENT DE LA NOURRITURE
 		for (BatimentJoueur batimentNourriture : batimentJoueurRepo.findByApportNourritureHeureGreaterThan(1)) {
-			// Si le batiment est en cours d'amélioration, je prend pas en compte son apport de ressources
+			// Si le batiment est en cours d'amélioration, apport de ressources pas pris en compte
 			long maintenant = new Date().getTime();
 			long fin = batimentNourriture.getDateFinConstruction();
 			if(maintenant>fin) {
@@ -195,12 +172,14 @@ public class JoueurService {
 		// -- APPORT NOURRITURE PAR SECONDES
 		Integer apportNourritureSeconde = apportNourritureHeure / 3600;
 
+		// ACTUALISATION DES RESSOURCES DU JOUEUR (Appelé chaques secondes)
 		jou.setPierrePossession((jou.getPierrePossession() + apportPierreSeconde)>jou.getPierreMaximum() ? jou.getPierreMaximum() : jou.getPierrePossession() + apportPierreSeconde);
 		jou.setBoisPossession((jou.getBoisPossession() + apportBoisSeconde)>jou.getBoisMaximum() ? jou.getBoisMaximum() : jou.getBoisPossession() + apportBoisSeconde);
 		jou.setOrPossession((jou.getOrPossession() + apportOrSeconde)>jou.getOrMaximum() ? jou.getOrMaximum() : jou.getOrPossession() + apportOrSeconde);
 		jou.setNourriturePossession((jou.getNourriturePossession() + apportNourritureSeconde)>jou.getNourritureMaximum() ? jou.getNourritureMaximum() : jou.getNourriturePossession() + apportNourritureSeconde);
 		jou.setTempsDeJeu(jou.getTempsDeJeu() + 1);
 
+		// MISE A JOUR DU JOUEUR
 		Joueur joueur = new Joueur(jou.getArmee(), jou.getIcone(), jou.getPseudo(), jou.getEmail(), jou.getMotDePasse(),
 				jou.getDescriptif(), jou.getNiveau(), jou.getExperience(), jou.getPierrePossession(),
 				jou.getBoisPossession(), jou.getOrPossession(), jou.getNourriturePossession(), jou.getGemmePossession(),
@@ -208,8 +187,11 @@ public class JoueurService {
 				jou.getPierreBoostProduction(), jou.getBoisBoostProduction(), jou.getOrBoostProduction(),
 				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getRoles());
 		joueur.setId(jou.getId());
+		
+		// SAUVEGARDE
 		this.joueurRepo.save(joueur);
 
+		// RETOUR
 		JoueurInfoDto co = new JoueurInfoDto(jou.getId(), jou.getIcone(), jou.getPseudo(), jou.getEmail(),
 				jou.getDescriptif(), jou.getNiveau(), jou.getExperience(), jou.getPierrePossession(),
 				jou.getBoisPossession(), jou.getOrPossession(), jou.getNourriturePossession(), jou.getGemmePossession(),

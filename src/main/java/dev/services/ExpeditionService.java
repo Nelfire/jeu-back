@@ -3,9 +3,7 @@ package dev.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.stereotype.Service;
-
 import dev.entites.expedition.Expedition;
 import dev.repository.expedition.ExpeditionRepo;
 
@@ -22,7 +20,9 @@ public class ExpeditionService {
 		this.expeditionRepo = expeditionRepo;
 	}
 	
-	// Lister les expéditions
+	/**
+	 * LISTER TOUTES LES EXPEDITIONS EXISTANTES
+	 */
 	public List<Expedition> listerExpedition() {
 		List<Expedition> listeExpedition = new ArrayList<>();
 		for (Expedition expedition : expeditionRepo.findAll()) {
@@ -31,7 +31,9 @@ public class ExpeditionService {
 		return listeExpedition;
 	}
 	
-	// Détail d'une expédition (id)
+	/**
+	 * DETAILS D'UNE EXPEDITION (Via ID)
+	 */
 	public Expedition detailExpedition(Integer idExpedition) {
 		Optional<Expedition> expe = this.expeditionRepo.findById(idExpedition);
 		Expedition expedition = new Expedition();
@@ -40,7 +42,6 @@ public class ExpeditionService {
 		expedition.setLibelle(expe.get().getLibelle());
 		expedition.setDescription(expe.get().getDescription());
 		expedition.setDureeExpedition(expe.get().getDureeExpedition());
-		expedition.setPourcentageReussite(expe.get().getPourcentageReussite());
 		expedition.setDifficultee(expe.get().getDifficultee());
 		expedition.setDegats(expe.get().getDegats());
 		expedition.setVie(expe.get().getVie());

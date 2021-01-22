@@ -14,7 +14,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import dev.entites.Joueur;
 import dev.entites.expedition.Expedition;
-import dev.entites.unitee.Unitee;
 
 @Entity
 public class ExpeditionJoueur {
@@ -41,6 +40,13 @@ public class ExpeditionJoueur {
     private List<Armee> armeeEnvoiJoueur;
 	
 	private Boolean recompenseRecuperee;
+	
+	private Integer pourcentageReussite;
+	
+	// 0 = En attente
+	// 1 = Réussie
+	// 2 = Echec
+	private Integer etatExpedition;
     
     public ExpeditionJoueur() {
     	
@@ -51,7 +57,7 @@ public class ExpeditionJoueur {
 	 * @param dateDebutExpedition
 	 * @param dateFinExpedition
 	 */
-	public ExpeditionJoueur(Joueur joueur, Expedition expedition, Long dateDebutExpedition, Long dateFinExpedition, List<Armee> armeeEnvoiJoueur, Boolean recompenseRecuperee) {
+	public ExpeditionJoueur(Joueur joueur, Expedition expedition, Long dateDebutExpedition, Long dateFinExpedition, List<Armee> armeeEnvoiJoueur, Boolean recompenseRecuperee, Integer pourcentageReussite, Integer etatExpedition) {
 		super();
 		this.joueur = joueur;
 		this.expedition = expedition;
@@ -59,6 +65,8 @@ public class ExpeditionJoueur {
 		this.dateFinExpedition = dateFinExpedition;
 		this.armeeEnvoiJoueur = armeeEnvoiJoueur;
 		this.recompenseRecuperee = recompenseRecuperee;
+		this.pourcentageReussite = pourcentageReussite;
+		this.etatExpedition = etatExpedition;
 	}
 
 	/**
@@ -157,6 +165,34 @@ public class ExpeditionJoueur {
 	 */
 	public void setRecompenseRecuperee(Boolean recompenseRecuperee) {
 		this.recompenseRecuperee = recompenseRecuperee;
+	}
+
+	/**
+	 * @return the pourcentageReussite
+	 */
+	public Integer getPourcentageReussite() {
+		return pourcentageReussite;
+	}
+
+	/**
+	 * @param pourcentageReussite the pourcentageReussite to set
+	 */
+	public void setPourcentageReussite(Integer pourcentageReussite) {
+		this.pourcentageReussite = pourcentageReussite;
+	}
+
+	/**
+	 * @return the etatExpedition
+	 */
+	public Integer getEtatExpedition() {
+		return etatExpedition;
+	}
+
+	/**
+	 * @param etatExpedition the etatExpedition to set
+	 */
+	public void setEtatExpedition(Integer etatExpedition) {
+		this.etatExpedition = etatExpedition;
 	}
 
 	

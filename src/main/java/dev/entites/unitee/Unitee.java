@@ -1,17 +1,13 @@
 package dev.entites.unitee;
 
 import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import dev.entites.joueur.Armee;
-import dev.entites.joueur.BatimentJoueur;
 
 @Entity
 public class Unitee {
@@ -425,6 +421,12 @@ public class Unitee {
 	public void setArmee(List<Armee> armee) {
 		this.armee = armee;
 	}
+	@Override
+	public String toString() {
+		return "Unitee [libelle=" + libelle + "]";
+	}
+	
+	
     
     
     

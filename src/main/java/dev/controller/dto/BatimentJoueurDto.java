@@ -1,10 +1,7 @@
 package dev.controller.dto;
 
-import java.util.Date;
-
 import dev.entites.Joueur;
 import dev.entites.batiment.Batiment;
-import dev.entites.joueur.BatimentJoueur;
 
 public class BatimentJoueurDto {
 
