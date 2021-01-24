@@ -54,7 +54,7 @@ public class GuildeService {
 		
 		// VERIFICATION NOM DE GUILDE PAS DEJA EXISTANT
 		for (Guilde verificationNomDejaPris : guildeRepo.findAll()) {
-			if(verificationNomDejaPris.getLibelle() == creationGuildeDto.getLibelle()) {
+			if(verificationNomDejaPris.getLibelle().equals(creationGuildeDto.getLibelle())) {
 				throw new NomGuildeDejaPrisException("Nom de guilde déjà pris");
 			}
 		}

@@ -53,7 +53,7 @@ public class Guilde {
     
     private Integer nombreMembresMaximal;
     
-    private final Integer coutOrCreation = 500;
+    private final Integer coutOrCreation = 100;
     
 
     /**
