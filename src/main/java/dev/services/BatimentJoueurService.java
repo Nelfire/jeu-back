@@ -162,6 +162,7 @@ public class BatimentJoueurService {
 		// MISE A JOUR DE BATIMENT JOUEUR
 		BatimentJoueur batimentJoueur = new BatimentJoueur(jou,batiment,1,0,debut,fin);
 		
+		System.out.println(batimentJoueur.toString());
 		// SAUVEGARDES
 		this.batimentJoueurRepo.save(batimentJoueur);
 		this.joueurRepo.save(jou);

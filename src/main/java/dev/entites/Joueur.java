@@ -30,38 +30,60 @@ public class Joueur {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
+    // Mapping BâtimentJoueur
     /** Un joueur peut avoir plusieurs batimentsJoueur **/
     @OneToMany(mappedBy = "joueur")
     @JsonIgnore
 	private List<BatimentJoueur> batimentJoueur;
     
+    // Mapping ExpéditionJoueur
     /** Un joueur peut avoir plusieures expeditionJoueur **/
     @OneToMany(mappedBy = "joueur")
     @JsonIgnore
 	private List<ExpeditionJoueur> expeditionJoueur;
     
+    // Mapping Armées
     /** Un joueur peut avoir plusieurs batimentsJoueur **/
     @OneToMany(mappedBy = "joueur")
     @JsonIgnore
 	private List<Armee> armee;
 
+    // Mapping Guilde
 	/** Tous les joueurs peuvent appartenir à une guilde **/
 	@ManyToOne
 	@JoinColumn(name = "guilde_id")
 	private Guilde guilde;
 	
-	/** **/
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "joueur_guilde", 
-      joinColumns = 
-        { @JoinColumn(name = "joueur_id", referencedColumnName = "id") },
-      inverseJoinColumns = 
-        { @JoinColumn(name = "guilde_id", referencedColumnName = "id") })
-    private Guilde chefGuilde;
 	
+	
+	
+	
+	
+	
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!! ICI BOWDEL !!!!!!!!!!!!!!!!!!!!!!!!!!!
+	
+//	// Mapping Chef de Guilde
+//    @OneToOne(mappedBy="chefGuilde",  cascade = CascadeType.ALL)
+//    private Guilde chefDeGuilde;
+    
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!! ICI BOWDEL !!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
+    
+    
+    
+    
+    
+
+    
+    // Mapping Chat de guilde
     @OneToMany(mappedBy = "joueur", cascade = CascadeType.PERSIST)
 	private List<ChatGuilde> messagesGuilde;
     
+    // Mapping List d'amis
     @OneToOne(cascade = CascadeType.ALL)
     @JoinTable(name = "joueur_listeAmis", 
       joinColumns = 
@@ -554,19 +576,19 @@ public class Joueur {
 		this.guilde = guilde;
 	}
 
-	/**
-	 * @return the chefGuilde
-	 */
-	public Guilde getChefGuilde() {
-		return chefGuilde;
-	}
-
-	/**
-	 * @param chefGuilde the chefGuilde to set
-	 */
-	public void setChefGuilde(Guilde chefGuilde) {
-		this.chefGuilde = chefGuilde;
-	}
+//	/**
+//	 * @return the chefGuilde
+//	 */
+//	public Guilde getChefGuilde() {
+//		return chefDeGuilde;
+//	}
+//
+//	/**
+//	 * @param chefGuilde the chefGuilde to set
+//	 */
+//	public void setChefGuilde(Guilde chefGuilde) {
+//		this.chefDeGuilde = chefGuilde;
+//	}
     
     
     

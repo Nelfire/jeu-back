@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -29,37 +30,65 @@ public class Guilde {
     /** message accueil guilde **/
     private String messageAccueil;
     
-
-    
-    /** membres de la guilde **/
-    /** "Une guilde peut avoir 1 seul chef**/
-    @OneToOne(mappedBy = "guilde")
-    private Joueur chefGuilde;
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!! ICI BOWDEL !!!!!!!!!!!!!!!!!!!!!!!!!!!
+//    /** membres de la guilde **/
+//    /** "Une guilde peut avoir 1 seul chef**/
+//    @OneToOne
+//    @JoinColumn(name="id")
+//    private Joueur chefGuilde;
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!! ICI BOWDEL !!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     
     /** membres de la guilde **/
     /** "Une guilde peut avoir plusieurs membres **/
     @OneToMany(mappedBy = "guilde", cascade = CascadeType.PERSIST)
     private List<Joueur> listeMembres;
     
+    private Integer niveau;
     
+    private Integer experience;
+    
+    private Integer nombreMembresMaximal;
+    
+    private final Integer coutOrCreation = 500;
+    
+
     /**
+	 * 
+	 */
+	public Guilde() {
+		super();
+	}
+
+	/**
+	 * @param id
 	 * @param libelle
 	 * @param icone
 	 * @param messageAccueil
+	 * @param chefGuilde
+	 * @param listeMembres
+	 * @param niveau
+	 * @param experience
+	 * @param nombreMembresMaximal
 	 */
-	public Guilde(String libelle, String icone, String messageAccueil) {
+	public Guilde(String libelle, String icone, String messageAccueil, 
+//			Joueur chefGuilde,
+			List<Joueur> listeMembres, Integer niveau, Integer experience, Integer nombreMembresMaximal) {
 		super();
 		this.libelle = libelle;
 		this.icone = icone;
 		this.messageAccueil = messageAccueil;
+//		this.chefGuilde = chefGuilde;
+		this.listeMembres = listeMembres;
+		this.niveau = niveau;
+		this.experience = experience;
+		this.nombreMembresMaximal = nombreMembresMaximal;
 	}
 
-	/** quitter la guilde **/
-    public void quitterGuilde() {
-    	
-    }
-
-    /** inviter dans la guilde **/
+	/** inviter dans la guilde **/
     public void inviterGuilde() {
     	
     }
@@ -125,19 +154,19 @@ public class Guilde {
 		this.messageAccueil = messageAccueil;
 	}
 
-	/**
-	 * @return the chefGuilde
-	 */
-	public Joueur getChefGuilde() {
-		return chefGuilde;
-	}
-
-	/**
-	 * @param chefGuilde the chefGuilde to set
-	 */
-	public void setChefGuilde(Joueur chefGuilde) {
-		this.chefGuilde = chefGuilde;
-	}
+//	/**
+//	 * @return the chefGuilde
+//	 */
+//	public Joueur getChefGuilde() {
+//		return chefGuilde;
+//	}
+//
+//	/**
+//	 * @param chefGuilde the chefGuilde to set
+//	 */
+//	public void setChefGuilde(Joueur chefGuilde) {
+//		this.chefGuilde = chefGuilde;
+//	}
 
 	/**
 	 * @return the listeMembres
@@ -152,6 +181,71 @@ public class Guilde {
 	public void setListeMembres(List<Joueur> listeMembres) {
 		this.listeMembres = listeMembres;
 	}
+
+	/**
+	 * @return the niveau
+	 */
+	public Integer getNiveau() {
+		return niveau;
+	}
+
+	/**
+	 * @param niveau the niveau to set
+	 */
+	public void setNiveau(Integer niveau) {
+		this.niveau = niveau;
+	}
+
+	/**
+	 * @return the experience
+	 */
+	public Integer getExperience() {
+		return experience;
+	}
+
+	/**
+	 * @param experience the experience to set
+	 */
+	public void setExperience(Integer experience) {
+		this.experience = experience;
+	}
+
+	/**
+	 * @return the nombreMembresMaximal
+	 */
+	public Integer getNombreMembresMaximal() {
+		return nombreMembresMaximal;
+	}
+
+	/**
+	 * @param nombreMembresMaximal the nombreMembresMaximal to set
+	 */
+	public void setNombreMembresMaximal(Integer nombreMembresMaximal) {
+		this.nombreMembresMaximal = nombreMembresMaximal;
+	}
+
+	/**
+	 * @return the coutOrCreation
+	 */
+	public Integer getCoutOrCreation() {
+		return coutOrCreation;
+	}
+
+
+
+	/** quitter la guilde **/
+    public void quitterGuilde() {
+    	
+    }
+
+//	@Override
+//	public String toString() {
+//		return "Guilde [id=" + id + ", libelle=" + libelle + ", icone=" + icone + ", messageAccueil=" + messageAccueil
+//				+ ", chefGuilde=" + chefGuilde + ", listeMembres=" + listeMembres + ", niveau=" + niveau
+//				+ ", experience=" + experience + ", nombreMembresMaximal=" + nombreMembresMaximal + ", coutOrCreation="
+//				+ coutOrCreation + "]";
+//	}
+
     
-    
+	
 }

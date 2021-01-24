@@ -55,6 +55,7 @@ public class ExpeditionService {
 		expedition.setRecompenseOr(expe.get().getRecompenseOr());
 		expedition.setRecompenseNourriture(expe.get().getRecompenseNourriture());
 		expedition.setRecompenseGemme(expe.get().getRecompenseGemme());
+		expedition.setRecompenseExperience(expe.get().getRecompenseExperience());
 		return expedition;
 	}
 	

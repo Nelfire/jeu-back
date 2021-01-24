@@ -45,6 +45,7 @@ public class Expedition {
 	private Integer recompenseOr;
 	private Integer recompenseNourriture;
 	private Integer recompenseGemme;
+	private Integer recompenseExperience;
 	
 	public Expedition() {
 		
@@ -75,7 +76,7 @@ public class Expedition {
 			Integer dureeExpedition, Integer difficultee, Integer degats, Integer vie,
 			Integer armure, Integer coutPierre, Integer coutBois, Integer coutOr, Integer coutNourriture,
 			Integer recompensePierre, Integer recompenseBois, Integer recompenseOr, Integer recompenseNourriture,
-			Integer recompenseGemme) {
+			Integer recompenseGemme, Integer recompenseExperience) {
 		super();
 		this.icone = icone;
 		this.libelle = libelle;
@@ -94,6 +95,7 @@ public class Expedition {
 		this.recompenseOr = recompenseOr;
 		this.recompenseNourriture = recompenseNourriture;
 		this.recompenseGemme = recompenseGemme;
+		this.recompenseExperience = recompenseExperience;
 	}
 
 
@@ -372,6 +374,22 @@ public class Expedition {
 	 */
 	public void setIcone(String icone) {
 		this.icone = icone;
+	}
+
+
+	/**
+	 * @return the recompenseExperience
+	 */
+	public Integer getRecompenseExperience() {
+		return recompenseExperience;
+	}
+
+
+	/**
+	 * @param recompenseExperience the recompenseExperience to set
+	 */
+	public void setRecompenseExperience(Integer recompenseExperience) {
+		this.recompenseExperience = recompenseExperience;
 	}
 
 	

@@ -34,7 +34,7 @@ public class ExpeditionJoueurController {
 	}
 	
 	/**
-	 * ENVOI D'UNITEES EN EXPEDITION
+	 * ENVOI D'UNITEES EN EXPEDITION (Création)
 	 */
 	@PostMapping
 	public ResponseEntity<?> envoiUniteeEnExpedition(@RequestBody CompositionArmeeExpedition compositionArmeeExpedition) {

@@ -79,6 +79,9 @@ public class ExpeditionJoueurService {
 		return expeditionJoueur;
 	}
 	
+	/**
+	 * ENVOI D'UNITEES EN EXPEDITION (Création)
+	 */
 	public CompositionArmeeExpedition envoiUniteeEnExpedition(CompositionArmeeExpedition compositionArmeeExpedition) {
 		
 		// RÉCUPÉRATION DU JOUEUR
@@ -298,6 +301,7 @@ public class ExpeditionJoueurService {
 			} 
 			else if(arme.getUnitee().getId()==11)  // nombreChampion
 			{
+				System.out.println(compositionArmeeExpedition.getNombreChampion());
 				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreChampion()<0) {
 					throw new UniteeManquanteException("Vous manquez de champions.");
 
@@ -590,6 +594,8 @@ public class ExpeditionJoueurService {
 			jou.setOrPossession(jou.getOrPossession() + expdJoueur.getExpedition().getRecompenseOr());
 			jou.setNourriturePossession(jou.getNourriturePossession() + expdJoueur.getExpedition().getRecompenseNourriture());
 			jou.setGemmePossession(jou.getGemmePossession() + expdJoueur.getExpedition().getRecompenseGemme());
+			jou.setExperience(jou.getExperience() + expdJoueur.getExpedition().getRecompenseExperience());
+			jou.setNiveau(jou.getExperience() / 5000); // /!\ Temporaire : 1 Niveau = 5000 Experience
 			// - Changement de l'état, pour définir l'expédition comme "réussite"
 			expeditionJoueur.setEtatExpedition(1);
 			// - Sauvegardes des informations joueur

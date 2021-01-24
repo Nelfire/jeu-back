@@ -253,18 +253,18 @@ public class StartupListener {
 
 				
 		// ----- GUILDE -----
-        Guilde guilde1 = new Guilde("Les loulous de l'espace","xxx","Coucou les loulous");
-        guilde1.setChefGuilde(joueur1);
-        this.guildeRepo.save(guilde1);
+//        Guilde guilde1 = new Guilde("Les loulous de l'espace","xxx","Coucou les loulous");
+//        guilde1.setChefGuilde(joueur1);
+//        this.guildeRepo.save(guilde1);
 		//System.out.println(guilde1.getChefGuilde());
 		//System.out.println(joueur1.getGuilde());
 		//System.out.println(joueur1.getChefGuilde());
         
         // ----- EXPEDITIONS -----
-        Expedition expedition1 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 1","Descriptif de l'expedition 1",60, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10);
-        Expedition expedition2 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 2","Descriptif de l'expedition 2",3600, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10);
-        Expedition expedition3 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 3","Descriptif de l'expedition 3",60, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10);
-        Expedition expedition4 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 4","Descriptif de l'expedition 4",60, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10);
+        Expedition expedition1 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 1","Descriptif de l'expedition 1",60, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10, 5000);
+        Expedition expedition2 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 2","Descriptif de l'expedition 2",3600, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10, 5000);
+        Expedition expedition3 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 3","Descriptif de l'expedition 3",60, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10, 5000);
+        Expedition expedition4 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 4","Descriptif de l'expedition 4",60, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10, 5000);
         this.expeditionRepo.save(expedition1);
         this.expeditionRepo.save(expedition2);
         this.expeditionRepo.save(expedition3);
@@ -272,7 +272,7 @@ public class StartupListener {
 
         // ----- ARMEES -----
         Armee armeeChampion = new Armee(joueur1,champion,20);
-        Armee armeeArcher = new Armee(joueur1,archer,30);
+        Armee armeeArcher = new Armee(joueur1,archer,300);
         this.armeeRepo.save(armeeChampion);
         this.armeeRepo.save(armeeArcher);
          
