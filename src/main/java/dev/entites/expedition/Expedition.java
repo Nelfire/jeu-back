@@ -1,5 +1,6 @@
 package dev.entites.expedition;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -47,6 +48,8 @@ public class Expedition {
 	private Integer recompenseGemme;
 	private Integer recompenseExperience;
 	
+	private LocalDate dateParution;
+	
 	public Expedition() {
 		
 	}
@@ -76,7 +79,7 @@ public class Expedition {
 			Integer dureeExpedition, Integer difficultee, Integer degats, Integer vie,
 			Integer armure, Integer coutPierre, Integer coutBois, Integer coutOr, Integer coutNourriture,
 			Integer recompensePierre, Integer recompenseBois, Integer recompenseOr, Integer recompenseNourriture,
-			Integer recompenseGemme, Integer recompenseExperience) {
+			Integer recompenseGemme, Integer recompenseExperience, LocalDate dateParution) {
 		super();
 		this.icone = icone;
 		this.libelle = libelle;
@@ -96,6 +99,7 @@ public class Expedition {
 		this.recompenseNourriture = recompenseNourriture;
 		this.recompenseGemme = recompenseGemme;
 		this.recompenseExperience = recompenseExperience;
+		this.dateParution = dateParution;
 	}
 
 
@@ -391,6 +395,38 @@ public class Expedition {
 	public void setRecompenseExperience(Integer recompenseExperience) {
 		this.recompenseExperience = recompenseExperience;
 	}
+
+
+	/**
+	 * @return the dateParution
+	 */
+	public LocalDate getDateParution() {
+		return dateParution;
+	}
+
+
+	/**
+	 * @param dateParution the dateParution to set
+	 */
+	public void setDateParution(LocalDate dateParution) {
+		this.dateParution = dateParution;
+	}
+
+
+	
+	@Override
+	public String toString() {
+		return "Expedition [id=" + id + ", expeditionJoueur=" + expeditionJoueur + ", icone=" + icone + ", libelle="
+				+ libelle + ", description=" + description + ", dureeExpedition=" + dureeExpedition + ", difficultee="
+				+ difficultee + ", degats=" + degats + ", vie=" + vie + ", armure=" + armure + ", coutPierre="
+				+ coutPierre + ", coutBois=" + coutBois + ", coutOr=" + coutOr + ", coutNourriture=" + coutNourriture
+				+ ", recompensePierre=" + recompensePierre + ", recompenseBois=" + recompenseBois + ", recompenseOr="
+				+ recompenseOr + ", recompenseNourriture=" + recompenseNourriture + ", recompenseGemme="
+				+ recompenseGemme + ", recompenseExperience=" + recompenseExperience + ", dateParution=" + dateParution
+				+ "]";
+	}
+
+
 
 	
 	

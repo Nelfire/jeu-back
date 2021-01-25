@@ -1,5 +1,6 @@
 package dev.services;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -103,6 +104,17 @@ public class JoueurService {
 	public JoueurInfoDto getInfoJoueur() {
 		// RÉCUPÉRATION DU JOUEUR CONNECTÉ
 		Joueur jou = recuperationJoueur();
+		
+		// INITIALISATION
+		// Calcul ressources à donner au joueur pour son absence :
+		// - Date de maintenant
+		Date now = new Date();
+		// Si premiere connexion du joueur, initialisation
+		if(jou.getDerniereConnexion()==null) {
+			jou.setDerniereConnexion(now);
+		}
+		// Calcul du temps passé hors connexion, pour attribution des ressources
+		Integer millisecondesDifference = (int) (now.getTime()-jou.getDerniereConnexion().getTime());
 
 		// ------------
 		// -- PIERRE --
@@ -120,7 +132,9 @@ public class JoueurService {
 		}
 		// -- APPORT PIERRE PAR SECONDES
 		Integer apportPierreSeconde = apportPierreHeure / 3600;
-
+		// -- CALCUL APPORT PIERRE REEL (Attribution ressources inactivitée)
+		Integer apportPierreFinal = (apportPierreSeconde * millisecondesDifference)/1000;
+		
 		// ------------
 		// -- BOIS --
 		// ------------
@@ -137,7 +151,8 @@ public class JoueurService {
 		}
 		// -- APPORT BOIS PAR SECONDES
 		Integer apportBoisSeconde = apportBoisHeure / 3600;
-
+		// -- CALCUL APPORT BOIS REEL (Attribution ressources inactivitée)
+		Integer apportBoisFinal = (apportBoisSeconde * millisecondesDifference)/1000;
 		// ------------
 		// -- OR --
 		// ------------
@@ -154,7 +169,9 @@ public class JoueurService {
 		}
 		// -- APPORT OR PAR SECONDES
 		Integer apportOrSeconde = apportOrHeure / 3600;
-
+		// -- CALCUL APPORT OR REEL (Attribution ressources inactivitée)
+		Integer apportOrFinal = (apportOrSeconde * millisecondesDifference)/1000;
+		
 		// ------------
 		// -- NOURRITURE --
 		// ------------
@@ -171,13 +188,17 @@ public class JoueurService {
 		}
 		// -- APPORT NOURRITURE PAR SECONDES
 		Integer apportNourritureSeconde = apportNourritureHeure / 3600;
+		// -- CALCUL APPORT NOURRITURE REEL (Attribution ressources inactivitée)
+		Integer apportNourritureFinal = (apportNourritureSeconde * millisecondesDifference)/1000;
 
 		// ACTUALISATION DES RESSOURCES DU JOUEUR (Appelé chaques secondes)
-		jou.setPierrePossession((jou.getPierrePossession() + apportPierreSeconde)>jou.getPierreMaximum() ? jou.getPierreMaximum() : jou.getPierrePossession() + apportPierreSeconde);
-		jou.setBoisPossession((jou.getBoisPossession() + apportBoisSeconde)>jou.getBoisMaximum() ? jou.getBoisMaximum() : jou.getBoisPossession() + apportBoisSeconde);
-		jou.setOrPossession((jou.getOrPossession() + apportOrSeconde)>jou.getOrMaximum() ? jou.getOrMaximum() : jou.getOrPossession() + apportOrSeconde);
-		jou.setNourriturePossession((jou.getNourriturePossession() + apportNourritureSeconde)>jou.getNourritureMaximum() ? jou.getNourritureMaximum() : jou.getNourriturePossession() + apportNourritureSeconde);
+		jou.setPierrePossession((jou.getPierrePossession() + apportPierreFinal)>jou.getPierreMaximum() ? jou.getPierreMaximum() : jou.getPierrePossession() + apportPierreFinal);
+		jou.setBoisPossession((jou.getBoisPossession() + apportBoisFinal)>jou.getBoisMaximum() ? jou.getBoisMaximum() : jou.getBoisPossession() + apportBoisFinal);
+		jou.setOrPossession((jou.getOrPossession() + apportOrFinal)>jou.getOrMaximum() ? jou.getOrMaximum() : jou.getOrPossession() + apportOrFinal);
+		jou.setNourriturePossession((jou.getNourriturePossession() + apportNourritureFinal)>jou.getNourritureMaximum() ? jou.getNourritureMaximum() : jou.getNourriturePossession() + apportNourritureFinal);
 		jou.setTempsDeJeu(jou.getTempsDeJeu() + 1);
+		Date dateAujourdhui  = new Date(); 
+		jou.setDerniereConnexion(dateAujourdhui);
 
 		// MISE A JOUR DU JOUEUR
 		Joueur joueur = new Joueur(jou.getArmee(), jou.getIcone(), jou.getPseudo(), jou.getEmail(), jou.getMotDePasse(),
@@ -185,7 +206,7 @@ public class JoueurService {
 				jou.getBoisPossession(), jou.getOrPossession(), jou.getNourriturePossession(), jou.getGemmePossession(),
 				jou.getPierreMaximum(), jou.getBoisMaximum(), jou.getOrMaximum(), jou.getNourritureMaximum(),
 				jou.getPierreBoostProduction(), jou.getBoisBoostProduction(), jou.getOrBoostProduction(),
-				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getRoles());
+				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getRoles(), jou.getDerniereConnexion());
 		joueur.setId(jou.getId());
 		
 		// SAUVEGARDE
@@ -197,7 +218,7 @@ public class JoueurService {
 				jou.getBoisPossession(), jou.getOrPossession(), jou.getNourriturePossession(), jou.getGemmePossession(),
 				jou.getPierreMaximum(), jou.getBoisMaximum(), jou.getOrMaximum(), jou.getNourritureMaximum(),
 				jou.getPierreBoostProduction(), jou.getBoisBoostProduction(), jou.getOrBoostProduction(),
-				jou.getNourritureBoostProduction(), jou.getTempsDeJeu());
+				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getDerniereConnexion());
 		return co;
 	}
 }

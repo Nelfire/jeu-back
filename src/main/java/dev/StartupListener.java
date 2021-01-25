@@ -1,5 +1,6 @@
 package dev;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Value;
@@ -261,10 +262,11 @@ public class StartupListener {
 		//System.out.println(joueur1.getChefGuilde());
         
         // ----- EXPEDITIONS -----
-        Expedition expedition1 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 1","Descriptif de l'expedition 1",60, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10, 5000);
-        Expedition expedition2 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 2","Descriptif de l'expedition 2",3600, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10, 5000);
-        Expedition expedition3 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 3","Descriptif de l'expedition 3",60, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10, 5000);
-        Expedition expedition4 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 4","Descriptif de l'expedition 4",60, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10, 5000);
+        LocalDate dateAujourdhui  = LocalDate.now(); 
+        Expedition expedition1 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 1","Descriptif de l'expedition 1",60, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10, 5000,dateAujourdhui);
+        Expedition expedition2 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 2","Descriptif de l'expedition 2",3600, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10, 5000,dateAujourdhui);
+        Expedition expedition3 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 3","Descriptif de l'expedition 3",60, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10, 5000,dateAujourdhui);
+        Expedition expedition4 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 4","Descriptif de l'expedition 4",60, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10, 5000,dateAujourdhui);
         this.expeditionRepo.save(expedition1);
         this.expeditionRepo.save(expedition2);
         this.expeditionRepo.save(expedition3);
@@ -275,6 +277,12 @@ public class StartupListener {
         Armee armeeArcher = new Armee(joueur1,archer,300);
         this.armeeRepo.save(armeeChampion);
         this.armeeRepo.save(armeeArcher);
+        
+        
+        LocalDate m1 = LocalDate.now();
+        Date m2 = new Date();
+        System.out.println(m1);
+        System.out.println(m2);
          
     }
 

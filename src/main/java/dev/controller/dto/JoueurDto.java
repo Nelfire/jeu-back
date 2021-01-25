@@ -1,6 +1,7 @@
 package dev.controller.dto;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -76,6 +77,7 @@ public class JoueurDto {
 	    /** temps de connexion (en secondes) du joueur **/
 	    private Integer tempsDeJeu;
 	    
+	    private Date derniereConnexion;
 
 	    /** roles du joueur **/
 	    private List<Role> roles = new ArrayList<>();
@@ -136,6 +138,7 @@ public class JoueurDto {
 			this.nourritureBoostProduction = jou.getNourritureBoostProduction();
 			this.tempsDeJeu = jou.getTempsDeJeu();
 			this.roles = jou.getRoles().stream().map(roleJoueur -> roleJoueur.getRole()).collect(Collectors.toList());
+			this.derniereConnexion = jou.getDerniereConnexion();
 		}
 
 		/**
@@ -458,6 +461,20 @@ public class JoueurDto {
 		 */
 		public void setRoles(List<Role> roles) {
 			this.roles = roles;
+		}
+
+		/**
+		 * @return the derniereConnexion
+		 */
+		public Date getDerniereConnexion() {
+			return derniereConnexion;
+		}
+
+		/**
+		 * @param derniereConnexion the derniereConnexion to set
+		 */
+		public void setDerniereConnexion(Date derniereConnexion) {
+			this.derniereConnexion = derniereConnexion;
 		}
 
 

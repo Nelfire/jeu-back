@@ -2,7 +2,10 @@ package dev.controller;
 
 import java.util.List;
 
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +16,7 @@ import dev.services.JoueurService;
 
 @RestController
 @RequestMapping("expedition")
+@EnableScheduling
 public class ExpeditionController {
 
 	ExpeditionService expeditionService;
@@ -37,5 +41,13 @@ public class ExpeditionController {
 	@GetMapping("/detailsExpedition")
 	public Expedition detailExpedition(@RequestParam("id") Integer idExpedition) {
 		return this.expeditionService.detailExpedition(idExpedition);
+	}
+	
+	// Tous les jours à minuit
+	@Scheduled(cron="0 0 0 * * ?", zone="Europe/Paris")
+	@PostMapping("/refeshExpedition")
+	public void creerNouvellesExpeditions() {
+		System.out.println("Nouvelles expés");
+		this.expeditionService.creerNouvellesExpeditions();
 	}
 }

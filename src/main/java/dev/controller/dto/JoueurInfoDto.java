@@ -1,5 +1,8 @@
 package dev.controller.dto;
 
+
+import java.util.Date;
+
 import dev.entites.joueur.Armee;
 import dev.entites.social.Guilde;
 
@@ -78,6 +81,8 @@ public class JoueurInfoDto {
 
     /** temps de connexion (en secondes) du joueur **/
     private Integer tempsDeJeu;
+    
+    private Date derniereConnexion;
 
     public JoueurInfoDto() {
     	
@@ -117,7 +122,7 @@ public class JoueurInfoDto {
 			Integer boisPossession, Integer orPossession, Integer nourriturePossession, Integer gemmePossession,
 			Integer pierreMaximum, Integer boisMaximum, Integer orMaximum, Integer nourritureMaximum,
 			Integer pierreBoostProduction, Integer boisBoostProduction, Integer orBoostProduction,
-			Integer nourritureBoostProduction, Integer tempsDeJeu) {
+			Integer nourritureBoostProduction, Integer tempsDeJeu, Date derniereConnexion) {
 		super();
 		this.id = id;
 		this.icone = icone;
@@ -140,6 +145,7 @@ public class JoueurInfoDto {
 		this.orBoostProduction = orBoostProduction;
 		this.nourritureBoostProduction = nourritureBoostProduction;
 		this.tempsDeJeu = tempsDeJeu;
+		this.derniereConnexion = derniereConnexion;
 	}
 
 	/**
@@ -466,7 +472,20 @@ public class JoueurInfoDto {
 	public void setTempsDeJeu(Integer tempsDeJeu) {
 		this.tempsDeJeu = tempsDeJeu;
 	}
+	/**
+	 * @return the derniereConnexion
+	 */
+	public Date getDerniereConnexion() {
+		return derniereConnexion;
+	}
+	/**
+	 * @param derniereConnexion the derniereConnexion to set
+	 */
+	public void setDerniereConnexion(Date derniereConnexion) {
+		this.derniereConnexion = derniereConnexion;
+	}
     
+	
     
     
 }

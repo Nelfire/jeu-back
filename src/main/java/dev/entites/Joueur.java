@@ -1,5 +1,6 @@
 package dev.entites;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -155,6 +156,7 @@ public class Joueur {
     /** temps de connexion (en secondes) du joueur **/
     private Integer tempsDeJeu;
     
+    private Date derniereConnexion;
 
     /** roles du joueur **/
     @OneToMany(mappedBy = "joueur", cascade = CascadeType.PERSIST)
@@ -196,7 +198,7 @@ public class Joueur {
 			Integer niveau, Integer experience, Integer pierrePossession, Integer boisPossession, Integer orPossession,
 			Integer nourriturePossession, Integer gemmePossession, Integer pierreMaximum, Integer boisMaximum,
 			Integer orMaximum, Integer nourritureMaximum, Integer pierreBoostProduction, Integer boisBoostProduction,
-			Integer orBoostProduction, Integer nourritureBoostProduction, Integer tempsDeJeu, List<RoleJoueur> roles) {
+			Integer orBoostProduction, Integer nourritureBoostProduction, Integer tempsDeJeu, List<RoleJoueur> roles, Date derniereConnexion) {
 		super();
 		this.armee = armee;
 		this.icone = icone;
@@ -221,6 +223,7 @@ public class Joueur {
 		this.nourritureBoostProduction = nourritureBoostProduction;
 		this.tempsDeJeu = tempsDeJeu;
 		this.roles = roles;
+		this.derniereConnexion = derniereConnexion;
 	}
 
 	/**
@@ -575,6 +578,22 @@ public class Joueur {
 	public void setGuilde(Guilde guilde) {
 		this.guilde = guilde;
 	}
+
+	/**
+	 * @return the derniereConnexion
+	 */
+	public Date getDerniereConnexion() {
+		return derniereConnexion;
+	}
+
+	/**
+	 * @param derniereConnexion the derniereConnexion to set
+	 */
+	public void setDerniereConnexion(Date derniereConnexion) {
+		this.derniereConnexion = derniereConnexion;
+	}
+	
+	
 
 //	/**
 //	 * @return the chefGuilde
