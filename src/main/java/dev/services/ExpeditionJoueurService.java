@@ -44,8 +44,15 @@ public class ExpeditionJoueurService {
 		this.expeditionRepo = expeditionRepo;
 	}
 	
+	/*
+	0 : EXPEDITION EN COURS
+	1 : VICTOIRE, RECOMPENSE EN ATTENTE
+	2 : VICTOIRE, RECOMPENSE DEJA RECUPEREE
+	3 : DEFAITE
+	 */
+	
 	/**
-	 * LISTES TOUTES LES EXPEDITIONS DU JOUEUR
+	 * LISTER TOUTES LES EXPEDITIONS DU JOUEUR, TOUT CONFONDU
 	 */
 	public List<ExpeditionJoueur> listerExpeditionJoueur() {
 		// Récupération du joueur
@@ -54,10 +61,207 @@ public class ExpeditionJoueurService {
 		// Récupération de la liste des expéditions du joueur.
 		List<ExpeditionJoueur> listeExpeditionJoueur = new ArrayList<>();
 		for (ExpeditionJoueur expedition : expeditionJoueurRepo.findByJoueur(jou)) {
+			// ACTUALISATION ETAT EXPEDITION
+			long maintenant = new Date().getTime();
+			// SI L'EXPEDITION EST TERMINEE
+			if(expedition.getDateFinExpedition()< maintenant && expedition.getEtatExpedition()==0) {
+				// DÉFINIR L'ÉTAT DE RÉUSSITE OU DE DÉFAITE DE L'EXPÉDITION EN FONCTION DU POURCENTAGE DE RÉUSSITE
+			    Random rand = new Random();
+			    int nombreRandom = rand.nextInt(100);
+			    if (nombreRandom <= expedition.getPourcentageReussite())
+			    { 
+			    	// - Défini l'état de l'expédition comme "Victoire"
+			    	expedition.setEtatExpedition(1);
+			    }
+			    else
+			    { 
+			    	// - Défini l'état de l'expédition comme "Echec"
+			    	expedition.setEtatExpedition(3);
+			    }
+			    // SAUVEGARDE
+			    this.expeditionJoueurRepo.save(expedition);
+			}
+			// AJOUT A LA LISTE
 			listeExpeditionJoueur.add(expedition);
 		}
+		
+		// RETOUR
 		return listeExpeditionJoueur;
 	}
+	
+	/**
+	 * LISTER UNIQUEMENT LES EXPEDITIONS JOUEUR TERMINEES EN ECHEC = 3
+	 */
+	public List<ExpeditionJoueur> listerExpeditionJoueurTermineesEchec() {
+		// Récupération du joueur
+		Joueur jou = joueurService.recuperationJoueur();
+		
+		// Récupération de la liste des expéditions du joueur.
+		List<ExpeditionJoueur> listeExpeditionJoueur = new ArrayList<>();
+		for (ExpeditionJoueur expedition : expeditionJoueurRepo.findByJoueur(jou)) {
+			// ACTUALISATION ETAT EXPEDITION
+			long maintenant = new Date().getTime();
+			// SI L'EXPEDITION EST TERMINEE
+			if(expedition.getDateFinExpedition()< maintenant && expedition.getEtatExpedition()==0) {
+				// DÉFINIR L'ÉTAT DE RÉUSSITE OU DE DÉFAITE DE L'EXPÉDITION EN FONCTION DU POURCENTAGE DE RÉUSSITE
+			    Random rand = new Random();
+			    int nombreRandom = rand.nextInt(100);
+			    if (nombreRandom <= expedition.getPourcentageReussite())
+			    { 
+			    	// - Défini l'état de l'expédition comme "Victoire"
+			    	expedition.setEtatExpedition(1);
+			    }
+			    else
+			    { 
+			    	// - Défini l'état de l'expédition comme "Echec"
+			    	expedition.setEtatExpedition(3);
+			    }
+			    
+			    // SAUVEGARDE
+			    this.expeditionJoueurRepo.save(expedition);
+			}
+			
+		    // SI L'EXPEDITION EN COURS D'ANALYSE EST UN ECHEC, JE L'INSCRIT DANS LA LISTE
+			if(expedition.getEtatExpedition()==3) {
+				// AJOUT A LA LISTE
+				listeExpeditionJoueur.add(expedition);
+			}
+		}
+		
+		// RETOUR
+		return listeExpeditionJoueur;	
+	}
+	
+	/**
+	 * LISTER UNIQUEMENT LES EXPEDITIONS JOUEUR VICTORIEUSE + RECOMPENSE EN ATTENTE DE RECUPERATION = 1
+	 */
+	public List<ExpeditionJoueur> listerExpeditionJoueurRecompenseEnAttente() {
+		// Récupération du joueur
+		Joueur jou = joueurService.recuperationJoueur();
+		
+		// Récupération de la liste des expéditions du joueur.
+		List<ExpeditionJoueur> listeExpeditionJoueur = new ArrayList<>();
+		for (ExpeditionJoueur expedition : expeditionJoueurRepo.findByJoueur(jou)) {
+			// ACTUALISATION ETAT EXPEDITION
+			long maintenant = new Date().getTime();
+			// SI L'EXPEDITION EST TERMINEE
+			if(expedition.getDateFinExpedition()< maintenant && expedition.getEtatExpedition()==0) {
+				// DÉFINIR L'ÉTAT DE RÉUSSITE OU DE DÉFAITE DE L'EXPÉDITION EN FONCTION DU POURCENTAGE DE RÉUSSITE
+			    Random rand = new Random();
+			    int nombreRandom = rand.nextInt(100);
+			    if (nombreRandom <= expedition.getPourcentageReussite())
+			    { 
+			    	// - Défini l'état de l'expédition comme "Victoire"
+			    	expedition.setEtatExpedition(1);
+			    }
+			    else
+			    { 
+			    	// - Défini l'état de l'expédition comme "Echec"
+			    	expedition.setEtatExpedition(3);
+			    }
+			    
+			    // SAUVEGARDE
+			    this.expeditionJoueurRepo.save(expedition);
+			}
+			
+		    // SI L'EXPEDITION EN COURS D'ANALYSE EST UNE VICTOIRE + RECOMPENSE EN ATTENTE , JE L'INSCRIT DANS LA LISTE
+			if(expedition.getEtatExpedition()==1) {
+				// AJOUT A LA LISTE
+				listeExpeditionJoueur.add(expedition);
+			}
+		}
+		
+		// RETOUR
+		return listeExpeditionJoueur;	
+	}
+	
+	/**
+	 * LISTER UNIQUEMENT LES EXPEDITIONS JOUEUR VICTORIEUSE + RECOMPENSE DEJA RECUPEREE = 2
+	 */
+	public List<ExpeditionJoueur> listerExpeditionJoueurTermineesVictoire() {
+		// Récupération du joueur
+		Joueur jou = joueurService.recuperationJoueur();
+		
+		// Récupération de la liste des expéditions du joueur.
+		List<ExpeditionJoueur> listeExpeditionJoueur = new ArrayList<>();
+		for (ExpeditionJoueur expedition : expeditionJoueurRepo.findByJoueur(jou)) {
+			// ACTUALISATION ETAT EXPEDITION
+			long maintenant = new Date().getTime();
+			// SI L'EXPEDITION EST TERMINEE
+			if(expedition.getDateFinExpedition()< maintenant && expedition.getEtatExpedition()==0) {
+				// DÉFINIR L'ÉTAT DE RÉUSSITE OU DE DÉFAITE DE L'EXPÉDITION EN FONCTION DU POURCENTAGE DE RÉUSSITE
+			    Random rand = new Random();
+			    int nombreRandom = rand.nextInt(100);
+			    if (nombreRandom <= expedition.getPourcentageReussite())
+			    { 
+			    	// - Défini l'état de l'expédition comme "Victoire"
+			    	expedition.setEtatExpedition(1);
+			    }
+			    else
+			    { 
+			    	// - Défini l'état de l'expédition comme "Echec"
+			    	expedition.setEtatExpedition(3);
+			    }
+			    
+			    // SAUVEGARDE
+			    this.expeditionJoueurRepo.save(expedition);
+			}
+			
+		    // SI L'EXPEDITION EN COURS D'ANALYSE EST UNE VICTOIRE + RECOMPENSE DEJA PERCU , JE L'INSCRIT DANS LA LISTE
+			if(expedition.getEtatExpedition()==2) {
+				// AJOUT A LA LISTE
+				listeExpeditionJoueur.add(expedition);
+			}
+		}
+		
+		// RETOUR
+		return listeExpeditionJoueur;	
+	}
+	
+	/**
+	 * LISTER UNIQUEMENT LES EXPEDITIONS JOUEUR EN COURS = 0
+	 */
+	public List<ExpeditionJoueur> listerExpeditionJoueurEnCours() {
+		// Récupération du joueur
+		Joueur jou = joueurService.recuperationJoueur();
+		
+		// Récupération de la liste des expéditions du joueur.
+		List<ExpeditionJoueur> listeExpeditionJoueur = new ArrayList<>();
+		for (ExpeditionJoueur expedition : expeditionJoueurRepo.findByJoueur(jou)) {
+			// ACTUALISATION ETAT EXPEDITION
+			long maintenant = new Date().getTime();
+			// SI L'EXPEDITION EST TERMINEE
+			if(expedition.getDateFinExpedition()< maintenant && expedition.getEtatExpedition()==0) {
+				// DÉFINIR L'ÉTAT DE RÉUSSITE OU DE DÉFAITE DE L'EXPÉDITION EN FONCTION DU POURCENTAGE DE RÉUSSITE
+			    Random rand = new Random();
+			    int nombreRandom = rand.nextInt(100);
+			    if (nombreRandom <= expedition.getPourcentageReussite())
+			    { 
+			    	// - Défini l'état de l'expédition comme "Victoire"
+			    	expedition.setEtatExpedition(1);
+			    }
+			    else
+			    { 
+			    	// - Défini l'état de l'expédition comme "Echec"
+			    	expedition.setEtatExpedition(3);
+			    }
+			    
+			    // SAUVEGARDE
+			    this.expeditionJoueurRepo.save(expedition);
+			}
+			
+		    // SI L'EXPEDITION EN COURS D'ANALYSE EST EN COURS , JE L'INSCRIT DANS LA LISTE
+			if(expedition.getEtatExpedition()==0) {
+				// AJOUT A LA LISTE
+				listeExpeditionJoueur.add(expedition);
+			}
+		}
+		
+		// RETOUR
+		return listeExpeditionJoueur;	
+	}
+	
+	
 	
 	/**
 	 * RECHERCHE EXPEDITION JOUEUR PAR ID
@@ -526,6 +730,12 @@ public class ExpeditionJoueurService {
 		joueur.setId(jou.getId());
 		joueurRepo.save(joueur);
 		
+		/*
+		 * 0 = EN ATTENTE + VICTORIEUSE
+		 * 1 = EN ATTENTE + DEFAITE
+		 * 2 = RECOMPENSE EN ATTENTE
+		 * 3 = DEFAITE
+		 */
 		// CALCUL DU POURCENTAGE DE RÉUSSITE DE L'EXPÉDITION
 	    int vieRestanteExpedition = expedition.getVie() - degatsEmis;
 	    int pourcentageReussite = 100 - (((vieRestanteExpedition * 100) / expedition.getVie()));
@@ -542,20 +752,7 @@ public class ExpeditionJoueurService {
 		expeditionJoueur.setArmeeEnvoiJoueur(listeArmees);
 		expeditionJoueur.setRecompenseRecuperee(false);
 		expeditionJoueur.setPourcentageReussite(pourcentageReussite);
-		
-		// DÉFINIR L'ÉTAT DE RÉUSSITE OU DE DÉFAITE DE L'EXPÉDITION EN FONCTION DU POURCENTAGE DE RÉUSSITE
-	    Random rand = new Random();
-	    int nombreRandom = rand.nextInt(100);
-	    if (nombreRandom <= pourcentageReussite)
-	    { 
-	    	// - Défini l'état de l'expédition comme "Victoire"
-			expeditionJoueur.setEtatExpedition(0);
-	    }
-	    else
-	    { 
-	    	// - Défini l'état de l'expédition comme "Echec"
-	    	expeditionJoueur.setEtatExpedition(2);
-	    }
+		expeditionJoueur.setEtatExpedition(0);
 		
 	    // SAUVEGARDE FINALE DE L'EXPÉDITION JOUEUR
 		expeditionJoueurRepo.save(expeditionJoueur);
@@ -585,8 +782,9 @@ public class ExpeditionJoueurService {
 		expeditionJoueur.setPourcentageReussite(expdJoueur.getPourcentageReussite());
 		expeditionJoueur.setEtatExpedition(expdJoueur.getEtatExpedition());
 
+		
 		// DANS LE CAS OU L'EXPÉDITION EST UN SUCCES, ATTIBUTION DES RESSOURCES AU JOUEUR (PIERRE, BOIS, OR, NOURRITURE, GEMME)
-	    if (expdJoueur.getEtatExpedition() == 0) 
+	    if (expdJoueur.getEtatExpedition() == 1) 
 	    {
 			Joueur jou = joueurService.recuperationJoueur();
 			jou.setPierrePossession(jou.getPierrePossession() + expdJoueur.getExpedition().getRecompensePierre());
@@ -597,7 +795,7 @@ public class ExpeditionJoueurService {
 			jou.setExperience(jou.getExperience() + expdJoueur.getExpedition().getRecompenseExperience());
 			jou.setNiveau(jou.getExperience() / 5000); // /!\ Temporaire : 1 Niveau = 5000 Experience
 			// - Changement de l'état, pour définir l'expédition comme "réussite"
-			expeditionJoueur.setEtatExpedition(1);
+			expeditionJoueur.setEtatExpedition(2);
 			// - Sauvegardes des informations joueur
 			joueurRepo.save(jou);
 	    }
