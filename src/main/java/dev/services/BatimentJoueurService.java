@@ -201,184 +201,184 @@ public class BatimentJoueurService {
 		
 		if(batiment.getIdTypeBatiment() == 1) // 1 = Hotel de ville
 		{
-			ouvrierNecessaireAmelioration = 2*(batiment.getOuvrierNecessaireConstruction());
-			tempsAmelioration = 2*(batiment.getTempsDeConstruction());
-			coutPierreAmelioration = 2*(batiment.getCoutPierreConstruction());
-			coutBoisAmelioration = 2*(batiment.getCoutBoisConstruction());
-			coutOreAmelioration = 2*(batiment.getCoutOrConstruction());
-			coutNourritureAmelioration = 2*(batiment.getCoutNourritureConstruction());
-			quantiteeStockagePierre =2*(batiment.getQuantiteeStockagePierre());
-			quantiteeStockageBois = 2*(batiment.getQuantiteeStockageBois());
-			quantiteeStockageOre = 2*(batiment.getQuantiteeStockageOre());
-			quantiteeStockageNourriture = 2*(batiment.getQuantiteeStockageNourriture());
-			apportPierreHeure = 2*(batiment.getApportPierreHeure());
-			apportBoisHeure = 2*(batiment.getApportBoisHeure());
-			apportOreHeure = 2*(batiment.getApportOreHeure());
-			apportNourritureHeure = 2*(batiment.getApportNourritureHeure());
+			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
+			tempsAmelioration = batiment.getTempsDeConstruction();
+			coutPierreAmelioration = batiment.getCoutPierreConstruction();
+			coutBoisAmelioration = batiment.getCoutBoisConstruction();
+			coutOreAmelioration = batiment.getCoutOrConstruction();
+			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
+			quantiteeStockagePierre =batiment.getQuantiteeStockagePierre();
+			quantiteeStockageBois = batiment.getQuantiteeStockageBois();
+			quantiteeStockageOre = batiment.getQuantiteeStockageOre();
+			quantiteeStockageNourriture = batiment.getQuantiteeStockageNourriture();
+			apportPierreHeure = batiment.getApportPierreHeure();
+			apportBoisHeure = batiment.getApportBoisHeure();
+			apportOreHeure = batiment.getApportOreHeure();
+			apportNourritureHeure = batiment.getApportNourritureHeure();
 
 		} 
 		else if (batiment.getIdTypeBatiment() == 2) // 2 = Chaumière
 		{
-			ouvrierNecessaireAmelioration = 2*(batiment.getOuvrierNecessaireConstruction());
-			tempsAmelioration = 2*(batiment.getTempsDeConstruction());
-			coutPierreAmelioration = 2*(batiment.getCoutPierreConstruction());
-			coutBoisAmelioration = 2*(batiment.getCoutBoisConstruction());
-			coutOreAmelioration = 2*(batiment.getCoutOrConstruction());
-			coutNourritureAmelioration = 2*(batiment.getCoutNourritureConstruction());
+			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
+			tempsAmelioration = batiment.getTempsDeConstruction();
+			coutPierreAmelioration = batiment.getCoutPierreConstruction();
+			coutBoisAmelioration = batiment.getCoutBoisConstruction();
+			coutOreAmelioration = batiment.getCoutOrConstruction();
+			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
 
 		} 
 		else if (batiment.getIdTypeBatiment() == 3) // 3 = Carrière
 		{
-			ouvrierNecessaireAmelioration = 2*(batiment.getOuvrierNecessaireConstruction());
-			tempsAmelioration = 2*(batiment.getTempsDeConstruction());
-			coutPierreAmelioration = 2*(batiment.getCoutPierreConstruction());
-			coutBoisAmelioration = 2*(batiment.getCoutBoisConstruction());
-			coutOreAmelioration = 2*(batiment.getCoutOrConstruction());
-			coutNourritureAmelioration = 2*(batiment.getCoutNourritureConstruction());
-			apportPierreHeure = 2*(batiment.getApportPierreHeure());
+			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
+			tempsAmelioration = batiment.getTempsDeConstruction();
+			coutPierreAmelioration = batiment.getCoutPierreConstruction();
+			coutBoisAmelioration = batiment.getCoutBoisConstruction();
+			coutOreAmelioration = batiment.getCoutOrConstruction();
+			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
+			apportPierreHeure = batiment.getApportPierreHeure();
 		} 
 		else if (batiment.getIdTypeBatiment() == 4) // 4 = Camp de bucheron
 		{
-			ouvrierNecessaireAmelioration = 2*(batiment.getOuvrierNecessaireConstruction());
-			tempsAmelioration = 2*(batiment.getTempsDeConstruction());
-			coutPierreAmelioration = 2*(batiment.getCoutPierreConstruction());
-			coutBoisAmelioration = 2*(batiment.getCoutBoisConstruction());
-			coutOreAmelioration = 2*(batiment.getCoutOrConstruction());
-			coutNourritureAmelioration = 2*(batiment.getCoutNourritureConstruction());
-			apportBoisHeure = 2*(batiment.getApportBoisHeure());
+			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
+			tempsAmelioration = batiment.getTempsDeConstruction();
+			coutPierreAmelioration = batiment.getCoutPierreConstruction();
+			coutBoisAmelioration = batiment.getCoutBoisConstruction();
+			coutOreAmelioration = batiment.getCoutOrConstruction();
+			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
+			apportBoisHeure = batiment.getApportBoisHeure();
 
 		} 
 		else if (batiment.getIdTypeBatiment() == 5) // 5 = Camp de mineur
 		{
-			ouvrierNecessaireAmelioration = 2*(batiment.getOuvrierNecessaireConstruction());
-			tempsAmelioration = 2*(batiment.getTempsDeConstruction());
-			coutPierreAmelioration = 2*(batiment.getCoutPierreConstruction());
-			coutBoisAmelioration = 2*(batiment.getCoutBoisConstruction());
-			coutOreAmelioration = 2*(batiment.getCoutOrConstruction());
-			coutNourritureAmelioration = 2*(batiment.getCoutNourritureConstruction());
-			apportOreHeure = 2*(batiment.getApportOreHeure());
+			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
+			tempsAmelioration = batiment.getTempsDeConstruction();
+			coutPierreAmelioration = batiment.getCoutPierreConstruction();
+			coutBoisAmelioration = batiment.getCoutBoisConstruction();
+			coutOreAmelioration = batiment.getCoutOrConstruction();
+			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
+			apportOreHeure = batiment.getApportOreHeure();
 		} 
 		else if (batiment.getIdTypeBatiment() == 6) // 6 = Ferme
 		{
-			ouvrierNecessaireAmelioration = 2*(batiment.getOuvrierNecessaireConstruction());
-			tempsAmelioration = 2*(batiment.getTempsDeConstruction());
-			coutPierreAmelioration = 2*(batiment.getCoutPierreConstruction());
-			coutBoisAmelioration = 2*(batiment.getCoutBoisConstruction());
-			coutOreAmelioration = 2*(batiment.getCoutOrConstruction());
-			coutNourritureAmelioration = 2*(batiment.getCoutNourritureConstruction());
-			apportNourritureHeure = 2*(batiment.getApportNourritureHeure());
+			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
+			tempsAmelioration = batiment.getTempsDeConstruction();
+			coutPierreAmelioration = batiment.getCoutPierreConstruction();
+			coutBoisAmelioration = batiment.getCoutBoisConstruction();
+			coutOreAmelioration = batiment.getCoutOrConstruction();
+			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
+			apportNourritureHeure = batiment.getApportNourritureHeure();
 		} 
 		else if (batiment.getIdTypeBatiment() == 7) // 7 = Stockage Pierre
 		{
-			ouvrierNecessaireAmelioration = 2*(batiment.getOuvrierNecessaireConstruction());
-			tempsAmelioration = 2*(batiment.getTempsDeConstruction());
-			coutPierreAmelioration = 2*(batiment.getCoutPierreConstruction());
-			coutBoisAmelioration = 2*(batiment.getCoutBoisConstruction());
-			coutOreAmelioration = 2*(batiment.getCoutOrConstruction());
-			coutNourritureAmelioration = 2*(batiment.getCoutNourritureConstruction());
-			quantiteeStockagePierre =2*(batiment.getQuantiteeStockagePierre());
+			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
+			tempsAmelioration = batiment.getTempsDeConstruction();
+			coutPierreAmelioration = batiment.getCoutPierreConstruction();
+			coutBoisAmelioration = batiment.getCoutBoisConstruction();
+			coutOreAmelioration = batiment.getCoutOrConstruction();
+			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
+			quantiteeStockagePierre =batiment.getQuantiteeStockagePierre();
 		} 
 		else if (batiment.getIdTypeBatiment() == 8) // 8 = Stockage Bois
 		{
-			ouvrierNecessaireAmelioration = 2*(batiment.getOuvrierNecessaireConstruction());
-			tempsAmelioration = 2*(batiment.getTempsDeConstruction());
-			coutPierreAmelioration = 2*(batiment.getCoutPierreConstruction());
-			coutBoisAmelioration = 2*(batiment.getCoutBoisConstruction());
-			coutOreAmelioration = 2*(batiment.getCoutOrConstruction());
-			coutNourritureAmelioration = 2*(batiment.getCoutNourritureConstruction());
-			quantiteeStockageBois = 2*(batiment.getQuantiteeStockageBois());
+			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
+			tempsAmelioration = batiment.getTempsDeConstruction();
+			coutPierreAmelioration = batiment.getCoutPierreConstruction();
+			coutBoisAmelioration = batiment.getCoutBoisConstruction();
+			coutOreAmelioration = batiment.getCoutOrConstruction();
+			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
+			quantiteeStockageBois = batiment.getQuantiteeStockageBois();
 		} 
 		else if (batiment.getIdTypeBatiment() == 9) // 9 = Stockage Or
 		{
-			ouvrierNecessaireAmelioration = 2*(batiment.getOuvrierNecessaireConstruction());
-			tempsAmelioration = 2*(batiment.getTempsDeConstruction());
-			coutPierreAmelioration = 2*(batiment.getCoutPierreConstruction());
-			coutBoisAmelioration = 2*(batiment.getCoutBoisConstruction());
-			coutOreAmelioration = 2*(batiment.getCoutOrConstruction());
-			coutNourritureAmelioration = 2*(batiment.getCoutNourritureConstruction());
-			quantiteeStockageOre = 2*(batiment.getQuantiteeStockageOre());
+			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
+			tempsAmelioration = batiment.getTempsDeConstruction();
+			coutPierreAmelioration = batiment.getCoutPierreConstruction();
+			coutBoisAmelioration = batiment.getCoutBoisConstruction();
+			coutOreAmelioration = batiment.getCoutOrConstruction();
+			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
+			quantiteeStockageOre = batiment.getQuantiteeStockageOre();
 		} 
 		else if (batiment.getIdTypeBatiment() == 10) // 10 = Stockage Nourriture
 		{
-			ouvrierNecessaireAmelioration = 2*(batiment.getOuvrierNecessaireConstruction());
-			tempsAmelioration = 2*(batiment.getTempsDeConstruction());
-			coutPierreAmelioration = 2*(batiment.getCoutPierreConstruction());
-			coutBoisAmelioration = 2*(batiment.getCoutBoisConstruction());
-			coutOreAmelioration = 2*(batiment.getCoutOrConstruction());
-			coutNourritureAmelioration = 2*(batiment.getCoutNourritureConstruction());
-			quantiteeStockageNourriture = 2*(batiment.getQuantiteeStockageNourriture());
+			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
+			tempsAmelioration = batiment.getTempsDeConstruction();
+			coutPierreAmelioration = batiment.getCoutPierreConstruction();
+			coutBoisAmelioration = batiment.getCoutBoisConstruction();
+			coutOreAmelioration = batiment.getCoutOrConstruction();
+			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
+			quantiteeStockageNourriture = batiment.getQuantiteeStockageNourriture();
 		} 
 		else if (batiment.getIdTypeBatiment() == 11) // 11 = Caserne Militaire
 		{
-			ouvrierNecessaireAmelioration = 2*(batiment.getOuvrierNecessaireConstruction());
-			tempsAmelioration = 2*(batiment.getTempsDeConstruction());
-			coutPierreAmelioration = 2*(batiment.getCoutPierreConstruction());
-			coutBoisAmelioration = 2*(batiment.getCoutBoisConstruction());
-			coutOreAmelioration = 2*(batiment.getCoutOrConstruction());
-			coutNourritureAmelioration = 2*(batiment.getCoutNourritureConstruction());
+			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
+			tempsAmelioration = batiment.getTempsDeConstruction();
+			coutPierreAmelioration = batiment.getCoutPierreConstruction();
+			coutBoisAmelioration = batiment.getCoutBoisConstruction();
+			coutOreAmelioration = batiment.getCoutOrConstruction();
+			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
 		} 
 		else if (batiment.getIdTypeBatiment() == 12) // 12 = Ecurie
 		{
-			ouvrierNecessaireAmelioration = 2*(batiment.getOuvrierNecessaireConstruction());
-			tempsAmelioration = 2*(batiment.getTempsDeConstruction());
-			coutPierreAmelioration = 2*(batiment.getCoutPierreConstruction());
-			coutBoisAmelioration = 2*(batiment.getCoutBoisConstruction());
-			coutOreAmelioration = 2*(batiment.getCoutOrConstruction());
-			coutNourritureAmelioration = 2*(batiment.getCoutNourritureConstruction());
+			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
+			tempsAmelioration = batiment.getTempsDeConstruction();
+			coutPierreAmelioration = batiment.getCoutPierreConstruction();
+			coutBoisAmelioration = batiment.getCoutBoisConstruction();
+			coutOreAmelioration = batiment.getCoutOrConstruction();
+			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
 		} 
 		else if (batiment.getIdTypeBatiment() == 13) // 13 = Port
 		{
-			ouvrierNecessaireAmelioration = 2*(batiment.getOuvrierNecessaireConstruction());
-			tempsAmelioration = 2*(batiment.getTempsDeConstruction());
-			coutPierreAmelioration = 2*(batiment.getCoutPierreConstruction());
-			coutBoisAmelioration = 2*(batiment.getCoutBoisConstruction());
-			coutOreAmelioration = 2*(batiment.getCoutOrConstruction());
-			coutNourritureAmelioration = 2*(batiment.getCoutNourritureConstruction());
+			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
+			tempsAmelioration = batiment.getTempsDeConstruction();
+			coutPierreAmelioration = batiment.getCoutPierreConstruction();
+			coutBoisAmelioration = batiment.getCoutBoisConstruction();
+			coutOreAmelioration = batiment.getCoutOrConstruction();
+			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
 		} 
 		else if (batiment.getIdTypeBatiment() == 14) // 14 = Atelier de siege
 		{
-			ouvrierNecessaireAmelioration = 2*(batiment.getOuvrierNecessaireConstruction());
-			tempsAmelioration = 2*(batiment.getTempsDeConstruction());
-			coutPierreAmelioration = 2*(batiment.getCoutPierreConstruction());
-			coutBoisAmelioration = 2*(batiment.getCoutBoisConstruction());
-			coutOreAmelioration = 2*(batiment.getCoutOrConstruction());
-			coutNourritureAmelioration = 2*(batiment.getCoutNourritureConstruction());
+			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
+			tempsAmelioration = batiment.getTempsDeConstruction();
+			coutPierreAmelioration = batiment.getCoutPierreConstruction();
+			coutBoisAmelioration = batiment.getCoutBoisConstruction();
+			coutOreAmelioration = batiment.getCoutOrConstruction();
+			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
 		} 
 		else if (batiment.getIdTypeBatiment() == 15) // 15 = Forge
 		{
-			ouvrierNecessaireAmelioration = 2*(batiment.getOuvrierNecessaireConstruction());
-			tempsAmelioration = 2*(batiment.getTempsDeConstruction());
-			coutPierreAmelioration = 2*(batiment.getCoutPierreConstruction());
-			coutBoisAmelioration = 2*(batiment.getCoutBoisConstruction());
-			coutOreAmelioration = 2*(batiment.getCoutOrConstruction());
-			coutNourritureAmelioration = 2*(batiment.getCoutNourritureConstruction());
+			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
+			tempsAmelioration = batiment.getTempsDeConstruction();
+			coutPierreAmelioration = batiment.getCoutPierreConstruction();
+			coutBoisAmelioration = batiment.getCoutBoisConstruction();
+			coutOreAmelioration = batiment.getCoutOrConstruction();
+			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
 		} 
 		else if (batiment.getIdTypeBatiment() == 16) // 16 = Universite
 		{
-			ouvrierNecessaireAmelioration = 2*(batiment.getOuvrierNecessaireConstruction());
-			tempsAmelioration = 2*(batiment.getTempsDeConstruction());
-			coutPierreAmelioration = 2*(batiment.getCoutPierreConstruction());
-			coutBoisAmelioration = 2*(batiment.getCoutBoisConstruction());
-			coutOreAmelioration = 2*(batiment.getCoutOrConstruction());
-			coutNourritureAmelioration = 2*(batiment.getCoutNourritureConstruction());
+			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
+			tempsAmelioration = batiment.getTempsDeConstruction();
+			coutPierreAmelioration = batiment.getCoutPierreConstruction();
+			coutBoisAmelioration = batiment.getCoutBoisConstruction();
+			coutOreAmelioration = batiment.getCoutOrConstruction();
+			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
 		} 
 		else if (batiment.getIdTypeBatiment() == 17) // 17 = Marché
 		{
-			ouvrierNecessaireAmelioration = 2*(batiment.getOuvrierNecessaireConstruction());
-			tempsAmelioration = 2*(batiment.getTempsDeConstruction());
-			coutPierreAmelioration = 2*(batiment.getCoutPierreConstruction());
-			coutBoisAmelioration = 2*(batiment.getCoutBoisConstruction());
-			coutOreAmelioration = 2*(batiment.getCoutOrConstruction());
-			coutNourritureAmelioration = 2*(batiment.getCoutNourritureConstruction());
+			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
+			tempsAmelioration = batiment.getTempsDeConstruction();
+			coutPierreAmelioration = batiment.getCoutPierreConstruction();
+			coutBoisAmelioration = batiment.getCoutBoisConstruction();
+			coutOreAmelioration = batiment.getCoutOrConstruction();
+			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
 		} 
 		else if (batiment.getIdTypeBatiment() == 18) // 18 = Table d'expéditions
 		{
-			ouvrierNecessaireAmelioration = 2*(batiment.getOuvrierNecessaireConstruction());
-			tempsAmelioration = 2*(batiment.getTempsDeConstruction());
-			coutPierreAmelioration = 2*(batiment.getCoutPierreConstruction());
-			coutBoisAmelioration = 2*(batiment.getCoutBoisConstruction());
-			coutOreAmelioration = 2*(batiment.getCoutOrConstruction());
-			coutNourritureAmelioration = 2*(batiment.getCoutNourritureConstruction());
+			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
+			tempsAmelioration = batiment.getTempsDeConstruction();
+			coutPierreAmelioration = batiment.getCoutPierreConstruction();
+			coutBoisAmelioration = batiment.getCoutBoisConstruction();
+			coutOreAmelioration = batiment.getCoutOrConstruction();
+			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
 		}
 
 		// MISE A JOUR DE BATIMENT JOUEUR
