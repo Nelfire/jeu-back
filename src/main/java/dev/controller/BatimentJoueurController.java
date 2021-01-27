@@ -69,11 +69,11 @@ public class BatimentJoueurController {
 		return this.batimentJoueurService.putBatimentJoueur(batimentJoueurDto, id);
 	}
 	
-	/**
-	 * RECHERCHE POPULATION MAXIMALE DU JOUEUR
-	 */
-	@GetMapping("/popultationMaximale")
-	public Integer RecherchePopulationMaximaleJoueur() {
-		return this.batimentJoueurService.RecherchePopulationMaximaleJoueur();
-	}
+//	/**
+//	 * RECHERCHE POPULATION MAXIMALE DU JOUEUR
+//	 */
+//	@GetMapping("/popultationMaximale")
+//	public Integer RecherchePopulationMaximaleJoueur() {
+//		return this.batimentJoueurService.RecherchePopulationMaximaleJoueur();
+//	}
 }

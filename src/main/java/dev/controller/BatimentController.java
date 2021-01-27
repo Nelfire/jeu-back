@@ -33,6 +33,37 @@ public class BatimentController {
 	public List<BatimentDto> getAllBatiments() {
 		return this.batimentService.listerBatiments();
 	}
+	
+	/**
+	 * LISTER QUE LES BATIMENTS DE TYPE DIVERS = 0
+	 */
+	@GetMapping("/listerbatimentsDivers")
+	public List<BatimentDto> listerbatimentsDivers() {
+		return this.batimentService.listerbatimentsDivers();
+	}
+	/**
+	 * LISTER QUE LES BATIMENTS DE TYPE RECOLTE = 1
+	 */
+	@GetMapping("/listerbatimentsRecolte")
+	public List<BatimentDto> listerbatimentsRecolte() {
+		return this.batimentService.listerbatimentsRecolte();
+	}
+
+	/**
+	 * LISTER QUE LES BATIMENTS DE TYPE STOCKAGE = 2
+	 */
+	@GetMapping("/listerbatimentsStockage")
+	public List<BatimentDto> listerbatimentsStockage() {
+		return this.batimentService.listerbatimentsStockage();
+	}
+
+	/**
+	 * LISTER QUE LES BATIMENTS DE TYPE MILLITAIRE = 3
+	 */
+	@GetMapping("/listerbatimentsMillitaire")
+	public List<BatimentDto> listerbatimentsMillitaire() {
+		return this.batimentService.listerbatimentsMillitaire();
+	}
 
 	/**
 	 * DETAIL D'UN BATIMENT (Via ID)

@@ -5,26 +5,33 @@ public class BatimentDto {
     private Integer id;
 
     /* 
- 	1 - Hotel de ville	
-	2 - Chaumière (augmenter limite population)
-	3 - Carrière (farm pierre)
-	4 - Camp de bucheron (farm bois)		
-	5 - Camp de mineur (farm or)
-	6 - Ferme (farm nourriture)
-	7 - Stockage Pierre (Entrepot)	
-	8 - Stockage Bois (Scierie)
-	9 - Stockage Or (Banque)
-	10 - Stockage Nourriture (Grenier)
-	11 - Caserne Militaire	
-	12 - Ecurie
-	13 - Port
-	14 - Atelier de siege
-	15 - Forge		
-	16 - Universite
-	17 - Marché
+ 	1 /- Hotel de ville	
+	2 /- Chaumière (augmenter limite population)
+	3 /- Carrière (farm pierre)
+	4 /- Camp de bucheron (farm bois)		
+	5 /- Camp de mineur (farm or)
+	6 /- Ferme (farm nourriture)
+	7 /- Stockage Pierre (Entrepot)	
+	8 /- Stockage Bois (Scierie)
+	9 /- Stockage Or (Banque)
+	10 /- Stockage Nourriture (Grenier)
+	11 /- Caserne Militaire	
+	12 /- Ecurie
+	13 /- Port
+	14 /- Atelier de siege
+	15 /- Forge		
+	16 /- Universite
+	17 /- Marché
 	18 - Table d'expéditions
      */
     private Integer idTypeBatiment;
+    /*
+     * 0 = Divers
+     * 1 = Ressource
+     * 2 = Stockage
+     * 3 = Millitaire
+     */
+    private Integer idCategorieBatiment;
     
     /** icone du batiment **/
     private String icone;
@@ -73,418 +80,58 @@ public class BatimentDto {
     private Integer apportOreHeure;
     /** montant de l'apport de ressource (nourriture) par heure (pour 100% exploitants) **/
     private Integer apportNourritureHeure;
-
-    /** augmentation de la population maximale **/
-    private Integer apportPopulation;
     
 	public BatimentDto() {
 	}
-	
+
 	/**
 	 * @param idTypeBatiment
+	 * @param icone
+	 * @param libelle
+	 * @param descriptif
+	 * @param ouvrierNecessaireConstruction
+	 * @param tempsDeConstruction
+	 * @param coutPierreConstruction
+	 * @param coutBoisConstruction
+	 * @param coutOrConstruction
+	 * @param coutNourritureConstruction
+	 * @param niveauHotelDeVilleNecessaireConstruction
+	 * @param quantiteeStockagePierre
+	 * @param quantiteeStockageBois
+	 * @param quantiteeStockageOre
+	 * @param quantiteeStockageNourriture
+	 * @param apportPierreHeure
+	 * @param apportBoisHeure
+	 * @param apportOreHeure
+	 * @param apportNourritureHeure
 	 */
-	public BatimentDto(Integer idTypeBatiment) {
+	public BatimentDto(Integer idTypeBatiment, Integer idCategorieBatiment, String icone, String libelle, String descriptif,
+			Integer ouvrierNecessaireConstruction, Integer tempsDeConstruction, Integer coutPierreConstruction,
+			Integer coutBoisConstruction, Integer coutOrConstruction, Integer coutNourritureConstruction,
+			Integer niveauHotelDeVilleNecessaireConstruction, Integer quantiteeStockagePierre,
+			Integer quantiteeStockageBois, Integer quantiteeStockageOre, Integer quantiteeStockageNourriture,
+			Integer apportPierreHeure, Integer apportBoisHeure, Integer apportOreHeure, Integer apportNourritureHeure) {
 		super();
 		this.idTypeBatiment = idTypeBatiment;
-		switch (this.idTypeBatiment) {
-			// Hotel de ville
-		case 1:
-			this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876575979667456/HotelDeVille.png";
-			this.libelle = "Hotel de ville";
-			this.descriptif = "Descriptif de l'Hotel de ville";
-			this.ouvrierNecessaireConstruction = 5;
-			this.tempsDeConstruction = 99;
-			this.coutPierreConstruction = 20;
-			this.coutBoisConstruction = 20;
-			this.coutOrConstruction = 20;
-			this.coutNourritureConstruction = 20;
-			this.niveauHotelDeVilleNecessaireConstruction = 0;
-			this.quantiteeStockagePierre = 10_000;
-			this.quantiteeStockageBois = 10_000;
-			this.quantiteeStockageOre = 10_000;
-			this.quantiteeStockageNourriture = 10_000;
-			this.apportPierreHeure = 1500;
-			this.apportBoisHeure = 1500;
-			this.apportOreHeure = 1500;
-			this.apportNourritureHeure = 1500;
-			this.apportPopulation = 20;
-		break;
-		//Chaumière (augmenter limite population)
-		case 2:
-			this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876520338161704/Chaumiere.png";
-			this.libelle = "Chaumière";
-			this.descriptif = "Descriptif de la Chaumière";
-			this.ouvrierNecessaireConstruction = 5;
-			this.tempsDeConstruction = 300;
-			this.coutPierreConstruction = 2500;
-			this.coutBoisConstruction = 2000;
-			this.coutOrConstruction = 500;
-			this.coutNourritureConstruction = 1000;
-			this.niveauHotelDeVilleNecessaireConstruction = 1;
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 50;
-		break;
-		// Carrière (farm pierre)
-		case 3:
-			this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876505230540860/Carriere.png";
-			this.libelle = "Carrière";
-			this.descriptif = "Descriptif de la Carrière";
-			this.ouvrierNecessaireConstruction = 5;
-			this.tempsDeConstruction = 300;
-			this.coutPierreConstruction = 1;
-			this.coutBoisConstruction = 1;
-			this.coutOrConstruction = 1;
-			this.coutNourritureConstruction = 1;
-			this.niveauHotelDeVilleNecessaireConstruction = 1;
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.apportPierreHeure = 25_000;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-		break;
-		// Camp de bucheron (farm bois)		
-		case 4:
-			this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876491850711040/CampDeBucheron.png";
-			this.libelle = "Camp de bucheron";
-			this.descriptif = "Descriptif du Camp de bucheron";
-			this.ouvrierNecessaireConstruction = 5;
-			this.tempsDeConstruction = 300;
-			this.coutPierreConstruction = 2500;
-			this.coutBoisConstruction = 2000;
-			this.coutOrConstruction = 500;
-			this.coutNourritureConstruction = 1000;
-			this.niveauHotelDeVilleNecessaireConstruction = 1;
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 25_000;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-		break;
-		// Camp de mineur (farm or)
-		case 5:
-			this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876498183323678/CampDeMineur.png";
-			this.libelle = "Camp de mineur";
-			this.descriptif = "Descriptif du Camp de mineur";
-			this.ouvrierNecessaireConstruction = 5;
-			this.tempsDeConstruction = 300;
-			this.coutPierreConstruction = 2500;
-			this.coutBoisConstruction = 2000;
-			this.coutOrConstruction = 500;
-			this.coutNourritureConstruction = 1000;
-			this.niveauHotelDeVilleNecessaireConstruction = 1;
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 25_000;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-		break;
-		// Ferme (farm nourriture)
-		case 6:
-			this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876556509839360/Ferme.png";
-			this.libelle = "Ferme";
-			this.descriptif = "Descriptif de la Ferme";
-			this.ouvrierNecessaireConstruction = 5; 
-			this.tempsDeConstruction = 10;
-			this.coutPierreConstruction = 20;
-			this.coutBoisConstruction = 20;
-			this.coutOrConstruction = 20;
-			this.coutNourritureConstruction = 20;
-			this.niveauHotelDeVilleNecessaireConstruction = 1;
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 25_000;
-			this.apportPopulation = 0;
-		break;
-		// Stockage Pierre (Entrepot)	
-		case 7:
-			this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876485034311690/Banque.png";
-			this.libelle = "Entrepot";
-			this.descriptif = "Descriptif de l'Entrepot";
-			this.ouvrierNecessaireConstruction = 5;
-			this.tempsDeConstruction = 10;
-			this.coutPierreConstruction = 20;
-			this.coutBoisConstruction = 20;
-			this.coutOrConstruction = 20;
-			this.coutNourritureConstruction = 20;
-			this.niveauHotelDeVilleNecessaireConstruction = 2;
-			this.quantiteeStockagePierre = 50_000;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-		break;
-		// Stockage Bois (Scierie)
-		case 8:
-			this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876485034311690/Banque.png";
-			this.libelle = "Scierie";
-			this.descriptif = "Descriptif de la Scierie";
-			this.ouvrierNecessaireConstruction = 5;
-			this.tempsDeConstruction = 300;
-			this.coutPierreConstruction = 2500;
-			this.coutBoisConstruction = 2000;
-			this.coutOrConstruction = 500;
-			this.coutNourritureConstruction = 1000;
-			this.niveauHotelDeVilleNecessaireConstruction = 2;
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 50_000;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-		break;
-		// Stockage Or (Banque)
-		case 9:
-			this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876485034311690/Banque.png";
-			this.libelle = "Banque";
-			this.descriptif = "Descriptif de la Banque";
-			this.ouvrierNecessaireConstruction = 5;
-			this.tempsDeConstruction = 300;
-			this.coutPierreConstruction = 2500;
-			this.coutBoisConstruction = 2000;
-			this.coutOrConstruction = 500;
-			this.coutNourritureConstruction = 1000;
-			this.niveauHotelDeVilleNecessaireConstruction = 2;
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 50_000;
-			this.quantiteeStockageNourriture = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-		break;
-		// Stockage Nourriture (Grenier)
-		case 10:
-			this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876485034311690/Banque.png";
-			this.libelle = "Grenier";
-			this.descriptif = "Descriptif du Grenier";
-			this.ouvrierNecessaireConstruction = 5;
-			this.tempsDeConstruction = 300;
-			this.coutPierreConstruction = 2500;
-			this.coutBoisConstruction = 2000;
-			this.coutOrConstruction = 500;
-			this.coutNourritureConstruction = 1000;
-			this.niveauHotelDeVilleNecessaireConstruction = 2;
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 50_000;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-		break;
-		// Caserne Militaire	
-		case 11:
-			this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876513039417404/CaserneMillitaire.png";
-			this.libelle = "Caserne Militaire";
-			this.descriptif = "Descriptif de la Caserne Militaire";
-			this.ouvrierNecessaireConstruction = 5;
-			this.tempsDeConstruction = 300;
-			this.coutPierreConstruction = 2500;
-			this.coutBoisConstruction = 2000;
-			this.coutOrConstruction = 500;
-			this.coutNourritureConstruction = 1000;
-			this.niveauHotelDeVilleNecessaireConstruction = 2;
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-		break;
-		// Ecurie
-		case 12:
-			this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876520338161704/Chaumiere.png";
-			this.libelle = "Ecurie";
-			this.descriptif = "Descriptif de l'Ecurie";
-			this.ouvrierNecessaireConstruction = 5;
-			this.tempsDeConstruction = 300;
-			this.coutPierreConstruction = 2500;
-			this.coutBoisConstruction = 2000;
-			this.coutOrConstruction = 500;
-			this.coutNourritureConstruction = 1000;
-			this.niveauHotelDeVilleNecessaireConstruction = 3;
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-		break;
-		// Port
-		case 13:
-			this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876596741865522/Port.png";
-			this.libelle = "Port";
-			this.descriptif = "Descriptif du Port";
-			this.ouvrierNecessaireConstruction = 5;
-			this.tempsDeConstruction = 300;
-			this.coutPierreConstruction = 2500;
-			this.coutBoisConstruction = 2000;
-			this.coutOrConstruction = 500;
-			this.coutNourritureConstruction = 1000;
-			this.niveauHotelDeVilleNecessaireConstruction = 4;
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-		break;
-		// Atelier de siege
-		case 14:
-			this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876478667751444/AtelierDeSiege.png";
-			this.libelle = "Atelier de siege";
-			this.descriptif = "Descriptif de l'Atelier de siege";
-			this.ouvrierNecessaireConstruction = 5;
-			this.tempsDeConstruction = 300;
-			this.coutPierreConstruction = 2500;
-			this.coutBoisConstruction = 2000;
-			this.coutOrConstruction = 500;
-			this.coutNourritureConstruction = 1000;
-			this.niveauHotelDeVilleNecessaireConstruction = 5;
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-		break;
-		// Forge
-		case 15:
-			this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876568375001098/Forge.png";
-			this.libelle = "Forge";
-			this.descriptif = "Descriptif de la Forge";
-			this.ouvrierNecessaireConstruction = 5;
-			this.tempsDeConstruction = 300;
-			this.coutPierreConstruction = 2500;
-			this.coutBoisConstruction = 2000;
-			this.coutOrConstruction = 500;
-			this.coutNourritureConstruction = 1000;
-			this.niveauHotelDeVilleNecessaireConstruction = 5;
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-		break;
-		// Universite
-		case 16:
-			this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876610632220702/Universite.png";
-			this.libelle = "Universite";
-			this.descriptif = "Descriptif de l'Universite";
-			this.ouvrierNecessaireConstruction = 5;
-			this.tempsDeConstruction = 300;
-			this.coutPierreConstruction = 2500;
-			this.coutBoisConstruction = 2000;
-			this.coutOrConstruction = 500;
-			this.coutNourritureConstruction = 1000;
-			this.niveauHotelDeVilleNecessaireConstruction = 5;
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-		break;
-		// Marché
-		case 17:
-			this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876590022590504/Marche.png";
-			this.libelle = "Marché";
-			this.descriptif = "Descriptif du Marché";
-			this.ouvrierNecessaireConstruction = 5;
-			this.tempsDeConstruction = 300;
-			this.coutPierreConstruction = 2500;
-			this.coutBoisConstruction = 2000;
-			this.coutOrConstruction = 500;
-			this.coutNourritureConstruction = 1000;
-			this.niveauHotelDeVilleNecessaireConstruction = 5;
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-		break;
-		// Table d'expéditions
-		case 18:
-			this.icone = "https://cdn.discordapp.com/attachments/794876433842831361/794876603564818432/TableExpedition.png";
-			this.libelle = "Table d'expéditions";
-			this.descriptif = "Descriptif de la Table d'expéditions";
-			this.ouvrierNecessaireConstruction = 5;
-			this.tempsDeConstruction = 300;
-			this.coutPierreConstruction = 2500;
-			this.coutBoisConstruction = 2000;
-			this.coutOrConstruction = 500;
-			this.coutNourritureConstruction = 1000;
-			this.niveauHotelDeVilleNecessaireConstruction = 6;
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-		break;
-			
-		}
+		this.idCategorieBatiment = idCategorieBatiment;
+		this.icone = icone;
+		this.libelle = libelle;
+		this.descriptif = descriptif;
+		this.ouvrierNecessaireConstruction = ouvrierNecessaireConstruction;
+		this.tempsDeConstruction = tempsDeConstruction;
+		this.coutPierreConstruction = coutPierreConstruction;
+		this.coutBoisConstruction = coutBoisConstruction;
+		this.coutOrConstruction = coutOrConstruction;
+		this.coutNourritureConstruction = coutNourritureConstruction;
+		this.niveauHotelDeVilleNecessaireConstruction = niveauHotelDeVilleNecessaireConstruction;
+		this.quantiteeStockagePierre = quantiteeStockagePierre;
+		this.quantiteeStockageBois = quantiteeStockageBois;
+		this.quantiteeStockageOre = quantiteeStockageOre;
+		this.quantiteeStockageNourriture = quantiteeStockageNourriture;
+		this.apportPierreHeure = apportPierreHeure;
+		this.apportBoisHeure = apportBoisHeure;
+		this.apportOreHeure = apportOreHeure;
+		this.apportNourritureHeure = apportNourritureHeure;
 	}
 
 	/**
@@ -513,6 +160,21 @@ public class BatimentDto {
 	 */
 	public void setIdTypeBatiment(Integer idTypeBatiment) {
 		this.idTypeBatiment = idTypeBatiment;
+	}
+
+	
+	/**
+	 * @return the idCategorieBatiment
+	 */
+	public Integer getIdCategorieBatiment() {
+		return idCategorieBatiment;
+	}
+
+	/**
+	 * @param idCategorieBatiment the idCategorieBatiment to set
+	 */
+	public void setIdCategorieBatiment(Integer idCategorieBatiment) {
+		this.idCategorieBatiment = idCategorieBatiment;
 	}
 
 	/**

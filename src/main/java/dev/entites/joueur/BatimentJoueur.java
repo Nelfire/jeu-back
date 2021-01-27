@@ -61,12 +61,6 @@ public class BatimentJoueur {
     
     /** quantitée de nourriture stockable dans la chambre forte du batiment**/
     private Integer quantiteeStockageNourriture;
-    
-    /** nombre d'exploitants autorisé pour le bâtiment **/
-    private Integer nombreExploitantsAutorise;
-
-    /** nombre d'exploitants actuel actifs sur le bâtiment **/
-    private Integer nombreExploitantsActif;
 
     /** montant de l'apport de ressource (pierre) par heure (pour 100% exploitants) **/
     private Integer apportPierreHeure;
@@ -76,9 +70,6 @@ public class BatimentJoueur {
     private Integer apportOreHeure;
     /** montant de l'apport de ressource (nourriture) par heure (pour 100% exploitants) **/
     private Integer apportNourritureHeure;
-    
-    /** augmentation de la population maximale **/
-    private Integer apportPopulation;
 
     private Long dateDebutConstruction;
     private Long dateFinConstruction;
@@ -87,6 +78,7 @@ public class BatimentJoueur {
     public BatimentJoueur() {
     	
     }
+
 	/**
 	 * @param joueur
 	 * @param batiment
@@ -101,389 +93,41 @@ public class BatimentJoueur {
 	 * @param quantiteeStockageBois
 	 * @param quantiteeStockageOre
 	 * @param quantiteeStockageNourriture
-	 * @param nombreExploitantsAutorise
-	 * @param nombreExploitantsActif
-	 * @param apportRessourceHeure
+	 * @param apportPierreHeure
+	 * @param apportBoisHeure
+	 * @param apportOreHeure
+	 * @param apportNourritureHeure
+	 * @param dateDebutConstruction
+	 * @param dateFinConstruction
 	 */
-	public BatimentJoueur(Joueur joueur, Batiment batiment, Integer niveau, Integer nombreExploitantsActif, Long dateDebutConstruction, Long dateFinConstruction) {
+	public BatimentJoueur(Joueur joueur, Batiment batiment, Integer niveau, Integer ouvrierNecessaireAmelioration,
+			Integer tempsAmelioration, Integer coutPierreAmelioration, Integer coutBoisAmelioration,
+			Integer coutOreAmelioration, Integer coutNourritureAmelioration, Integer quantiteeStockagePierre,
+			Integer quantiteeStockageBois, Integer quantiteeStockageOre, Integer quantiteeStockageNourriture,
+			Integer apportPierreHeure, Integer apportBoisHeure, Integer apportOreHeure, Integer apportNourritureHeure,
+			Long dateDebutConstruction, Long dateFinConstruction) {
 		super();
 		this.joueur = joueur;
 		this.batiment = batiment;
 		this.niveau = niveau;
+		this.ouvrierNecessaireAmelioration = ouvrierNecessaireAmelioration;
+		this.tempsAmelioration = tempsAmelioration;
+		this.coutPierreAmelioration = coutPierreAmelioration;
+		this.coutBoisAmelioration = coutBoisAmelioration;
+		this.coutOreAmelioration = coutOreAmelioration;
+		this.coutNourritureAmelioration = coutNourritureAmelioration;
+		this.quantiteeStockagePierre = quantiteeStockagePierre;
+		this.quantiteeStockageBois = quantiteeStockageBois;
+		this.quantiteeStockageOre = quantiteeStockageOre;
+		this.quantiteeStockageNourriture = quantiteeStockageNourriture;
+		this.apportPierreHeure = apportPierreHeure;
+		this.apportBoisHeure = apportBoisHeure;
+		this.apportOreHeure = apportOreHeure;
+		this.apportNourritureHeure = apportNourritureHeure;
 		this.dateDebutConstruction = dateDebutConstruction;
 		this.dateFinConstruction = dateFinConstruction;
-	
-		switch (batiment.getIdTypeBatiment()) {
-		// Hotel de ville
-		case 1:
-			// Hotel de ville	
-			this.ouvrierNecessaireAmelioration = 2*((batiment.getOuvrierNecessaireConstruction()*this.niveau)*this.niveau);
-			this.tempsAmelioration = 2*((batiment.getTempsDeConstruction()*this.niveau)*this.niveau);
-			this.coutPierreAmelioration = 2*((batiment.getCoutPierreConstruction()*this.niveau)*this.niveau);
-			this.coutBoisAmelioration = 2*((batiment.getCoutBoisConstruction()*this.niveau)*this.niveau);
-			this.coutOreAmelioration = 2*((batiment.getCoutOrConstruction()*this.niveau)*this.niveau);
-			this.coutNourritureAmelioration = 2*((batiment.getCoutNourritureConstruction()*this.niveau)*this.niveau);
-			this.quantiteeStockagePierre =2*((batiment.getQuantiteeStockagePierre()*this.niveau)*this.niveau);
-			this.quantiteeStockageBois = 2*((batiment.getQuantiteeStockageBois()*this.niveau)*this.niveau);
-			this.quantiteeStockageOre = 2*((batiment.getQuantiteeStockageOre()*this.niveau)*this.niveau);
-			this.quantiteeStockageNourriture = 2*((batiment.getQuantiteeStockageNourriture()*this.niveau)*this.niveau);
-			this.nombreExploitantsAutorise = 0;
-			this.nombreExploitantsActif = 0;
-			// ??????????????????????
-			this.apportPierreHeure = 2*((batiment.getApportPierreHeure()*this.niveau)*this.niveau);
-			this.apportBoisHeure = 2*((batiment.getApportBoisHeure()*this.niveau)*this.niveau);
-			this.apportOreHeure = 2*((batiment.getApportOreHeure()*this.niveau)*this.niveau);
-			this.apportNourritureHeure = 2*((batiment.getApportNourritureHeure()*this.niveau)*this.niveau);
-			this.apportPopulation = 2*((batiment.getApportPopulation()*this.niveau)*this.niveau);
-			break;
-		case 2:
-			// Chaumière
-			this.ouvrierNecessaireAmelioration = 2*((batiment.getOuvrierNecessaireConstruction()*this.niveau)*this.niveau);
-			this.tempsAmelioration = 2*((batiment.getTempsDeConstruction()*this.niveau)*this.niveau);
-			this.coutPierreAmelioration = 2*((batiment.getCoutPierreConstruction()*this.niveau)*this.niveau);
-			this.coutBoisAmelioration = 2*((batiment.getCoutBoisConstruction()*this.niveau)*this.niveau);
-			this.coutOreAmelioration = 2*((batiment.getCoutOrConstruction()*this.niveau)*this.niveau);
-			this.coutNourritureAmelioration = 2*((batiment.getCoutNourritureConstruction()*this.niveau)*this.niveau);
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.nombreExploitantsAutorise = 99*this.niveau;
-			this.nombreExploitantsActif = nombreExploitantsActif;
-			// ??????????????????????
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 2*((batiment.getApportPopulation()*this.niveau)*this.niveau);
-			break;
-		case 3:
-			// Carrière
-			this.ouvrierNecessaireAmelioration = 2*((batiment.getOuvrierNecessaireConstruction()*this.niveau)*this.niveau);
-			this.tempsAmelioration = 2*((batiment.getTempsDeConstruction()*this.niveau)*this.niveau);
-			this.coutPierreAmelioration = 2*((batiment.getCoutPierreConstruction()*this.niveau)*this.niveau);
-			this.coutBoisAmelioration = 2*((batiment.getCoutBoisConstruction()*this.niveau)*this.niveau);
-			this.coutOreAmelioration = 2*((batiment.getCoutOrConstruction()*this.niveau)*this.niveau);
-			this.coutNourritureAmelioration = 2*((batiment.getCoutNourritureConstruction()*this.niveau)*this.niveau);
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.nombreExploitantsAutorise = 99*this.niveau;
-			this.nombreExploitantsActif = nombreExploitantsActif;
-			// ??????????????????????
-			this.apportPierreHeure = 2*((batiment.getApportPierreHeure()*this.niveau)*this.niveau);
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-			break;
-		case 4:
-			// Camp de bucheron
-			this.ouvrierNecessaireAmelioration = 2*((batiment.getOuvrierNecessaireConstruction()*this.niveau)*this.niveau);
-			this.tempsAmelioration = 2*((batiment.getTempsDeConstruction()*this.niveau)*this.niveau);
-			this.coutPierreAmelioration = 2*((batiment.getCoutPierreConstruction()*this.niveau)*this.niveau);
-			this.coutBoisAmelioration = 2*((batiment.getCoutBoisConstruction()*this.niveau)*this.niveau);
-			this.coutOreAmelioration = 2*((batiment.getCoutOrConstruction()*this.niveau)*this.niveau);
-			this.coutNourritureAmelioration = 2*((batiment.getCoutNourritureConstruction()*this.niveau)*this.niveau);
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.nombreExploitantsAutorise = 99*this.niveau;
-			this.nombreExploitantsActif = nombreExploitantsActif;
-			// ??????????????????????
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = ((batiment.getApportBoisHeure()*this.niveau)*this.niveau);
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-			break;
-		case 5:
-			// Camp de mineur
-			this.ouvrierNecessaireAmelioration = 2*((batiment.getOuvrierNecessaireConstruction()*this.niveau)*this.niveau);
-			this.tempsAmelioration = 2*((batiment.getTempsDeConstruction()*this.niveau)*this.niveau);
-			this.coutPierreAmelioration = 2*((batiment.getCoutPierreConstruction()*this.niveau)*this.niveau);
-			this.coutBoisAmelioration = 2*((batiment.getCoutBoisConstruction()*this.niveau)*this.niveau);
-			this.coutOreAmelioration = 2*((batiment.getCoutOrConstruction()*this.niveau)*this.niveau);
-			this.coutNourritureAmelioration = 2*((batiment.getCoutNourritureConstruction()*this.niveau)*this.niveau);
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.nombreExploitantsAutorise = 99*this.niveau;
-			this.nombreExploitantsActif = nombreExploitantsActif;
-			// ??????????????????????
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 2*((batiment.getApportOreHeure()*this.niveau)*this.niveau);
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-			break;
-		case 6:
-			// Ferme
-			this.ouvrierNecessaireAmelioration = 2*((batiment.getOuvrierNecessaireConstruction()*this.niveau)*this.niveau);
-			this.tempsAmelioration = 2*((batiment.getTempsDeConstruction()*this.niveau)*this.niveau);
-			this.coutPierreAmelioration = 2*((batiment.getCoutPierreConstruction()*this.niveau)*this.niveau);
-			this.coutBoisAmelioration = 2*((batiment.getCoutBoisConstruction()*this.niveau)*this.niveau);
-			this.coutOreAmelioration = 2*((batiment.getCoutOrConstruction()*this.niveau)*this.niveau);
-			this.coutNourritureAmelioration = 2*((batiment.getCoutNourritureConstruction()*this.niveau)*this.niveau);
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.nombreExploitantsAutorise = 0;
-			this.nombreExploitantsActif = 0;
-			
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = (batiment.getApportNourritureHeure()*this.niveau)*2;
-			this.apportPopulation = 0;
-			break;
-		case 7:
-			// Entrepot (Stockage Pierre)
-			this.ouvrierNecessaireAmelioration = 2*((batiment.getOuvrierNecessaireConstruction()*this.niveau)*this.niveau);
-			this.tempsAmelioration = 2*((batiment.getTempsDeConstruction()*this.niveau)*this.niveau);
-			this.coutPierreAmelioration = 2*((batiment.getCoutPierreConstruction()*this.niveau)*this.niveau);
-			this.coutBoisAmelioration = 2*((batiment.getCoutBoisConstruction()*this.niveau)*this.niveau);
-			this.coutOreAmelioration = 2*((batiment.getCoutOrConstruction()*this.niveau)*this.niveau);
-			this.coutNourritureAmelioration = 2*((batiment.getCoutNourritureConstruction()*this.niveau)*this.niveau);
-			this.quantiteeStockagePierre = 2*((batiment.getQuantiteeStockagePierre()*this.niveau)*this.niveau);
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.nombreExploitantsAutorise = 0;
-			this.nombreExploitantsActif = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-			break;
-		case 8:
-			// Scierie (Stockage Bois)
-			this.ouvrierNecessaireAmelioration = 2*((batiment.getOuvrierNecessaireConstruction()*this.niveau)*this.niveau);
-			this.tempsAmelioration = 2*((batiment.getTempsDeConstruction()*this.niveau)*this.niveau);
-			this.coutPierreAmelioration = 2*((batiment.getCoutPierreConstruction()*this.niveau)*this.niveau);
-			this.coutBoisAmelioration = 2*((batiment.getCoutBoisConstruction()*this.niveau)*this.niveau);
-			this.coutOreAmelioration = 2*((batiment.getCoutOrConstruction()*this.niveau)*this.niveau);
-			this.coutNourritureAmelioration = 2*((batiment.getCoutNourritureConstruction()*this.niveau)*this.niveau);
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 2*((batiment.getQuantiteeStockageBois()*this.niveau)*this.niveau);
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.nombreExploitantsAutorise = 0;
-			this.nombreExploitantsActif = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-			break;
-		case 9:
-			// Banque (Stockage Ore)
-			this.ouvrierNecessaireAmelioration = 2*((batiment.getOuvrierNecessaireConstruction()*this.niveau)*this.niveau);
-			this.tempsAmelioration = 2*((batiment.getTempsDeConstruction()*this.niveau)*this.niveau);
-			this.coutPierreAmelioration = 2*((batiment.getCoutPierreConstruction()*this.niveau)*this.niveau);
-			this.coutBoisAmelioration = 2*((batiment.getCoutBoisConstruction()*this.niveau)*this.niveau);
-			this.coutOreAmelioration = 2*((batiment.getCoutOrConstruction()*this.niveau)*this.niveau);
-			this.coutNourritureAmelioration = 2*((batiment.getCoutNourritureConstruction()*this.niveau)*this.niveau);
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 2*((batiment.getQuantiteeStockageOre()*this.niveau)*this.niveau);
-			this.quantiteeStockageNourriture = 0;
-			this.nombreExploitantsAutorise = 0;
-			this.nombreExploitantsActif = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-			break;
-		case 10:
-			// Grenier (Stockage Nourriture)
-			this.ouvrierNecessaireAmelioration = 2*((batiment.getOuvrierNecessaireConstruction()*this.niveau)*this.niveau);
-			this.tempsAmelioration = 2*((batiment.getTempsDeConstruction()*this.niveau)*this.niveau);
-			this.coutPierreAmelioration = 2*((batiment.getCoutPierreConstruction()*this.niveau)*this.niveau);
-			this.coutBoisAmelioration = 2*((batiment.getCoutBoisConstruction()*this.niveau)*this.niveau);
-			this.coutOreAmelioration = 2*((batiment.getCoutOrConstruction()*this.niveau)*this.niveau);
-			this.coutNourritureAmelioration = 2*((batiment.getCoutNourritureConstruction()*this.niveau)*this.niveau);
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 2*((batiment.getQuantiteeStockageNourriture()*this.niveau)*this.niveau);
-			this.nombreExploitantsAutorise = 0;
-			this.nombreExploitantsActif = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-			break;
-		case 11:
-			// Caserne Militaire
-			this.ouvrierNecessaireAmelioration = 2*((batiment.getOuvrierNecessaireConstruction()*this.niveau)*this.niveau);
-			this.tempsAmelioration = 2*((batiment.getTempsDeConstruction()*this.niveau)*this.niveau);
-			this.coutPierreAmelioration = 2*((batiment.getCoutPierreConstruction()*this.niveau)*this.niveau);
-			this.coutBoisAmelioration = 2*((batiment.getCoutBoisConstruction()*this.niveau)*this.niveau);
-			this.coutOreAmelioration = 2*((batiment.getCoutOrConstruction()*this.niveau)*this.niveau);
-			this.coutNourritureAmelioration = 2*((batiment.getCoutNourritureConstruction()*this.niveau)*this.niveau);
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.nombreExploitantsAutorise = 0;
-			this.nombreExploitantsActif = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-			break;
-		case 12:
-			// Ecurie
-			this.ouvrierNecessaireAmelioration = 2*((batiment.getOuvrierNecessaireConstruction()*this.niveau)*this.niveau);
-			this.tempsAmelioration = 2*((batiment.getTempsDeConstruction()*this.niveau)*this.niveau);
-			this.coutPierreAmelioration = 2*((batiment.getCoutPierreConstruction()*this.niveau)*this.niveau);
-			this.coutBoisAmelioration = 2*((batiment.getCoutBoisConstruction()*this.niveau)*this.niveau);
-			this.coutOreAmelioration = 2*((batiment.getCoutOrConstruction()*this.niveau)*this.niveau);
-			this.coutNourritureAmelioration = 2*((batiment.getCoutNourritureConstruction()*this.niveau)*this.niveau);
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.nombreExploitantsAutorise = 0;
-			this.nombreExploitantsActif = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-			break;
-		case 13:
-			// Port
-			this.ouvrierNecessaireAmelioration = 2*((batiment.getOuvrierNecessaireConstruction()*this.niveau)*this.niveau);
-			this.tempsAmelioration = 2*((batiment.getTempsDeConstruction()*this.niveau)*this.niveau);
-			this.coutPierreAmelioration = 2*((batiment.getCoutPierreConstruction()*this.niveau)*this.niveau);
-			this.coutBoisAmelioration = 2*((batiment.getCoutBoisConstruction()*this.niveau)*this.niveau);
-			this.coutOreAmelioration = 2*((batiment.getCoutOrConstruction()*this.niveau)*this.niveau);
-			this.coutNourritureAmelioration = 2*((batiment.getCoutNourritureConstruction()*this.niveau)*this.niveau);
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.nombreExploitantsAutorise = 0;
-			this.nombreExploitantsActif = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-			break;
-		case 14:
-			// Atelier de siege
-			this.ouvrierNecessaireAmelioration = 2*((batiment.getOuvrierNecessaireConstruction()*this.niveau)*this.niveau);
-			this.tempsAmelioration = 2*((batiment.getTempsDeConstruction()*this.niveau)*this.niveau);
-			this.coutPierreAmelioration = 2*((batiment.getCoutPierreConstruction()*this.niveau)*this.niveau);
-			this.coutBoisAmelioration = 2*((batiment.getCoutBoisConstruction()*this.niveau)*this.niveau);
-			this.coutOreAmelioration = 2*((batiment.getCoutOrConstruction()*this.niveau)*this.niveau);
-			this.coutNourritureAmelioration = 2*((batiment.getCoutNourritureConstruction()*this.niveau)*this.niveau);
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.nombreExploitantsAutorise = 0;
-			this.nombreExploitantsActif = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-			break;
-		case 15:
-			// Forge
-			this.ouvrierNecessaireAmelioration = 2*((batiment.getOuvrierNecessaireConstruction()*this.niveau)*this.niveau);
-			this.tempsAmelioration = 2*((batiment.getTempsDeConstruction()*this.niveau)*this.niveau);
-			this.coutPierreAmelioration = 2*((batiment.getCoutPierreConstruction()*this.niveau)*this.niveau);
-			this.coutBoisAmelioration = 2*((batiment.getCoutBoisConstruction()*this.niveau)*this.niveau);
-			this.coutOreAmelioration = 2*((batiment.getCoutOrConstruction()*this.niveau)*this.niveau);
-			this.coutNourritureAmelioration = 2*((batiment.getCoutNourritureConstruction()*this.niveau)*this.niveau);
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.nombreExploitantsAutorise = 0;
-			this.nombreExploitantsActif = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-			break;
-		case 16:
-			// Universite
-			this.ouvrierNecessaireAmelioration = 2*((batiment.getOuvrierNecessaireConstruction()*this.niveau)*this.niveau);
-			this.tempsAmelioration = 2*((batiment.getTempsDeConstruction()*this.niveau)*this.niveau);
-			this.coutPierreAmelioration = 2*((batiment.getCoutPierreConstruction()*this.niveau)*this.niveau);
-			this.coutBoisAmelioration = 2*((batiment.getCoutBoisConstruction()*this.niveau)*this.niveau);
-			this.coutOreAmelioration = 2*((batiment.getCoutOrConstruction()*this.niveau)*this.niveau);
-			this.coutNourritureAmelioration = 2*((batiment.getCoutNourritureConstruction()*this.niveau)*this.niveau);
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.nombreExploitantsAutorise = 0;
-			this.nombreExploitantsActif = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-			break;
-		case 17:
-			// Marché
-			this.ouvrierNecessaireAmelioration = 2*((batiment.getOuvrierNecessaireConstruction()*this.niveau)*this.niveau);
-			this.tempsAmelioration = 2*((batiment.getTempsDeConstruction()*this.niveau)*this.niveau);
-			this.coutPierreAmelioration = 2*((batiment.getCoutPierreConstruction()*this.niveau)*this.niveau);
-			this.coutBoisAmelioration = 2*((batiment.getCoutBoisConstruction()*this.niveau)*this.niveau);
-			this.coutOreAmelioration = 2*((batiment.getCoutOrConstruction()*this.niveau)*this.niveau);
-			this.coutNourritureAmelioration = 2*((batiment.getCoutNourritureConstruction()*this.niveau)*this.niveau);
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.nombreExploitantsAutorise = 0;
-			this.nombreExploitantsActif = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-			break;
-		case 18:
-			// Table d'expéditions
-			this.ouvrierNecessaireAmelioration = 2*((batiment.getOuvrierNecessaireConstruction()*this.niveau)*this.niveau);
-			this.tempsAmelioration = 2*((batiment.getTempsDeConstruction()*this.niveau)*this.niveau);
-			this.coutPierreAmelioration = 2*((batiment.getCoutPierreConstruction()*this.niveau)*this.niveau);
-			this.coutBoisAmelioration = 2*((batiment.getCoutBoisConstruction()*this.niveau)*this.niveau);
-			this.coutOreAmelioration = 2*((batiment.getCoutOrConstruction()*this.niveau)*this.niveau);
-			this.coutNourritureAmelioration = 2*((batiment.getCoutNourritureConstruction()*this.niveau)*this.niveau);
-			this.quantiteeStockagePierre = 0;
-			this.quantiteeStockageBois = 0;
-			this.quantiteeStockageOre = 0;
-			this.quantiteeStockageNourriture = 0;
-			this.nombreExploitantsAutorise = 0;
-			this.nombreExploitantsActif = 0;
-			this.apportPierreHeure = 0;
-			this.apportBoisHeure = 0;
-			this.apportOreHeure = 0;
-			this.apportNourritureHeure = 0;
-			this.apportPopulation = 0;
-			break;
-		}
 	}
-
+	
 
 
 	/**
@@ -493,8 +137,7 @@ public class BatimentJoueur {
 		return id;
 	}
 
-
-
+	
 	/**
 	 * @param id the id to set
 	 */
@@ -738,39 +381,7 @@ public class BatimentJoueur {
 
 
 
-	/**
-	 * @return the nombreExploitantsAutorise
-	 */
-	public Integer getNombreExploitantsAutorise() {
-		return nombreExploitantsAutorise;
-	}
 
-
-
-	/**
-	 * @param nombreExploitantsAutorise the nombreExploitantsAutorise to set
-	 */
-	public void setNombreExploitantsAutorise(Integer nombreExploitantsAutorise) {
-		this.nombreExploitantsAutorise = nombreExploitantsAutorise;
-	}
-
-
-
-	/**
-	 * @return the nombreExploitantsActif
-	 */
-	public Integer getNombreExploitantsActif() {
-		return nombreExploitantsActif;
-	}
-
-
-
-	/**
-	 * @param nombreExploitantsActif the nombreExploitantsActif to set
-	 */
-	public void setNombreExploitantsActif(Integer nombreExploitantsActif) {
-		this.nombreExploitantsActif = nombreExploitantsActif;
-	}
 	/**
 	 * @return the apportPierreHeure
 	 */
@@ -853,22 +464,5 @@ public class BatimentJoueur {
 	public void setDateFinConstruction(Long dateFinConstruction) {
 		this.dateFinConstruction = dateFinConstruction;
 	}
-	/**
-	 * @return the apportPopulation
-	 */
-	public Integer getApportPopulation() {
-		return apportPopulation;
-	}
-	/**
-	 * @param apportPopulation the apportPopulation to set
-	 */
-	public void setApportPopulation(Integer apportPopulation) {
-		this.apportPopulation = apportPopulation;
-	}
-
-
-
-
-	
 	
 }
