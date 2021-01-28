@@ -10,9 +10,17 @@ public interface BatimentJoueurRepo extends JpaRepository<BatimentJoueur, Intege
 	List<BatimentJoueur> findByJoueurId(Integer id);
 	BatimentJoueur findByBatimentIdTypeBatiment(Integer id);
 
+	// Bâtiments donnant un apport de ressources
 	List<BatimentJoueur> findByApportPierreHeureGreaterThan(Integer apportPierreHeure);
 	List<BatimentJoueur> findByApportBoisHeureGreaterThan(Integer apportBoisHeure);
 	List<BatimentJoueur> findByApportOreHeureGreaterThan(Integer apportOrHeure);
 	List<BatimentJoueur> findByApportNourritureHeureGreaterThan(Integer apportNourritureHeure);
+	
+	List<BatimentJoueur> findByQuantiteeStockagePierreGreaterThan(Integer stockagePierre);
+	List<BatimentJoueur> findByQuantiteeStockageBoisGreaterThan(Integer stockageBois);
+	List<BatimentJoueur> findByQuantiteeStockageOreGreaterThan(Integer stockageOr);
+	List<BatimentJoueur> findByQuantiteeStockageNourritureGreaterThan(Integer stockageNourriture);
+	
+	
 	
 }

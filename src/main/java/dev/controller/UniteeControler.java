@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.controller.dto.BatimentDto;
 import dev.controller.dto.UniteeDto;
 import dev.entites.unitee.Unitee;
 import dev.services.UniteeService;
@@ -43,6 +44,46 @@ public class UniteeControler {
 	@GetMapping
 	public List<UniteeDto> listerDifferentesUnitees() {
 		return this.uniteeService.listerDifferentesUnitees();
+	}
+	
+	/**
+	 * LISTER QUE LES UNITEES DE TYPE DIVERS = 1
+	 */
+	@GetMapping("/listerUniteeDivers")
+	public List<UniteeDto> listerUniteeDivers() {
+		return this.uniteeService.listerUniteeDivers();
+	}
+	
+	/**
+	 * LISTER QUE LES UNITEES DE TYPE INFANTERIE = 2
+	 */
+	@GetMapping("/listerUniteeInfanterie")
+	public List<UniteeDto> listerUniteeInfanterie() {
+		return this.uniteeService.listerUniteeInfanterie();
+	}
+
+	/**
+	 * LISTER QUE LES UNITEES DE TYPE CAVALERIE = 3
+	 */
+	@GetMapping("/listerUniteeCavalerie")
+	public List<UniteeDto> listerUniteeCavalerie() {
+		return this.uniteeService.listerUniteeCavalerie();
+	}
+
+	/**
+	 * LISTER QUE LES UNITEES DE TYPE SIEGE = 4
+	 */
+	@GetMapping("/listerUniteeSiege")
+	public List<UniteeDto> listerUniteeSiege() {
+		return this.uniteeService.listerUniteeSiege();
+	}
+	
+	/**
+	 * LISTER QUE LES UNITEES DE TYPE NAVALE = 5
+	 */
+	@GetMapping("/listerUniteeNavale")
+	public List<UniteeDto> listerUniteeNavale() {
+		return this.uniteeService.listerUniteeNavale();
 	}
 	
 	/**

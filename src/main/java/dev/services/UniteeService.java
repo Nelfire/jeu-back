@@ -68,6 +68,171 @@ public class UniteeService {
 	}
 	
 	/**
+	 * LISTER QUE LES UNITEES DE TYPE DIVERS = 1
+	 */
+	public List<UniteeDto> listerUniteeDivers() {
+		List<UniteeDto> listeUniteeDivers = new ArrayList<>();
+		for (Unitee unitee : uniteeRepo.findByIdTypeUnitee(1)) {
+			UniteeDto uniteeDto = new UniteeDto();
+			uniteeDto.setId(unitee.getId());
+			uniteeDto.setIdTypeUnitee(unitee.getIdTypeUnitee());
+			uniteeDto.setIdBatimentProvenance(unitee.getIdBatimentProvenance());
+			uniteeDto.setIcone(unitee.getIcone());
+			uniteeDto.setLibelle(unitee.getLibelle());
+			uniteeDto.setDescriptif(unitee.getDescriptif());
+			uniteeDto.setCoutPierreFormation(unitee.getCoutPierreFormation());
+			uniteeDto.setCoutBoisFormation(unitee.getCoutBoisFormation());
+			uniteeDto.setCoutOrFormation(unitee.getCoutOrFormation());
+			uniteeDto.setCoutNourritureFormation(unitee.getCoutNourritureFormation());
+			uniteeDto.setCoutHumain(unitee.getCoutHumain());
+			uniteeDto.setTempsFormation(unitee.getTempsFormation());
+			uniteeDto.setVie(unitee.getVie());
+			uniteeDto.setAttaque(unitee.getAttaque());
+			uniteeDto.setPortee(unitee.getPortee());
+			uniteeDto.setArmure(unitee.getArmure());
+			uniteeDto.setNiveauBatimentNecessaireFormation(unitee.getNiveauBatimentNecessaireFormation());
+			uniteeDto.setApportRessourcePierreHeure(unitee.getApportRessourcePierreHeure());
+			uniteeDto.setApportRessourceBoisHeure(unitee.getApportRessourceBoisHeure());
+			uniteeDto.setApportRessourceOrHeure(unitee.getApportRessourceOrHeure());
+			uniteeDto.setApportRessourceNourritureHeure(unitee.getApportRessourceNourritureHeure());
+			listeUniteeDivers.add(uniteeDto);
+		}
+		return listeUniteeDivers;
+	}
+	
+	/**
+	 * LISTER QUE LES UNITEES DE TYPE INFANTERIE = 2
+	 */
+	public List<UniteeDto> listerUniteeInfanterie() {
+		List<UniteeDto> listeUniteeInfanterie = new ArrayList<>();
+		for (Unitee unitee : uniteeRepo.findByIdTypeUnitee(2)) {
+			UniteeDto uniteeDto = new UniteeDto();
+			uniteeDto.setId(unitee.getId());
+			uniteeDto.setIdTypeUnitee(unitee.getIdTypeUnitee());
+			uniteeDto.setIdBatimentProvenance(unitee.getIdBatimentProvenance());
+			uniteeDto.setIcone(unitee.getIcone());
+			uniteeDto.setLibelle(unitee.getLibelle());
+			uniteeDto.setDescriptif(unitee.getDescriptif());
+			uniteeDto.setCoutPierreFormation(unitee.getCoutPierreFormation());
+			uniteeDto.setCoutBoisFormation(unitee.getCoutBoisFormation());
+			uniteeDto.setCoutOrFormation(unitee.getCoutOrFormation());
+			uniteeDto.setCoutNourritureFormation(unitee.getCoutNourritureFormation());
+			uniteeDto.setCoutHumain(unitee.getCoutHumain());
+			uniteeDto.setTempsFormation(unitee.getTempsFormation());
+			uniteeDto.setVie(unitee.getVie());
+			uniteeDto.setAttaque(unitee.getAttaque());
+			uniteeDto.setPortee(unitee.getPortee());
+			uniteeDto.setArmure(unitee.getArmure());
+			uniteeDto.setNiveauBatimentNecessaireFormation(unitee.getNiveauBatimentNecessaireFormation());
+			uniteeDto.setApportRessourcePierreHeure(unitee.getApportRessourcePierreHeure());
+			uniteeDto.setApportRessourceBoisHeure(unitee.getApportRessourceBoisHeure());
+			uniteeDto.setApportRessourceOrHeure(unitee.getApportRessourceOrHeure());
+			uniteeDto.setApportRessourceNourritureHeure(unitee.getApportRessourceNourritureHeure());
+			listeUniteeInfanterie.add(uniteeDto);
+		}
+		return listeUniteeInfanterie;
+	}
+	
+	/**
+	 * LISTER QUE LES UNITEES DE TYPE CAVALERIE = 3
+	 */
+	public List<UniteeDto> listerUniteeCavalerie() {
+		List<UniteeDto> listeUniteeCavalerie = new ArrayList<>();
+		for (Unitee unitee : uniteeRepo.findByIdTypeUnitee(3)) {
+			UniteeDto uniteeDto = new UniteeDto();
+			uniteeDto.setId(unitee.getId());
+			uniteeDto.setIdTypeUnitee(unitee.getIdTypeUnitee());
+			uniteeDto.setIdBatimentProvenance(unitee.getIdBatimentProvenance());
+			uniteeDto.setIcone(unitee.getIcone());
+			uniteeDto.setLibelle(unitee.getLibelle());
+			uniteeDto.setDescriptif(unitee.getDescriptif());
+			uniteeDto.setCoutPierreFormation(unitee.getCoutPierreFormation());
+			uniteeDto.setCoutBoisFormation(unitee.getCoutBoisFormation());
+			uniteeDto.setCoutOrFormation(unitee.getCoutOrFormation());
+			uniteeDto.setCoutNourritureFormation(unitee.getCoutNourritureFormation());
+			uniteeDto.setCoutHumain(unitee.getCoutHumain());
+			uniteeDto.setTempsFormation(unitee.getTempsFormation());
+			uniteeDto.setVie(unitee.getVie());
+			uniteeDto.setAttaque(unitee.getAttaque());
+			uniteeDto.setPortee(unitee.getPortee());
+			uniteeDto.setArmure(unitee.getArmure());
+			uniteeDto.setNiveauBatimentNecessaireFormation(unitee.getNiveauBatimentNecessaireFormation());
+			uniteeDto.setApportRessourcePierreHeure(unitee.getApportRessourcePierreHeure());
+			uniteeDto.setApportRessourceBoisHeure(unitee.getApportRessourceBoisHeure());
+			uniteeDto.setApportRessourceOrHeure(unitee.getApportRessourceOrHeure());
+			uniteeDto.setApportRessourceNourritureHeure(unitee.getApportRessourceNourritureHeure());
+			listeUniteeCavalerie.add(uniteeDto);
+		}
+		return listeUniteeCavalerie;
+	}
+	
+	/**
+	 * LISTER QUE LES UNITEES DE TYPE SIEGE = 4
+	 */
+	public List<UniteeDto> listerUniteeSiege() {
+		List<UniteeDto> listeUniteeSiege = new ArrayList<>();
+		for (Unitee unitee : uniteeRepo.findByIdTypeUnitee(4)) {
+			UniteeDto uniteeDto = new UniteeDto();
+			uniteeDto.setId(unitee.getId());
+			uniteeDto.setIdTypeUnitee(unitee.getIdTypeUnitee());
+			uniteeDto.setIdBatimentProvenance(unitee.getIdBatimentProvenance());
+			uniteeDto.setIcone(unitee.getIcone());
+			uniteeDto.setLibelle(unitee.getLibelle());
+			uniteeDto.setDescriptif(unitee.getDescriptif());
+			uniteeDto.setCoutPierreFormation(unitee.getCoutPierreFormation());
+			uniteeDto.setCoutBoisFormation(unitee.getCoutBoisFormation());
+			uniteeDto.setCoutOrFormation(unitee.getCoutOrFormation());
+			uniteeDto.setCoutNourritureFormation(unitee.getCoutNourritureFormation());
+			uniteeDto.setCoutHumain(unitee.getCoutHumain());
+			uniteeDto.setTempsFormation(unitee.getTempsFormation());
+			uniteeDto.setVie(unitee.getVie());
+			uniteeDto.setAttaque(unitee.getAttaque());
+			uniteeDto.setPortee(unitee.getPortee());
+			uniteeDto.setArmure(unitee.getArmure());
+			uniteeDto.setNiveauBatimentNecessaireFormation(unitee.getNiveauBatimentNecessaireFormation());
+			uniteeDto.setApportRessourcePierreHeure(unitee.getApportRessourcePierreHeure());
+			uniteeDto.setApportRessourceBoisHeure(unitee.getApportRessourceBoisHeure());
+			uniteeDto.setApportRessourceOrHeure(unitee.getApportRessourceOrHeure());
+			uniteeDto.setApportRessourceNourritureHeure(unitee.getApportRessourceNourritureHeure());
+			listeUniteeSiege.add(uniteeDto);
+		}
+		return listeUniteeSiege;
+	}
+	
+	/**
+	 * LISTER QUE LES UNITEES DE TYPE NAVALE = 5
+	 */
+	public List<UniteeDto> listerUniteeNavale() {
+		List<UniteeDto> listeUniteeNavale = new ArrayList<>();
+		for (Unitee unitee : uniteeRepo.findByIdTypeUnitee(5)) {
+			UniteeDto uniteeDto = new UniteeDto();
+			uniteeDto.setId(unitee.getId());
+			uniteeDto.setIdTypeUnitee(unitee.getIdTypeUnitee());
+			uniteeDto.setIdBatimentProvenance(unitee.getIdBatimentProvenance());
+			uniteeDto.setIcone(unitee.getIcone());
+			uniteeDto.setLibelle(unitee.getLibelle());
+			uniteeDto.setDescriptif(unitee.getDescriptif());
+			uniteeDto.setCoutPierreFormation(unitee.getCoutPierreFormation());
+			uniteeDto.setCoutBoisFormation(unitee.getCoutBoisFormation());
+			uniteeDto.setCoutOrFormation(unitee.getCoutOrFormation());
+			uniteeDto.setCoutNourritureFormation(unitee.getCoutNourritureFormation());
+			uniteeDto.setCoutHumain(unitee.getCoutHumain());
+			uniteeDto.setTempsFormation(unitee.getTempsFormation());
+			uniteeDto.setVie(unitee.getVie());
+			uniteeDto.setAttaque(unitee.getAttaque());
+			uniteeDto.setPortee(unitee.getPortee());
+			uniteeDto.setArmure(unitee.getArmure());
+			uniteeDto.setNiveauBatimentNecessaireFormation(unitee.getNiveauBatimentNecessaireFormation());
+			uniteeDto.setApportRessourcePierreHeure(unitee.getApportRessourcePierreHeure());
+			uniteeDto.setApportRessourceBoisHeure(unitee.getApportRessourceBoisHeure());
+			uniteeDto.setApportRessourceOrHeure(unitee.getApportRessourceOrHeure());
+			uniteeDto.setApportRessourceNourritureHeure(unitee.getApportRessourceNourritureHeure());
+			listeUniteeNavale.add(uniteeDto);
+		}
+		return listeUniteeNavale;
+	}
+	
+	/**
 	 * DETAIL D'UN UNITEE (Via ID)
 	 */
 	public UniteeDto detailsUnitee(Integer idUnitee) {

@@ -122,7 +122,7 @@ public class StartupListener {
     	17 - Marché
     	18 - Table d'expéditions
          */
-        Batiment hdv = new Batiment(1,0,"https://cdn.discordapp.com/attachments/794876433842831361/794876575979667456/HotelDeVille.png","Hotel de ville","Descriptif de l'hotel de ville",5,99,99,99,99,99,0,10000,10000,10000,10000,1500,1500,1500,1500);
+        Batiment hdv = new Batiment(1,0,"https://cdn.discordapp.com/attachments/794876433842831361/794876575979667456/HotelDeVille.png","Hotel de ville","Descriptif de l'hotel de ville",5,10,10,10,10,10,0,10000,10000,10000,10000,3600,3600,3600,3600);
         Batiment chaumiere = new Batiment(2,0,"https://cdn.discordapp.com/attachments/794876433842831361/794876520338161704/Chaumiere.png","Chaumière","Descriptif de la chaumière",5,99,99,99,99,99,1,0,0,0,0,0,0,0,0);
         Batiment carriere = new Batiment(3,1,"https://cdn.discordapp.com/attachments/794876433842831361/794876505230540860/Carriere.png","Carrière","Descriptif de la carrière",5,99,99,99,99,99,1,0,0,0,0,25000,0,0,0);
         Batiment campDeBucheron = new Batiment(4,1,"https://cdn.discordapp.com/attachments/794876433842831361/794876491850711040/CampDeBucheron.png","Camp de bûcheron","Descriptif du camp de bûcheron",5,99,99,99,99,99,1,0,0,0,0,0,25000,0,0);

@@ -152,10 +152,10 @@ public class BatimentJoueurService {
 		// MISE A JOUR DU JOUEUR
 		Joueur joueur = new Joueur(jou.getArmee(),jou.getIcone(),jou.getPseudo(),jou.getEmail(),jou.getMotDePasse(),jou.getDescriptif(),jou.getNiveau(),jou.getExperience(),jou.getPierrePossession(),jou.getBoisPossession(),jou.getOrPossession(),jou.getNourriturePossession(),jou.getGemmePossession(),jou.getPierreMaximum(),jou.getBoisMaximum(),jou.getOrMaximum(),jou.getNourritureMaximum(),jou.getPierreBoostProduction(),jou.getBoisBoostProduction(),jou.getOrBoostProduction(),jou.getNourritureBoostProduction(),jou.getTempsDeJeu(),jou.getRoles(), jou.getDerniereConnexion());
 		joueur.setId(jou.getId());
-		jou.setPierreMaximum(jou.getPierreMaximum()+batiment.getQuantiteeStockagePierre());
-		jou.setBoisMaximum(jou.getBoisMaximum()+batiment.getQuantiteeStockageBois());
-		jou.setOrMaximum(jou.getOrMaximum()+batiment.getQuantiteeStockageOre());
-		jou.setNourritureMaximum(jou.getNourritureMaximum()+batiment.getQuantiteeStockageNourriture());
+//		jou.setPierreMaximum(jou.getPierreMaximum()+batiment.getQuantiteeStockagePierre());
+//		jou.setBoisMaximum(jou.getBoisMaximum()+batiment.getQuantiteeStockageBois());
+//		jou.setOrMaximum(jou.getOrMaximum()+batiment.getQuantiteeStockageOre());
+//		jou.setNourritureMaximum(jou.getNourritureMaximum()+batiment.getQuantiteeStockageNourriture());
 		
 		
 		// INITIALISATION DONNEES
@@ -462,6 +462,7 @@ public class BatimentJoueurService {
 			apportBoisHeure = 2*(batimentJoueurDto.getApportBoisHeure());
 			apportOreHeure = 2*(batimentJoueurDto.getApportOreHeure());
 			apportNourritureHeure = 2*(batimentJoueurDto.getApportNourritureHeure());
+			System.out.println(apportPierreHeure);
 		} 
 		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 2) // 2 = Chaumière
 		{
@@ -709,10 +710,10 @@ public class BatimentJoueurService {
 		jou.setOrPossession(jou.getOrPossession()-batimentJoueurDto.getCoutOreAmelioration());
 		jou.setNourriturePossession(jou.getNourriturePossession()-batimentJoueurDto.getCoutNourritureAmelioration());
 		// - Augmentation limite
-		jou.setPierreMaximum(jou.getPierreMaximum()+batimentJoueurDto.getQuantiteeStockagePierre());
-		jou.setBoisMaximum(jou.getBoisMaximum()+batimentJoueurDto.getQuantiteeStockageBois());
-		jou.setOrMaximum(jou.getOrMaximum()+batimentJoueurDto.getQuantiteeStockageOre());
-		jou.setNourritureMaximum(jou.getNourritureMaximum()+batimentJoueurDto.getQuantiteeStockageNourriture());
+//		jou.setPierreMaximum(jou.getPierreMaximum()+batimentJoueurDto.getQuantiteeStockagePierre());
+//		jou.setBoisMaximum(jou.getBoisMaximum()+batimentJoueurDto.getQuantiteeStockageBois());
+//		jou.setOrMaximum(jou.getOrMaximum()+batimentJoueurDto.getQuantiteeStockageOre());
+//		jou.setNourritureMaximum(jou.getNourritureMaximum()+batimentJoueurDto.getQuantiteeStockageNourriture());
 		
 		Joueur joueur = new Joueur(jou.getArmee(),jou.getIcone(),jou.getPseudo(),jou.getEmail(),jou.getMotDePasse(),jou.getDescriptif(),jou.getNiveau(),jou.getExperience(),jou.getPierrePossession(),jou.getBoisPossession(),jou.getOrPossession(),jou.getNourriturePossession(),jou.getGemmePossession(),jou.getPierreMaximum(),jou.getBoisMaximum(),jou.getOrMaximum(),jou.getNourritureMaximum(),jou.getPierreBoostProduction(),jou.getBoisBoostProduction(),jou.getOrBoostProduction(),jou.getNourritureBoostProduction(),jou.getTempsDeJeu(),jou.getRoles(), jou.getDerniereConnexion());
 		joueur.setId(jou.getId());

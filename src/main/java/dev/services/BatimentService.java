@@ -55,7 +55,7 @@ public class BatimentService {
 	/**
 	 * LISTER QUE LES BATIMENTS DE TYPE DIVERS = 1
 	 */
-	public List<BatimentDto> listerbatimentsDivers() {
+	public List<BatimentDto> listerBatimentsDivers() {
 		List<BatimentDto> listeBatimentsDivers = new ArrayList<>();
 
 		for (Batiment batiment : batimentRepo.findByIdCategorieBatiment(0)) {
@@ -88,7 +88,7 @@ public class BatimentService {
 	/**
 	 * LISTER QUE LES BATIMENTS DE TYPE RECOLTE = 1
 	 */
-	public List<BatimentDto> listerbatimentsRecolte() {
+	public List<BatimentDto> listerBatimentsRecolte() {
 		List<BatimentDto> listeBatimentsRecolte = new ArrayList<>();
 
 		for (Batiment batiment : batimentRepo.findByIdCategorieBatiment(1)) {
@@ -121,7 +121,7 @@ public class BatimentService {
 	/**
 	 * LISTER QUE LES BATIMENTS DE TYPE STOCKAGE = 2
 	 */
-	public List<BatimentDto> listerbatimentsStockage() {
+	public List<BatimentDto> listerBatimentsStockage() {
 		List<BatimentDto> listeBatimentsStockage = new ArrayList<>();
 
 		for (Batiment batiment : batimentRepo.findByIdCategorieBatiment(2)) {
@@ -154,7 +154,7 @@ public class BatimentService {
 	/**
 	 * LISTER QUE LES BATIMENTS DE TYPE MILLITAIRE = 3
 	 */
-	public List<BatimentDto> listerbatimentsMillitaire() {
+	public List<BatimentDto> listerBatimentsMillitaire() {
 		List<BatimentDto> listeBatimentsMillitaire = new ArrayList<>();
 
 		for (Batiment batiment : batimentRepo.findByIdCategorieBatiment(3)) {

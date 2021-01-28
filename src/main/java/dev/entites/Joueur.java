@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.entites.joueur.Armee;
 import dev.entites.joueur.BatimentJoueur;
 import dev.entites.joueur.ExpeditionJoueur;
+import dev.entites.social.Message;
 import dev.entites.social.ChatGuilde;
 import dev.entites.social.Guilde;
 import dev.entites.social.ListeAmis;
@@ -55,9 +56,9 @@ public class Joueur {
 	@JoinColumn(name = "guilde_id")
 	private Guilde guilde;
 	
-	
-	
-	
+    // Messages du joueur
+    @OneToMany(mappedBy = "joueur", cascade = CascadeType.PERSIST)
+	private List<Message> messages;
 	
 	
 	

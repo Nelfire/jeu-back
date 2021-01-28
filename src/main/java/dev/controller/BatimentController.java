@@ -37,32 +37,32 @@ public class BatimentController {
 	/**
 	 * LISTER QUE LES BATIMENTS DE TYPE DIVERS = 0
 	 */
-	@GetMapping("/listerbatimentsDivers")
-	public List<BatimentDto> listerbatimentsDivers() {
-		return this.batimentService.listerbatimentsDivers();
+	@GetMapping("/listerBatimentsDivers")
+	public List<BatimentDto> listerBatimentsDivers() {
+		return this.batimentService.listerBatimentsDivers();
 	}
 	/**
 	 * LISTER QUE LES BATIMENTS DE TYPE RECOLTE = 1
 	 */
-	@GetMapping("/listerbatimentsRecolte")
-	public List<BatimentDto> listerbatimentsRecolte() {
-		return this.batimentService.listerbatimentsRecolte();
+	@GetMapping("/listerBatimentsRecolte")
+	public List<BatimentDto> listerBatimentsRecolte() {
+		return this.batimentService.listerBatimentsRecolte();
 	}
 
 	/**
 	 * LISTER QUE LES BATIMENTS DE TYPE STOCKAGE = 2
 	 */
-	@GetMapping("/listerbatimentsStockage")
-	public List<BatimentDto> listerbatimentsStockage() {
-		return this.batimentService.listerbatimentsStockage();
+	@GetMapping("/listerBatimentsStockage")
+	public List<BatimentDto> listerBatimentsStockage() {
+		return this.batimentService.listerBatimentsStockage();
 	}
 
 	/**
 	 * LISTER QUE LES BATIMENTS DE TYPE MILLITAIRE = 3
 	 */
-	@GetMapping("/listerbatimentsMillitaire")
-	public List<BatimentDto> listerbatimentsMillitaire() {
-		return this.batimentService.listerbatimentsMillitaire();
+	@GetMapping("/listerBatimentsMillitaire")
+	public List<BatimentDto> listerBatimentsMillitaire() {
+		return this.batimentService.listerBatimentsMillitaire();
 	}
 
 	/**
