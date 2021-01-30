@@ -4,11 +4,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import dev.controller.dto.JoueurDto;
 import dev.controller.dto.JoueurInfoDto;
+import dev.controller.dto.ModificationJoueurDto;
 import dev.entites.Joueur;
 import dev.entites.joueur.BatimentJoueur;
 import dev.exceptions.JoueurAuthentifieNonRecupereException;
@@ -96,6 +99,21 @@ public class JoueurService {
 
 		}
 		return listeJoueurs;
+	}
+	
+	/**
+	 * INFORMATION DU JOUEUR VIA ID
+	 */
+	public JoueurInfoDto informationJoueurById(Integer id) {
+		Optional<Joueur> jou = joueurRepo.findById(id);
+		JoueurInfoDto joueur = new JoueurInfoDto();
+		joueur.setId(jou.get().getId());
+		joueur.setIcone(jou.get().getIcone());
+		joueur.setDescriptif(jou.get().getDescriptif());
+		joueur.setNiveau(jou.get().getNiveau());
+		joueur.setExperience(jou.get().getExperience());
+		joueur.setTempsDeJeu(jou.get().getTempsDeJeu());
+		return joueur;
 	}
 
 	/**
@@ -323,5 +341,26 @@ public class JoueurService {
 				jou.getPierreBoostProduction(), jou.getBoisBoostProduction(), jou.getOrBoostProduction(),
 				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getDerniereConnexion());
 		return co;
+	}
+	
+	public Joueur modifierInformationsJoueur(ModificationJoueurDto modificationJoueurDto) {
+		Joueur jou = recuperationJoueur();
+		System.out.println(jou.getDescriptif());
+		jou.setIcone(modificationJoueurDto.getIcone());
+		jou.setEmail(modificationJoueurDto.getEmail());
+		jou.setDescriptif(modificationJoueurDto.getDescriptif());
+		Joueur joueur = new Joueur(jou.getArmee(), jou.getIcone(), jou.getPseudo(), jou.getEmail(), jou.getMotDePasse(),
+				jou.getDescriptif(), jou.getNiveau(), jou.getExperience(), jou.getPierrePossession(),
+				jou.getBoisPossession(), jou.getOrPossession(), jou.getNourriturePossession(), jou.getGemmePossession(),
+				jou.getPierreMaximum(), jou.getBoisMaximum(), jou.getOrMaximum(), jou.getNourritureMaximum(),
+				jou.getPierreBoostProduction(), jou.getBoisBoostProduction(), jou.getOrBoostProduction(),
+				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getRoles(), jou.getDerniereConnexion());
+		joueur.setId(jou.getId());
+		
+		
+		joueurRepo.save(jou);
+
+		System.out.println(jou.getDescriptif());
+		return jou;
 	}
 }

@@ -5,12 +5,22 @@ package dev.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.controller.dto.CompositionArmeeExpedition;
 import dev.controller.dto.JoueurDto;
 import dev.controller.dto.JoueurInfoDto;
+import dev.controller.dto.ModificationJoueurDto;
+import dev.entites.Joueur;
 import dev.services.JoueurService;
 
 @RestController
@@ -50,6 +60,20 @@ public class JoueurController {
 	@GetMapping("/infosJoueur")
 	public JoueurInfoDto getInfoJoueur() {
 		return this.joueurService.getInfoJoueur();
+	}
+	
+	/**
+	 * RECUPERATION INFORMATIONS JOUEUR CONNECTE
+	 */
+	@GetMapping("/informationJoueurById")
+	public JoueurInfoDto informationJoueurById(@RequestParam("id") Integer id) {
+		return this.joueurService.informationJoueurById(id);
+	}
+	
+	
+	@PutMapping("/modifierInformationsJoueur")
+	public Joueur modifierInformationsJoueur(@RequestBody @Valid ModificationJoueurDto modificationJoueurDto) {
+		return this.joueurService.modifierInformationsJoueur(modificationJoueurDto);
 	}
 
 }

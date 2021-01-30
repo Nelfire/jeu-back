@@ -101,6 +101,28 @@ public class StartupListener {
         joueur1.setRoles(Arrays.asList(new RoleJoueur(joueur1, Role.ROLE_ADMINISTRATEUR), new RoleJoueur(joueur1, Role.ROLE_JOUEUR)));
         this.joueurRepo.save(joueur1);
         
+        Joueur joueur2 = new Joueur();
+        joueur2.setIcone("https://yscorporate.com/wp-content/uploads/2019/01/Photo-profil-professionnelle-par-photographe-entreprise10.jpg");
+        joueur2.setPseudo("Riosha");
+        joueur2.setEmail("riosha@gmail.com");
+        joueur2.setMotDePasse(passwordEncoder.encode("password"));
+        joueur2.setDescriptif("Salut ! Je suis le deuxieme joueur");
+        joueur2.setNiveau(1);
+        joueur2.setExperience(0);
+        joueur2.setPierrePossession(1000);
+        joueur2.setBoisPossession(1000);
+        joueur2.setOrPossession(1000);
+        joueur2.setNourriturePossession(1000);
+        joueur2.setGemmePossession(50);
+        joueur2.setPierreMaximum(20000);
+        joueur2.setBoisMaximum(20000);
+        joueur2.setOrMaximum(20000);
+        joueur2.setNourritureMaximum(20000);
+        joueur2.setTempsDeJeu(0);
+        joueur2.setGemmePossession(50);
+        joueur2.setRoles(Arrays.asList(new RoleJoueur(joueur2, Role.ROLE_ADMINISTRATEUR), new RoleJoueur(joueur2, Role.ROLE_JOUEUR)));
+        this.joueurRepo.save(joueur2);
+        
         // ----- BATIMENT -----
         /* 
      	1 - Hotel de ville	

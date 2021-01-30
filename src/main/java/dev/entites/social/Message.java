@@ -85,6 +85,12 @@ public class Message {
 	public void setContenu(String contenu) {
 		this.contenu = contenu;
 	}
+	@Override
+	public String toString() {
+		return "Message [id=" + id + ", joueur=" + joueur + ", datePublication=" + datePublication + ", contenu="
+				+ contenu + "]";
+	}
     
+	
     
 }

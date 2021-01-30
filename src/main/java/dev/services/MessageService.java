@@ -32,11 +32,12 @@ public class MessageService {
 		for (Message message : messageRepo.findAll()) {
 			listeMessages.add(message);
 		}
+		System.out.println(listeMessages);
 		return listeMessages;
 	}
 	
 	public Message publierMessage(String contenu) {
-		System.out.println("bloup");
+		System.out.println(contenu);
 
 		// RECUPERATION DU JOUEUR
 		Joueur jou = this.joueurService.recuperationJoueur();
