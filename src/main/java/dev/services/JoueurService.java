@@ -91,6 +91,7 @@ public class JoueurService {
 		for (Joueur joueur : joueurRepo.findAll((Sort.by(Sort.Direction.DESC, "niveau")))) {
 
 			JoueurInfoDto joueurDto = new JoueurInfoDto();
+			joueurDto.setId(joueur.getId());
 			joueurDto.setIcone(joueur.getIcone());
 			joueurDto.setPseudo(joueur.getPseudo());
 			joueurDto.setNiveau(joueur.getNiveau());
@@ -109,6 +110,7 @@ public class JoueurService {
 		JoueurInfoDto joueur = new JoueurInfoDto();
 		joueur.setId(jou.get().getId());
 		joueur.setIcone(jou.get().getIcone());
+		joueur.setPseudo(jou.get().getPseudo());
 		joueur.setDescriptif(jou.get().getDescriptif());
 		joueur.setNiveau(jou.get().getNiveau());
 		joueur.setExperience(jou.get().getExperience());
