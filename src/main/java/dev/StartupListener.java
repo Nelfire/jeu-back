@@ -161,7 +161,7 @@ public class StartupListener {
         Batiment forge = new Batiment(15,0,"https://cdn.discordapp.com/attachments/794876433842831361/794876568375001098/Forge.png","Forge","Descriptif de la forge",5,99,99,99,99,99,5,0,0,0,0,0,0,0,0);
         Batiment universite = new Batiment(16,0,"https://cdn.discordapp.com/attachments/794876433842831361/794876610632220702/Universite.png","Université","Descriptif de l'universite",5,99,99,99,99,99,5,0,0,0,0,0,0,0,0);
         Batiment marche = new Batiment(17,0,"https://cdn.discordapp.com/attachments/794876433842831361/794876590022590504/Marche.png","Marché","Descriptif du marché",5,99,99,99,99,99,5,0,0,0,0,0,0,0,0);
-        Batiment tableExpedition = new Batiment(18,0,"https://cdn.discordapp.com/attachments/794876433842831361/794876603564818432/TableExpedition.png","Table d'expéditions","Descriptif de la table d'expédition",5,99,99,99,99,99,1,0,0,0,0,0,0,0,0);
+        Batiment tableExpedition = new Batiment(18,0,"https://cdn.discordapp.com/attachments/794876433842831361/794876603564818432/TableExpedition.png","Table d'expéditions","Descriptif de la table d'expédition",5,10,10,10,10,10,1,0,0,0,0,0,0,0,0);
         this.batimentRepo.save(hdv);
         this.batimentRepo.save(chaumiere);
         this.batimentRepo.save(carriere);
@@ -286,10 +286,10 @@ public class StartupListener {
         
         // ----- EXPEDITIONS -----
         LocalDate dateAujourdhui  = LocalDate.now(); 
-        Expedition expedition1 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 1","Descriptif de l'expedition 1",60, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10, 5000,dateAujourdhui);
+        Expedition expedition1 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 1","Descriptif de l'expedition 1",10, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10, 5000,dateAujourdhui);
         Expedition expedition2 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 2","Descriptif de l'expedition 2",3600, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10, 5000,dateAujourdhui);
-        Expedition expedition3 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 3","Descriptif de l'expedition 3",60, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10, 5000,dateAujourdhui);
-        Expedition expedition4 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 4","Descriptif de l'expedition 4",60, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10, 5000,dateAujourdhui);
+        Expedition expedition3 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 3","Descriptif de l'expedition 3",10, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10, 5000,dateAujourdhui);
+        Expedition expedition4 = new Expedition("https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497","Expedition 4","Descriptif de l'expedition 4",10, 1, 1000, 5000, 1200, 500, 500, 500, 500, 2500, 2500, 2500, 2500, 10, 5000,dateAujourdhui);
         this.expeditionRepo.save(expedition1);
         this.expeditionRepo.save(expedition2);
         this.expeditionRepo.save(expedition3);
