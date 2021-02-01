@@ -11,15 +11,15 @@ public interface BatimentJoueurRepo extends JpaRepository<BatimentJoueur, Intege
 	BatimentJoueur findByBatimentIdTypeBatiment(Integer id);
 
 	// Bâtiments donnant un apport de ressources
-	List<BatimentJoueur> findByApportPierreHeureGreaterThan(Integer apportPierreHeure);
-	List<BatimentJoueur> findByApportBoisHeureGreaterThan(Integer apportBoisHeure);
-	List<BatimentJoueur> findByApportOreHeureGreaterThan(Integer apportOrHeure);
-	List<BatimentJoueur> findByApportNourritureHeureGreaterThan(Integer apportNourritureHeure);
+	List<BatimentJoueur> findByApportPierreHeureGreaterThanAndJoueurId(Integer apportPierreHeure,Integer idJoueur);
+	List<BatimentJoueur> findByApportBoisHeureGreaterThanAndJoueurId(Integer apportBoisHeure,Integer idJoueur);
+	List<BatimentJoueur> findByApportOreHeureGreaterThanAndJoueurId(Integer apportOrHeure,Integer idJoueur);
+	List<BatimentJoueur> findByApportNourritureHeureGreaterThanAndJoueurId(Integer apportNourritureHeure,Integer idJoueur);
 	
-	List<BatimentJoueur> findByQuantiteeStockagePierreGreaterThan(Integer stockagePierre);
-	List<BatimentJoueur> findByQuantiteeStockageBoisGreaterThan(Integer stockageBois);
-	List<BatimentJoueur> findByQuantiteeStockageOreGreaterThan(Integer stockageOr);
-	List<BatimentJoueur> findByQuantiteeStockageNourritureGreaterThan(Integer stockageNourriture);
+	List<BatimentJoueur> findByQuantiteeStockagePierreGreaterThanAndJoueurId(Integer stockagePierre,Integer idJoueur);
+	List<BatimentJoueur> findByQuantiteeStockageBoisGreaterThanAndJoueurId(Integer stockageBois,Integer idJoueur);
+	List<BatimentJoueur> findByQuantiteeStockageOreGreaterThanAndJoueurId(Integer stockageOr,Integer idJoueur);
+	List<BatimentJoueur> findByQuantiteeStockageNourritureGreaterThanAndJoueurId(Integer stockageNourriture,Integer idJoueur);
 	
 	
 	

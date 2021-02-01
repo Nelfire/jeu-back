@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.controller.dto.CompositionArmeeExpedition;
+import dev.controller.dto.InformationRessourcesJoueur;
 import dev.controller.dto.JoueurDto;
 import dev.controller.dto.JoueurInfoDto;
 import dev.controller.dto.ModificationJoueurDto;
@@ -74,6 +75,14 @@ public class JoueurController {
 	@PutMapping("/modifierInformationsJoueur")
 	public Joueur modifierInformationsJoueur(@RequestBody @Valid ModificationJoueurDto modificationJoueurDto) {
 		return this.joueurService.modifierInformationsJoueur(modificationJoueurDto);
+	}
+	
+	/**
+	 * RECAPITULATIF DES INFORMATIONS RESSOURCE DU JOUEUR
+	 */
+	@GetMapping("/informationRessourcesJoueur")
+	public InformationRessourcesJoueur informationRessourcesJoueur() {
+		return this.joueurService.informationRessourcesJoueur();
 	}
 
 }

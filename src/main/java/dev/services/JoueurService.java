@@ -9,6 +9,8 @@ import java.util.Optional;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import dev.controller.dto.InformationRessourcesJoueur;
 import dev.controller.dto.JoueurDto;
 import dev.controller.dto.JoueurInfoDto;
 import dev.controller.dto.ModificationJoueurDto;
@@ -137,188 +139,59 @@ public class JoueurService {
 		// milliseconde < 1000 ? Si oui --> 1000
 		Integer millisecondesDifference = (int) (now.getTime()-jou.getDerniereConnexion().getTime()) < 1000 ? 1000 :(int) (now.getTime()-jou.getDerniereConnexion().getTime());
 
-		//////////////////////////////////////////////////////////////////
-		///////////DETECTION BATIMENTS APPORT RESSOURCES HEURE////////////
-		//////////////////////////////////////////////////////////////////
-		// ------------
-		// -- PIERRE --
-		// ------------
-		// CALCUL APPORT PAR HEURE DU JOUEUR
-		Integer apportPierreHeure = 1;
-		// -- TOUS LES BATIMENTS QUI RAPPORTENT DE LA PIERRE
-		for (BatimentJoueur batimentPierre : batimentJoueurRepo.findByApportPierreHeureGreaterThan(1)) {
-			// Si le batiment est en cours d'amélioration, apport de ressources pas pris en compte
-			long maintenant = new Date().getTime();
-			long fin = batimentPierre.getDateFinConstruction();
-			if(maintenant>fin) {
-				apportPierreHeure = apportPierreHeure + batimentPierre.getApportPierreHeure();
-			}
-		}
-		// -- APPORT PIERRE PAR SECONDES
+		//////////////////////////////////
+		// -- ATTRIBUTION RESSOURCES -- //
+		//////////////////////////////////
 		
-		Integer apportPierreSeconde = Math.round(apportPierreHeure / 3600);
-		// -- CALCUL APPORT PIERRE REEL (Attribution ressources inactivitée)
+		// PIERRE : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
+		Integer apportPierreSeconde = apportPierreSeconde();
+		// - CAS INACTIVITEE -
 		Integer apportPierreFinal = (apportPierreSeconde * millisecondesDifference)/1000;
 		
-		// ------------
-		// --- BOIS ---
-		// ------------
-		// CALCUL APPORT PAR HEURE DU JOUEUR
-		Integer apportBoisHeure = 1;
-		// -- TOUS LES BATIMENTS QUI RAPPORTENT DU BOIS
-		for (BatimentJoueur batimentBois : batimentJoueurRepo.findByApportBoisHeureGreaterThan(1)) {
-			// Si le batiment est en cours d'amélioration, apport de ressources pas pris en compte
-			long maintenant = new Date().getTime();
-			long fin = batimentBois.getDateFinConstruction();
-			if(maintenant>fin) {
-				apportBoisHeure = apportBoisHeure + batimentBois.getApportBoisHeure();
-			}
-		}
-		// -- APPORT BOIS PAR SECONDES
-		Integer apportBoisSeconde =  Math.round(apportBoisHeure / 3600);
-		// -- CALCUL APPORT BOIS REEL (Attribution ressources inactivitée)
+		// BOIS : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
+		Integer apportBoisSeconde = apportBoisSeconde();
+		// - CAS INACTIVITEE -
 		Integer apportBoisFinal = (apportBoisSeconde * millisecondesDifference)/1000;
-		// ------------
-		// ---- OR ----
-		// ------------
-		// CALCUL APPORT PAR HEURE DU JOUEUR
-		Integer apportOrHeure = 1;
-		// -- TOUS LES BATIMENTS QUI RAPPORTENT DE L'OR
-		for (BatimentJoueur batimentOr : batimentJoueurRepo.findByApportOreHeureGreaterThan(1)) {
-			// Si le batiment est en cours d'amélioration, apport de ressources pas pris en compte
-			long maintenant = new Date().getTime();
-			long fin = batimentOr.getDateFinConstruction();
-			if(maintenant>fin) {
-				apportOrHeure = apportOrHeure + batimentOr.getApportOreHeure();
-			}
-		}
-		// -- APPORT OR PAR SECONDES
-		Integer apportOrSeconde =  Math.round(apportOrHeure / 3600);
-		// -- CALCUL APPORT OR REEL (Attribution ressources inactivitée)
+		
+		// OR : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
+		Integer apportOrSeconde = apportOrSeconde();
+		// - CAS INACTIVITEE -
 		Integer apportOrFinal = (apportOrSeconde * millisecondesDifference)/1000;
 		
-		// ----------------
-		// -- NOURRITURE --
-		// ----------------
-		// CALCUL APPORT PAR HEURE DU JOUEUR
-		Integer apportNourritureHeure = 1;
-		// -- TOUS LES BATIMENTS QUI RAPPORTENT DE LA NOURRITURE
-		for (BatimentJoueur batimentNourriture : batimentJoueurRepo.findByApportNourritureHeureGreaterThan(1)) {
-			// Si le batiment est en cours d'amélioration, apport de ressources pas pris en compte
-			long maintenant = new Date().getTime();
-			long fin = batimentNourriture.getDateFinConstruction();
-			if(maintenant>fin) {
-				apportNourritureHeure = apportNourritureHeure + batimentNourriture.getApportNourritureHeure();
-			}
-		}
-		// -- APPORT NOURRITURE PAR SECONDES
-		Integer apportNourritureSeconde =  Math.round(apportNourritureHeure / 3600);
-		// -- CALCUL APPORT NOURRITURE REEL (Attribution ressources inactivitée)
+		// NOURRITURE : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
+		Integer apportNourritureSeconde = apportNourritureSeconde();
+		// - CAS INACTIVITEE -
 		Integer apportNourritureFinal = (apportNourritureSeconde * millisecondesDifference)/1000;
 		
+		//////////////////////////////////////
+		// -- LIMITE STOCKAGE RESSOURCES -- //
+		//////////////////////////////////////
+
+		// PIERRE
+		Integer stockageMaximalPierre = quantiteMaximaleStockagePierre();	
 		
-		//////////////////////////////////////////////////////////////////////
-		///////////DETECTION BATIMENTS AUGMENTATION RESSOURCES MAX////////////
-		//////////////////////////////////////////////////////////////////////
-		// ------------
-		// -- PIERRE --
-		// ------------
-		Integer stockageMaximalPierre = 10000;
-		// -- TOUS LES BATIMENTS QUI AUGMENTENT LA LIMITE DE STOCKAGE DE PIERRE
-		for (BatimentJoueur batimentStockagePierre : batimentJoueurRepo.findByQuantiteeStockagePierreGreaterThan(1)) {
-			long maintenant = new Date().getTime();
-			long fin = batimentStockagePierre.getDateFinConstruction();
-			// Si le batiment est en cours d'amélioration, augmentation pas prise en compte
-			if(maintenant>fin) {
-				stockageMaximalPierre = stockageMaximalPierre + batimentStockagePierre.getQuantiteeStockagePierre();
-			} 
-			else // Sinon, prise en compte
-			{
-				// Vérification que la bâtiment est déjà construit
-				if(batimentStockagePierre.getNiveau()>1) {
-					stockageMaximalPierre = stockageMaximalPierre + batimentStockagePierre.getQuantiteeStockagePierre()/2;
-
-				}
-			}
-		}	
-		// ------------
-		// -- BOIS --
-		// ------------
-		Integer stockageMaximalBois = 10000;
-		// -- TOUS LES BATIMENTS QUI AUGMENTENT LA LIMITE DE STOCKAGE DE BOIS
-		for (BatimentJoueur batimentStockageBois : batimentJoueurRepo.findByQuantiteeStockageBoisGreaterThan(1)) {
-			long maintenant = new Date().getTime();
-			long fin = batimentStockageBois.getDateFinConstruction();
-			// Si le batiment est en cours d'amélioration, augmentation pas prise en compte
-			if(maintenant>fin) {
-				stockageMaximalBois = stockageMaximalBois + batimentStockageBois.getQuantiteeStockageBois();
-			} 
-			else // Sinon, prise en compte
-			{
-				// Vérification que la bâtiment est déjà construit
-				if(batimentStockageBois.getNiveau()>1) {
-					stockageMaximalBois = stockageMaximalBois + batimentStockageBois.getQuantiteeStockageBois()/2;
-
-				}
-			}
-		}
+		// BOIS
+		Integer stockageMaximalBois = quantiteMaximaleStockageBois();
 		
-		// ------------
-		// -- OR --
-		// ------------
-		Integer stockageMaximalOr = 10000;
-		// -- TOUS LES BATIMENTS QUI AUGMENTENT LA LIMITE DE STOCKAGE DE OR
-		for (BatimentJoueur batimentStockageOr : batimentJoueurRepo.findByQuantiteeStockageOreGreaterThan(1)) {
-			long maintenant = new Date().getTime();
-			long fin = batimentStockageOr.getDateFinConstruction();
-			// Si le batiment est en cours d'amélioration, augmentation pas prise en compte
-			if(maintenant>fin) {
-				stockageMaximalOr = stockageMaximalOr + batimentStockageOr.getQuantiteeStockageOre();
-			} 
-			else // Sinon, prise en compte
-			{
-				// Vérification que la bâtiment est déjà construit
-				if(batimentStockageOr.getNiveau()>1) {
-					stockageMaximalOr = stockageMaximalOr + batimentStockageOr.getQuantiteeStockageOre()/2;
-
-				}
-			}
-		}
+		// OR
+		Integer stockageMaximalOr = quantiteMaximaleStockageOr();
 		
-		// ------------
-		// -- NOURRITURE --
-		// ------------
-		Integer stockageMaximalNourriture = 10000;
-		// -- TOUS LES BATIMENTS QUI AUGMENTENT LA LIMITE DE STOCKAGE DE NOURRITURE
-		for (BatimentJoueur batimentStockageNourriture : batimentJoueurRepo.findByQuantiteeStockageNourritureGreaterThan(1)) {
-			long maintenant = new Date().getTime();
-			long fin = batimentStockageNourriture.getDateFinConstruction();
-			// Si le batiment est en cours d'amélioration, augmentation pas prise en compte
-			if(maintenant>fin) {
-				stockageMaximalNourriture = stockageMaximalNourriture + batimentStockageNourriture.getQuantiteeStockageNourriture();
-			} 
-			else // Sinon, prise en compte
-			{
-				// Vérification que la bâtiment est déjà construit
-				if(batimentStockageNourriture.getNiveau()>1) {
-					stockageMaximalNourriture = stockageMaximalNourriture + batimentStockageNourriture.getQuantiteeStockageNourriture()/2;
-
-				}
-			}
-		}
+		// NOURRITURE
+		Integer stockageMaximalNourriture = quantiteMaximaleStockageNourriture();
 		
 		
-
-		// ACTUALISATION DES RESSOURCES DU JOUEUR (Appelé chaques secondes)
+		// ACTUALISATION DES DONNEES DU JOUEUR
+		// APPORT
 		jou.setPierrePossession((jou.getPierrePossession() + apportPierreFinal)>jou.getPierreMaximum() ? jou.getPierreMaximum() : jou.getPierrePossession() + apportPierreFinal);
 		jou.setBoisPossession((jou.getBoisPossession() + apportBoisFinal)>jou.getBoisMaximum() ? jou.getBoisMaximum() : jou.getBoisPossession() + apportBoisFinal);
 		jou.setOrPossession((jou.getOrPossession() + apportOrFinal)>jou.getOrMaximum() ? jou.getOrMaximum() : jou.getOrPossession() + apportOrFinal);
 		jou.setNourriturePossession((jou.getNourriturePossession() + apportNourritureFinal)>jou.getNourritureMaximum() ? jou.getNourritureMaximum() : jou.getNourriturePossession() + apportNourritureFinal);
+		// LIMITE
 		jou.setPierreMaximum(stockageMaximalPierre);
 		jou.setBoisMaximum(stockageMaximalBois);
 		jou.setOrMaximum(stockageMaximalOr);
 		jou.setNourritureMaximum(stockageMaximalNourriture);
-		
+		// TEMPS DE JEU
 		jou.setTempsDeJeu(jou.getTempsDeJeu() + 1);
 		Date dateAujourdhui  = new Date(); 
 		jou.setDerniereConnexion(dateAujourdhui);
@@ -344,7 +217,225 @@ public class JoueurService {
 				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getDerniereConnexion());
 		return co;
 	}
+
+
+	////////////////////
+	//////STOCKAGE//////
+	////////////////////
 	
+	/**
+	 * STOCKAGE : QUANTITE MAXIMALE DE STOCKAGE DE PIERRE POUR LE JOUEUR
+	 */
+	private Integer quantiteMaximaleStockagePierre() {
+		// Récupération du joueur connecté
+		Joueur jou = recuperationJoueur();
+		// -- PIERRE -
+		Integer stockageMaximalPierre = 10000;
+		// -- TOUS LES BATIMENTS QUI AUGMENTENT LA LIMITE DE STOCKAGE DE PIERRE
+		for (BatimentJoueur batimentStockagePierre : batimentJoueurRepo.findByQuantiteeStockagePierreGreaterThanAndJoueurId(1,jou.getId())) {
+			long maintenant = new Date().getTime();
+			long fin = batimentStockagePierre.getDateFinConstruction();
+			// Si le batiment est en cours d'amélioration, augmentation pas prise en compte
+			if(maintenant>fin) {
+				stockageMaximalPierre = stockageMaximalPierre + batimentStockagePierre.getQuantiteeStockagePierre();
+			} 
+			else // Sinon, prise en compte
+			{
+				// Vérification que la bâtiment est déjà construit
+				if(batimentStockagePierre.getNiveau()>1) {
+					stockageMaximalPierre = stockageMaximalPierre + batimentStockagePierre.getQuantiteeStockagePierre()/2;
+
+				}
+			}
+		}
+		return stockageMaximalPierre;
+	}
+	
+	/**
+	 * STOCKAGE : QUANTITE MAXIMALE DE STOCKAGE DE BOIS POUR LE JOUEUR
+	 */
+	private Integer quantiteMaximaleStockageBois() {
+		// Récupération du joueur connecté
+		Joueur jou = recuperationJoueur();
+		// -- BOIS --
+		Integer stockageMaximalBois = 10000;
+		// -- TOUS LES BATIMENTS QUI AUGMENTENT LA LIMITE DE STOCKAGE DE BOIS
+		for (BatimentJoueur batimentStockageBois : batimentJoueurRepo.findByQuantiteeStockageBoisGreaterThanAndJoueurId(1,jou.getId())) {
+			long maintenant = new Date().getTime();
+			long fin = batimentStockageBois.getDateFinConstruction();
+			// Si le batiment est en cours d'amélioration, augmentation pas prise en compte
+			if(maintenant>fin) {
+				stockageMaximalBois = stockageMaximalBois + batimentStockageBois.getQuantiteeStockageBois();
+			} 
+			else // Sinon, prise en compte
+			{
+				// Vérification que la bâtiment est déjà construit
+				if(batimentStockageBois.getNiveau()>1) {
+					stockageMaximalBois = stockageMaximalBois + batimentStockageBois.getQuantiteeStockageBois()/2;
+
+				}
+			}
+		}
+		return stockageMaximalBois;
+	}
+	
+	/**
+	 * STOCKAGE : QUANTITE MAXIMALE DE STOCKAGE D'OR POUR LE JOUEUR
+	 */
+	private Integer quantiteMaximaleStockageOr() {
+		// Récupération du joueur connecté
+		Joueur jou = recuperationJoueur();
+		// -- OR --
+		Integer stockageMaximalOr = 10000;
+		// -- TOUS LES BATIMENTS QUI AUGMENTENT LA LIMITE DE STOCKAGE DE OR
+		for (BatimentJoueur batimentStockageOr : batimentJoueurRepo.findByQuantiteeStockageOreGreaterThanAndJoueurId(1,jou.getId())) {
+			long maintenant = new Date().getTime();
+			long fin = batimentStockageOr.getDateFinConstruction();
+			// Si le batiment est en cours d'amélioration, augmentation pas prise en compte
+			if(maintenant>fin) {
+				stockageMaximalOr = stockageMaximalOr + batimentStockageOr.getQuantiteeStockageOre();
+			} 
+			else // Sinon, prise en compte
+			{
+				// Vérification que la bâtiment est déjà construit
+				if(batimentStockageOr.getNiveau()>1) {
+					stockageMaximalOr = stockageMaximalOr + batimentStockageOr.getQuantiteeStockageOre()/2;
+
+				}
+			}
+		}
+		return stockageMaximalOr;
+	}
+
+	/**
+	 * STOCKAGE : QUANTITE MAXIMALE DE STOCKAGE DE NOURRITURE POUR LE JOUEUR
+	 */
+	private Integer quantiteMaximaleStockageNourriture() {
+		// Récupération du joueur connecté
+		Joueur jou = recuperationJoueur();
+		// -- NOURRITURE --
+		Integer stockageMaximalNourriture = 10000;
+		// -- TOUS LES BATIMENTS QUI AUGMENTENT LA LIMITE DE STOCKAGE DE NOURRITURE
+		for (BatimentJoueur batimentStockageNourriture : batimentJoueurRepo.findByQuantiteeStockageNourritureGreaterThanAndJoueurId(1,jou.getId())) {
+			long maintenant = new Date().getTime();
+			long fin = batimentStockageNourriture.getDateFinConstruction();
+			// Si le batiment est en cours d'amélioration, augmentation pas prise en compte
+			if(maintenant>fin) {
+				stockageMaximalNourriture = stockageMaximalNourriture + batimentStockageNourriture.getQuantiteeStockageNourriture();
+			} 
+			else // Sinon, prise en compte
+			{
+				// Vérification que la bâtiment est déjà construit
+				if(batimentStockageNourriture.getNiveau()>1) {
+					stockageMaximalNourriture = stockageMaximalNourriture + batimentStockageNourriture.getQuantiteeStockageNourriture()/2;
+
+				}
+			}
+		}
+		return stockageMaximalNourriture;
+	}
+
+
+	//////////////////
+	//////APPORT//////
+	//////////////////
+	
+	/**
+	 * APPORT : RETOURNE LA QUANTITE DE PIERRE QUE LE JOUEUR GAGNE PAR SECONDE
+	 */
+	private Integer apportPierreSeconde() {	
+		// Récupération du joueur connecté
+		Joueur jou = recuperationJoueur();
+		// -- PIERRE --
+		// CALCUL APPORT PAR HEURE DU JOUEUR
+		Integer apportPierreHeure = 1;
+		// -- TOUS LES BATIMENTS QUI RAPPORTENT DE LA PIERRE
+		for (BatimentJoueur batimentPierre : batimentJoueurRepo.findByApportPierreHeureGreaterThanAndJoueurId(1,jou.getId())) {
+			// Si le batiment est en cours d'amélioration, apport de ressources pas pris en compte
+			long maintenant = new Date().getTime();
+			long fin = batimentPierre.getDateFinConstruction();
+			if(maintenant>fin) {
+				apportPierreHeure = apportPierreHeure + batimentPierre.getApportPierreHeure();
+			}
+		}
+		// -- APPORT PIERRE PAR SECONDES
+		
+		Integer apportPierreSeconde = Math.round(apportPierreHeure / 3600);
+		return apportPierreSeconde;
+	}
+
+	/**
+	 * APPORT : RETOURNE LA QUANTITE DE BOIS QUE LE JOUEUR GAGNE PAR SECONDE
+	 */
+	private Integer apportBoisSeconde() {
+		// Récupération du joueur connecté
+		Joueur jou = recuperationJoueur();
+		// -- BOIS --
+		// CALCUL APPORT PAR HEURE DU JOUEUR
+		Integer apportBoisHeure = 1;
+		// -- TOUS LES BATIMENTS QUI RAPPORTENT DU BOIS
+		for (BatimentJoueur batimentBois : batimentJoueurRepo.findByApportBoisHeureGreaterThanAndJoueurId(1,jou.getId())) {
+			// Si le batiment est en cours d'amélioration, apport de ressources pas pris en compte
+			long maintenant = new Date().getTime();
+			long fin = batimentBois.getDateFinConstruction();
+			if(maintenant>fin) {
+				apportBoisHeure = apportBoisHeure + batimentBois.getApportBoisHeure();
+			}
+		}
+		// -- APPORT BOIS PAR SECONDES
+		Integer apportBoisSeconde =  Math.round(apportBoisHeure / 3600);
+		return apportBoisSeconde;
+	}
+
+	/**
+	 * APPORT : RETOURNE LA QUANTITE D'OR QUE LE JOUEUR GAGNE PAR SECONDE
+	 */
+	private Integer apportOrSeconde() {
+		// Récupération du joueur connecté
+		Joueur jou = recuperationJoueur();
+		// -- OR --
+		// CALCUL APPORT PAR HEURE DU JOUEUR
+		Integer apportOrHeure = 1;
+		// -- TOUS LES BATIMENTS QUI RAPPORTENT DE L'OR
+		for (BatimentJoueur batimentOr : batimentJoueurRepo.findByApportOreHeureGreaterThanAndJoueurId(1,jou.getId())) {
+			// Si le batiment est en cours d'amélioration, apport de ressources pas pris en compte
+			long maintenant = new Date().getTime();
+			long fin = batimentOr.getDateFinConstruction();
+			if(maintenant>fin) {
+				apportOrHeure = apportOrHeure + batimentOr.getApportOreHeure();
+			}
+		}
+		// -- APPORT OR PAR SECONDES
+		Integer apportOrSeconde =  Math.round(apportOrHeure / 3600);
+		return apportOrSeconde;
+	}
+	
+	/**
+	 * APPORT : RETOURNE LA QUANTITE DE NOURRITURE QUE LE JOUEUR GAGNE PAR SECONDE
+	 */
+	private Integer apportNourritureSeconde() {
+		// Récupération du joueur connecté
+		Joueur jou = recuperationJoueur();
+		// -- NOURRITURE --
+		// CALCUL APPORT PAR HEURE DU JOUEUR
+		Integer apportNourritureHeure = 1;
+		// -- TOUS LES BATIMENTS QUI RAPPORTENT DE LA NOURRITURE
+		for (BatimentJoueur batimentNourriture : batimentJoueurRepo.findByApportNourritureHeureGreaterThanAndJoueurId(1,jou.getId())) {
+			// Si le batiment est en cours d'amélioration, apport de ressources pas pris en compte
+			long maintenant = new Date().getTime();
+			long fin = batimentNourriture.getDateFinConstruction();
+			if(maintenant>fin) {
+				apportNourritureHeure = apportNourritureHeure + batimentNourriture.getApportNourritureHeure();
+			}
+		}
+		// -- APPORT NOURRITURE PAR SECONDES
+		Integer apportNourritureSeconde =  Math.round(apportNourritureHeure / 3600);
+		return apportNourritureSeconde;
+	}
+	
+	/**
+	 * MODIFICATION INFORMATIONS DU JOUEUR
+	 */
 	public Joueur modifierInformationsJoueur(ModificationJoueurDto modificationJoueurDto) {
 		Joueur jou = recuperationJoueur();
 		System.out.println(jou.getDescriptif());
@@ -359,10 +450,56 @@ public class JoueurService {
 				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getRoles(), jou.getDerniereConnexion());
 		joueur.setId(jou.getId());
 		
-		
+		// SAUVEGARDE
 		joueurRepo.save(jou);
 
-		System.out.println(jou.getDescriptif());
+		// RETOUR
 		return jou;
+	}
+	
+	/**
+	 * RECAPITULATIF DES INFORMATIONS RESSOURCE DU JOUEUR
+	 */
+	public InformationRessourcesJoueur informationRessourcesJoueur() {
+		getInfoJoueur();
+		Joueur jou = recuperationJoueur();
+		InformationRessourcesJoueur informationRessourcesJoueur = new InformationRessourcesJoueur();
+		// Ses apports
+		Integer apportPierreSeconde = apportPierreSeconde();
+		Integer apportBoisSeconde = apportPierreSeconde();
+		Integer apportOrSeconde = apportPierreSeconde();
+		Integer apportNourritureSeconde = apportPierreSeconde();
+		// Ses limites
+		Integer quantiteMaximaleStockagePierre = quantiteMaximaleStockagePierre();
+		Integer quantiteMaximaleStockageBois = quantiteMaximaleStockageBois();
+		Integer quantiteMaximaleStockageOr = quantiteMaximaleStockageOr();
+		Integer quantiteMaximaleStockageNourriture = quantiteMaximaleStockageNourriture();
+		// Ses ressources actuelle
+		Integer pierrePossession = jou.getPierrePossession();
+		Integer boisPossession = jou.getBoisPossession();
+		Integer orPossession = jou.getOrPossession();
+		Integer nourriturePossession = jou.getNourriturePossession();
+		Integer gemmePossession = jou.getGemmePossession();
+		
+		//////////////////
+		// SET : Apports
+		informationRessourcesJoueur.setApportPierreSeconde(apportPierreSeconde);
+		informationRessourcesJoueur.setApportBoisSeconde(apportBoisSeconde);
+		informationRessourcesJoueur.setApportOrSeconde(apportOrSeconde);
+		informationRessourcesJoueur.setApportNourritureSeconde(apportNourritureSeconde);
+		// SET : Limites
+		informationRessourcesJoueur.setQuantiteMaximaleStockagePierre(quantiteMaximaleStockagePierre);
+		informationRessourcesJoueur.setQuantiteMaximaleStockageBois(quantiteMaximaleStockageBois);
+		informationRessourcesJoueur.setQuantiteMaximaleStockageOr(quantiteMaximaleStockageOr);
+		informationRessourcesJoueur.setQuantiteMaximaleStockageNourriture(quantiteMaximaleStockageNourriture);
+		// SET : ressources actuelles
+		informationRessourcesJoueur.setPierrePossession(pierrePossession);
+		informationRessourcesJoueur.setBoisPossession(boisPossession);
+		informationRessourcesJoueur.setOrPossession(orPossession);
+		informationRessourcesJoueur.setNourriturePossession(nourriturePossession);
+		informationRessourcesJoueur.setGemmePossession(gemmePossession);
+		
+		// RETOUR
+		return informationRessourcesJoueur;
 	}
 }
