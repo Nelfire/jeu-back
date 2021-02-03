@@ -145,22 +145,22 @@ public class StartupListener {
     	18 - Table d'expéditions
          */
         Batiment hdv = new Batiment(1,0,"https://cdn.discordapp.com/attachments/794876433842831361/794876575979667456/HotelDeVille.png","Hotel de ville","Descriptif de l'hotel de ville",5,10,10,10,10,10,0,10000,10000,10000,10000,3600,3600,3600,3600);
-        Batiment chaumiere = new Batiment(2,0,"https://cdn.discordapp.com/attachments/794876433842831361/794876520338161704/Chaumiere.png","Chaumière","Descriptif de la chaumière",5,99,99,99,99,99,1,0,0,0,0,0,0,0,0);
-        Batiment carriere = new Batiment(3,1,"https://cdn.discordapp.com/attachments/794876433842831361/794876505230540860/Carriere.png","Carrière","Descriptif de la carrière",5,99,99,99,99,99,1,0,0,0,0,25000,0,0,0);
-        Batiment campDeBucheron = new Batiment(4,1,"https://cdn.discordapp.com/attachments/794876433842831361/794876491850711040/CampDeBucheron.png","Camp de bûcheron","Descriptif du camp de bûcheron",5,99,99,99,99,99,1,0,0,0,0,0,25000,0,0);
-        Batiment campDeMineur = new Batiment(5,1,"https://cdn.discordapp.com/attachments/794876433842831361/794876498183323678/CampDeMineur.png","Camp de mineur","Descriptif du camp de mineur",5,99,99,99,99,99,1,0,0,0,0,0,0,25000,0);
-        Batiment ferme = new Batiment(6,1,"https://cdn.discordapp.com/attachments/794876433842831361/794876556509839360/Ferme.png","Ferme","Descriptif de la ferme",5,99,99,99,99,99,1,0,0,0,0,0,0,0,25000);
-        Batiment entrepot = new Batiment(7,2,"https://cdn.discordapp.com/attachments/794876433842831361/794876485034311690/Banque.png","Entrepot","Descriptif de l'entrepot",5,99,99,99,99,99,1,50000,0,0,0,0,0,0,0);
-        Batiment scierie = new Batiment(8,2,"https://cdn.discordapp.com/attachments/794876433842831361/794876485034311690/Banque.png","Scierie","Descriptif de la scierie",5,99,99,99,99,99,1,0,50000,0,0,0,0,0,0);
-        Batiment banque = new Batiment(9,2,"https://cdn.discordapp.com/attachments/794876433842831361/794876485034311690/Banque.png","Banque","Descriptif de la banque",5,99,99,99,99,99,1,0,0,50000,0,0,0,0,0);
-        Batiment grenier = new Batiment(10,2,"https://cdn.discordapp.com/attachments/794876433842831361/794876485034311690/Banque.png","Grenier","Descriptif du grenier",5,99,99,99,99,99,1,0,0,0,50000,0,0,0,0);
-        Batiment caserneMillitaire = new Batiment(11,3,"https://cdn.discordapp.com/attachments/794876433842831361/794876513039417404/CaserneMillitaire.png","Caserne millitaire","Descriptif de la caserne millitaire",5,99,99,99,99,99,2,0,0,0,0,0,0,0,0);
-        Batiment ecurie = new Batiment(12,3,"https://cdn.discordapp.com/attachments/794876433842831361/794876520338161704/Chaumiere.png","Ecurie","Descriptif de l'écurie",5,99,99,99,99,99,3,0,0,0,0,0,0,0,0);
-        Batiment port = new Batiment(13,3,"https://cdn.discordapp.com/attachments/794876433842831361/794876596741865522/Port.png","Port","Descriptif du port",5,99,99,99,99,99,4,0,0,0,0,0,0,0,0);
-        Batiment atelierDeSiege = new Batiment(14,3,"https://cdn.discordapp.com/attachments/794876433842831361/794876478667751444/AtelierDeSiege.png","Atelier de siège","Descriptif de l'atelier de siège",5,99,99,99,99,99,5,0,0,0,0,0,0,0,0);
-        Batiment forge = new Batiment(15,0,"https://cdn.discordapp.com/attachments/794876433842831361/794876568375001098/Forge.png","Forge","Descriptif de la forge",5,99,99,99,99,99,5,0,0,0,0,0,0,0,0);
-        Batiment universite = new Batiment(16,0,"https://cdn.discordapp.com/attachments/794876433842831361/794876610632220702/Universite.png","Université","Descriptif de l'universite",5,99,99,99,99,99,5,0,0,0,0,0,0,0,0);
-        Batiment marche = new Batiment(17,0,"https://cdn.discordapp.com/attachments/794876433842831361/794876590022590504/Marche.png","Marché","Descriptif du marché",5,99,99,99,99,99,5,0,0,0,0,0,0,0,0);
+        Batiment chaumiere = new Batiment(2,0,"https://cdn.discordapp.com/attachments/794876433842831361/794876520338161704/Chaumiere.png","Chaumière","Descriptif de la chaumière",5,10,99,99,99,99,1,0,0,0,0,0,0,0,0);
+        Batiment carriere = new Batiment(3,1,"https://cdn.discordapp.com/attachments/794876433842831361/794876505230540860/Carriere.png","Carrière","Descriptif de la carrière",5,10,99,99,99,99,1,0,0,0,0,25000,0,0,0);
+        Batiment campDeBucheron = new Batiment(4,1,"https://cdn.discordapp.com/attachments/794876433842831361/794876491850711040/CampDeBucheron.png","Camp de bûcheron","Descriptif du camp de bûcheron",5,10,99,99,99,99,1,0,0,0,0,0,25000,0,0);
+        Batiment campDeMineur = new Batiment(5,1,"https://cdn.discordapp.com/attachments/794876433842831361/794876498183323678/CampDeMineur.png","Camp de mineur","Descriptif du camp de mineur",5,10,99,99,99,99,1,0,0,0,0,0,0,25000,0);
+        Batiment ferme = new Batiment(6,1,"https://cdn.discordapp.com/attachments/794876433842831361/794876556509839360/Ferme.png","Ferme","Descriptif de la ferme",5,10,99,99,99,99,1,0,0,0,0,0,0,0,25000);
+        Batiment entrepot = new Batiment(7,2,"https://cdn.discordapp.com/attachments/794876433842831361/794876485034311690/Banque.png","Entrepot","Descriptif de l'entrepot",5,10,99,99,99,99,1,50000,0,0,0,0,0,0,0);
+        Batiment scierie = new Batiment(8,2,"https://cdn.discordapp.com/attachments/794876433842831361/794876485034311690/Banque.png","Scierie","Descriptif de la scierie",5,10,99,99,99,99,1,0,50000,0,0,0,0,0,0);
+        Batiment banque = new Batiment(9,2,"https://cdn.discordapp.com/attachments/794876433842831361/794876485034311690/Banque.png","Banque","Descriptif de la banque",5,10,99,99,99,99,1,0,0,50000,0,0,0,0,0);
+        Batiment grenier = new Batiment(10,2,"https://cdn.discordapp.com/attachments/794876433842831361/794876485034311690/Banque.png","Grenier","Descriptif du grenier",5,10,99,99,99,99,1,0,0,0,50000,0,0,0,0);
+        Batiment caserneMillitaire = new Batiment(11,3,"https://cdn.discordapp.com/attachments/794876433842831361/794876513039417404/CaserneMillitaire.png","Caserne millitaire","Descriptif de la caserne millitaire",5,10,99,99,99,99,2,0,0,0,0,0,0,0,0);
+        Batiment ecurie = new Batiment(12,3,"https://cdn.discordapp.com/attachments/794876433842831361/794876520338161704/Chaumiere.png","Ecurie","Descriptif de l'écurie",5,10,99,99,99,99,3,0,0,0,0,0,0,0,0);
+        Batiment port = new Batiment(13,3,"https://cdn.discordapp.com/attachments/794876433842831361/794876596741865522/Port.png","Port","Descriptif du port",5,10,99,99,99,99,4,0,0,0,0,0,0,0,0);
+        Batiment atelierDeSiege = new Batiment(14,3,"https://cdn.discordapp.com/attachments/794876433842831361/794876478667751444/AtelierDeSiege.png","Atelier de siège","Descriptif de l'atelier de siège",5,10,99,99,99,99,5,0,0,0,0,0,0,0,0);
+        Batiment forge = new Batiment(15,0,"https://cdn.discordapp.com/attachments/794876433842831361/794876568375001098/Forge.png","Forge","Descriptif de la forge",5,10,99,99,99,99,5,0,0,0,0,0,0,0,0);
+        Batiment universite = new Batiment(16,0,"https://cdn.discordapp.com/attachments/794876433842831361/794876610632220702/Universite.png","Université","Descriptif de l'universite",5,10,99,99,99,99,5,0,0,0,0,0,0,0,0);
+        Batiment marche = new Batiment(17,0,"https://cdn.discordapp.com/attachments/794876433842831361/794876590022590504/Marche.png","Marché","Descriptif du marché",5,10,99,99,99,99,5,0,0,0,0,0,0,0,0);
         Batiment tableExpedition = new Batiment(18,0,"https://cdn.discordapp.com/attachments/794876433842831361/794876603564818432/TableExpedition.png","Table d'expéditions","Descriptif de la table d'expédition",5,10,10,10,10,10,1,0,0,0,0,0,0,0,0);
         this.batimentRepo.save(hdv);
         this.batimentRepo.save(chaumiere);
@@ -186,15 +186,15 @@ public class StartupListener {
 //		listeBatiments.add(ferme);
 //		System.out.println(hdv.toString());
 
-//		long debut = new Date().getTime();
-//		long fin = new Date().getTime();
-		
-//		BatimentJoueur batimentJoueur1 = new BatimentJoueur(joueur1, hdv, 2, null, debut, fin);
+		long debut = new Date().getTime();
+		long fin = new Date().getTime();
+
+		BatimentJoueur batimentJoueur1 = new BatimentJoueur(joueur1,hdv,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,debut,fin);
+		BatimentJoueur batimentJoueur2 = new BatimentJoueur(joueur1,tableExpedition,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,debut,fin);
 //		BatimentJoueur batimentJoueur2 = new BatimentJoueur(joueur1, port, 2,  null, debut, fin);
 //		BatimentJoueur batimentJoueur3 = new BatimentJoueur(joueur1, carriere, 2,  null, debut, fin);
-//		this.batimentJoueurRepo.save(batimentJoueur1);
-//		this.batimentJoueurRepo.save(batimentJoueur2);
-//		this.batimentJoueurRepo.save(batimentJoueur3);
+		this.batimentJoueurRepo.save(batimentJoueur1);
+		this.batimentJoueurRepo.save(batimentJoueur2);
 		
 		
         // ----- UNITEE -----

@@ -105,6 +105,7 @@ public class BatimentJoueurService {
 	 * CREATION D'UN NOUVEAU BATIMENT JOUEUR (Construction)
 	 */
 	public BatimentJoueurCreationDto creationBatimentJoueur(BatimentJoueurCreationDto batimentJoueurCreationDto) {
+		this.joueurService.getInfoJoueur();
 		// RÉCUPÉRATION DU JOUEUR CONNECTÉ.
 		Joueur jou = joueurService.recuperationJoueur();
 		
@@ -403,7 +404,6 @@ public class BatimentJoueurService {
 				debut,
 				fin);
 		
-		System.out.println(batimentJoueur.toString());
 		// SAUVEGARDES
 		this.batimentJoueurRepo.save(batimentJoueur);
 		this.joueurRepo.save(jou);
@@ -416,6 +416,7 @@ public class BatimentJoueurService {
 	 * MODIFICATION D'UN BATIMENT JOUEUR (Amélioration)
 	 */
 	public BatimentJoueurDto putBatimentJoueur(@Valid BatimentJoueurDto batt, Integer id) {
+		this.joueurService.getInfoJoueur();
 		// RÉCUPÉRATION DU JOUEUR CONNECTÉ.
 		Joueur jou = joueurService.recuperationJoueur();
 		
@@ -462,7 +463,6 @@ public class BatimentJoueurService {
 			apportBoisHeure = 2*(batimentJoueurDto.getApportBoisHeure());
 			apportOreHeure = 2*(batimentJoueurDto.getApportOreHeure());
 			apportNourritureHeure = 2*(batimentJoueurDto.getApportNourritureHeure());
-			System.out.println(apportPierreHeure);
 		} 
 		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 2) // 2 = Chaumière
 		{

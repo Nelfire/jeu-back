@@ -593,6 +593,16 @@ public class Joueur {
 	public void setDerniereConnexion(Date derniereConnexion) {
 		this.derniereConnexion = derniereConnexion;
 	}
+
+	@Override
+	public String toString() {
+		return "Joueur [id=" + id + ", pseudo=" + pseudo + ", pierrePossession=" + pierrePossession
+				+ ", boisPossession=" + boisPossession + ", orPossession=" + orPossession + ", nourriturePossession="
+				+ nourriturePossession + ", gemmePossession=" + gemmePossession + "]";
+	}
+	
+	
+	
 	
 	
 
@@ -611,6 +621,7 @@ public class Joueur {
 //	}
     
     
+	
     
 
 

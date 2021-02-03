@@ -81,6 +81,7 @@ public class ExpeditionJoueurController {
 	 */
 	@GetMapping("/recupererRecompense")
 	public String recupererRecompense(@RequestParam("idExpedition") Integer idExpedition) {
+		System.out.println("recupererRecompense controller");
 		return this.expeditionJoueurService.recupererRecompense(idExpedition);
 	}
 }

@@ -139,14 +139,17 @@ public class JoueurService {
 		// milliseconde < 1000 ? Si oui --> 1000
 		Integer millisecondesDifference = (int) (now.getTime()-jou.getDerniereConnexion().getTime()) < 1000 ? 1000 :(int) (now.getTime()-jou.getDerniereConnexion().getTime());
 
+		System.out.println("Temps depuis derniere attribution de ressources : "+millisecondesDifference);
 		//////////////////////////////////
 		// -- ATTRIBUTION RESSOURCES -- //
 		//////////////////////////////////
 		
 		// PIERRE : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
 		Integer apportPierreSeconde = apportPierreSeconde();
+		System.out.println("apportPierreSeconde : "+apportPierreSeconde);
 		// - CAS INACTIVITEE -
 		Integer apportPierreFinal = (apportPierreSeconde * millisecondesDifference)/1000;
+		System.out.println("apportPierreFinal : "+apportPierreFinal);
 		
 		// BOIS : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
 		Integer apportBoisSeconde = apportBoisSeconde();
@@ -192,7 +195,7 @@ public class JoueurService {
 		jou.setOrMaximum(stockageMaximalOr);
 		jou.setNourritureMaximum(stockageMaximalNourriture);
 		// TEMPS DE JEU
-		jou.setTempsDeJeu(jou.getTempsDeJeu() + 1);
+		jou.setTempsDeJeu(jou.getTempsDeJeu() + (millisecondesDifference/1000));
 		Date dateAujourdhui  = new Date(); 
 		jou.setDerniereConnexion(dateAujourdhui);
 
@@ -206,8 +209,10 @@ public class JoueurService {
 		joueur.setId(jou.getId());
 		
 		// SAUVEGARDE
+		System.out.println("SAUVEGARDE RESSOURCES JOUEUR");
 		this.joueurRepo.save(joueur);
 
+		System.out.println("GEMASSES"+jou.getGemmePossession());
 		// RETOUR
 		JoueurInfoDto co = new JoueurInfoDto(jou.getId(), jou.getIcone(), jou.getPseudo(), jou.getEmail(),
 				jou.getDescriptif(), jou.getNiveau(), jou.getExperience(), jou.getPierrePossession(),
@@ -217,6 +222,55 @@ public class JoueurService {
 				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getDerniereConnexion());
 		return co;
 	}
+	
+	/**
+	 * RECAPITULATIF DES INFORMATIONS RESSOURCE DU JOUEUR
+	 */
+	public InformationRessourcesJoueur informationRessourcesJoueur() {
+		getInfoJoueur();
+		System.out.println("-- InformationRessourcesJoueur --");
+		Joueur jou = recuperationJoueur();
+		InformationRessourcesJoueur informationRessourcesJoueur = new InformationRessourcesJoueur();
+		// Ses apports
+		Integer apportPierreSeconde = apportPierreSeconde();
+		Integer apportBoisSeconde = apportBoisSeconde();
+		Integer apportOrSeconde = apportOrSeconde();
+		Integer apportNourritureSeconde = apportNourritureSeconde();
+		// Ses limites
+		Integer quantiteMaximaleStockagePierre = quantiteMaximaleStockagePierre();
+		Integer quantiteMaximaleStockageBois = quantiteMaximaleStockageBois();
+		Integer quantiteMaximaleStockageOr = quantiteMaximaleStockageOr();
+		Integer quantiteMaximaleStockageNourriture = quantiteMaximaleStockageNourriture();
+		// Ses ressources actuelle
+		Integer pierrePossession = jou.getPierrePossession();
+		Integer boisPossession = jou.getBoisPossession();
+		Integer orPossession = jou.getOrPossession();
+		Integer nourriturePossession = jou.getNourriturePossession();
+		Integer gemmePossession = jou.getGemmePossession();
+		
+		//////////////////
+		// SET : Apports
+		informationRessourcesJoueur.setApportPierreSeconde(apportPierreSeconde);
+		informationRessourcesJoueur.setApportBoisSeconde(apportBoisSeconde);
+		informationRessourcesJoueur.setApportOrSeconde(apportOrSeconde);
+		informationRessourcesJoueur.setApportNourritureSeconde(apportNourritureSeconde);
+		// SET : Limites
+		informationRessourcesJoueur.setQuantiteMaximaleStockagePierre(quantiteMaximaleStockagePierre);
+		informationRessourcesJoueur.setQuantiteMaximaleStockageBois(quantiteMaximaleStockageBois);
+		informationRessourcesJoueur.setQuantiteMaximaleStockageOr(quantiteMaximaleStockageOr);
+		informationRessourcesJoueur.setQuantiteMaximaleStockageNourriture(quantiteMaximaleStockageNourriture);
+		// SET : ressources actuelles
+		informationRessourcesJoueur.setPierrePossession(pierrePossession);
+		informationRessourcesJoueur.setBoisPossession(boisPossession);
+		informationRessourcesJoueur.setOrPossession(orPossession);
+		informationRessourcesJoueur.setNourriturePossession(nourriturePossession);
+		informationRessourcesJoueur.setGemmePossession(gemmePossession);
+		
+		System.out.println("Données ressources : "+informationRessourcesJoueur.toString());
+		// RETOUR
+		return informationRessourcesJoueur;
+	}
+	
 
 
 	////////////////////
@@ -457,49 +511,5 @@ public class JoueurService {
 		return jou;
 	}
 	
-	/**
-	 * RECAPITULATIF DES INFORMATIONS RESSOURCE DU JOUEUR
-	 */
-	public InformationRessourcesJoueur informationRessourcesJoueur() {
-		getInfoJoueur();
-		Joueur jou = recuperationJoueur();
-		InformationRessourcesJoueur informationRessourcesJoueur = new InformationRessourcesJoueur();
-		// Ses apports
-		Integer apportPierreSeconde = apportPierreSeconde();
-		Integer apportBoisSeconde = apportPierreSeconde();
-		Integer apportOrSeconde = apportPierreSeconde();
-		Integer apportNourritureSeconde = apportPierreSeconde();
-		// Ses limites
-		Integer quantiteMaximaleStockagePierre = quantiteMaximaleStockagePierre();
-		Integer quantiteMaximaleStockageBois = quantiteMaximaleStockageBois();
-		Integer quantiteMaximaleStockageOr = quantiteMaximaleStockageOr();
-		Integer quantiteMaximaleStockageNourriture = quantiteMaximaleStockageNourriture();
-		// Ses ressources actuelle
-		Integer pierrePossession = jou.getPierrePossession();
-		Integer boisPossession = jou.getBoisPossession();
-		Integer orPossession = jou.getOrPossession();
-		Integer nourriturePossession = jou.getNourriturePossession();
-		Integer gemmePossession = jou.getGemmePossession();
-		
-		//////////////////
-		// SET : Apports
-		informationRessourcesJoueur.setApportPierreSeconde(apportPierreSeconde);
-		informationRessourcesJoueur.setApportBoisSeconde(apportBoisSeconde);
-		informationRessourcesJoueur.setApportOrSeconde(apportOrSeconde);
-		informationRessourcesJoueur.setApportNourritureSeconde(apportNourritureSeconde);
-		// SET : Limites
-		informationRessourcesJoueur.setQuantiteMaximaleStockagePierre(quantiteMaximaleStockagePierre);
-		informationRessourcesJoueur.setQuantiteMaximaleStockageBois(quantiteMaximaleStockageBois);
-		informationRessourcesJoueur.setQuantiteMaximaleStockageOr(quantiteMaximaleStockageOr);
-		informationRessourcesJoueur.setQuantiteMaximaleStockageNourriture(quantiteMaximaleStockageNourriture);
-		// SET : ressources actuelles
-		informationRessourcesJoueur.setPierrePossession(pierrePossession);
-		informationRessourcesJoueur.setBoisPossession(boisPossession);
-		informationRessourcesJoueur.setOrPossession(orPossession);
-		informationRessourcesJoueur.setNourriturePossession(nourriturePossession);
-		informationRessourcesJoueur.setGemmePossession(gemmePossession);
-		
-		// RETOUR
-		return informationRessourcesJoueur;
-	}
+
 }

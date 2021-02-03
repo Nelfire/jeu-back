@@ -25,6 +25,8 @@ public class BoutiqueService {
 	
 	// PIERRE
 	public void achat10PourcentPierre() {
+		System.out.println("Achat 10% pierre service");
+
 		// RECUPERATION DU JOUEUR
 		Joueur jou = joueurService.recuperationJoueur();
 		
@@ -32,6 +34,8 @@ public class BoutiqueService {
 		Integer quantite10pourcentpierre = (int) (jou.getPierreMaximum()*0.1);
 		// CALCUL COUT GEMMES ( montant ressource / 100 )
 		Integer coutGemme = quantite10pourcentpierre / 100;
+		System.out.println("quantite10pourcentpierre : "+quantite10pourcentpierre);
+		System.out.println("coutGemme : "+coutGemme);
 			
 		// CAS ACHAT DE RESSOURCES SUPÉRIEURE À LA CAPACITÉE DE STOCKAGE
 		if(quantite10pourcentpierre+jou.getPierrePossession() > jou.getPierreMaximum()) {
@@ -48,14 +52,29 @@ public class BoutiqueService {
 		if(jou.getPierreMaximum()==jou.getPierrePossession()) {
 			throw new RessourceManquanteException("Maximum de pierre atteint.");
 		}
-		
+		System.out.println(jou.getId());
+		System.out.println("Gemmes avant :"+jou.getGemmePossession());
 		// RETRAIT DES GEMMES
 		jou.setGemmePossession(jou.getGemmePossession() - coutGemme);
+		System.out.println("Gemmes apres :"+jou.getGemmePossession());
 		// AJOUT DE LA PIERRE
+
+		System.out.println("Pierres avant :"+jou.getPierrePossession());
 		jou.setPierrePossession(jou.getPierrePossession() + quantite10pourcentpierre);
+		System.out.println("Pierres apres :"+jou.getPierrePossession());
+		
+		
+		Joueur joueur = new Joueur(jou.getArmee(), jou.getIcone(), jou.getPseudo(), jou.getEmail(), jou.getMotDePasse(),
+				jou.getDescriptif(), jou.getNiveau(), jou.getExperience(), jou.getPierrePossession(),
+				jou.getBoisPossession(), jou.getOrPossession(), jou.getNourriturePossession(), jou.getGemmePossession(),
+				jou.getPierreMaximum(), jou.getBoisMaximum(), jou.getOrMaximum(), jou.getNourritureMaximum(),
+				jou.getPierreBoostProduction(), jou.getBoisBoostProduction(), jou.getOrBoostProduction(),
+				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getRoles(), jou.getDerniereConnexion());
+		joueur.setId(jou.getId());
 		
 		// SAUVEGARDE
-		joueurRepo.save(jou);
+		joueurRepo.save(joueur);
+		System.out.println(joueur.toString());
 		
 	}
 	public void achat50PourcentPierre() {

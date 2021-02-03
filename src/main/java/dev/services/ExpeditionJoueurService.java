@@ -761,6 +761,7 @@ public class ExpeditionJoueurService {
 	
 	public String recupererRecompense(Integer idExpedition) {
 		
+		System.out.println("recupererRecompense service");
 		// RÉCUPÉRATION INFORMATIONS EXPEDITIONJOUER
 		ExpeditionJoueur expdJoueur = this.rechercherExpeditionJoueurById(idExpedition);
 		
@@ -786,6 +787,7 @@ public class ExpeditionJoueurService {
 		// DANS LE CAS OU L'EXPÉDITION EST UN SUCCES, ATTIBUTION DES RESSOURCES AU JOUEUR (PIERRE, BOIS, OR, NOURRITURE, GEMME)
 	    if (expdJoueur.getEtatExpedition() == 1) 
 	    {
+	    	System.out.println("CAS SUCCES");
 			Joueur jou = joueurService.recuperationJoueur();
 			jou.setPierrePossession(jou.getPierrePossession() + expdJoueur.getExpedition().getRecompensePierre());
 			jou.setBoisPossession(jou.getBoisPossession() + expdJoueur.getExpedition().getRecompenseBois());
@@ -796,6 +798,7 @@ public class ExpeditionJoueurService {
 			jou.setNiveau(jou.getExperience() / 5000); // /!\ Temporaire : 1 Niveau = 5000 Experience
 			// - Changement de l'état, pour définir l'expédition comme "réussite"
 			expeditionJoueur.setEtatExpedition(2);
+			System.out.println("JOUEUR EXPEDITIONJOUEURSERVICE : "+ jou);
 			// - Sauvegardes des informations joueur
 			joueurRepo.save(jou);
 	    }

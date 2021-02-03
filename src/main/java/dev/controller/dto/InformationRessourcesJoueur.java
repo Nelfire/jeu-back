@@ -215,6 +215,19 @@ public class InformationRessourcesJoueur {
 	public void setGemmePossession(Integer gemmePossession) {
 		this.gemmePossession = gemmePossession;
 	}
+	@Override
+	public String toString() {
+		return "InformationRessourcesJoueur [apportPierreSeconde=" + apportPierreSeconde + ", apportBoisSeconde="
+				+ apportBoisSeconde + ", apportOrSeconde=" + apportOrSeconde + ", apportNourritureSeconde="
+				+ apportNourritureSeconde + ", quantiteMaximaleStockagePierre=" + quantiteMaximaleStockagePierre
+				+ ", quantiteMaximaleStockageBois=" + quantiteMaximaleStockageBois + ", quantiteMaximaleStockageOr="
+				+ quantiteMaximaleStockageOr + ", quantiteMaximaleStockageNourriture="
+				+ quantiteMaximaleStockageNourriture + ", pierrePossession=" + pierrePossession + ", boisPossession="
+				+ boisPossession + ", orPossession=" + orPossession + ", nourriturePossession=" + nourriturePossession
+				+ ", gemmePossession=" + gemmePossession + "]";
+	}
+	
+	
 	
 	
 	
