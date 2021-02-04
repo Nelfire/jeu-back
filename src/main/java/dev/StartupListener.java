@@ -80,7 +80,7 @@ public class StartupListener {
    
     	// ----- JOUEUR -----
         Joueur joueur1 = new Joueur();
-        joueur1.setIcone("https://yscorporate.com/wp-content/uploads/2019/01/Photo-profil-professionnelle-par-photographe-entreprise10.jpg");
+        joueur1.setIcone("https://www.blog-nouvelles-technologies.fr/wp-content/uploads/2017/12/detective-avatar-icon-01-.jpg");
         joueur1.setPseudo("Nelfire");
         joueur1.setEmail("girvincent@gmail.com");
         joueur1.setMotDePasse(passwordEncoder.encode("password"));
@@ -102,7 +102,7 @@ public class StartupListener {
         this.joueurRepo.save(joueur1);
         
         Joueur joueur2 = new Joueur();
-        joueur2.setIcone("https://yscorporate.com/wp-content/uploads/2019/01/Photo-profil-professionnelle-par-photographe-entreprise10.jpg");
+        joueur2.setIcone("https://www.blog-nouvelles-technologies.fr/wp-content/uploads/2017/12/detective-avatar-icon-01-.jpg");
         joueur2.setPseudo("Riosha");
         joueur2.setEmail("riosha@gmail.com");
         joueur2.setMotDePasse(passwordEncoder.encode("password"));
