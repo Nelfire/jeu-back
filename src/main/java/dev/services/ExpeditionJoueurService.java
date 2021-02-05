@@ -355,6 +355,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreVillageois());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -371,6 +373,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreArcher());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -387,6 +391,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreArcherComposite());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -403,6 +409,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreFantassinEpee());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -419,6 +427,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreHommeDArme());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -435,6 +445,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreLanceurDeHache());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -451,6 +463,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreMilicien());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -467,6 +481,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombrePiquier());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -483,6 +499,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreCavalierArcher());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -499,6 +517,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreCavalier());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -516,6 +536,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreChampion());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -532,6 +554,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreBateauDePeche());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -548,6 +572,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreBateauIncendiaire());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -564,6 +590,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreBateauDeDestruction());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -580,6 +608,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreGalionACanon());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -597,6 +627,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreGalion());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -613,6 +645,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreGuerrierElite());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -629,6 +663,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombrePhalange());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -645,6 +681,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreSamourail());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -661,6 +699,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreTemplier());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -677,6 +717,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreCatapulte());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -693,6 +735,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreElephantDeCombat());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}
@@ -709,6 +753,8 @@ public class ExpeditionJoueurService {
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
 					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombrePretre());
+					armee.setDateDebutProduction(arme.getDateDebutProduction());
+					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 				}

@@ -139,17 +139,17 @@ public class JoueurService {
 		// milliseconde < 1000 ? Si oui --> 1000
 		Integer millisecondesDifference = (int) (now.getTime()-jou.getDerniereConnexion().getTime()) < 1000 ? 1000 :(int) (now.getTime()-jou.getDerniereConnexion().getTime());
 
-		System.out.println("Temps depuis derniere attribution de ressources : "+millisecondesDifference);
+		//System.out.println("Temps depuis derniere attribution de ressources : "+millisecondesDifference);
 		//////////////////////////////////
 		// -- ATTRIBUTION RESSOURCES -- //
 		//////////////////////////////////
 		
 		// PIERRE : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
 		Integer apportPierreSeconde = apportPierreSeconde();
-		System.out.println("apportPierreSeconde : "+apportPierreSeconde);
+		//System.out.println("apportPierreSeconde : "+apportPierreSeconde);
 		// - CAS INACTIVITEE -
 		Integer apportPierreFinal = (apportPierreSeconde * millisecondesDifference)/1000;
-		System.out.println("apportPierreFinal : "+apportPierreFinal);
+		//System.out.println("apportPierreFinal : "+apportPierreFinal);
 		
 		// BOIS : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
 		Integer apportBoisSeconde = apportBoisSeconde();
@@ -209,10 +209,9 @@ public class JoueurService {
 		joueur.setId(jou.getId());
 		
 		// SAUVEGARDE
-		System.out.println("SAUVEGARDE RESSOURCES JOUEUR");
+		//System.out.println("SAUVEGARDE RESSOURCES JOUEUR");
 		this.joueurRepo.save(joueur);
 
-		System.out.println("GEMASSES"+jou.getGemmePossession());
 		// RETOUR
 		JoueurInfoDto co = new JoueurInfoDto(jou.getId(), jou.getIcone(), jou.getPseudo(), jou.getEmail(),
 				jou.getDescriptif(), jou.getNiveau(), jou.getExperience(), jou.getPierrePossession(),
@@ -228,7 +227,6 @@ public class JoueurService {
 	 */
 	public InformationRessourcesJoueur informationRessourcesJoueur() {
 		getInfoJoueur();
-		System.out.println("-- InformationRessourcesJoueur --");
 		Joueur jou = recuperationJoueur();
 		InformationRessourcesJoueur informationRessourcesJoueur = new InformationRessourcesJoueur();
 		// Ses apports
@@ -266,7 +264,6 @@ public class JoueurService {
 		informationRessourcesJoueur.setNourriturePossession(nourriturePossession);
 		informationRessourcesJoueur.setGemmePossession(gemmePossession);
 		
-		System.out.println("Données ressources : "+informationRessourcesJoueur.toString());
 		// RETOUR
 		return informationRessourcesJoueur;
 	}
@@ -492,7 +489,6 @@ public class JoueurService {
 	 */
 	public Joueur modifierInformationsJoueur(ModificationJoueurDto modificationJoueurDto) {
 		Joueur jou = recuperationJoueur();
-		System.out.println(jou.getDescriptif());
 		jou.setIcone(modificationJoueurDto.getIcone());
 		jou.setEmail(modificationJoueurDto.getEmail());
 		jou.setDescriptif(modificationJoueurDto.getDescriptif());

@@ -1,8 +1,10 @@
 package dev.services;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.stereotype.Service;
 
 import dev.controller.dto.ArmeeDto;
@@ -52,6 +54,9 @@ public class ArmeeService {
 		Integer quantiteeBoisManquant;
 		Integer quantiteeOrManquant;
 		Integer quantiteeNourritureManquante;
+		Long tempsDebutFormation = 0L;
+		Long tempsFinFormation = 0L;
+		Long finProduction = 0L;
 		
 		// INFORMATIONS SUR L'UNITÉE QUE LE JOUEUR VEUT CRÉER
 		UniteeDto un = this.uniteeService.detailsUnitee(armeeJoueurCreationDto.getIdUnitee());
@@ -114,8 +119,16 @@ public class ArmeeService {
 				flag = true;
 				idArmee = arme.getId();
 				quantitee = arme.getQuantitee();
+				tempsDebutFormation = arme.getDateDebutProduction();
+				tempsFinFormation = arme.getDateFinProduction();
 			}
 		}
+		
+		// MOMENT "T" DE LANCEMENT DE LE FORMATION DES UNITEES
+		
+		System.out.println("------------------------------------------");
+		// MOMENT "T" DE LANCEMENT DE LE FORMATION DES UNITEES + TEMPS DE FORMATIONS * NOMBRE D'UNITTES
+
 		
 		Armee armee = new Armee();
 		// SI LE JOUEUR POSSÈDE DÉJÀ CE TYPE D'UNITÉE, ALORS ON ADITIONNE LES QUANTITÉES (NOUVELLE + ANCIENNE) + ÉCRASE L'ARMÉE DÉJÀ EXISTANTE
@@ -128,6 +141,25 @@ public class ArmeeService {
 			armee.setQuantitee(armeeJoueurCreationDto.getQuantitee());
 		}
 		
+		System.out.println(armee.toString());
+		// Nouvelle production = Nouvelle date de début. 
+		if(tempsFinFormation<new Date().getTime()) {
+			System.out.println("Nouveau type d'unitée créé");
+			
+			tempsDebutFormation = new Date().getTime();
+			finProduction = new Date().getTime()+((uni.getTempsFormation()*armeeJoueurCreationDto.getQuantitee())*1000);
+			
+			armee.setDateDebutProduction(tempsDebutFormation);
+
+		} 
+		else // Sinon, date de début inchangée, production toujours en cours. Ajout de temps
+		{
+			System.out.println("Type unitée déjà en cours de formation : ajout à la file d'attente  :"+tempsDebutFormation);
+			finProduction = tempsFinFormation+((uni.getTempsFormation()*armeeJoueurCreationDto.getQuantitee())*1000);
+			armee.setDateDebutProduction(tempsDebutFormation);
+		}
+		armee.setDateFinProduction(finProduction);
+
 		// MISE A JOUR DU JOUEUR
 		// - Retrait de ressources
 		jou.setPierrePossession(jou.getPierrePossession()-coutPierreOperation);
@@ -164,6 +196,8 @@ public class ArmeeService {
 			armeeDto.setJoueur(armee.getJoueur());
 			armeeDto.setUnitee(armee.getUnitee());
 			armeeDto.setQuantitee(armee.getQuantitee());
+			armeeDto.setDateDebutProduction(armee.getDateDebutProduction());
+			armeeDto.setDateFinProduction(armee.getDateFinProduction());
 			
 			listeArmeesDuJoueur.add(armeeDto);
 		}

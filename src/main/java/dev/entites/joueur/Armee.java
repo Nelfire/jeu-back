@@ -34,6 +34,9 @@ public class Armee {
     private Unitee unitee;
     
     private Integer quantitee;
+    
+    private Long dateDebutProduction;
+    private Long dateFinProduction;
 
     // Constructeur vide
 	public Armee() {
@@ -46,11 +49,13 @@ public class Armee {
 	 * @param unitee
 	 * @param quantitee
 	 */
-	public Armee(Joueur joueur, Unitee unitee, Integer quantitee) {
+	public Armee(Joueur joueur, Unitee unitee, Integer quantitee, Long dateDebutProduction, Long dateFinProduction) {
 		super();
 		this.joueur = joueur;
 		this.unitee = unitee;
 		this.quantitee = quantitee;
+		this.dateDebutProduction = dateDebutProduction;
+		this.dateFinProduction = dateFinProduction;
 	}
 
 	/**
@@ -108,12 +113,45 @@ public class Armee {
 	public void setQuantitee(Integer quantitee) {
 		this.quantitee = quantitee;
 	}
+	
+	
+
+	/**
+	 * @return the dateDebutProduction
+	 */
+	public Long getDateDebutProduction() {
+		return dateDebutProduction;
+	}
+
+	/**
+	 * @param dateDebutProduction the dateDebutProduction to set
+	 */
+	public void setDateDebutProduction(Long dateDebutProduction) {
+		this.dateDebutProduction = dateDebutProduction;
+	}
+
+	/**
+	 * @return the dateFinProduction
+	 */
+	public Long getDateFinProduction() {
+		return dateFinProduction;
+	}
+
+	/**
+	 * @param dateFinProduction the dateFinProduction to set
+	 */
+	public void setDateFinProduction(Long dateFinProduction) {
+		this.dateFinProduction = dateFinProduction;
+	}
 
 	@Override
 	public String toString() {
-		return "Armee [id=" + id + ", joueur=" + joueur + ", unitee=" + unitee + ", quantitee=" + quantitee + "]";
+		return "Armee [id=" + id + ", joueur=" + joueur + ", expeditionJoueur=" + expeditionJoueur + ", unitee="
+				+ unitee + ", quantitee=" + quantitee + ", dateDebutProduction=" + dateDebutProduction
+				+ ", dateFinProduction=" + dateFinProduction + "]";
 	}
 
+	
 	
 	
 	

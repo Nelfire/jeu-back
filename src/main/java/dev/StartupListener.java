@@ -221,7 +221,7 @@ public class StartupListener {
 		//21 catapulte
 		//22 elephantDeCombat
 		//23 pretre
-		Unitee villageois = new Unitee(1,1,"https://media.discordapp.net/attachments/794876433842831361/799986427348647964/Villageois.png","Villageois","Descriptif du villageois",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		Unitee villageois = new Unitee(1,1,"https://media.discordapp.net/attachments/794876433842831361/799986427348647964/Villageois.png","Villageois","Descriptif du villageois",10,10,10,10,1,15,10,10,10,10,1,0,0,0,0);
 		Unitee archer = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986264299405342/Archer.png","Archer","Descriptif de l'archer",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
 		Unitee archerComposite = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986256377151518/Archer_Composite.png","Archer composite","Descriptif de l'archer composite",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
 		Unitee fantassinEpee = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986321065771018/Fantassin_epee.png","Fantassin épée","Descriptif du fantassin épée",99,99,99,99,1,10,99,99,99,99,2,0,0,0,0);
@@ -296,8 +296,8 @@ public class StartupListener {
         this.expeditionRepo.save(expedition4);
 
         // ----- ARMEES -----
-        Armee armeeChampion = new Armee(joueur1,champion,20);
-        Armee armeeArcher = new Armee(joueur1,archer,300);
+        Armee armeeChampion = new Armee(joueur1,champion,20,1612523480L,1612523480L);
+        Armee armeeArcher = new Armee(joueur1,archer,300,1612523480L,1612523480L);
         this.armeeRepo.save(armeeChampion);
         this.armeeRepo.save(armeeArcher);
         
