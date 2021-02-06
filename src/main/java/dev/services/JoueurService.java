@@ -228,6 +228,7 @@ public class JoueurService {
 	public InformationRessourcesJoueur informationRessourcesJoueur() {
 		getInfoJoueur();
 		Joueur jou = recuperationJoueur();
+		System.out.println(jou);
 		InformationRessourcesJoueur informationRessourcesJoueur = new InformationRessourcesJoueur();
 		// Ses apports
 		Integer apportPierreSeconde = apportPierreSeconde();

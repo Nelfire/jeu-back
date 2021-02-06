@@ -90,14 +90,14 @@ public class StartupListener {
         joueur1.setPierrePossession(1000);
         joueur1.setBoisPossession(1000);
         joueur1.setOrPossession(1000);
-        joueur1.setNourriturePossession(1000);
-        joueur1.setGemmePossession(50);
+        joueur1.setNourriturePossession(1001);
+        joueur1.setGemmePossession(500);
         joueur1.setPierreMaximum(20000);
         joueur1.setBoisMaximum(20000);
         joueur1.setOrMaximum(20000);
         joueur1.setNourritureMaximum(20000);
         joueur1.setTempsDeJeu(0);
-        joueur1.setGemmePossession(50);
+        joueur1.setGemmePossession(500);
         joueur1.setRoles(Arrays.asList(new RoleJoueur(joueur1, Role.ROLE_ADMINISTRATEUR), new RoleJoueur(joueur1, Role.ROLE_JOUEUR)));
         this.joueurRepo.save(joueur1);
         
@@ -113,13 +113,13 @@ public class StartupListener {
         joueur2.setBoisPossession(1000);
         joueur2.setOrPossession(1000);
         joueur2.setNourriturePossession(1000);
-        joueur2.setGemmePossession(50);
+        joueur2.setGemmePossession(500);
         joueur2.setPierreMaximum(20000);
         joueur2.setBoisMaximum(20000);
         joueur2.setOrMaximum(20000);
         joueur2.setNourritureMaximum(20000);
         joueur2.setTempsDeJeu(0);
-        joueur2.setGemmePossession(50);
+        joueur2.setGemmePossession(40);
         joueur2.setRoles(Arrays.asList(new RoleJoueur(joueur2, Role.ROLE_ADMINISTRATEUR), new RoleJoueur(joueur2, Role.ROLE_JOUEUR)));
         this.joueurRepo.save(joueur2);
         

@@ -101,5 +101,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessHandler((req, resp, auth) -> resp.setStatus(HttpServletResponse.SC_OK))
                 // suppression du cookie d'authentification
                 .deleteCookies(TOKEN_COOKIE);
+        
+        // ACCES BDD H2 
+        //http://localhost:8080/h2-console/login.do?jsessionid=93393755feb4b79f59b4a3afda8cde21
+        http.headers().frameOptions().disable();
     }
 }

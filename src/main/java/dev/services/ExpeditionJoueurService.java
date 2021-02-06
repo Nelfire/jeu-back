@@ -834,7 +834,9 @@ public class ExpeditionJoueurService {
 	    if (expdJoueur.getEtatExpedition() == 1) 
 	    {
 	    	System.out.println("CAS SUCCES");
+	    	System.out.println("Récompense pierre : "+expdJoueur.getExpedition().getRecompensePierre());
 			Joueur jou = joueurService.recuperationJoueur();
+			System.out.println("Joueur ancien : "+jou);
 			jou.setPierrePossession(jou.getPierrePossession() + expdJoueur.getExpedition().getRecompensePierre());
 			jou.setBoisPossession(jou.getBoisPossession() + expdJoueur.getExpedition().getRecompenseBois());
 			jou.setOrPossession(jou.getOrPossession() + expdJoueur.getExpedition().getRecompenseOr());
@@ -844,8 +846,9 @@ public class ExpeditionJoueurService {
 			jou.setNiveau(jou.getExperience() / 5000); // /!\ Temporaire : 1 Niveau = 5000 Experience
 			// - Changement de l'état, pour définir l'expédition comme "réussite"
 			expeditionJoueur.setEtatExpedition(2);
-			System.out.println("JOUEUR EXPEDITIONJOUEURSERVICE : "+ jou);
 			// - Sauvegardes des informations joueur
+			System.out.println("Joueur nouveau : "+jou);
+
 			joueurRepo.save(jou);
 	    }
 
