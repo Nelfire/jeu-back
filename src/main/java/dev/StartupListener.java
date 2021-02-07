@@ -12,6 +12,7 @@ import dev.entites.Joueur;
 import dev.entites.Role;
 import dev.entites.RoleJoueur;
 import dev.entites.batiment.Batiment;
+import dev.entites.batiment.Defense;
 import dev.entites.expedition.Expedition;
 import dev.entites.joueur.Armee;
 import dev.entites.joueur.BatimentJoueur;
@@ -19,6 +20,7 @@ import dev.entites.social.Guilde;
 import dev.entites.unitee.Unitee;
 import dev.repository.JoueurRepo;
 import dev.repository.batiment.BatimentRepo;
+import dev.repository.batiment.DefenseRepo;
 import dev.repository.expedition.ExpeditionRepo;
 import dev.repository.joueur.ArmeeRepo;
 import dev.repository.joueur.BatimentJoueurRepo;
@@ -40,6 +42,8 @@ public class StartupListener {
     private UniteeRepo uniteeRepo;
     // ---- Batiment ----
     private BatimentRepo batimentRepo;
+    // ---- Defense ----
+    private DefenseRepo defenseRepo;
     // - divers -
     // ---- Joueur ----
     private BatimentJoueurRepo batimentJoueurRepo;
@@ -60,7 +64,8 @@ public class StartupListener {
     		GuildeRepo guildeRepo,
     		ListeAmisRepo listeAmisRepo,
     		ExpeditionRepo expeditionRepo,
-    		ExpeditionJoueurRepo expeditionJoueurRepo) {
+    		ExpeditionJoueurRepo expeditionJoueurRepo,
+    		DefenseRepo defenseRepo) {
         this.passwordEncoder = passwordEncoder;        
         // --- UNITEE ---
         this.uniteeRepo = uniteeRepo;
@@ -73,6 +78,7 @@ public class StartupListener {
 //        // ---- Social ----
         this.guildeRepo = guildeRepo;
         this.expeditionRepo = expeditionRepo;
+        this.defenseRepo = defenseRepo;
     }
 
     @EventListener(ContextRefreshedEvent.class)
@@ -181,6 +187,9 @@ public class StartupListener {
         this.batimentRepo.save(marche);
         this.batimentRepo.save(tableExpedition);
         
+        // -- DEFENSES --
+        Defense tour = new Defense(1,"https://cdn.discordapp.com/attachments/794876433842831361/794876513039417404/CaserneMillitaire.png","Tour","Description de la tour",50,50,50,50,99,99,99,10,1,2);
+        this.defenseRepo.save(tour);
 //		List<Batiment> listeBatiments = new ArrayList<>();
 //		listeBatiments.add(hdv);
 //		listeBatiments.add(ferme);

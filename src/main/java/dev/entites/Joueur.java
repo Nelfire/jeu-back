@@ -16,6 +16,7 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.entites.joueur.Armee;
 import dev.entites.joueur.BatimentJoueur;
+import dev.entites.joueur.DefenseJoueur;
 import dev.entites.joueur.ExpeditionJoueur;
 import dev.entites.social.Message;
 import dev.entites.social.ChatGuilde;
@@ -31,6 +32,13 @@ public class Joueur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    
+    // Mapping BâtimentJoueur
+    /** Un joueur peut avoir plusieurs batimentsJoueur **/
+    @OneToMany(mappedBy = "joueur")
+    @JsonIgnore
+	private List<DefenseJoueur> defenseJoueur;
+    
     
     // Mapping BâtimentJoueur
     /** Un joueur peut avoir plusieurs batimentsJoueur **/
