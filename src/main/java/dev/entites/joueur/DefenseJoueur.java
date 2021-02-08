@@ -1,5 +1,6 @@
 package dev.entites.joueur;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,17 +23,18 @@ public class DefenseJoueur {
 	@JoinColumn(name = "joueur_id")
     private Joueur joueur;
 	
+	//@ManyToOne(cascade = CascadeType.PERSIST)
 	@ManyToOne
 	@JoinColumn(name = "defense_id")
     private Defense defense;
 	
-	private Integer quantitee;
+	private Integer quantite;
 	
     private Long dateDebutConstruction;
     private Long dateFinConstruction;
     
     public DefenseJoueur() {
-    	
+    	super();
     }
 	/**
 	 * @param joueur
@@ -40,11 +42,11 @@ public class DefenseJoueur {
 	 * @param dateDebutConstruction
 	 * @param dateFinConstruction
 	 */
-	public DefenseJoueur(Joueur joueur, Defense defense, Integer quantitee, Long dateDebutConstruction, Long dateFinConstruction) {
+	public DefenseJoueur(Joueur joueur, Defense defense, Integer quantite, Long dateDebutConstruction, Long dateFinConstruction) {
 		super();
 		this.joueur = joueur;
 		this.defense = defense;
-		this.quantitee = quantitee;
+		this.quantite = quantite;
 		this.dateDebutConstruction = dateDebutConstruction;
 		this.dateFinConstruction = dateFinConstruction;
 	}
@@ -87,16 +89,16 @@ public class DefenseJoueur {
 	
 	
 	/**
-	 * @return the quantitee
+	 * @return the quantite
 	 */
-	public Integer getQuantitee() {
-		return quantitee;
+	public Integer getQuantite() {
+		return quantite;
 	}
 	/**
-	 * @param quantitee the quantitee to set
+	 * @param quantite the quantite to set
 	 */
-	public void setQuantitee(Integer quantitee) {
-		this.quantitee = quantitee;
+	public void setQuantite(Integer quantite) {
+		this.quantite = quantite;
 	}
 	/**
 	 * @return the dateDebutConstruction
@@ -121,6 +123,12 @@ public class DefenseJoueur {
 	 */
 	public void setDateFinConstruction(Long dateFinConstruction) {
 		this.dateFinConstruction = dateFinConstruction;
+	}
+	@Override
+	public String toString() {
+		return "DefenseJoueur [id=" + id + ", joueur=" + joueur + ", defense=" + defense + ", quantite=" + quantite
+				+ ", dateDebutConstruction=" + dateDebutConstruction + ", dateFinConstruction=" + dateFinConstruction
+				+ "]";
 	}
 	
 	

@@ -24,7 +24,6 @@ public class ArmeeService {
 	JoueurService joueurService;
 	UniteeService uniteeService;
 	ArmeeRepo armeeRepo;
-	UniteeRepo uniteeRepo;
 	JoueurRepo joueurRepo;
 	
 	/**

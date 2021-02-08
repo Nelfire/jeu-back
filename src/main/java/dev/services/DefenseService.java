@@ -2,10 +2,14 @@ package dev.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import dev.controller.dto.DefenseDto;
+import dev.controller.dto.UniteeDto;
 import dev.entites.batiment.Defense;
+import dev.entites.unitee.Unitee;
 import dev.repository.batiment.DefenseRepo;
 
 @Service
@@ -29,6 +33,16 @@ public class DefenseService {
 		}
 		
 		return listeDefenses;
+	}
+	
+	
+	/**
+	 * DETAIL D'UNE DEFENSE (Via ID)
+	 */
+	public DefenseDto detailsDefense(Integer idDefense) {
+		Optional<Defense> defense = defenseRepo.findById(idDefense);
+		DefenseDto def = new DefenseDto(defense.get());
+		return def;
 	}
 
 }
