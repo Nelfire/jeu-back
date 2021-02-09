@@ -4,11 +4,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>dev</groupId>
-    <artifactId>absences-groupe-2-back</artifactId>
+    <artifactId>jeu-back</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
 
-    <name>absences-groupe-2-back</name>
+    <name>jeu-back</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
@@ -101,43 +100,14 @@
             </dependencies>
         </profile>
         <profile>
-            <id>dev-mysql</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
+            <id>heroku</id>
             <properties>
-                <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
-                <jdbc.url>jdbc:mysql://localhost:3306/sirh-db</jdbc.url>
-                <jdbc.user>sirh-db</jdbc.user>
-                <jdbc.pass>sirh-db</jdbc.pass>
-                <jpa.hibernate.ddl>create-drop</jpa.hibernate.ddl>
-                <jdbc.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</jdbc.dialect>
-                <jdbc.connections.max.active>5</jdbc.connections.max.active>
+                <jpa.hibernate.ddl>update</jpa.hibernate.ddl>
             </properties>
             <dependencies>
                 <dependency>
-                    <groupId>mysql</groupId>
-                    <artifactId>mysql-connector-java</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>prod</id>
-            <properties>
-                <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
-                <jdbc.url>jdbc:mysql://${env.MYSQL_ADDON_HOST}:${env.MYSQL_ADDON_PORT}/${env.MYSQL_ADDON_DB}</jdbc.url>
-                <jdbc.user>${env.MYSQL_ADDON_USER}</jdbc.user>
-                <jdbc.pass>${env.MYSQL_ADDON_PASSWORD}</jdbc.pass>
-                <jpa.hibernate.ddl>${env.HIBERNATE_DDL}</jpa.hibernate.ddl>
-                <jdbc.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</jdbc.dialect>
-                <jdbc.connections.max.active>2</jdbc.connections.max.active>
-                <app.version>${env.COMMIT_ID}</app.version>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>mysql</groupId>
-                    <artifactId>mysql-connector-java</artifactId>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
                     <scope>runtime</scope>
                 </dependency>
             </dependencies>
