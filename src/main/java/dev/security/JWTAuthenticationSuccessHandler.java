@@ -2,8 +2,8 @@ package dev.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import dev.controller.dto.JoueurDto;
-import dev.entites.Joueur;
+import dev.controller.dto.joueur.JoueurDto;
+import dev.entites.joueur.Joueur;
 import dev.repository.JoueurRepo;
 import io.jsonwebtoken.Jwts;
 import org.slf4j.Logger;

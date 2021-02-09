@@ -8,15 +8,15 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import dev.entites.Joueur;
-import dev.entites.Role;
-import dev.entites.RoleJoueur;
+
 import dev.entites.batiment.Batiment;
+import dev.entites.batiment.BatimentJoueur;
 import dev.entites.batiment.Defense;
 import dev.entites.expedition.Expedition;
 import dev.entites.joueur.Armee;
-import dev.entites.joueur.BatimentJoueur;
-import dev.entites.social.Guilde;
+import dev.entites.joueur.Joueur;
+import dev.entites.joueur.Role;
+import dev.entites.joueur.RoleJoueur;
 import dev.entites.unitee.Unitee;
 import dev.repository.JoueurRepo;
 import dev.repository.batiment.BatimentRepo;
@@ -50,7 +50,6 @@ public class StartupListener {
     private JoueurRepo joueurRepo;
     private ArmeeRepo armeeRepo;
     // ---- Social ----
-    private GuildeRepo guildeRepo;
     private ExpeditionRepo expeditionRepo;
     public StartupListener(@Value("${app.version}") String appVersion, 
     		PasswordEncoder passwordEncoder,
@@ -76,7 +75,6 @@ public class StartupListener {
         this.joueurRepo = joueurRepo;
         this.armeeRepo = armeeRepo;
 //        // ---- Social ----
-        this.guildeRepo = guildeRepo;
         this.expeditionRepo = expeditionRepo;
         this.defenseRepo = defenseRepo;
     }

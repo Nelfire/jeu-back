@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import dev.entites.Joueur;
-import dev.entites.joueur.DefenseJoueur;
+import dev.entites.batiment.DefenseJoueur;
+import dev.entites.joueur.Joueur;
 
 public interface DefenseJoueurRepo extends JpaRepository<DefenseJoueur, Integer> {
 

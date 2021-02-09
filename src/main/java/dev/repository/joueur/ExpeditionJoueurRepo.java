@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import dev.entites.Joueur;
-import dev.entites.joueur.ExpeditionJoueur;
+import dev.entites.expedition.ExpeditionJoueur;
+import dev.entites.joueur.Joueur;
 
 
 public interface ExpeditionJoueurRepo extends JpaRepository<ExpeditionJoueur, Integer> {

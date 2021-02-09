@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import dev.entites.Joueur;
+import dev.entites.joueur.Joueur;
 
 public interface JoueurRepo extends JpaRepository<Joueur, Integer> {
 

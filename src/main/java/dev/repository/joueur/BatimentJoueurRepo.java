@@ -2,7 +2,8 @@ package dev.repository.joueur;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
-import dev.entites.joueur.BatimentJoueur;
+
+import dev.entites.batiment.BatimentJoueur;
 
 
 public interface BatimentJoueurRepo extends JpaRepository<BatimentJoueur, Integer> {

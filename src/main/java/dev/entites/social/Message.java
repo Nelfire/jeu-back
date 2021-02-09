@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import dev.entites.Joueur;
+import dev.entites.joueur.Joueur;
 
 @Entity
 public class Message {
