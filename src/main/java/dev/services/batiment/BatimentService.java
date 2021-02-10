@@ -29,6 +29,7 @@ public class BatimentService {
 		for (Batiment batiment : batimentRepo.findAll()) {
 			BatimentDto batimentDto = new BatimentDto();
 			batimentDto.setIdTypeBatiment(batiment.getIdTypeBatiment());
+			batimentDto.setIdCategorieBatiment(batiment.getIdCategorieBatiment());
 			batimentDto.setIcone(batiment.getIcone());
 			batimentDto.setLibelle(batiment.getLibelle());
 			batimentDto.setDescriptif(batiment.getDescriptif());
