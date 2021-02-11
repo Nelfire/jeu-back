@@ -42,6 +42,7 @@ public class JoueurService {
 	 */
 	public Joueur recuperationJoueur() {
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
+		System.out.println("Email : "+email);
 		Joueur jou = joueurRepo.findByEmail(email).orElseThrow(
 				() -> new JoueurAuthentifieNonRecupereException("Le joueur authentifié n'a pas pu être récupéré"));
 		return jou;
