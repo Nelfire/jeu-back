@@ -109,7 +109,7 @@ public class StartupListener {
         joueur2.setIcone("https://www.blog-nouvelles-technologies.fr/wp-content/uploads/2017/12/detective-avatar-icon-01-.jpg");
         joueur2.setPseudo("Riosha");
         joueur2.setEmail("riosha@gmail.com");
-        joueur2.setMotDePasse("password");
+        joueur2.setMotDePasse(passwordEncoder.encode("password"));
         joueur2.setDescriptif("Salut ! Je suis le deuxieme joueur");
         joueur2.setNiveau(1);
         joueur2.setExperience(0);
