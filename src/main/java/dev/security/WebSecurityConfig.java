@@ -71,11 +71,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                  // en cas d'erreur, un code 403 est envoyé
-//                .exceptionHandling().authenticationEntryPoint((request, response, authException) -> response.setStatus(HttpServletResponse.SC_FORBIDDEN))
-//                .and()
-//                // toutes les requêtes doivent être authentifiées
-//                .authorizeRequests().anyRequest().authenticated()
-//                .and()
+                .exceptionHandling().authenticationEntryPoint((request, response, authException) -> response.setStatus(HttpServletResponse.SC_FORBIDDEN))
+                .and()
+                // toutes les requêtes doivent être authentifiées
+                .authorizeRequests()
+//                .anyRequest().authenticated()
+                .and()
                 // génération d'un formulaire de login
                 // il faut produire une requête avec les caractéristiques suivantes :
                 //      POST /login
@@ -90,7 +91,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // en cas d'echec, code 400 envoyé
                 .failureHandler((request, response, exception) -> response.setStatus(HttpServletResponse.SC_BAD_REQUEST))
                 // la requête POST /login n'est pas soumise à authentification
-//                .permitAll()
+                .permitAll()
                 .and()
                 // Filtre permettant de récupérer le jeton JWT et transformer son contenu en utilisateur connecté au sens Spring Security
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)

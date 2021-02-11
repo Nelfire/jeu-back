@@ -32,6 +32,9 @@ public class AuthentificationController {
 	@GetMapping("/me")
 	public ResponseEntity<?> quiSuisJe() {
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
-		return this.joueurRepo.findByEmail(email).map(JoueurDto::new).map(ResponseEntity::ok).orElse(ResponseEntity.badRequest().build());
+		return this.joueurRepo.findByEmail(email)
+				.map(JoueurDto::new)
+				.map(ResponseEntity::ok)
+				.orElse(ResponseEntity.badRequest().build());
 	}
 }
