@@ -19,6 +19,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.transaction.annotation.Transactional;
@@ -84,5 +85,9 @@ public class JWTAuthenticationSuccessHandler extends SimpleUrlAuthenticationSucc
 				.path("/").secure(true).sameSite("None").build();
 		response.setHeader(HttpHeaders.SET_COOKIE, responseCookie.toString());
 		LOG.info("Token JWT généré posé dans un cookie et en entête HTTP");
+        
+        
+		String email = SecurityContextHolder.getContext().getAuthentication().getName();
+		System.out.println("Email de connexion :"+email);
     }
 }
