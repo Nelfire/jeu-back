@@ -67,6 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// support de requêtes Cross-Domain pour Spring Security
 		// cette configuration permet d'utiliser les règles CORS de Spring MVC
 		.cors().and()
+		
 		// Suppression du cookie JSESSIONID
 		// nous ne souhaitons pas de stockage d'état côté serveur
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
@@ -74,7 +75,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.exceptionHandling()
 		.authenticationEntryPoint(
 				(request, response, authException) -> response.setStatus(HttpServletResponse.SC_FORBIDDEN))
-		.and().authorizeRequests()
+		.and().authorizeRequests().antMatchers("/auth").permitAll()
 		// toutes les requêtes doivent être authentifiées
 		.anyRequest().authenticated().and()
 		// génération d'un formulaire de login
@@ -106,4 +107,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// suppression du cookie d'authentification
 		.deleteCookies(TOKEN_COOKIE).and().headers().frameOptions().sameOrigin();
 	}
+
 }
