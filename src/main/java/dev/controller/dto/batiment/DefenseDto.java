@@ -1,16 +1,6 @@
 package dev.controller.dto.batiment;
 
-import java.util.List;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import dev.entites.batiment.Defense;
-import dev.entites.batiment.DefenseJoueur;
 
 public class DefenseDto {
 

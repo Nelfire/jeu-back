@@ -35,7 +35,6 @@ public class MessageController {
 	
 	@PostMapping
 	public ResponseEntity<?> publierMessage(@RequestBody String contenu) {
-		System.out.println("Blip");
 		Message message = messageService.publierMessage(contenu);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).header("resultat", "Message envoyé").body(message);
 	}

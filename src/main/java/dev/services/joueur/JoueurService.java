@@ -1,15 +1,12 @@
 package dev.services.joueur;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
 import dev.controller.dto.joueur.InformationRessourcesJoueur;
 import dev.controller.dto.joueur.JoueurDto;
 import dev.controller.dto.joueur.JoueurInfoDto;
@@ -42,7 +39,6 @@ public class JoueurService {
 	 */
 	public Joueur recuperationJoueur() {
 		String email = SecurityContextHolder.getContext().getAuthentication().getName();
-		System.out.println("Email : "+email);
 		Joueur jou = joueurRepo.findByEmail(email).orElseThrow(
 				() -> new JoueurAuthentifieNonRecupereException("Le joueur authentifié n'a pas pu être récupéré"));
 		return jou;
@@ -140,17 +136,15 @@ public class JoueurService {
 		// milliseconde < 1000 ? Si oui --> 1000
 		Integer millisecondesDifference = (int) (now.getTime()-jou.getDerniereConnexion().getTime()) < 1000 ? 1000 :(int) (now.getTime()-jou.getDerniereConnexion().getTime());
 
-		//System.out.println("Temps depuis derniere attribution de ressources : "+millisecondesDifference);
 		//////////////////////////////////
 		// -- ATTRIBUTION RESSOURCES -- //
 		//////////////////////////////////
 		
 		// PIERRE : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
 		Integer apportPierreSeconde = apportPierreSeconde();
-		//System.out.println("apportPierreSeconde : "+apportPierreSeconde);
+
 		// - CAS INACTIVITEE -
 		Integer apportPierreFinal = (apportPierreSeconde * millisecondesDifference)/1000;
-		//System.out.println("apportPierreFinal : "+apportPierreFinal);
 		
 		// BOIS : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
 		Integer apportBoisSeconde = apportBoisSeconde();
@@ -210,7 +204,6 @@ public class JoueurService {
 		joueur.setId(jou.getId());
 		
 		// SAUVEGARDE
-		//System.out.println("SAUVEGARDE RESSOURCES JOUEUR");
 		this.joueurRepo.save(joueur);
 
 		// RETOUR
@@ -229,7 +222,6 @@ public class JoueurService {
 	public InformationRessourcesJoueur informationRessourcesJoueur() {
 		getInfoJoueur();
 		Joueur jou = recuperationJoueur();
-		System.out.println(jou);
 		InformationRessourcesJoueur informationRessourcesJoueur = new InformationRessourcesJoueur();
 		// Ses apports
 		Integer apportPierreSeconde = apportPierreSeconde();

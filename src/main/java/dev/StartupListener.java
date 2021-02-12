@@ -215,19 +215,13 @@ public class StartupListener {
         this.defenseRepo.save(tour);
         this.defenseRepo.save(murFortifie);
         
-//		List<Batiment> listeBatiments = new ArrayList<>();
-//		listeBatiments.add(hdv);
-//		listeBatiments.add(ferme);
-//		System.out.println(hdv.toString());
-
 		long debut = new Date().getTime();
 		long fin = new Date().getTime();
 
 		BatimentJoueur batimentJoueur1 = new BatimentJoueur(joueur1,hdv,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,debut,fin);
 		BatimentJoueur batimentJoueur2 = new BatimentJoueur(joueur1,tableExpedition,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,debut,fin);
 		BatimentJoueur batimentJoueur3 = new BatimentJoueur(joueur1,chaumiere,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,debut,fin);
-//		BatimentJoueur batimentJoueur2 = new BatimentJoueur(joueur1, port, 2,  null, debut, fin);
-//		BatimentJoueur batimentJoueur3 = new BatimentJoueur(joueur1, carriere, 2,  null, debut, fin);
+
 		this.batimentJoueurRepo.save(batimentJoueur1);
 		this.batimentJoueurRepo.save(batimentJoueur2);
 		this.batimentJoueurRepo.save(batimentJoueur3);
@@ -308,17 +302,8 @@ public class StartupListener {
         this.uniteeRepo.save(templier);
         this.uniteeRepo.save(catapulte);
         this.uniteeRepo.save(elephantDeCombat);
-
+        
         this.uniteeRepo.save(pretre);
-
-				
-		// ----- GUILDE -----
-//        Guilde guilde1 = new Guilde("Les loulous de l'espace","xxx","Coucou les loulous");
-//        guilde1.setChefGuilde(joueur1);
-//        this.guildeRepo.save(guilde1);
-		//System.out.println(guilde1.getChefGuilde());
-		//System.out.println(joueur1.getGuilde());
-		//System.out.println(joueur1.getChefGuilde());
         
         // ----- EXPEDITIONS -----
         LocalDate dateAujourdhui  = LocalDate.now(); 
@@ -336,12 +321,6 @@ public class StartupListener {
         Armee armeeArcher = new Armee(joueur1,archer,300,1612523480L,1612523480L);
         this.armeeRepo.save(armeeChampion);
         this.armeeRepo.save(armeeArcher);
-        
-        
-        LocalDate m1 = LocalDate.now();
-        Date m2 = new Date();
-        System.out.println(m1);
-        System.out.println(m2);
          
     }
 

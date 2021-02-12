@@ -2,11 +2,9 @@ package dev.services.expedition;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
-
 import org.springframework.stereotype.Service;
 import dev.entites.expedition.Expedition;
 import dev.repository.expedition.ExpeditionRepo;
@@ -76,7 +74,7 @@ public class ExpeditionService {
 		LocalDate dateAujourdhui  = LocalDate.now(); 
 		for (int i = 0; i < 10; i++) {
 			Expedition nouvelleExpedition = new Expedition();
-			System.out.println(i);
+
 			// vie aléatoire (poid : 0.2) (Ex : 20000)
 		    Integer vie = getChiffreRandom(1000,80000);
 		    
@@ -150,7 +148,7 @@ public class ExpeditionService {
 		    nouvelleExpedition.setRecompenseGemme(recompenseGemme);
 		    nouvelleExpedition.setRecompenseExperience(recompenseExperience);
 		    nouvelleExpedition.setDateParution(dateAujourdhui);
-		    System.out.println(nouvelleExpedition.toString());
+
 			// SAUVEGARDE
 			this.expeditionRepo.save(nouvelleExpedition);
 		}

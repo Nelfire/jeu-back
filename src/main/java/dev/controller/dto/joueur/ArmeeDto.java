@@ -1,13 +1,5 @@
 package dev.controller.dto.joueur;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.OneToOne;
-
-import dev.entites.joueur.Armee;
 import dev.entites.joueur.Joueur;
 import dev.entites.unitee.Unitee;
 

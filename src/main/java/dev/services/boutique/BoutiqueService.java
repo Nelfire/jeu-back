@@ -26,7 +26,6 @@ public class BoutiqueService {
 	
 	// PIERRE
 	public void achat10PourcentPierre() {
-		System.out.println("Achat 10% pierre service");
 
 		// RECUPERATION DU JOUEUR
 		Joueur jou = joueurService.recuperationJoueur();
@@ -35,8 +34,6 @@ public class BoutiqueService {
 		Integer quantite10pourcentpierre = (int) (jou.getPierreMaximum()*0.1);
 		// CALCUL COUT GEMMES ( montant ressource / 100 )
 		Integer coutGemme = quantite10pourcentpierre / 100;
-		System.out.println("quantite10pourcentpierre : "+quantite10pourcentpierre);
-		System.out.println("coutGemme : "+coutGemme);
 			
 		// CAS ACHAT DE RESSOURCES SUPÉRIEURE À LA CAPACITÉE DE STOCKAGE
 		if(quantite10pourcentpierre+jou.getPierrePossession() > jou.getPierreMaximum()) {
@@ -53,16 +50,12 @@ public class BoutiqueService {
 		if(jou.getPierreMaximum()==jou.getPierrePossession()) {
 			throw new RessourceManquanteException("Maximum de pierre atteint.");
 		}
-		System.out.println(jou.getId());
-		System.out.println("Gemmes avant :"+jou.getGemmePossession());
+
 		// RETRAIT DES GEMMES
 		jou.setGemmePossession(jou.getGemmePossession() - coutGemme);
-		System.out.println("Gemmes apres :"+jou.getGemmePossession());
-		// AJOUT DE LA PIERRE
 
-		System.out.println("Pierres avant :"+jou.getPierrePossession());
+		// AJOUT DE LA PIERRE
 		jou.setPierrePossession(jou.getPierrePossession() + quantite10pourcentpierre);
-		System.out.println("Pierres apres :"+jou.getPierrePossession());
 		
 		
 		Joueur joueur = new Joueur(jou.getArmee(), jou.getIcone(), jou.getPseudo(), jou.getEmail(), jou.getMotDePasse(),
@@ -75,7 +68,6 @@ public class BoutiqueService {
 		
 		// SAUVEGARDE
 		joueurRepo.save(joueur);
-		System.out.println(joueur.toString());
 		
 	}
 	public void achat50PourcentPierre() {

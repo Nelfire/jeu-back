@@ -2,11 +2,8 @@ package dev.services.social;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.stereotype.Service;
-
 import dev.controller.dto.social.CreationGuildeDto;
-import dev.controller.social.GuildeController;
 import dev.entites.joueur.Joueur;
 import dev.entites.social.Guilde;
 import dev.exceptions.NomGuildeDejaPrisException;
@@ -75,18 +72,6 @@ public class GuildeService {
 		
 		// MISE A JOUR DU JOUEUR
 		joueur.setId(jou.getId());
-		
-		// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		// !!!!!!!!!!!!!!!!!!!!!!!!!!! ICI BOWDEL !!!!!!!!!!!!!!!!!!!!!!!!!!!
-//		guildeCree.setChefGuilde(joueur);
-//		joueur.setChefGuilde(guildeCree);
-	    // !!!!!!!!!!!!!!!!!!!!!!!!!!! ICI BOWDEL !!!!!!!!!!!!!!!!!!!!!!!!!!!
-		// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		
-		System.out.println(guildeCree.toString());
-//		System.out.println(guildeCree.getChefGuilde().getPseudo());
 		
 		// SAUVEGARDE
 		this.joueurRepo.save(joueur);

@@ -3,10 +3,7 @@ package dev.services.joueur;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.stereotype.Service;
-
 import dev.controller.dto.joueur.ArmeeDto;
 import dev.controller.dto.joueur.ArmeeJoueurCreationDto;
 import dev.controller.dto.unitee.UniteeDto;
@@ -16,7 +13,6 @@ import dev.entites.unitee.Unitee;
 import dev.exceptions.RessourceManquanteException;
 import dev.repository.JoueurRepo;
 import dev.repository.joueur.ArmeeRepo;
-import dev.repository.unitee.UniteeRepo;
 import dev.services.unitee.UniteeService;
 
 @Service
@@ -124,12 +120,8 @@ public class ArmeeService {
 			}
 		}
 		
-		// MOMENT "T" DE LANCEMENT DE LE FORMATION DES UNITEES
-		
-		System.out.println("------------------------------------------");
 		// MOMENT "T" DE LANCEMENT DE LE FORMATION DES UNITEES + TEMPS DE FORMATIONS * NOMBRE D'UNITTES
 
-		
 		Armee armee = new Armee();
 		// SI LE JOUEUR POSSÈDE DÉJÀ CE TYPE D'UNITÉE, ALORS ON ADITIONNE LES QUANTITÉES (NOUVELLE + ANCIENNE) + ÉCRASE L'ARMÉE DÉJÀ EXISTANTE
 		if(flag==true) {
@@ -141,10 +133,8 @@ public class ArmeeService {
 			armee.setQuantitee(armeeJoueurCreationDto.getQuantitee());
 		}
 		
-		System.out.println(armee.toString());
 		// Nouvelle production = Nouvelle date de début. 
 		if(tempsFinFormation<new Date().getTime()) {
-			System.out.println("Nouveau type d'unitée créé");
 			
 			tempsDebutFormation = new Date().getTime();
 			finProduction = new Date().getTime()+((uni.getTempsFormation()*armeeJoueurCreationDto.getQuantitee())*1000);
@@ -154,7 +144,6 @@ public class ArmeeService {
 		} 
 		else // Sinon, date de début inchangée, production toujours en cours. Ajout de temps
 		{
-			System.out.println("Type unitée déjà en cours de formation : ajout à la file d'attente  :"+tempsDebutFormation);
 			finProduction = tempsFinFormation+((uni.getTempsFormation()*armeeJoueurCreationDto.getQuantitee())*1000);
 			armee.setDateDebutProduction(tempsDebutFormation);
 		}

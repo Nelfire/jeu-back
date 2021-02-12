@@ -42,7 +42,6 @@ public class AuthController {
 	public ResponseEntity<?> registerUser(@Valid @RequestBody CreationCompteJoueurDto signUpRequest) {
 		for (Joueur joueur : joueurRepo.findAll())  {
 			if(joueur.getPseudo().equals(signUpRequest.getPseudo())) {
-				System.out.println("EGALITEE");
 				return ResponseEntity
 						.badRequest()
 						.body(new MessageResponse("Pseudo déjà utilisé"));

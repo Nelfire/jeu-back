@@ -47,7 +47,6 @@ public class ExpeditionController {
 	@Scheduled(cron="0 0 0 * * ?", zone="Europe/Paris")
 	@PostMapping("/refeshExpedition")
 	public void creerNouvellesExpeditions() {
-		System.out.println("Nouvelles expés");
 		this.expeditionService.creerNouvellesExpeditions();
 	}
 }

@@ -3,13 +3,9 @@ package dev.services.batiment;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.stereotype.Service;
-
 import dev.controller.dto.batiment.DefenseDto;
-import dev.controller.dto.unitee.UniteeDto;
 import dev.entites.batiment.Defense;
-import dev.entites.unitee.Unitee;
 import dev.repository.batiment.DefenseRepo;
 
 @Service

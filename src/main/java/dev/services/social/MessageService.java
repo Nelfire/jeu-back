@@ -33,12 +33,10 @@ public class MessageService {
 		for (Message message : messageRepo.findAll()) {
 			listeMessages.add(message);
 		}
-		System.out.println(listeMessages);
 		return listeMessages;
 	}
 	
 	public Message publierMessage(String contenu) {
-		System.out.println(contenu);
 
 		// RECUPERATION DU JOUEUR
 		Joueur jou = this.joueurService.recuperationJoueur();
@@ -47,8 +45,7 @@ public class MessageService {
 		long datePublication = new Date().getTime();
 		
 		Message message = new Message(jou,datePublication,contenu);
-		
-		System.out.println(message);
+
 		// SAUVEGARDE
 		this.messageRepo.save(message);
 		

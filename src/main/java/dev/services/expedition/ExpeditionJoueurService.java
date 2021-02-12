@@ -527,7 +527,6 @@ public class ExpeditionJoueurService {
 			} 
 			else if(arme.getUnitee().getId()==11)  // nombreChampion
 			{
-				System.out.println(compositionArmeeExpedition.getNombreChampion());
 				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreChampion()<0) {
 					throw new UniteeManquanteException("Vous manquez de champions.");
 
@@ -618,7 +617,6 @@ public class ExpeditionJoueurService {
 			} 
 			else if(arme.getUnitee().getId()==16)  // nombreGalion
 			{
-				System.out.println(arme.getQuantitee()-compositionArmeeExpedition.getNombreGalion());
 				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreGalion()<0) {
 					throw new UniteeManquanteException("Vous manquez de galions.");
 
@@ -809,7 +807,6 @@ public class ExpeditionJoueurService {
 	
 	public String recupererRecompense(Integer idExpedition) {
 		
-		System.out.println("recupererRecompense service");
 		// RÉCUPÉRATION INFORMATIONS EXPEDITIONJOUER
 		ExpeditionJoueur expdJoueur = this.rechercherExpeditionJoueurById(idExpedition);
 		
@@ -835,10 +832,7 @@ public class ExpeditionJoueurService {
 		// DANS LE CAS OU L'EXPÉDITION EST UN SUCCES, ATTIBUTION DES RESSOURCES AU JOUEUR (PIERRE, BOIS, OR, NOURRITURE, GEMME)
 	    if (expdJoueur.getEtatExpedition() == 1) 
 	    {
-	    	System.out.println("CAS SUCCES");
-	    	System.out.println("Récompense pierre : "+expdJoueur.getExpedition().getRecompensePierre());
 			Joueur jou = joueurService.recuperationJoueur();
-			System.out.println("Joueur ancien : "+jou);
 			jou.setPierrePossession(jou.getPierrePossession() + expdJoueur.getExpedition().getRecompensePierre());
 			jou.setBoisPossession(jou.getBoisPossession() + expdJoueur.getExpedition().getRecompenseBois());
 			jou.setOrPossession(jou.getOrPossession() + expdJoueur.getExpedition().getRecompenseOr());
@@ -848,9 +842,8 @@ public class ExpeditionJoueurService {
 			jou.setNiveau(jou.getExperience() / 5000); // /!\ Temporaire : 1 Niveau = 5000 Experience
 			// - Changement de l'état, pour définir l'expédition comme "réussite"
 			expeditionJoueur.setEtatExpedition(2);
+			
 			// - Sauvegardes des informations joueur
-			System.out.println("Joueur nouveau : "+jou);
-
 			joueurRepo.save(jou);
 	    }
 
