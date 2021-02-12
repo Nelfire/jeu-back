@@ -40,21 +40,21 @@ public class AuthController {
 	
 	@PostMapping
 	public ResponseEntity<?> registerUser(@Valid @RequestBody CreationCompteJoueurDto signUpRequest) {
-		System.out.println("Auth controller ligne 39");
-		System.out.println(signUpRequest.getPseudo());
-		System.out.println(signUpRequest.getEmail());
-		System.out.println(signUpRequest.getPassword());
-		if (joueurRepo.existsByPseudo(signUpRequest.getPseudo())) {
-			return ResponseEntity
-					.badRequest()
-					.body(new MessageResponse("Pseudo déjà utilisé"));
+		for (Joueur joueur : joueurRepo.findAll())  {
+			if(joueur.getPseudo().equals(signUpRequest.getPseudo())) {
+				System.out.println("EGALITEE");
+				return ResponseEntity
+						.badRequest()
+						.body(new MessageResponse("Pseudo déjà utilisé"));
+			}
+			if (joueur.getEmail().equals(signUpRequest.getEmail())) {
+				return ResponseEntity
+						.badRequest()
+						.body(new MessageResponse("Email déjà utilisé"));
+			}
 		}
 
-		if (joueurRepo.existsByEmail(signUpRequest.getEmail())) {
-			return ResponseEntity
-					.badRequest()
-					.body(new MessageResponse("Email déjà utilisé"));
-		}
+
 
 		// Create new user's account
         Joueur joueur1 = new Joueur();
