@@ -13,7 +13,7 @@ import dev.entites.joueur.Joueur;
 public class Message {
 	
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
 	@ManyToOne

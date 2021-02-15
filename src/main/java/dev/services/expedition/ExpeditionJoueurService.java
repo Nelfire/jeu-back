@@ -10,15 +10,19 @@ import org.springframework.stereotype.Service;
 import dev.controller.dto.expedition.CompositionArmeeExpeditionDto;
 import dev.entites.expedition.Expedition;
 import dev.entites.expedition.ExpeditionJoueur;
+import dev.entites.expedition.ExpeditionUnitee;
 import dev.entites.joueur.Armee;
 import dev.entites.joueur.Joueur;
+import dev.entites.unitee.Unitee;
 import dev.exceptions.RecompenseDejaPercuException;
 import dev.exceptions.RessourceManquanteException;
 import dev.exceptions.UniteeManquanteException;
 import dev.repository.JoueurRepo;
 import dev.repository.expedition.ExpeditionRepo;
+import dev.repository.expedition.ExpeditionUniteeRepo;
 import dev.repository.joueur.ArmeeRepo;
 import dev.repository.joueur.ExpeditionJoueurRepo;
+import dev.repository.unitee.UniteeRepo;
 import dev.services.joueur.JoueurService;
 
 @Service
@@ -33,19 +37,24 @@ public class ExpeditionJoueurService {
 	JoueurService joueurService;
 	JoueurRepo joueurRepo;
 	ExpeditionRepo expeditionRepo;
+	ExpeditionUniteeRepo expeditionUniteeRepo;
+	UniteeRepo uniteeRepo;
 
 	/**
 	 * @param expeditionRepo
 	 */
-	public ExpeditionJoueurService(ExpeditionJoueurRepo expeditionJoueurRepo, ArmeeRepo armeeRepo, JoueurService joueurService, JoueurRepo joueurRepo, ExpeditionRepo expeditionRepo) {
+	public ExpeditionJoueurService(ExpeditionJoueurRepo expeditionJoueurRepo, ArmeeRepo armeeRepo, JoueurService joueurService, JoueurRepo joueurRepo, ExpeditionRepo expeditionRepo, ExpeditionUniteeRepo expeditionUniteeRepo, UniteeRepo uniteeRepo) {
 		super();
 		this.expeditionJoueurRepo = expeditionJoueurRepo;
 		this.armeeRepo = armeeRepo;
 		this.joueurService = joueurService;
 		this.joueurRepo = joueurRepo;
 		this.expeditionRepo = expeditionRepo;
+		this.expeditionUniteeRepo = expeditionUniteeRepo;
+		this.uniteeRepo = uniteeRepo;
 	}
 	
+
 	/*
 	0 : EXPEDITION EN COURS
 	1 : VICTOIRE, RECOMPENSE EN ATTENTE
@@ -361,6 +370,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreVillageois());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==2)  // Archer
@@ -379,6 +391,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreArcher());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==3)  // ArcherComposite
@@ -397,6 +412,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreArcherComposite());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==4)  // FantassinEpee
@@ -415,6 +433,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreFantassinEpee());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==5)  // nombreHommeDArme
@@ -433,6 +454,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreHommeDArme());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==6)  // nombreLanceurDeHache
@@ -451,6 +475,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreLanceurDeHache());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==7)  // nombreMilicien
@@ -469,6 +496,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreMilicien());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==8)  // nombrePiquier
@@ -487,6 +517,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombrePiquier());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==9)  // nombreCavalierArcher
@@ -505,6 +538,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreCavalierArcher());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==10)  // nombreCavalier
@@ -523,6 +559,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreCavalier());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==11)  // nombreChampion
@@ -541,6 +580,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreChampion());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==12)  // nombreBateauDePeche
@@ -559,6 +601,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreBateauDePeche());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==13)  // nombreBateauIncendiaire
@@ -577,6 +622,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreBateauIncendiaire());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==14)  // nombreBateauDeDestruction
@@ -595,6 +643,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreBateauDeDestruction());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==15)  // nombreGalionACanon
@@ -613,6 +664,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreGalionACanon());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==16)  // nombreGalion
@@ -631,6 +685,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreGalion());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==17)  // nombreGuerrierElite
@@ -649,6 +706,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreGuerrierElite());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==18)  // nombrePhalange
@@ -667,6 +727,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombrePhalange());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==19)  // nombreSamourail
@@ -685,6 +748,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreSamourail());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==20)  // nombreTemplier
@@ -703,6 +769,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreTemplier());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==21)  // nombreCatapulte
@@ -721,6 +790,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreCatapulte());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==22)  // nombreElephantDeCombat
@@ -739,6 +811,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreElephantDeCombat());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
 			else if(arme.getUnitee().getId()==23)  // nombrePretre
@@ -757,6 +832,9 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
+					
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombrePretre());
+					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			}
 
@@ -843,6 +921,39 @@ public class ExpeditionJoueurService {
 			// - Changement de l'état, pour définir l'expédition comme "réussite"
 			expeditionJoueur.setEtatExpedition(2);
 			
+			System.out.println("ID EXPEDITION : "+expeditionJoueur.getExpedition().getId());
+			// Détection des unitées envoyées en expédition.
+			for (ExpeditionUnitee expeditionUnitee : expeditionUniteeRepo.findAll()) {
+				System.out.println("Unitées envoyée en combat à ces expeditions : "+expeditionUnitee.getIdExpedition());
+				// SI EXPEDITION UNITEE
+				if(expeditionUnitee.getIdExpedition() == expeditionJoueur.getExpedition().getId()) {
+					System.out.println("expedition en cours d'analyse : " + expeditionJoueur.getExpedition().getId());
+					// RECHERCHE UNITEE CORRESPONDANTE
+					for (Unitee unitee : uniteeRepo.findAll()) {
+						if(unitee.getId() == expeditionUnitee.getIdUnitee()) {
+							System.out.println("Unitée envoyée : "+ unitee.getIdTypeUnitee()+ "("+unitee.getLibelle()+")");
+							// RECHERCHE ARMEE DU JOUEUR CORRESPONDANTE
+							for (Armee arme : armeeRepo.findByJoueur(jou)) {
+								if(arme.getUnitee().getId()==expeditionUnitee.getIdUnitee())
+								{
+									// RE-ATTRIBUTION DES QUANTITES
+									
+									Armee armee = new Armee();
+									// - Calcul des dégats émis
+									armee.setId(arme.getId());
+									armee.setJoueur(jou);
+									armee.setUnitee(arme.getUnitee());
+									armee.setQuantitee(arme.getQuantitee()+expeditionUnitee.getQuantite());
+									armee.setDateDebutProduction(arme.getDateDebutProduction());
+									armee.setDateFinProduction(arme.getDateFinProduction());
+									armeeRepo.save(armee);
+								}
+							}
+						}
+					}
+				}
+			}
+			
 			// - Sauvegardes des informations joueur
 			joueurRepo.save(jou);
 	    }
@@ -852,5 +963,4 @@ public class ExpeditionJoueurService {
 		
 		return "Ok";
 	}
-	
 }

@@ -11,6 +11,7 @@ import dev.entites.social.Message;
 import dev.repository.social.MessageRepo;
 import dev.services.joueur.JoueurService;
 
+
 @Service
 public class MessageService {
 	
@@ -46,6 +47,7 @@ public class MessageService {
 		
 		Message message = new Message(jou,datePublication,contenu);
 
+		System.out.println(message.toString());
 		// SAUVEGARDE
 		this.messageRepo.save(message);
 		

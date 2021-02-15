@@ -10,4 +10,5 @@ public interface UniteeRepo extends JpaRepository<Unitee, Integer> {
 	Optional<Unitee> findById(Integer id);
 
 	List<Unitee> findByIdTypeUnitee(Integer idTypeUnitee);
+	
 }
