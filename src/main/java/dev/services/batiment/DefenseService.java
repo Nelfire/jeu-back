@@ -37,6 +37,31 @@ public class DefenseService {
 		return listeDefenses;
 	}
 	
+	/**
+	 * LISTER QUE LES DEFENSES DE TYPE OFFENSIVE = 1
+	 */
+	public List<Defense> listerDefensesOffensive() {
+		List<Defense> listeDefensesOffensive = new ArrayList<>();
+
+		for (Defense defense : defenseRepo.findByTypeDefense(1)) {
+			listeDefensesOffensive.add(defense);
+		}
+		
+		return listeDefensesOffensive;
+	}
+	
+	/**
+	 * LISTER QUE LES DEFENSES DE TYPE DEFENSIVE = 2
+	 */
+	public List<Defense> listerDefensesDefensive() {
+		List<Defense> listeDefensesDefensive = new ArrayList<>();
+
+		for (Defense defense : defenseRepo.findByTypeDefense(2)) {
+			listeDefensesDefensive.add(defense);
+		}
+		
+		return listeDefensesDefensive;
+	}
 	
 //	/**
 //	 * DETAIL D'UNE DEFENSE (Via ID)

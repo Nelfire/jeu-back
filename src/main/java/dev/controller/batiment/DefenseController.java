@@ -52,5 +52,21 @@ public class DefenseController {
 	public DefenseDto administrationModificationDefense (@RequestBody @Valid DefenseDto defenseDto, @RequestParam("id") Integer id) {
 		return this.defenseService.administrationModificationDefense(defenseDto,id);
 	}
+	
+	/**
+	 * LISTER QUE LES DEFENSES DE TYPE OFFENSIVE = 1
+	 */
+	@GetMapping("/listerDefensesOffensive")
+	public List<Defense> listerDefensesOffensive() {
+		return this.defenseService.listerDefensesOffensive();
+	}
+	
+	/**
+	 * LISTER QUE LES DEFENSES DE TYPE DEFENSIVE = 2
+	 */
+	@GetMapping("/listerDefensesDefensive")
+	public List<Defense> listerDefensesDefensive() {
+		return this.defenseService.listerDefensesDefensive();
+	}
 
 }

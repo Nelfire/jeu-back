@@ -13,6 +13,7 @@ import dev.entites.batiment.DefenseJoueur;
 import dev.entites.joueur.Joueur;
 import dev.exceptions.RessourceManquanteException;
 import dev.repository.JoueurRepo;
+import dev.repository.batiment.DefenseRepo;
 import dev.repository.joueur.DefenseJoueurRepo;
 import dev.services.joueur.JoueurService;
 
@@ -23,16 +24,17 @@ public class DefenseJoueurService {
 	private JoueurService joueurService;
 	private DefenseService defenseService;
 	private JoueurRepo joueurRepo;
-	
+	private DefenseRepo defenseRepo;
 	/**
 	 * @param defenseJoueurRepo
 	 */
-	public DefenseJoueurService(DefenseJoueurRepo defenseJoueurRepo, JoueurService joueurService, DefenseService defenseService, JoueurRepo joueurRepo) {
+	public DefenseJoueurService(DefenseJoueurRepo defenseJoueurRepo, JoueurService joueurService, DefenseService defenseService, JoueurRepo joueurRepo, DefenseRepo defenseRepo) {
 		super();
 		this.defenseJoueurRepo = defenseJoueurRepo;
 		this.joueurService = joueurService;
 		this.defenseService = defenseService;
 		this.joueurRepo = joueurRepo;
+		this.defenseRepo = defenseRepo;
 	}
 	
 	/**
@@ -68,24 +70,8 @@ public class DefenseJoueurService {
 		Long finProduction = 0L;
 		
 		// INFORMATIONS SUR LA DEFENSE QUE LE JOUEUR VEUT CRÉER
-		DefenseDto def = this.defenseService.detailsDefense(defenseJoueurCreationDto.getIdDefense());
-		Defense defense = new Defense();
-		defense.setId(def.getId());
-		defense.setIdTypeDefense(def.getIdTypeDefense());
-		defense.setTypeDefense(def.getTypeDefense());
-		defense.setIcone(def.getIcone());
-		defense.setLibelle(def.getLibelle());
-		defense.setDescription(def.getDescription());
-		defense.setCoutPierreConstruction(def.getCoutPierreConstruction());
-		defense.setCoutBoisConstruction(def.getCoutBoisConstruction());
-		defense.setCoutOrConstruction(def.getCoutOrConstruction());
-		defense.setCoutNourritureConstruction(def.getCoutNourritureConstruction());
-		defense.setVie(def.getVie());
-		defense.setAttaque(def.getAttaque());
-		defense.setBouclier(def.getBouclier());
-		defense.setTempsConstruction(def.getTempsConstruction());
-		defense.setNiveauBatimentNecessaireConstruction(def.getNiveauBatimentNecessaireConstruction());
-		defense.setIdBatimentProvenance(def.getIdBatimentProvenance());
+		Defense defense = defenseRepo.findByIdTypeDefense(defenseJoueurCreationDto.getIdDefense());
+
 
 		// INITIALISATIONS DES COÛTS DE CONSTRUCTION (COÛT DEFENSE RESSOURCE X QUANTITÉ)
 		Integer coutPierreOperation = defense.getCoutPierreConstruction() * defenseJoueurCreationDto.getQuantite();
