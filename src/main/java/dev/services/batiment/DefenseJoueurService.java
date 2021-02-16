@@ -72,6 +72,7 @@ public class DefenseJoueurService {
 		Defense defense = new Defense();
 		defense.setId(def.getId());
 		defense.setIdTypeDefense(def.getIdTypeDefense());
+		defense.setTypeDefense(def.getTypeDefense());
 		defense.setIcone(def.getIcone());
 		defense.setLibelle(def.getLibelle());
 		defense.setDescription(def.getDescription());

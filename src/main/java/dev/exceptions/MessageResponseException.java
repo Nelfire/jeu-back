@@ -1,7 +1,7 @@
 package dev.exceptions;
 
 
-public class MessageResponse extends RuntimeException{
+public class MessageResponseException extends RuntimeException{
 
 	/**
 	 * 
@@ -11,7 +11,7 @@ public class MessageResponse extends RuntimeException{
 	/** Constructeur
 	 * @param message
 	 */
-	public MessageResponse(String message) {
+	public MessageResponseException(String message) {
 		super(message);
 	}
 }

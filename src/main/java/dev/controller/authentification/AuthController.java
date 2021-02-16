@@ -1,6 +1,8 @@
 package dev.controller.authentification;
 
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.validation.Valid;
 
@@ -15,7 +17,8 @@ import dev.controller.dto.joueur.CreationCompteJoueurDto;
 import dev.entites.joueur.Joueur;
 import dev.entites.joueur.Role;
 import dev.entites.joueur.RoleJoueur;
-import dev.exceptions.MessageResponse;
+import dev.exceptions.MessageResponseException;
+import dev.exceptions.RessourceManquanteException;
 import dev.repository.JoueurRepo;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,16 +47,29 @@ public class AuthController {
 			if(joueur.getPseudo().equals(signUpRequest.getPseudo())) {
 				return ResponseEntity
 						.badRequest()
-						.body(new MessageResponse("Pseudo déjà utilisé"));
+						.body(new MessageResponseException("Pseudo déjà utilisé"));
 			}
 			if (joueur.getEmail().equals(signUpRequest.getEmail())) {
 				return ResponseEntity
 						.badRequest()
-						.body(new MessageResponse("Email déjà utilisé"));
+						.body(new MessageResponseException("Email déjà utilisé"));
 			}
 		}
 
+		// Taille password > 5 ??
+		if(signUpRequest.getPassword().length() <5) {
+			throw new MessageResponseException("Le mot de passe doit faire une taille de 5 caractères au minimum pour votre sécurité.");
 
+		}
+
+		// Match email ?
+		String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
+		Pattern pattern = Pattern.compile(regex);
+	    Matcher matcher = pattern.matcher(signUpRequest.getEmail());
+	    if(matcher.matches() == false) {
+			throw new MessageResponseException("Le format de l'adresse email n'est pas valide.");
+	    }
+		
 
 		// Create new user's account
         Joueur joueur1 = new Joueur();
@@ -78,7 +94,7 @@ public class AuthController {
         joueur1.setRoles(Arrays.asList(new RoleJoueur(joueur1, Role.ROLE_JOUEUR)));
         joueurRepo.save(joueur1);
 
-		return ResponseEntity.ok(new MessageResponse("Compte créé avec succès !"));
+		return ResponseEntity.ok(new MessageResponseException("Compte créé avec succès !"));
 	}
 
 }

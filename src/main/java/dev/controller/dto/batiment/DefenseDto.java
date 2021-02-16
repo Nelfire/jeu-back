@@ -7,6 +7,7 @@ public class DefenseDto {
 	private Integer id;
 	
 	private Integer idTypeDefense;
+	private Integer typeDefense;
 	
 	private String icone;
 
@@ -41,30 +42,72 @@ public class DefenseDto {
 	 * @param niveauBatimentNecessaireConstruction
 	 * @param idBatimentProvenance
 	 */
-	public DefenseDto(Defense defense) {
+//	public DefenseDto(Defense defense) {
+//		super();
+//		this.id = defense.getId();
+//		this.idTypeDefense = defense.getIdTypeDefense();
+//		this.typeDefense = defense.getTypeDefense();
+//		this.icone = defense.getIcone();
+//		this.libelle = defense.getLibelle();
+//		this.description = defense.getDescription();
+//		this.coutPierreConstruction = defense.getCoutPierreConstruction();
+//		this.coutBoisConstruction = defense.getCoutBoisConstruction();
+//		this.coutOrConstruction = defense.getCoutOrConstruction();
+//		this.coutNourritureConstruction = defense.getCoutNourritureConstruction();
+//		this.vie = defense.getVie();
+//		this.attaque = defense.getAttaque();
+//		this.bouclier = defense.getBouclier();
+//		this.tempsConstruction = defense.getTempsConstruction();
+//		this.niveauBatimentNecessaireConstruction = defense.getNiveauBatimentNecessaireConstruction();
+//		this.idBatimentProvenance = defense.getIdBatimentProvenance();
+//	}
+
+	/**
+	 * @param idTypeDefense
+	 * @param typeDefense
+	 * @param icone
+	 * @param libelle
+	 * @param description
+	 * @param coutPierreConstruction
+	 * @param coutBoisConstruction
+	 * @param coutOrConstruction
+	 * @param coutNourritureConstruction
+	 * @param vie
+	 * @param attaque
+	 * @param bouclier
+	 * @param tempsConstruction
+	 * @param niveauBatimentNecessaireConstruction
+	 * @param idBatimentProvenance
+	 */
+	public DefenseDto(Integer idTypeDefense, Integer typeDefense, String icone, String libelle, String description,
+			Integer coutPierreConstruction, Integer coutBoisConstruction, Integer coutOrConstruction,
+			Integer coutNourritureConstruction, Integer vie, Integer attaque, Integer bouclier,
+			Integer tempsConstruction, Integer niveauBatimentNecessaireConstruction, Integer idBatimentProvenance) {
 		super();
-		this.id = defense.getId();
-		this.idTypeDefense = defense.getIdTypeDefense();
-		this.icone = defense.getIcone();
-		this.libelle = defense.getLibelle();
-		this.description = defense.getDescription();
-		this.coutPierreConstruction = defense.getCoutPierreConstruction();
-		this.coutBoisConstruction = defense.getCoutBoisConstruction();
-		this.coutOrConstruction = defense.getCoutOrConstruction();
-		this.coutNourritureConstruction = defense.getCoutNourritureConstruction();
-		this.vie = defense.getVie();
-		this.attaque = defense.getAttaque();
-		this.bouclier = defense.getBouclier();
-		this.tempsConstruction = defense.getTempsConstruction();
-		this.niveauBatimentNecessaireConstruction = defense.getNiveauBatimentNecessaireConstruction();
-		this.idBatimentProvenance = defense.getIdBatimentProvenance();
+		this.idTypeDefense = idTypeDefense;
+		this.typeDefense = typeDefense;
+		this.icone = icone;
+		this.libelle = libelle;
+		this.description = description;
+		this.coutPierreConstruction = coutPierreConstruction;
+		this.coutBoisConstruction = coutBoisConstruction;
+		this.coutOrConstruction = coutOrConstruction;
+		this.coutNourritureConstruction = coutNourritureConstruction;
+		this.vie = vie;
+		this.attaque = attaque;
+		this.bouclier = bouclier;
+		this.tempsConstruction = tempsConstruction;
+		this.niveauBatimentNecessaireConstruction = niveauBatimentNecessaireConstruction;
+		this.idBatimentProvenance = idBatimentProvenance;
 	}
+	
 	/**
 	 * @return the id
 	 */
 	public Integer getId() {
 		return id;
 	}
+
 	/**
 	 * @param id the id to set
 	 */
@@ -239,16 +282,30 @@ public class DefenseDto {
 	public void setIdBatimentProvenance(Integer idBatimentProvenance) {
 		this.idBatimentProvenance = idBatimentProvenance;
 	}
+	/**
+	 * @return the typeDefense
+	 */
+	public Integer getTypeDefense() {
+		return typeDefense;
+	}
+	/**
+	 * @param typeDefense the typeDefense to set
+	 */
+	public void setTypeDefense(Integer typeDefense) {
+		this.typeDefense = typeDefense;
+	}
 	@Override
 	public String toString() {
-		return "DefenseDto [id=" + id + ", idTypeDefense=" + idTypeDefense + ", icone=" + icone + ", libelle=" + libelle
-				+ ", description=" + description + ", coutPierreConstruction=" + coutPierreConstruction
-				+ ", coutBoisConstruction=" + coutBoisConstruction + ", coutOrConstruction=" + coutOrConstruction
-				+ ", coutNourritureConstruction=" + coutNourritureConstruction + ", vie=" + vie + ", attaque=" + attaque
-				+ ", bouclier=" + bouclier + ", tempsConstruction=" + tempsConstruction
+		return "DefenseDto [id=" + id + ", idTypeDefense=" + idTypeDefense + ", typeDefense=" + typeDefense + ", icone="
+				+ icone + ", libelle=" + libelle + ", description=" + description + ", coutPierreConstruction="
+				+ coutPierreConstruction + ", coutBoisConstruction=" + coutBoisConstruction + ", coutOrConstruction="
+				+ coutOrConstruction + ", coutNourritureConstruction=" + coutNourritureConstruction + ", vie=" + vie
+				+ ", attaque=" + attaque + ", bouclier=" + bouclier + ", tempsConstruction=" + tempsConstruction
 				+ ", niveauBatimentNecessaireConstruction=" + niveauBatimentNecessaireConstruction
 				+ ", idBatimentProvenance=" + idBatimentProvenance + "]";
 	}
+
+	
 	
 	
 	

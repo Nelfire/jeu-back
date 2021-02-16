@@ -2,10 +2,16 @@ package dev.controller.batiment;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import dev.controller.dto.batiment.BatimentDto;
 import dev.controller.dto.batiment.DefenseDto;
 import dev.entites.batiment.Defense;
 import dev.services.batiment.DefenseService;
@@ -36,6 +42,15 @@ public class DefenseController {
 	@GetMapping("/detailsDefense")
 	public DefenseDto detailsDefense(@RequestParam("id") Integer idDefense) {
 		return this.defenseService.detailsDefense(idDefense);
+	}
+	
+	
+	/**
+	 * MODIFICATION D'UNE DEFENSE (Menu administrateur, Via ID)
+	 */
+	@PutMapping("/modificationDefense")
+	public DefenseDto administrationModificationDefense (@RequestBody @Valid DefenseDto defenseDto, @RequestParam("id") Integer id) {
+		return this.defenseService.administrationModificationDefense(defenseDto,id);
 	}
 
 }

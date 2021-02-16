@@ -20,6 +20,12 @@ public class Defense {
 	
 	private Integer idTypeDefense;
 	
+	/*
+	 * 1 = Offensif
+	 * 2 = Defensif
+	 */
+	private Integer typeDefense;
+	
 	private String icone;
 	
     @OneToMany(mappedBy = "defense")
@@ -62,13 +68,14 @@ public class Defense {
 	 * @param niveauBatimentNecessaireConstruction
 	 * @param idBatimentProvenance
 	 */
-	public Defense(Integer idTypeDefense, String icone, String libelle,
+	public Defense(Integer idTypeDefense, Integer typeDefense, String icone, String libelle,
 			String description, Integer coutPierreConstruction, Integer coutBoisConstruction,
 			Integer coutOrConstruction, Integer coutNourritureConstruction, Integer vie, Integer attaque,
 			Integer bouclier, Integer tempsConstruction, Integer niveauBatimentNecessaireConstruction,
 			Integer idBatimentProvenance) {
 		super();
 		this.idTypeDefense = idTypeDefense;
+		this.typeDefense = typeDefense;
 		this.icone = icone;
 		this.libelle = libelle;
 		this.description = description;
@@ -306,6 +313,22 @@ public class Defense {
 	 */
 	public void setIdBatimentProvenance(Integer idBatimentProvenance) {
 		this.idBatimentProvenance = idBatimentProvenance;
+	}
+	
+	
+
+	/**
+	 * @return the typeDefense
+	 */
+	public Integer getTypeDefense() {
+		return typeDefense;
+	}
+
+	/**
+	 * @param typeDefense the typeDefense to set
+	 */
+	public void setTypeDefense(Integer typeDefense) {
+		this.typeDefense = typeDefense;
 	}
 
 	@Override

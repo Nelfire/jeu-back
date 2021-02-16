@@ -208,8 +208,8 @@ public class StartupListener {
         this.batimentRepo.save(tableExpedition);
         
         // -- DEFENSES --
-        Defense tour = new Defense(1,"https://cdn.discordapp.com/attachments/794876433842831361/794876513039417404/CaserneMillitaire.png","Tour de guet","Description de la tour",50,50,50,50,99,99,99,10,1,2);
-        Defense murFortifie = new Defense(2,"https://media.discordapp.net/attachments/794876433842831361/808330333325099068/MurFortifie.png","Mur fortifié","Description du mur fortifié",50,50,50,50,1000,0,200,10,1,2);
+        Defense tour = new Defense(1,1,"https://cdn.discordapp.com/attachments/794876433842831361/794876513039417404/CaserneMillitaire.png","Tour de guet","Description de la tour",50,50,50,50,99,99,99,10,1,2);
+        Defense murFortifie = new Defense(2,2,"https://media.discordapp.net/attachments/794876433842831361/808330333325099068/MurFortifie.png","Mur fortifié","Description du mur fortifié",50,50,50,50,1000,0,200,10,1,2);
         
 
         this.defenseRepo.save(tour);

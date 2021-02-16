@@ -2,12 +2,17 @@ package dev.controller.batiment;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.controller.dto.batiment.BatimentDto;
+import dev.controller.dto.unitee.UniteeDto;
 import dev.services.batiment.BatimentService;
 
 @RestController
@@ -71,5 +76,13 @@ public class BatimentController {
 	@GetMapping("/idTypeBatiment")
 	public BatimentDto detailsBatiment(@RequestParam("idTypeBatiment") Integer idTypeBatiment) {
 		return this.batimentService.detailsBatiment(idTypeBatiment);
+	}
+	
+	/**
+	 * MODIFICATION D'UN BÂTIMENT (Menu administrateur, Via ID)
+	 */
+	@PutMapping("/modificationBatiment")
+	public BatimentDto administrationModificationBatiment (@RequestBody @Valid BatimentDto batimentDto, @RequestParam("id") Integer id) {
+		return this.batimentService.administrationModificationBatiment(batimentDto,id);
 	}
 }
