@@ -170,24 +170,42 @@ public class StartupListener {
     	17 - Marché
     	18 - Table d'expéditions
          */
-        Batiment hdv = new Batiment(1,0,"https://media.discordapp.net/attachments/794876433842831361/808334142617026570/HotelDeVille.png","Hotel de ville","Descriptif de l'hotel de ville",5,30,500,250,100,200,0,10000,10000,10000,10000,3600,3600,3600,3600);
-        Batiment chaumiere = new Batiment(2,0,"https://cdn.discordapp.com/attachments/794876433842831361/794876520338161704/Chaumiere.png","Chaumière","Descriptif de la chaumière",5,180,2000,1000,1000,1000,1,0,0,0,0,0,0,0,0);
-        Batiment carriere = new Batiment(3,1,"https://media.discordapp.net/attachments/794876433842831361/808335646653153330/Carriere.png","Carrière","Descriptif de la carrière",5,80,150,200,100,100,1,0,0,0,0,7200,0,0,0);
-        Batiment campDeBucheron = new Batiment(4,1,"https://media.discordapp.net/attachments/794876433842831361/808335663467724800/Scierie.png","Camp de bûcheron","Descriptif du camp de bûcheron",5,80,200,150,100,100,1,0,0,0,0,0,7200,0,0);
-        Batiment campDeMineur = new Batiment(5,1,"https://cdn.discordapp.com/attachments/794876433842831361/794876498183323678/CampDeMineur.png","Camp de mineur","Descriptif du camp de mineur",5,80,200,100,150,100,1,0,0,0,0,0,0,7200,0);
-        Batiment ferme = new Batiment(6,1,"https://cdn.discordapp.com/attachments/794876433842831361/794876556509839360/Ferme.png","Ferme","Descriptif de la ferme",5,80,100,200,100,150,1,0,0,0,0,0,0,0,7200);
-        Batiment entrepot = new Batiment(7,2,"https://media.discordapp.net/attachments/794876433842831361/808341147192918076/Entrepot.png","Entrepot","Descriptif de l'entrepot",5,600,5000,2500,2500,1500,1,50000,0,0,0,0,0,0,0);
-        Batiment scierie = new Batiment(8,2,"https://cdn.discordapp.com/attachments/794876433842831361/794876485034311690/Banque.png","Scierie","Descriptif de la scierie",5,600,2500,5000,2500,1500,1,0,50000,0,0,0,0,0,0);
-        Batiment banque = new Batiment(9,2,"https://cdn.discordapp.com/attachments/794876433842831361/794876485034311690/Banque.png","Banque","Descriptif de la banque",5,600,2500,2500,5000,1500,1,0,0,50000,0,0,0,0,0);
-        Batiment grenier = new Batiment(10,2,"https://media.discordapp.net/attachments/794876433842831361/808337913272205362/Grenier.png","Grenier","Descriptif du grenier",5,600,2500,2500,2500,3000,1,0,0,0,50000,0,0,0,0);
-        Batiment caserneMillitaire = new Batiment(11,3,"https://media.discordapp.net/attachments/794876433842831361/808333625426313246/Camp_militaire.png","Caserne millitaire","Descriptif de la caserne millitaire",5,300,2500,1500,1000,1500,2,0,0,0,0,0,0,0,0);
-        Batiment ecurie = new Batiment(12,3,"https://media.discordapp.net/attachments/794876433842831361/808333303592779876/ecurie.png","Ecurie","Descriptif de l'écurie",5,400,3000,2000,1500,2000,3,0,0,0,0,0,0,0,0);
-        Batiment port = new Batiment(13,3,"https://media.discordapp.net/attachments/794876433842831361/808341626640400484/Port.png","Port","Descriptif du port",5,600,2500,4000,2000,2500,4,0,0,0,0,0,0,0,0);
-        Batiment atelierDeSiege = new Batiment(14,3,"https://cdn.discordapp.com/attachments/794876433842831361/794876478667751444/AtelierDeSiege.png","Atelier de siège","Descriptif de l'atelier de siège",5,900,7000,5000,4000,4000,5,0,0,0,0,0,0,0,0);
-        Batiment forge = new Batiment(15,0,"https://media.discordapp.net/attachments/794876433842831361/808337592025743380/Forge2.png","Forge","Descriptif de la forge",5,1800,20000,15000,10000,12000,5,0,0,0,0,0,0,0,0);
-        Batiment universite = new Batiment(16,0,"https://media.discordapp.net/attachments/794876433842831361/808335597034537003/Bibliotheque.png","Université","Descriptif de l'universite",5,1800,25000,20000,30000,20000,5,0,0,0,0,0,0,0,0);
-        Batiment marche = new Batiment(17,0,"https://media.discordapp.net/attachments/794876433842831361/808342149753077801/Marche.png","Marché","Descriptif du marché",5,1200,25000,15000,25000,15000,5,0,0,0,0,0,0,0,0);
-        Batiment tableExpedition = new Batiment(18,0,"https://media.discordapp.net/attachments/794876433842831361/808342166874357770/CampExpedition.png","Table d'expéditions","Descriptif de la table d'expédition",5,600,2500,2000,1500,2000,1,0,0,0,0,0,0,0,0);
+        Batiment hdv = new Batiment(1,0,"https://media.discordapp.net/attachments/794876433842831361/808334142617026570/HotelDeVille.png","Hotel de ville","Bâtiment principal de votre campement, l'hôtel de ville vous assure un apport régulier de ressource et vous permet également d'augmenter votre niveau de connaissance afin de créer de nouveaux types de bâtiments."
+        		,5,30,500,250,100,200,0,10000,10000,10000,10000,3600,3600,3600,3600,4,10);
+        Batiment chaumiere = new Batiment(2,0,"https://cdn.discordapp.com/attachments/794876433842831361/794876520338161704/Chaumiere.png","Chantier","Le chantier permet la création de bâtiments de défense."
+        		,5,180,2000,1000,1000,1000,1,0,0,0,0,0,0,0,0,0,5);
+        Batiment carriere = new Batiment(3,1,"https://media.discordapp.net/attachments/794876433842831361/808335646653153330/Carriere.png","Carrière","La carrière vous assure un apport régulier de pierre. Plus son niveau est élevé, plus l'apport de pierre sera important."
+        		,5,80,150,200,100,100,1,0,0,0,0,6500,0,0,0,2,8);
+        Batiment campDeBucheron = new Batiment(4,1,"https://media.discordapp.net/attachments/794876433842831361/808335663467724800/Scierie.png","Camp de bûcheron","Le camp de bûcheron vous assure un apport régulier de bois. Plus son niveau est élevé, plus l'apport de bois sera important."
+        		,5,80,200,150,100,100,1,0,0,0,0,0,10000,0,0,2,8);
+        Batiment campDeMineur = new Batiment(5,1,"https://cdn.discordapp.com/attachments/794876433842831361/794876498183323678/CampDeMineur.png","Camp de mineur","Le camp de mineur vous assure un apport régulier d'or. Plus son niveau est élevé, plus l'apport d'or sera important."
+        		,5,80,200,100,150,100,1,0,0,0,0,0,0,4000,0,2,8);
+        Batiment ferme = new Batiment(6,1,"https://cdn.discordapp.com/attachments/794876433842831361/794876556509839360/Ferme.png","Ferme","La ferme vous assure un apport régulier de nourriture. Plus son niveau est élevé, plus l'apport de nourriture sera important."
+        		,5,80,100,200,100,150,1,0,0,0,0,0,0,0,15000,2,8);
+        Batiment entrepot = new Batiment(7,2,"https://media.discordapp.net/attachments/794876433842831361/808341147192918076/Entrepot.png","Entrepot","L'entrepot sert de point de dépôt pour la pierre."
+        		,5,600,5000,2500,2500,1500,1,50000,0,0,0,0,0,0,0,3,6);
+        Batiment scierie = new Batiment(8,2,"https://cdn.discordapp.com/attachments/794876433842831361/794876485034311690/Banque.png","Scierie","La scierie sert de point de dépôt pour le bois."
+        		,5,600,2500,5000,2500,1500,1,0,50000,0,0,0,0,0,0,3,6);
+        Batiment banque = new Batiment(9,2,"https://cdn.discordapp.com/attachments/794876433842831361/794876485034311690/Banque.png","Banque","La banque sert de point de dépôt pour l'or."
+        		,5,600,2500,2500,5000,1500,1,0,0,50000,0,0,0,0,0,3,6);
+        Batiment grenier = new Batiment(10,2,"https://media.discordapp.net/attachments/794876433842831361/808337913272205362/Grenier.png","Grenier","Le grenier sert de point de dépôt pour la nourriture."
+        		,5,600,2500,2500,2500,3000,1,0,0,0,50000,0,0,0,0,3,6);
+        Batiment caserneMillitaire = new Batiment(11,3,"https://media.discordapp.net/attachments/794876433842831361/808333625426313246/Camp_militaire.png","Caserne militaire","La caserne militaire permet la création d'unitées d'infanterie légère."
+        		,5,300,2500,1500,1000,1500,2,0,0,0,0,0,0,0,0,0,4);
+        Batiment ecurie = new Batiment(12,3,"https://media.discordapp.net/attachments/794876433842831361/808333303592779876/ecurie.png","Ecurie","L'écurie permet la création d'unitées de cavalerie."
+        		,5,400,3000,2000,1500,2000,3,0,0,0,0,0,0,0,0,0,4);
+        Batiment port = new Batiment(13,3,"https://media.discordapp.net/attachments/794876433842831361/808341626640400484/Port.png","Port","Le port permet la création d'unitées navale."
+        		,5,600,2500,4000,2000,2500,4,0,0,0,0,0,0,0,0,0,4);
+        Batiment atelierDeSiege = new Batiment(14,3,"https://cdn.discordapp.com/attachments/794876433842831361/794876478667751444/AtelierDeSiege.png","Atelier de siège","L'atelier de siège permet la création d'unitées de combat lourde."
+        		,5,900,7000,5000,4000,4000,5,0,0,0,0,0,0,0,0,0,4);
+        Batiment forge = new Batiment(15,0,"https://media.discordapp.net/attachments/794876433842831361/808337592025743380/Forge2.png","Forge","La forme permet l'amélioration de certaines de vos unitées et de vos défenses."
+        		,5,1800,20000,15000,10000,12000,5,0,0,0,0,0,0,0,0,0,4);
+        Batiment universite = new Batiment(16,0,"https://media.discordapp.net/attachments/794876433842831361/808335597034537003/Bibliotheque.png","Université","L'université permet la création d'unitées et la recherche."
+        		,5,1800,25000,20000,30000,20000,5,0,0,0,0,0,0,0,0,0,4);
+        Batiment marche = new Batiment(17,0,"https://media.discordapp.net/attachments/794876433842831361/808342149753077801/Marche.png","Marché","Le marché permet l'échange de ressources."
+        		,5,1200,25000,15000,25000,15000,5,0,0,0,0,0,0,0,0,0,4);
+        Batiment tableExpedition = new Batiment(18,0,"https://media.discordapp.net/attachments/794876433842831361/808342166874357770/CampExpedition.png","Table d'expéditions","La table d'expédition vous permet d'envoyer vos unitées en expédition. Plus le niveau de la structure sera élevée, plus vous serez en mesure de lancer des expéditions en simultané."
+        		,5,600,2500,2000,1500,2000,1,0,0,0,0,0,0,0,0,0,4);
         this.batimentRepo.save(hdv);
         this.batimentRepo.save(chaumiere);
         this.batimentRepo.save(carriere);
@@ -208,8 +226,10 @@ public class StartupListener {
         this.batimentRepo.save(tableExpedition);
         
         // -- DEFENSES --
-        Defense tour = new Defense(1,1,"https://cdn.discordapp.com/attachments/794876433842831361/794876513039417404/CaserneMillitaire.png","Tour de guet","Description de la tour",50,50,50,50,99,99,99,10,1,2);
-        Defense murFortifie = new Defense(2,2,"https://media.discordapp.net/attachments/794876433842831361/808330333325099068/MurFortifie.png","Mur fortifié","Description du mur fortifié",50,50,50,50,1000,0,200,10,1,2);
+        Defense tour = new Defense(1,1,"https://cdn.discordapp.com/attachments/794876433842831361/794876513039417404/CaserneMillitaire.png","Tour de guet","Description de la tour"
+        		,50,50,50,50,99,99,99,10,1,2);
+        Defense murFortifie = new Defense(2,2,"https://media.discordapp.net/attachments/794876433842831361/808330333325099068/MurFortifie.png","Mur fortifié","Description du mur fortifié"
+        		,50,50,50,50,1000,0,200,10,3,2);
         
 
         this.defenseRepo.save(tour);
@@ -251,32 +271,422 @@ public class StartupListener {
 		//21 catapulte
 		//22 elephantDeCombat
 		//23 pretre
-		Unitee villageois = new Unitee(1,1,"https://media.discordapp.net/attachments/794876433842831361/799986427348647964/Villageois.png","Villageois","Descriptif du villageois",10,10,10,10,1,15,10,10,10,10,1,0,0,0,0);
-		Unitee archer = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986264299405342/Archer.png","Archer","Descriptif de l'archer",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
-		Unitee archerComposite = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986256377151518/Archer_Composite.png","Archer composite","Descriptif de l'archer composite",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
-		Unitee fantassinEpee = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986321065771018/Fantassin_epee.png","Fantassin épée","Descriptif du fantassin épée",99,99,99,99,1,10,99,99,99,99,2,0,0,0,0);
-		Unitee hommeDArme = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986373188255764/Homme_darme.png","Homme d'arme","Descriptif de l'homme d'arme",99,99,99,99,1,10,99,99,99,99,3,0,0,0,0);
-		Unitee lanceurDeHache = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986377042165770/Lanceur_de_hache.png","Lanceur de hache","Descriptif du lanceur de hache",99,99,99,99,1,10,99,99,99,99,2,0,0,0,0);
-		Unitee milicien = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986387787972648/Milicien.png","Milicien","Descriptif du milicien",99,99,99,99,1,10,99,99,99,99,3,0,0,0,0);
-		Unitee piquier = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986398294704168/Piquier.png","Piquier","Descriptif du piquier",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
-		Unitee cavalierArcher = new Unitee(3,12,"https://media.discordapp.net/attachments/794876433842831361/799986294889381888/Cavalier_Archer.png","Cavalier archer","Descriptif du cavalier archer",99,99,99,99,1,10,99,99,99,99,2,0,0,0,0);
-		Unitee cavalier = new Unitee(3,12,"https://media.discordapp.net/attachments/794876433842831361/799986300571615272/Cavalier.png","Cavalier","Descriptif du cavalier",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
-		Unitee champion = new Unitee(3,12,"https://media.discordapp.net/attachments/794876433842831361/799986305832058900/Champion.png","Champion","Descriptif du champion",99,99,99,99,1,10,99,99,99,99,3,0,0,0,0);
-		
-		Unitee bateauDePeche = new Unitee(5,13,"https://media.discordapp.net/attachments/794876433842831361/799986281508896799/Bateau_de_peche.png","Bateau de pêche","Descriptif du bateau de pêche",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
-		Unitee bateauIncendiaire = new Unitee(5,13,"https://media.discordapp.net/attachments/794876433842831361/799986349704740884/Bateau_incendiaire.png","Bateau incendiaire","Descriptif du bateau incendiaire",99,99,99,99,1,10,99,99,99,99,3,0,0,0,0);
-		Unitee bateauDeDestruction = new Unitee(5,13,"https://media.discordapp.net/attachments/794876433842831361/799986366645272636/Bateau_de_destruction.png","Bateau de destruction","Descriptif du bateau de destruction",99,99,99,99,1,10,99,99,99,99,4,0,0,0,0);
-		Unitee galionACanon = new Unitee(5,13,"https://cdn.discordapp.com/attachments/794876433842831361/799986355332448267/Galion_a_canon.png","Galion à canon","Descriptif du galion à canon",99,99,99,99,1,10,99,99,99,99,3,0,0,0,0);
-		Unitee galion = new Unitee(5,13,"https://cdn.discordapp.com/attachments/794876433842831361/799990362932117524/Galion.png","Galion","Descriptif du galion",99,99,99,99,1,10,99,99,99,99,2,0,0,0,0);
 
-		Unitee guerrierElite = new Unitee(2,14,"https://media.discordapp.net/attachments/794876433842831361/799986316292784159/Guerrier_elite.png","Guerrier élite","Descriptif du guerrier élite",99,99,99,99,1,10,99,99,99,99,2,0,0,0,0);
-		Unitee phalange = new Unitee(2,14,"https://media.discordapp.net/attachments/794876433842831361/799986392570658816/Phalange.png","Phalange","Descriptif du phalange",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
-		Unitee samourail = new Unitee(2,14,"https://media.discordapp.net/attachments/794876433842831361/799986417350606908/Samourail.png","Samourail","Descriptif du samouraile",99,99,99,99,1,10,99,99,99,99,2,0,0,0,0);
-		Unitee templier = new Unitee(2,14,"https://media.discordapp.net/attachments/794876433842831361/799986422894428220/Templier.png","Templier","Descriptif du templier",99,99,99,99,1,10,99,99,99,99,3,0,0,0,0);
-		Unitee catapulte = new Unitee(4,14,"https://media.discordapp.net/attachments/794876433842831361/799986288237084692/Catapulte.png","Catapulte","Descriptif de la catapulte",99,99,99,99,1,10,99,99,99,99,3,0,0,0,0);
-		Unitee elephantDeCombat = new Unitee(4,14,"https://media.discordapp.net/attachments/794876433842831361/799994500356505660/Elephant_de_combat.png","Eléphant de combat","Descriptif de l'éléphant de combat",99,99,99,99,1,10,99,99,99,99,4,0,0,0,0);
+		// Initialisation poids
+
+		Double poidBonusNiveauBatiment;
+		Integer global;
+		Integer niveauBatiment;
+		// - poid -
+		Integer poidPierre = 3;
+		Integer poidBois = 2;
+		Integer poidOr = 5;
+		Integer poidNourriture = 1;
+		// - stats -
+		Integer poidVie = 100;
+		Integer poidAttaque = 200;
+		Integer poidPortee = 500;
+		Integer poidArmure = 1000;
+		Integer poidTemps = 1;
+		// - cout -
+		Integer coutPierre;
+		Integer coutBois;
+		Integer coutOr;
+		Integer coutNourriture;
+		Integer vie;
+		Integer attaque;
+		Integer portee;
+		Integer armure;
+		Integer temps;
+
+		// ---------------------------- //
+		// ------ HOTEL DE VILLE ------ //
+		// ---------------------------- //
+		// Villageois
+		niveauBatiment = 1;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 1000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee villageois = new Unitee(1,1,"https://media.discordapp.net/attachments/794876433842831361/799986427348647964/Villageois.png","Villageois","Descriptif du villageois"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
 		
-		Unitee pretre = new Unitee(2,16,"https://media.discordapp.net/attachments/794876433842831361/799986403055370280/Pretre.png","Prêtre","Descriptif du prêtre",99,99,99,99,1,10,99,99,99,99,1,0,0,0,0);
+		// ------------------------------- //
+		// ------ CASERNE MILITAIRE ------ //
+		// ------------------------------- //
+		// Archer
+		niveauBatiment = 1;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 2000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee archer = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986264299405342/Archer.png","Archer","Descriptif de l'archer"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
+		
+		// Archer Composite
+		niveauBatiment = 1;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 3000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee archerComposite = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986256377151518/Archer_Composite.png","Archer composite","Descriptif de l'archer composite"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
+		
+		// Fantassin Epee
+		niveauBatiment = 2;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 3000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee fantassinEpee = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986321065771018/Fantassin_epee.png","Fantassin épée","Descriptif du fantassin épée"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
+		
+		// Homme d'arme
+		niveauBatiment = 2;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 4000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee hommeDArme = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986373188255764/Homme_darme.png","Homme d'arme","Descriptif de l'homme d'arme"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
+		
+		// Lanceur de Hâche
+		niveauBatiment = 3;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 4000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee lanceurDeHache = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986377042165770/Lanceur_de_hache.png","Lanceur de hache","Descriptif du lanceur de hache"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
+		
+		// Milicien
+		niveauBatiment = 3;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 5000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee milicien = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986387787972648/Milicien.png","Milicien","Descriptif du milicien"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
+		
+		// Piquier
+		niveauBatiment = 4;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 4000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee piquier = new Unitee(2,11,"https://media.discordapp.net/attachments/794876433842831361/799986398294704168/Piquier.png","Piquier","Descriptif du piquier"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
+		
+
+		// -------------------- //
+		// ------ ECURIE ------ //
+		// -------------------- //
+		
+		// Cavalier
+		niveauBatiment = 1;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 4000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee cavalier = new Unitee(3,12,"https://media.discordapp.net/attachments/794876433842831361/799986300571615272/Cavalier.png","Cavalier","Descriptif du cavalier"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
+		
+		// Cavalier Archer
+		niveauBatiment = 2;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 6000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee cavalierArcher = new Unitee(3,12,"https://media.discordapp.net/attachments/794876433842831361/799986294889381888/Cavalier_Archer.png","Cavalier archer","Descriptif du cavalier archer"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
+		
+		// Champion
+		niveauBatiment = 3;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 8000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee champion = new Unitee(3,12,"https://media.discordapp.net/attachments/794876433842831361/799986305832058900/Champion.png","Champion","Descriptif du champion"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
+		
+		
+		// ------------------ //
+		// ------ PORT ------ //
+		// ------------------ //
+		// Bateau de pèche
+		niveauBatiment = 1;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 1000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee bateauDePeche = new Unitee(5,13,"https://media.discordapp.net/attachments/794876433842831361/799986281508896799/Bateau_de_peche.png","Bateau de pêche","Descriptif du bateau de pêche"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
+		
+		// Bateau incendiaire
+		niveauBatiment = 1;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 5000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee bateauIncendiaire = new Unitee(5,13,"https://media.discordapp.net/attachments/794876433842831361/799986349704740884/Bateau_incendiaire.png","Bateau incendiaire","Descriptif du bateau incendiaire"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
+		
+		// Bateau de destruction
+		niveauBatiment = 2;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 9000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee bateauDeDestruction = new Unitee(5,13,"https://media.discordapp.net/attachments/794876433842831361/799986366645272636/Bateau_de_destruction.png","Navire de démolition","Descriptif du navire de démolition"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
+		
+		// Galion
+		niveauBatiment = 3;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 12000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee galion = new Unitee(5,13,"https://cdn.discordapp.com/attachments/794876433842831361/799990362932117524/Galion.png","Galion","Descriptif du galion"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
+		
+		// Galion à canon
+		niveauBatiment = 4;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 15000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee galionACanon = new Unitee(5,13,"https://cdn.discordapp.com/attachments/794876433842831361/799986355332448267/Galion_a_canon.png","Galion à canon","Descriptif du galion à canon"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
+
+		// ------------------------------ //
+		// ------ ATELIER DE SIEGE ------ //
+		// ------------------------------ //
+		// Guerrier Elite
+		niveauBatiment = 1;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 6000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee guerrierElite = new Unitee(2,14,"https://media.discordapp.net/attachments/794876433842831361/799986316292784159/Guerrier_elite.png","Guerrier élite","Descriptif du guerrier élite"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
+		
+		// Phalange
+		niveauBatiment = 1;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 7000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee phalange = new Unitee(2,14,"https://media.discordapp.net/attachments/794876433842831361/799986392570658816/Phalange.png","Phalange","Descriptif du phalange"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
+		
+		// Samourai
+		niveauBatiment = 2;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 9000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee samourail = new Unitee(2,14,"https://media.discordapp.net/attachments/794876433842831361/799986417350606908/Samourail.png","Samouraï","Descriptif du samouraï"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
+		
+		// Templier
+		niveauBatiment = 3;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 12000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee templier = new Unitee(2,14,"https://media.discordapp.net/attachments/794876433842831361/799986422894428220/Templier.png","Templier","Descriptif du templier"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
+		
+		// catapulte
+		niveauBatiment = 4;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 18000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee catapulte = new Unitee(4,14,"https://media.discordapp.net/attachments/794876433842831361/799986288237084692/Catapulte.png","Catapulte","Descriptif de la catapulte"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
+		
+		// elephant de combat
+		niveauBatiment = 5;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 25000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee elephantDeCombat = new Unitee(4,14,"https://media.discordapp.net/attachments/794876433842831361/799994500356505660/Elephant_de_combat.png","Eléphant de combat","Descriptif de l'éléphant de combat"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
+		
+		// ------------------------ //
+		// ------ UNIVERSITE ------ //
+		// ------------------------ //
+		// Prêtre
+		niveauBatiment = 1;
+		poidBonusNiveauBatiment = 1.0+((double) niveauBatiment/10);
+		global = 30000;
+		coutPierre = global / poidPierre;
+		coutBois = global / poidBois;
+		coutOr = global / poidOr;
+		coutNourriture = global / poidNourriture;
+		vie =  (int) ((global / poidVie) * poidBonusNiveauBatiment);
+		attaque = (int) ((global / poidAttaque) * poidBonusNiveauBatiment);
+		portee = (int) ((global / poidPortee) * poidBonusNiveauBatiment);
+		armure = (int) ((global / poidArmure) * poidBonusNiveauBatiment);
+		temps = global / poidTemps;
+		Unitee pretre = new Unitee(2,16,"https://media.discordapp.net/attachments/794876433842831361/799986403055370280/Pretre.png","Prêtre","Descriptif du prêtre"
+				,coutPierre,coutBois,coutOr,coutNourriture,1,temps,vie,attaque,portee,armure,niveauBatiment,0,0,0,0);
 
 		this.uniteeRepo.save(villageois);
         this.uniteeRepo.save(archer);

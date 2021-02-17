@@ -54,6 +54,8 @@ public class BatimentService {
 			batimentDto.setApportBoisHeure(batiment.getApportBoisHeure());
 			batimentDto.setApportOreHeure(batiment.getApportOreHeure());
 			batimentDto.setApportNourritureHeure(batiment.getApportNourritureHeure());
+			batimentDto.setMultiplicateurApport(batiment.getMultiplicateurApport());
+			batimentDto.setMultiplicateurCout(batiment.getMultiplicateurCout());
 
 			listeBatiments.add(batimentDto);
 		}
@@ -87,6 +89,8 @@ public class BatimentService {
 			batimentDto.setApportBoisHeure(batiment.getApportBoisHeure());
 			batimentDto.setApportOreHeure(batiment.getApportOreHeure());
 			batimentDto.setApportNourritureHeure(batiment.getApportNourritureHeure());
+			batimentDto.setMultiplicateurApport(batiment.getMultiplicateurApport());
+			batimentDto.setMultiplicateurCout(batiment.getMultiplicateurCout());
 
 			listeBatimentsDivers.add(batimentDto);
 		}
@@ -120,6 +124,8 @@ public class BatimentService {
 			batimentDto.setApportBoisHeure(batiment.getApportBoisHeure());
 			batimentDto.setApportOreHeure(batiment.getApportOreHeure());
 			batimentDto.setApportNourritureHeure(batiment.getApportNourritureHeure());
+			batimentDto.setMultiplicateurApport(batiment.getMultiplicateurApport());
+			batimentDto.setMultiplicateurCout(batiment.getMultiplicateurCout());
 
 			listeBatimentsRecolte.add(batimentDto);
 		}
@@ -153,6 +159,8 @@ public class BatimentService {
 			batimentDto.setApportBoisHeure(batiment.getApportBoisHeure());
 			batimentDto.setApportOreHeure(batiment.getApportOreHeure());
 			batimentDto.setApportNourritureHeure(batiment.getApportNourritureHeure());
+			batimentDto.setMultiplicateurApport(batiment.getMultiplicateurApport());
+			batimentDto.setMultiplicateurCout(batiment.getMultiplicateurCout());
 
 			listeBatimentsStockage.add(batimentDto);
 		}
@@ -186,6 +194,8 @@ public class BatimentService {
 			batimentDto.setApportBoisHeure(batiment.getApportBoisHeure());
 			batimentDto.setApportOreHeure(batiment.getApportOreHeure());
 			batimentDto.setApportNourritureHeure(batiment.getApportNourritureHeure());
+			batimentDto.setMultiplicateurApport(batiment.getMultiplicateurApport());
+			batimentDto.setMultiplicateurCout(batiment.getMultiplicateurCout());
 
 			listeBatimentsMillitaire.add(batimentDto);
 		}
@@ -197,7 +207,26 @@ public class BatimentService {
 	 */
 	public BatimentDto detailsBatiment(Integer idTypeBatiment) {
 		Batiment batiment =  batimentRepo.findByIdTypeBatiment(idTypeBatiment);
-		BatimentDto bat = new BatimentDto(batiment.getIdTypeBatiment(),batiment.getIdCategorieBatiment(),batiment.getIcone(),batiment.getLibelle(),batiment.getDescriptif(),batiment.getOuvrierNecessaireConstruction(),batiment.getTempsDeConstruction(),batiment.getCoutPierreConstruction(),batiment.getCoutBoisConstruction(),batiment.getCoutOrConstruction(),batiment.getCoutNourritureConstruction(),batiment.getNiveauHotelDeVilleNecessaireConstruction(),batiment.getQuantiteeStockagePierre(),batiment.getQuantiteeStockageBois(),batiment.getQuantiteeStockageOre(),batiment.getQuantiteeStockageNourriture(),batiment.getApportPierreHeure(),batiment.getApportBoisHeure(),batiment.getApportOreHeure(),batiment.getApportNourritureHeure());
+		BatimentDto bat = new BatimentDto(batiment.getIdTypeBatiment(),
+				batiment.getIdCategorieBatiment(),batiment.getIcone(),
+				batiment.getLibelle(),batiment.getDescriptif(),
+				batiment.getOuvrierNecessaireConstruction(),
+				batiment.getTempsDeConstruction(),
+				batiment.getCoutPierreConstruction(),
+				batiment.getCoutBoisConstruction(),
+				batiment.getCoutOrConstruction(),
+				batiment.getCoutNourritureConstruction(),
+				batiment.getNiveauHotelDeVilleNecessaireConstruction(),
+				batiment.getQuantiteeStockagePierre(),
+				batiment.getQuantiteeStockageBois(),
+				batiment.getQuantiteeStockageOre(),
+				batiment.getQuantiteeStockageNourriture(),
+				batiment.getApportPierreHeure(),
+				batiment.getApportBoisHeure(),
+				batiment.getApportOreHeure(),
+				batiment.getApportNourritureHeure(),
+				batiment.getMultiplicateurApport(),
+				batiment.getMultiplicateurCout());
 		return bat;
 	}
 	
@@ -228,6 +257,8 @@ public class BatimentService {
 		batiment.setApportBoisHeure(batimentDto.getApportBoisHeure());
 		batiment.setApportOreHeure(batimentDto.getApportOreHeure());
 		batiment.setApportNourritureHeure(batimentDto.getApportNourritureHeure());
+		batiment.setMultiplicateurApport(batimentDto.getMultiplicateurApport());
+		batiment.setMultiplicateurCout(batimentDto.getMultiplicateurCout());
 
 
 		Batiment bat = new Batiment(batiment.getIdTypeBatiment(),
@@ -249,7 +280,9 @@ public class BatimentService {
 				batiment.getApportPierreHeure(),
 				batiment.getApportBoisHeure(),
 				batiment.getApportOreHeure(),
-				batiment.getApportNourritureHeure());
+				batiment.getApportNourritureHeure(),
+				batiment.getMultiplicateurApport(),
+				batiment.getMultiplicateurCout());
 		bat.setId(batiment.getId());
 		this.batimentRepo.save(bat);
 		return batiment;

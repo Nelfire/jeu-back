@@ -81,6 +81,10 @@ public class BatimentDto {
     /** montant de l'apport de ressource (nourriture) par heure (pour 100% exploitants) **/
     private Integer apportNourritureHeure;
     
+
+    private Integer multiplicateurApport;
+    private Integer multiplicateurCout;
+    
 	public BatimentDto() {
 	}
 
@@ -110,7 +114,8 @@ public class BatimentDto {
 			Integer coutBoisConstruction, Integer coutOrConstruction, Integer coutNourritureConstruction,
 			Integer niveauHotelDeVilleNecessaireConstruction, Integer quantiteeStockagePierre,
 			Integer quantiteeStockageBois, Integer quantiteeStockageOre, Integer quantiteeStockageNourriture,
-			Integer apportPierreHeure, Integer apportBoisHeure, Integer apportOreHeure, Integer apportNourritureHeure) {
+			Integer apportPierreHeure, Integer apportBoisHeure, Integer apportOreHeure, Integer apportNourritureHeure,
+			Integer multiplicateurApport, Integer multiplicateurCout) {
 		super();
 		this.idTypeBatiment = idTypeBatiment;
 		this.idCategorieBatiment = idCategorieBatiment;
@@ -132,6 +137,8 @@ public class BatimentDto {
 		this.apportBoisHeure = apportBoisHeure;
 		this.apportOreHeure = apportOreHeure;
 		this.apportNourritureHeure = apportNourritureHeure;
+		this.multiplicateurApport = multiplicateurApport;
+		this.multiplicateurCout = multiplicateurCout;
 	}
 
 	/**
@@ -427,6 +434,34 @@ public class BatimentDto {
 	 */
 	public void setApportNourritureHeure(Integer apportNourritureHeure) {
 		this.apportNourritureHeure = apportNourritureHeure;
+	}
+
+	/**
+	 * @return the multiplicateurApport
+	 */
+	public Integer getMultiplicateurApport() {
+		return multiplicateurApport;
+	}
+
+	/**
+	 * @param multiplicateurApport the multiplicateurApport to set
+	 */
+	public void setMultiplicateurApport(Integer multiplicateurApport) {
+		this.multiplicateurApport = multiplicateurApport;
+	}
+
+	/**
+	 * @return the multiplicateurCout
+	 */
+	public Integer getMultiplicateurCout() {
+		return multiplicateurCout;
+	}
+
+	/**
+	 * @param multiplicateurCout the multiplicateurCout to set
+	 */
+	public void setMultiplicateurCout(Integer multiplicateurCout) {
+		this.multiplicateurCout = multiplicateurCout;
 	}
 
 	
