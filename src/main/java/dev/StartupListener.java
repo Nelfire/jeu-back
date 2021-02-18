@@ -204,7 +204,7 @@ public class StartupListener {
         		,5,1800,25000,20000,30000,20000,5,0,0,0,0,0,0,0,0,0,4);
         Batiment marche = new Batiment(17,0,"https://media.discordapp.net/attachments/794876433842831361/808342149753077801/Marche.png","Marché","Le marché permet l'échange de ressources."
         		,5,1200,25000,15000,25000,15000,5,0,0,0,0,0,0,0,0,0,4);
-        Batiment tableExpedition = new Batiment(18,0,"https://media.discordapp.net/attachments/794876433842831361/808342166874357770/CampExpedition.png","Table d'expéditions","La table d'expédition vous permet d'envoyer vos unitées en expédition. Plus le niveau de la structure sera élevée, plus vous serez en mesure de lancer des expéditions en simultané."
+        Batiment tableExpedition = new Batiment(18,0,"https://media.discordapp.net/attachments/794876433842831361/808342166874357770/CampExpedition.png","Table d'expéditions","La table d'expédition vous permet d'envoyer vos unités en expédition. Plus le niveau de la structure sera élevé, plus vous serez en mesure de lancer des expéditions en simultané."
         		,5,600,2500,2000,1500,2000,1,0,0,0,0,0,0,0,0,0,4);
         this.batimentRepo.save(hdv);
         this.batimentRepo.save(chaumiere);
@@ -287,7 +287,7 @@ public class StartupListener {
 		Integer poidAttaque = 200;
 		Integer poidPortee = 500;
 		Integer poidArmure = 1000;
-		Integer poidTemps = 1;
+		Integer poidTemps = 2;
 		// - cout -
 		Integer coutPierre;
 		Integer coutBois;
