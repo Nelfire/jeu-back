@@ -1,45 +1,31 @@
-package dev.entites.social;
+package dev.controller.dto.social;
 
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import dev.entites.joueur.Joueur;
 
-@Entity
-public class Guilde {
+public class GuildeDto {
 
-	/** id de la guilde **/
-    @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
-    /** libellé de la guilde **/
+
     private String libelle;
-    
-    /** icone de la guilde **/
+
     private String icone;
-    
-    /** message accueil guilde **/
+
     private String messageAccueil;
     
 
-//    /** membres de la guilde **/
-//    /** "Une guilde peut avoir 1 seul chef**/
-//    @OneToOne
-//    @JoinColumn(name="id")
-//    private Joueur chefGuilde;
+    private Joueur chefGuilde;
 
-    
-    /** membres de la guilde **/
-    /** "Une guilde peut avoir plusieurs membres **/
-    @OneToMany(mappedBy = "guilde", cascade = CascadeType.PERSIST)
-    private List<Joueur> listeMembres;
+//    private List<Joueur> listeMembres;
     
     private Integer niveau;
     
@@ -47,16 +33,11 @@ public class Guilde {
     
     private Integer nombreMembresMaximal;
     
-    private final Integer coutOrCreation = 100;
-    
+    private final Integer coutOrCreation = 1000;
 
-    /**
-	 * 
-	 */
-	public Guilde() {
-		super();
-	}
-
+    public GuildeDto() {
+    	
+    }
 	/**
 	 * @param id
 	 * @param libelle
@@ -68,29 +49,20 @@ public class Guilde {
 	 * @param experience
 	 * @param nombreMembresMaximal
 	 */
-	public Guilde(String libelle, String icone, String messageAccueil, 
-//			Joueur chefGuilde,
-			List<Joueur> listeMembres, Integer niveau, Integer experience, Integer nombreMembresMaximal) {
+	public GuildeDto(Integer id, String libelle, String icone, String messageAccueil, Joueur chefGuilde,
+//			List<Joueur> listeMembres,
+			Integer niveau, Integer experience, Integer nombreMembresMaximal) {
 		super();
+		this.id = id;
 		this.libelle = libelle;
 		this.icone = icone;
 		this.messageAccueil = messageAccueil;
-//		this.chefGuilde = chefGuilde;
-		this.listeMembres = listeMembres;
+		this.chefGuilde = chefGuilde;
+//		this.listeMembres = listeMembres;
 		this.niveau = niveau;
 		this.experience = experience;
 		this.nombreMembresMaximal = nombreMembresMaximal;
 	}
-
-	/** inviter dans la guilde **/
-    public void inviterGuilde() {
-    	
-    }
-    
-    /** dissoudre la guilde **/
-    public void dissoudreGuilde() {
-    	
-    }
 
 	/**
 	 * @return the id
@@ -148,33 +120,33 @@ public class Guilde {
 		this.messageAccueil = messageAccueil;
 	}
 
+	/**
+	 * @return the chefGuilde
+	 */
+	public Joueur getChefGuilde() {
+		return chefGuilde;
+	}
+
+	/**
+	 * @param chefGuilde the chefGuilde to set
+	 */
+	public void setChefGuilde(Joueur chefGuilde) {
+		this.chefGuilde = chefGuilde;
+	}
+
 //	/**
-//	 * @return the chefGuilde
+//	 * @return the listeMembres
 //	 */
-//	public Joueur getChefGuilde() {
-//		return chefGuilde;
+//	public List<Joueur> getListeMembres() {
+//		return listeMembres;
 //	}
 //
 //	/**
-//	 * @param chefGuilde the chefGuilde to set
+//	 * @param listeMembres the listeMembres to set
 //	 */
-//	public void setChefGuilde(Joueur chefGuilde) {
-//		this.chefGuilde = chefGuilde;
+//	public void setListeMembres(List<Joueur> listeMembres) {
+//		this.listeMembres = listeMembres;
 //	}
-
-	/**
-	 * @return the listeMembres
-	 */
-	public List<Joueur> getListeMembres() {
-		return listeMembres;
-	}
-
-	/**
-	 * @param listeMembres the listeMembres to set
-	 */
-	public void setListeMembres(List<Joueur> listeMembres) {
-		this.listeMembres = listeMembres;
-	}
 
 	/**
 	 * @return the niveau
@@ -224,22 +196,6 @@ public class Guilde {
 	public Integer getCoutOrCreation() {
 		return coutOrCreation;
 	}
-
-
-
-	/** quitter la guilde **/
-    public void quitterGuilde() {
-    	
-    }
-
-//	@Override
-//	public String toString() {
-//		return "Guilde [id=" + id + ", libelle=" + libelle + ", icone=" + icone + ", messageAccueil=" + messageAccueil
-//				+ ", chefGuilde=" + chefGuilde + ", listeMembres=" + listeMembres + ", niveau=" + niveau
-//				+ ", experience=" + experience + ", nombreMembresMaximal=" + nombreMembresMaximal + ", coutOrCreation="
-//				+ coutOrCreation + "]";
-//	}
-
     
-	
+    
 }

@@ -1,8 +1,11 @@
 package dev;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
@@ -17,6 +20,7 @@ import dev.entites.joueur.Armee;
 import dev.entites.joueur.Joueur;
 import dev.entites.joueur.Role;
 import dev.entites.joueur.RoleJoueur;
+import dev.entites.social.ListeAmis;
 import dev.entites.unitee.Unitee;
 import dev.repository.JoueurRepo;
 import dev.repository.batiment.BatimentRepo;
@@ -51,6 +55,9 @@ public class StartupListener {
     private ArmeeRepo armeeRepo;
     // ---- Social ----
     private ExpeditionRepo expeditionRepo;
+    
+    private ListeAmisRepo listeAmisRepo;
+    
     public StartupListener(@Value("${app.version}") String appVersion, 
     		PasswordEncoder passwordEncoder,
     		UniteeRepo uniteeRepo,
@@ -64,7 +71,8 @@ public class StartupListener {
     		ListeAmisRepo listeAmisRepo,
     		ExpeditionRepo expeditionRepo,
     		ExpeditionJoueurRepo expeditionJoueurRepo,
-    		DefenseRepo defenseRepo) {
+    		DefenseRepo defenseRepo
+    		) {
         this.passwordEncoder = passwordEncoder;        
         // --- UNITEE ---
         this.uniteeRepo = uniteeRepo;
@@ -77,6 +85,7 @@ public class StartupListener {
 //        // ---- Social ----
         this.expeditionRepo = expeditionRepo;
         this.defenseRepo = defenseRepo;
+        this.listeAmisRepo = listeAmisRepo;
     }
 
     @EventListener(ContextRefreshedEvent.class)
@@ -105,6 +114,14 @@ public class StartupListener {
         joueur1.setRoles(Arrays.asList(new RoleJoueur(joueur1, Role.ROLE_ADMINISTRATEUR), new RoleJoueur(joueur1, Role.ROLE_JOUEUR)));
         this.joueurRepo.save(joueur1);
         
+//        List<Integer> listeVide = new ArrayList<>();
+//        ListeAmis listeAmis = new ListeAmis(joueur1.getId(),listeVide);
+//        System.out.println(listeAmis.toString());
+//        this.listeAmisRepo.save(listeAmis);
+//        System.out.println(listeAmis.toString());
+
+        
+        
         Joueur joueur2 = new Joueur();
         joueur2.setIcone("https://www.blog-nouvelles-technologies.fr/wp-content/uploads/2017/12/detective-avatar-icon-01-.jpg");
         joueur2.setPseudo("Riosha");
@@ -126,6 +143,7 @@ public class StartupListener {
         joueur2.setGemmePossession(40);
         joueur2.setRoles(Arrays.asList(new RoleJoueur(joueur2, Role.ROLE_ADMINISTRATEUR), new RoleJoueur(joueur2, Role.ROLE_JOUEUR)));
         this.joueurRepo.save(joueur2);
+
         
         Joueur joueur3 = new Joueur();
         joueur3.setIcone("https://www.blog-nouvelles-technologies.fr/wp-content/uploads/2017/12/detective-avatar-icon-01-.jpg");

@@ -20,65 +20,67 @@ public class ListeAmis {
     private Integer id;
     
     /** "Une liste d'amis ne peut appartenir qu'a une seule personne**/
-    @OneToOne(mappedBy = "listeAmis")
-    private Joueur proprietaireListe;
+
+    private Integer proprietaireListe;
     
     @Column
-    @ElementCollection(targetClass=Joueur.class)
-    private List<Joueur> listeDAmis;
+    @ElementCollection(targetClass=Integer.class)
+    private List<Integer> listeDAmis;
 
+    
+    public ListeAmis() {
+	}
 	/**
 	 * @param proprietaireListe
 	 * @param listeAmis
 	 */
-	public ListeAmis(Joueur proprietaireListe, List<Joueur> listeAmis) {
+	public ListeAmis(Integer proprietaireListe, List<Integer> listeAmis) {
 		super();
 		this.proprietaireListe = proprietaireListe;
 		this.listeDAmis = listeAmis;
 	}
-
 	/**
 	 * @return the id
 	 */
 	public Integer getId() {
 		return id;
 	}
-
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	/**
 	 * @return the proprietaireListe
 	 */
-	public Joueur getProprietaireListe() {
+	public Integer getProprietaireListe() {
 		return proprietaireListe;
 	}
-
 	/**
 	 * @param proprietaireListe the proprietaireListe to set
 	 */
-	public void setProprietaireListe(Joueur proprietaireListe) {
+	public void setProprietaireListe(Integer proprietaireListe) {
 		this.proprietaireListe = proprietaireListe;
 	}
-
 	/**
-	 * @return the listeAmis
+	 * @return the listeDAmis
 	 */
-	public List<Joueur> getListeAmis() {
+	public List<Integer> getListeDAmis() {
 		return listeDAmis;
 	}
-
 	/**
-	 * @param listeAmis the listeAmis to set
+	 * @param listeDAmis the listeDAmis to set
 	 */
-	public void setListeAmis(List<Joueur> listeDAmis) {
+	public void setListeDAmis(List<Integer> listeDAmis) {
 		this.listeDAmis = listeDAmis;
 	}
-    
+	@Override
+	public String toString() {
+		return "ListeAmis [id=" + id + ", proprietaireListe=" + proprietaireListe + ", listeDAmis=" + listeDAmis + "]";
+	}
+
+
     
     
 }

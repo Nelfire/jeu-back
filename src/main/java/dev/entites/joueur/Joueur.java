@@ -93,14 +93,6 @@ public class Joueur {
     @OneToMany(mappedBy = "joueur", cascade = CascadeType.PERSIST)
 	private List<ChatGuilde> messagesGuilde;
     
-    // Mapping List d'amis
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "joueur_listeAmis", 
-      joinColumns = 
-        { @JoinColumn(name = "joueur_id", referencedColumnName = "id") },
-      inverseJoinColumns = 
-        { @JoinColumn(name = "listeAmis_id", referencedColumnName = "id") })
-    private ListeAmis listeAmis;
     
     /** icone du joueur **/
     private String icone;
