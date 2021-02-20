@@ -134,8 +134,14 @@ public class JoueurService {
 		}
 		// Calcul du temps passé hors connexion, pour attribution des ressources
 		// milliseconde < 1000 ? Si oui --> 1000
-		Integer millisecondesDifference = (int) (now.getTime()-jou.getDerniereConnexion().getTime()) < 1000 ? 1000 :(int) (now.getTime()-jou.getDerniereConnexion().getTime());
+//		Integer millisecondesDifference = (int) (now.getTime()-jou.getDerniereConnexion().getTime()) < 1000 ? 1000 :(int) (now.getTime()-jou.getDerniereConnexion().getTime());
+		Integer millisecondesDifference = (int) (now.getTime()-jou.getDerniereConnexion().getTime());
 
+		// Premiere initialisation
+		millisecondesDifference = millisecondesDifference == 0 ? 1000:millisecondesDifference;
+		
+		System.out.println("millisecondesDifference : "+millisecondesDifference);
+		
 		//////////////////////////////////
 		// -- ATTRIBUTION RESSOURCES -- //
 		//////////////////////////////////
@@ -143,23 +149,29 @@ public class JoueurService {
 		// PIERRE : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
 		Integer apportPierreSeconde = apportPierreSeconde();
 
+		
+
 		// - CAS INACTIVITEE -
-		Integer apportPierreFinal = (apportPierreSeconde * millisecondesDifference)/1000;
+		Integer apportPierreFinal = (apportPierreSeconde * millisecondesDifference/1000);
+		System.out.println("Apport pierre : "+apportPierreFinal);
 		
 		// BOIS : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
 		Integer apportBoisSeconde = apportBoisSeconde();
 		// - CAS INACTIVITEE -
-		Integer apportBoisFinal = (apportBoisSeconde * millisecondesDifference)/1000;
+		Integer apportBoisFinal = (apportBoisSeconde * millisecondesDifference/1000);
+		System.out.println("Apport bois : "+apportBoisFinal);
 		
 		// OR : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
 		Integer apportOrSeconde = apportOrSeconde();
 		// - CAS INACTIVITEE -
-		Integer apportOrFinal = (apportOrSeconde * millisecondesDifference)/1000;
+		Integer apportOrFinal = (apportOrSeconde * millisecondesDifference/1000);
+		System.out.println("Apport or : "+apportOrFinal);
 		
 		// NOURRITURE : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
 		Integer apportNourritureSeconde = apportNourritureSeconde();
 		// - CAS INACTIVITEE -
-		Integer apportNourritureFinal = (apportNourritureSeconde * millisecondesDifference)/1000;
+		Integer apportNourritureFinal = (apportNourritureSeconde * millisecondesDifference/1000);
+		System.out.println("Apport nourriture : "+apportNourritureFinal);
 		
 		//////////////////////////////////////
 		// -- LIMITE STOCKAGE RESSOURCES -- //
