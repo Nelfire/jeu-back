@@ -921,17 +921,13 @@ public class ExpeditionJoueurService {
 			// - Changement de l'état, pour définir l'expédition comme "réussite"
 			expeditionJoueur.setEtatExpedition(2);
 			
-			System.out.println("ID EXPEDITION : "+expeditionJoueur.getExpedition().getId());
 			// Détection des unitées envoyées en expédition.
 			for (ExpeditionUnitee expeditionUnitee : expeditionUniteeRepo.findAll()) {
-				System.out.println("Unitées envoyée en combat à ces expeditions : "+expeditionUnitee.getIdExpedition());
 				// SI EXPEDITION UNITEE
 				if(expeditionUnitee.getIdExpedition() == expeditionJoueur.getExpedition().getId()) {
-					System.out.println("expedition en cours d'analyse : " + expeditionJoueur.getExpedition().getId());
 					// RECHERCHE UNITEE CORRESPONDANTE
 					for (Unitee unitee : uniteeRepo.findAll()) {
 						if(unitee.getId() == expeditionUnitee.getIdUnitee()) {
-							System.out.println("Unitée envoyée : "+ unitee.getIdTypeUnitee()+ "("+unitee.getLibelle()+")");
 							// RECHERCHE ARMEE DU JOUEUR CORRESPONDANTE
 							for (Armee arme : armeeRepo.findByJoueur(jou)) {
 								if(arme.getUnitee().getId()==expeditionUnitee.getIdUnitee())
