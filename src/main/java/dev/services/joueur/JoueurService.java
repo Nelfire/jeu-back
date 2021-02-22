@@ -140,7 +140,6 @@ public class JoueurService {
 		// Premiere initialisation
 		millisecondesDifference = millisecondesDifference == 0 ? 1000:millisecondesDifference;
 		
-		
 		//////////////////////////////////
 		// -- ATTRIBUTION RESSOURCES -- //
 		//////////////////////////////////
@@ -185,17 +184,20 @@ public class JoueurService {
 		
 		// ACTUALISATION DES DONNEES DU JOUEUR
 		// APPORT
-		jou.setPierrePossession((jou.getPierrePossession() + apportPierreFinal)>jou.getPierreMaximum() ? jou.getPierreMaximum() : jou.getPierrePossession() + apportPierreFinal);
-		jou.setBoisPossession((jou.getBoisPossession() + apportBoisFinal)>jou.getBoisMaximum() ? jou.getBoisMaximum() : jou.getBoisPossession() + apportBoisFinal);
-		jou.setOrPossession((jou.getOrPossession() + apportOrFinal)>jou.getOrMaximum() ? jou.getOrMaximum() : jou.getOrPossession() + apportOrFinal);
-		jou.setNourriturePossession((jou.getNourriturePossession() + apportNourritureFinal)>jou.getNourritureMaximum() ? jou.getNourritureMaximum() : jou.getNourriturePossession() + apportNourritureFinal);
-		// LIMITE
 		jou.setPierreMaximum(stockageMaximalPierre);
 		jou.setBoisMaximum(stockageMaximalBois);
 		jou.setOrMaximum(stockageMaximalOr);
 		jou.setNourritureMaximum(stockageMaximalNourriture);
+		// LIMITE
+		jou.setPierrePossession((jou.getPierrePossession() + apportPierreFinal)>jou.getPierreMaximum() ? jou.getPierreMaximum() : jou.getPierrePossession() + apportPierreFinal);
+		jou.setBoisPossession((jou.getBoisPossession() + apportBoisFinal)>jou.getBoisMaximum() ? jou.getBoisMaximum() : jou.getBoisPossession() + apportBoisFinal);
+		jou.setOrPossession((jou.getOrPossession() + apportOrFinal)>jou.getOrMaximum() ? jou.getOrMaximum() : jou.getOrPossession() + apportOrFinal);
+		jou.setNourriturePossession((jou.getNourriturePossession() + apportNourritureFinal)>jou.getNourritureMaximum() ? jou.getNourritureMaximum() : jou.getNourriturePossession() + apportNourritureFinal);
+	
 		// TEMPS DE JEU
-		jou.setTempsDeJeu(jou.getTempsDeJeu() + (millisecondesDifference/1000));
+		// Grosse inactivitée ? Pas prise en compte (+10 de minutes)
+		Integer tempsActif = (millisecondesDifference/1000) > 600 ? 0 : (millisecondesDifference/1000);
+		jou.setTempsDeJeu(jou.getTempsDeJeu() + tempsActif);
 		Date dateAujourdhui  = new Date(); 
 		jou.setDerniereConnexion(dateAujourdhui);
 
