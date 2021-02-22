@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+import javax.validation.Valid;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import dev.controller.dto.social.MessageAjoutDto;
 import dev.entites.joueur.Joueur;
 import dev.entites.social.Message;
 import dev.repository.social.MessageRepo;
@@ -37,21 +41,21 @@ public class MessageService {
 		return listeMessages;
 	}
 	
-	public Message publierMessage(String contenu) {
+	public MessageAjoutDto publierMessage(@Valid MessageAjoutDto messageDto) {
 
+		
 		// RECUPERATION DU JOUEUR
 		Joueur jou = this.joueurService.recuperationJoueur();
 		
 		// DATE DE MAINTENANT
 		long datePublication = new Date().getTime();
 		
-		Message message = new Message(jou,datePublication,contenu);
+		Message message = new Message(jou,datePublication,messageDto.getContenu());
 
-		System.out.println(message.toString());
 		// SAUVEGARDE
 		this.messageRepo.save(message);
 		
 		// RETOUR
-		return message;
+		return new MessageAjoutDto(messageDto.getContenu());
 	}
 }

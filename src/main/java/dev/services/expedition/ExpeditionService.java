@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import dev.entites.expedition.Expedition;
 import dev.repository.expedition.ExpeditionRepo;
@@ -32,6 +34,12 @@ public class ExpeditionService {
 			if(expedition.getDateParution().isEqual(dateAujourdhui)) {
 				listeExpedition.add(expedition);
 			}
+		}
+		
+		// CAS HEROKU EN VEILLE AU MOMENT DU @Scheduled, forcer la création des expéditions du jour
+		System.out.println(listeExpedition.size());
+		if(listeExpedition.size() == 0) {
+			this.creerNouvellesExpeditions();
 		}
 		return listeExpedition;
 	}
@@ -72,7 +80,7 @@ public class ExpeditionService {
 	public void creerNouvellesExpeditions() {
 		
 		LocalDate dateAujourdhui  = LocalDate.now(); 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 9; i++) {
 			Expedition nouvelleExpedition = new Expedition();
 
 			// vie aléatoire (poid : 0.2) (Ex : 20000)
