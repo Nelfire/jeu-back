@@ -491,7 +491,6 @@ public class JoueurService {
 	public Joueur modifierInformationsJoueur(ModificationJoueurDto modificationJoueurDto) {
 		Joueur jou = recuperationJoueur();
 		jou.setIcone(modificationJoueurDto.getIcone());
-		jou.setEmail(modificationJoueurDto.getEmail());
 		jou.setDescriptif(modificationJoueurDto.getDescriptif());
 		Joueur joueur = new Joueur(jou.getArmee(), jou.getIcone(), jou.getPseudo(), jou.getEmail(), jou.getMotDePasse(),
 				jou.getDescriptif(), jou.getNiveau(), jou.getExperience(), jou.getPierrePossession(),

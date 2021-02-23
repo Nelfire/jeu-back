@@ -37,7 +37,6 @@ public class ExpeditionService {
 		}
 		
 		// CAS HEROKU EN VEILLE AU MOMENT DU @Scheduled, forcer la création des expéditions du jour
-		System.out.println(listeExpedition.size());
 		if(listeExpedition.size() == 0) {
 			this.creerNouvellesExpeditions();
 		}
@@ -80,11 +79,23 @@ public class ExpeditionService {
 	public void creerNouvellesExpeditions() {
 		
 		LocalDate dateAujourdhui  = LocalDate.now(); 
+		Integer vieDifficulteMin = 0;
+		Integer vieDifficulteMax = 0;
 		for (int i = 0; i < 9; i++) {
 			Expedition nouvelleExpedition = new Expedition();
 
+			if(i>=0 && i<3) {
+				vieDifficulteMin = 1000;
+				vieDifficulteMax = 8000;
+			} else if (i>=3 && i<6) {
+				vieDifficulteMin = 9000;
+				vieDifficulteMax = 35000;
+			} else if (i>=6 && i<9) {
+				vieDifficulteMin = 40000;
+				vieDifficulteMax = 100000;
+			}
 			// vie aléatoire (poid : 0.2) (Ex : 20000)
-		    Integer vie = getChiffreRandom(1000,80000);
+		    Integer vie = getChiffreRandom(vieDifficulteMin,vieDifficulteMax);
 		    
 		    // armure aléatoire (poid : 0.4) (Ex : 7000)
 		    Integer armure = getChiffreRandom(vie/3,(vie+5000)/3);
@@ -95,11 +106,11 @@ public class ExpeditionService {
 		    // 1 600 à 130 000
 		    Integer sommeVieArmureDegats = vie+armure+degats;
 			// coutPierre aléatoire (Ex : 34 000 / 10 = 3400 à 4800)
-		    Integer coutPierre = getChiffreRandom((sommeVieArmureDegats)/5,(sommeVieArmureDegats)/2);
+		    Integer coutPierre = getChiffreRandom((sommeVieArmureDegats)/6,(sommeVieArmureDegats)/3);
 			// coutBois aléatoire
-		    Integer coutBois = getChiffreRandom((sommeVieArmureDegats)/5,(sommeVieArmureDegats)/2);
+		    Integer coutBois = getChiffreRandom((sommeVieArmureDegats)/7,(sommeVieArmureDegats)/4);
 			// coutOr aléatoire
-		    Integer coutOr = getChiffreRandom((sommeVieArmureDegats)/5,(sommeVieArmureDegats)/2);
+		    Integer coutOr = getChiffreRandom((sommeVieArmureDegats)/8,(sommeVieArmureDegats)/5);
 			// coutNourriture aléatoire
 		    Integer coutNourriture = getChiffreRandom((sommeVieArmureDegats)/5,(sommeVieArmureDegats)/2);
 
@@ -116,7 +127,7 @@ public class ExpeditionService {
 			// recompenseExperience aléatoire
 		    Integer recompenseExperience = sommeVieArmureDegats;
 			// dureeExpedition aléatoire	    
-		    Integer dureeExpedition = sommeVieArmureDegats / 4;
+		    Integer dureeExpedition = sommeVieArmureDegats / 6;
 			// icone aléatoire
 		    String icone = "https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497";
 			// libelle aléatoire
