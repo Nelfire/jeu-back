@@ -73,7 +73,7 @@ public class AuthController {
 
 		// Create new user's account
         Joueur joueur1 = new Joueur();
-        joueur1.setIcone("https://img2.freepng.fr/20180803/zjj/kisspng-computer-icons-user-image-person-silhouette-my-svg-png-icon-free-download-419940-onlinewe-5b6512e6ce0a42.190509921533350630844.jpg");
+        joueur1.setIcone("https://media.discordapp.net/attachments/794876433842831361/814268374242557972/ghost_PNG44.png?width=468&height=468");
         joueur1.setPseudo(signUpRequest.getPseudo());
         joueur1.setEmail(signUpRequest.getEmail());
         joueur1.setMotDePasse(encoder.encode(signUpRequest.getPassword()));
