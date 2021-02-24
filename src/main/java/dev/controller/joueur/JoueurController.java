@@ -7,15 +7,19 @@ import java.util.List;
 
 import javax.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import dev.controller.dto.divers.GainRessourceDto;
 import dev.controller.dto.joueur.InformationRessourcesJoueur;
 import dev.controller.dto.joueur.JoueurDto;
 import dev.controller.dto.joueur.JoueurInfoDto;
 import dev.controller.dto.joueur.ModificationJoueurDto;
+import dev.controller.dto.social.MessageAjoutDto;
 import dev.entites.joueur.Joueur;
 import dev.services.joueur.JoueurService;
 
@@ -78,6 +82,15 @@ public class JoueurController {
 	@GetMapping("/informationRessourcesJoueur")
 	public InformationRessourcesJoueur informationRessourcesJoueur() {
 		return this.joueurService.informationRessourcesJoueur();
+	}
+	
+	
+	/**
+	 * Attribution de ressources
+	 */
+	@PostMapping("/attributionRessources")
+	public GainRessourceDto attributionRessources(@RequestBody @Valid GainRessourceDto gainRessourceDto) {
+		return this.joueurService.attributionRessources(gainRessourceDto);
 	}
 
 }

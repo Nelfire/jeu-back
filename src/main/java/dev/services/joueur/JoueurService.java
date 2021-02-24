@@ -4,15 +4,22 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import dev.controller.dto.divers.GainRessourceDto;
 import dev.controller.dto.joueur.InformationRessourcesJoueur;
 import dev.controller.dto.joueur.JoueurDto;
 import dev.controller.dto.joueur.JoueurInfoDto;
 import dev.controller.dto.joueur.ModificationJoueurDto;
+import dev.controller.dto.social.MessageAjoutDto;
 import dev.entites.batiment.BatimentJoueur;
 import dev.entites.joueur.Joueur;
+import dev.entites.social.Message;
 import dev.exceptions.JoueurAuthentifieNonRecupereException;
 import dev.repository.JoueurRepo;
 import dev.repository.joueur.BatimentJoueurRepo;
@@ -507,5 +514,28 @@ public class JoueurService {
 		return jou;
 	}
 	
+	/**
+	 * Attribution de ressources
+	 */
+	public GainRessourceDto attributionRessources(@Valid GainRessourceDto gainRessourceDto) {
+		getInfoJoueur();
+		// RECUPERATION DU JOUEUR
+		Joueur jou = this.recuperationJoueur();
+		jou.getPierrePossession();
+		Joueur joueur = new Joueur(jou.getArmee(), jou.getIcone(), jou.getPseudo(), jou.getEmail(), jou.getMotDePasse(),
+				jou.getDescriptif(), jou.getNiveau(), jou.getExperience(), jou.getPierrePossession()+gainRessourceDto.getGainPierre(),
+				jou.getBoisPossession()+gainRessourceDto.getGainBois(), jou.getOrPossession()+gainRessourceDto.getGainOr(), jou.getNourriturePossession()+gainRessourceDto.getGainNourriture(), jou.getGemmePossession(),
+				jou.getPierreMaximum(), jou.getBoisMaximum(), jou.getOrMaximum(), jou.getNourritureMaximum(),
+				jou.getPierreBoostProduction(), jou.getBoisBoostProduction(), jou.getOrBoostProduction(),
+				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getRoles(), jou.getDerniereConnexion());
+		joueur.setId(jou.getId());
+		joueur.getPierrePossession();
+		
+		// SAUVEGARDE
+		joueurRepo.save(joueur);
+		
+		// RETOUR
+		return new GainRessourceDto(gainRessourceDto.getGainPierre(),gainRessourceDto.getGainBois(),gainRessourceDto.getGainOr(),gainRessourceDto.getGainNourriture());
+	}
 
 }
