@@ -10,4 +10,6 @@ public interface BatimentRepo extends JpaRepository<Batiment, Integer> {
 	Batiment findByIdTypeBatiment(Integer idTypeBatiment);
 	
 	List<Batiment> findByIdCategorieBatiment(Integer idCategorieBatiment);
+	
+	List<Batiment> findAllByOrderByIdTypeBatimentAsc();
 }

@@ -31,7 +31,7 @@ public class BatimentService {
 	public List<BatimentDto> listerBatiments() {
 		List<BatimentDto> listeBatiments = new ArrayList<>();
 
-		for (Batiment batiment : batimentRepo.findAll()) {
+		for (Batiment batiment : batimentRepo.findAllByOrderByIdTypeBatimentAsc()) {
 			BatimentDto batimentDto = new BatimentDto();
 			batimentDto.setId(batiment.getId());
 			batimentDto.setIdTypeBatiment(batiment.getIdTypeBatiment());
