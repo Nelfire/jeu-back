@@ -917,7 +917,8 @@ public class ExpeditionJoueurService {
 			jou.setNourriturePossession(jou.getNourriturePossession() + expdJoueur.getExpedition().getRecompenseNourriture());
 			jou.setGemmePossession(jou.getGemmePossession() + expdJoueur.getExpedition().getRecompenseGemme());
 			jou.setExperience(jou.getExperience() + expdJoueur.getExpedition().getRecompenseExperience());
-			jou.setNiveau(jou.getExperience() / 5000); // /!\ Temporaire : 1 Niveau = 5000 Experience
+			jou.setNiveau(1+Math.round(jou.getExperience() / 5000)); // /!\ Temporaire : 1 Niveau = 5000 Experience
+			
 			// - Changement de l'état, pour définir l'expédition comme "réussite"
 			expeditionJoueur.setEtatExpedition(2);
 			
