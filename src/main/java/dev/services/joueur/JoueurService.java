@@ -214,9 +214,13 @@ public class JoueurService {
 		jou.setNourritureMaximum(stockageMaximalNourriture);
 		// LIMITE
 		jou.setPierrePossession((jou.getPierrePossession() + apportPierreFinal)>jou.getPierreMaximum() ? jou.getPierreMaximum() : jou.getPierrePossession() + apportPierreFinal);
+		if(jou.getPierrePossession() < 0) { jou.setPierrePossession(jou.getPierreMaximum()); }
 		jou.setBoisPossession((jou.getBoisPossession() + apportBoisFinal)>jou.getBoisMaximum() ? jou.getBoisMaximum() : jou.getBoisPossession() + apportBoisFinal);
+		if(jou.getBoisPossession() < 0) { jou.setBoisPossession(jou.getBoisMaximum()); }
 		jou.setOrPossession((jou.getOrPossession() + apportOrFinal)>jou.getOrMaximum() ? jou.getOrMaximum() : jou.getOrPossession() + apportOrFinal);
+		if(jou.getOrPossession() < 0) { jou.setOrPossession(jou.getOrMaximum()); }
 		jou.setNourriturePossession((jou.getNourriturePossession() + apportNourritureFinal)>jou.getNourritureMaximum() ? jou.getNourritureMaximum() : jou.getNourriturePossession() + apportNourritureFinal);
+		if(jou.getNourriturePossession() < 0) { jou.setNourriturePossession(jou.getNourritureMaximum()); }
 	
 		// TEMPS DE JEU
 		// Grosse inactivitée ? Pas prise en compte (+10 de minutes)
