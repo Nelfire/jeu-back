@@ -11,12 +11,14 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import dev.controller.dto.batiment.BatimentDto;
 import dev.controller.dto.divers.GainRessourceDto;
 import dev.controller.dto.joueur.InformationRessourcesJoueur;
 import dev.controller.dto.joueur.JoueurDto;
 import dev.controller.dto.joueur.JoueurInfoDto;
 import dev.controller.dto.joueur.ModificationJoueurDto;
 import dev.controller.dto.social.MessageAjoutDto;
+import dev.entites.batiment.Batiment;
 import dev.entites.batiment.BatimentJoueur;
 import dev.entites.joueur.Joueur;
 import dev.entites.social.Message;
@@ -117,10 +119,25 @@ public class JoueurService {
 		joueur.setId(jou.get().getId());
 		joueur.setIcone(jou.get().getIcone());
 		joueur.setPseudo(jou.get().getPseudo());
+		joueur.setEmail(jou.get().getEmail());
 		joueur.setDescriptif(jou.get().getDescriptif());
 		joueur.setNiveau(jou.get().getNiveau());
 		joueur.setExperience(jou.get().getExperience());
+		joueur.setPierrePossession(jou.get().getPierrePossession());
+		joueur.setBoisPossession(jou.get().getBoisPossession());
+		joueur.setOrPossession(jou.get().getOrPossession());
+		joueur.setNourriturePossession(jou.get().getNourriturePossession());
+		joueur.setGemmePossession(jou.get().getGemmePossession());
+		joueur.setPierreMaximum(jou.get().getPierreMaximum());
+		joueur.setBoisMaximum(jou.get().getBoisMaximum());
+		joueur.setOrMaximum(jou.get().getOrMaximum());
+		joueur.setNourritureMaximum(jou.get().getNourritureMaximum());
+		joueur.setPierreBoostProduction(jou.get().getPierreBoostProduction());
+		joueur.setBoisBoostProduction(jou.get().getBoisBoostProduction());
+		joueur.setOrBoostProduction(jou.get().getOrBoostProduction());
+		joueur.setNourritureBoostProduction(jou.get().getNourritureBoostProduction());
 		joueur.setTempsDeJeu(jou.get().getTempsDeJeu());
+		joueur.setDerniereConnexion(jou.get().getDerniereConnexion());
 		return joueur;
 	}
 
@@ -536,6 +553,47 @@ public class JoueurService {
 		
 		// RETOUR
 		return new GainRessourceDto(gainRessourceDto.getGainPierre(),gainRessourceDto.getGainBois(),gainRessourceDto.getGainOr(),gainRessourceDto.getGainNourriture());
+	}
+	
+	
+	
+	/**
+	 * MODIFICATION D'UN BÂTIMENT (Menu administrateur, Via ID)
+	 */
+	public JoueurDto administrationModificationJoueur(@Valid JoueurDto joueurDto, Integer id) {
+		System.out.println("Service");
+		Joueur jou = joueurRepo.findById(id).orElseThrow(() -> new JoueurAuthentifieNonRecupereException("Le joueur authentifié n'a pas pu être récupéré"));
+		
+		Joueur joueur = new Joueur(
+				jou.getArmee(), 
+				joueurDto.getIcone(), 
+				joueurDto.getPseudo(), 
+				joueurDto.getEmail(), 
+				jou.getMotDePasse(),
+				joueurDto.getDescriptif(), 
+				joueurDto.getNiveau(), 
+				joueurDto.getExperience(), 
+				joueurDto.getPierrePossession(),
+				joueurDto.getBoisPossession(), 
+				joueurDto.getOrPossession(), 
+				joueurDto.getNourriturePossession(),
+				joueurDto.getGemmePossession(),
+				jou.getPierreMaximum(), 
+				jou.getBoisMaximum(), 
+				jou.getOrMaximum(), 
+				jou.getNourritureMaximum(),
+				joueurDto.getPierreBoostProduction(), 
+				joueurDto.getBoisBoostProduction(), 
+				joueurDto.getOrBoostProduction(),
+				joueurDto.getNourritureBoostProduction(), 
+				jou.getTempsDeJeu(), 
+				jou.getRoles(), 
+				jou.getDerniereConnexion());
+		joueur.setId(jou.getId());
+		
+		this.joueurRepo.save(joueur);
+
+		return joueurDto;
 	}
 
 }
