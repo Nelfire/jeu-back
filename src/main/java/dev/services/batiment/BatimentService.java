@@ -308,8 +308,8 @@ public class BatimentService {
 			batimentJoueur.setCoutNourritureAmelioration(batimentDto.getCoutNourritureConstruction() * ((int)Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1)));
 			batimentJoueur.setQuantiteeStockagePierre(batimentDto.getQuantiteeStockagePierre() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1)));
 			batimentJoueur.setQuantiteeStockageBois(batimentDto.getQuantiteeStockageBois() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1)));
-			batimentJoueur.setQuantiteeStockageOre((batimentDto.getQuantiteeStockageOre() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1))));
-			batimentJoueur.setQuantiteeStockageNourriture(batimentDto.getQuantiteeStockageNourriture() * (batimentDto.getMultiplicateurApport()^(batimentsJoueur.getNiveau()-1)));
+			batimentJoueur.setQuantiteeStockageOre(batimentDto.getQuantiteeStockageOre() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1)));
+			batimentJoueur.setQuantiteeStockageNourriture(batimentDto.getQuantiteeStockageNourriture() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1)));
 			batimentJoueur.setApportPierreHeure(batimentDto.getApportPierreHeure() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1)));
 			batimentJoueur.setApportBoisHeure(batimentDto.getApportBoisHeure() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1)));
 			batimentJoueur.setApportOreHeure(batimentDto.getApportOreHeure() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1)));
