@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import dev.controller.dto.batiment.BatimentDto;
+import dev.controller.dto.divers.EchangeRessourceDto;
 import dev.controller.dto.divers.GainRessourceDto;
 import dev.controller.dto.joueur.InformationRessourcesJoueur;
 import dev.controller.dto.joueur.JoueurDto;
@@ -23,6 +24,8 @@ import dev.entites.batiment.BatimentJoueur;
 import dev.entites.joueur.Joueur;
 import dev.entites.social.Message;
 import dev.exceptions.JoueurAuthentifieNonRecupereException;
+import dev.exceptions.MessageResponseException;
+import dev.exceptions.RessourceManquanteException;
 import dev.repository.JoueurRepo;
 import dev.repository.joueur.BatimentJoueurRepo;
 
@@ -600,4 +603,135 @@ public class JoueurService {
 		return joueurDto;
 	}
 
+	public EchangeRessourceDto echangeRessource(@Valid EchangeRessourceDto echangeRessourceDto) {
+		
+		getInfoJoueur();
+		// RECUPERATION DU JOUEUR
+		Joueur jou = this.recuperationJoueur();
+		
+
+		Integer pierreJoueurARetirer = echangeRessourceDto.getMontantPierre() == null ? 0 : echangeRessourceDto.getMontantPierre();
+		Integer boisJoueurARetirer = echangeRessourceDto.getMontantBois() == null ? 0 : echangeRessourceDto.getMontantBois();
+		Integer orJoueurARetirer = echangeRessourceDto.getMontantOr() == null ? 0 : echangeRessourceDto.getMontantOr();
+		Integer nourritureJoueurARetirer = echangeRessourceDto.getMontantNourriture() == null ? 0 : echangeRessourceDto.getMontantNourriture();
+
+		
+		Integer pierreJoueurACrediter = 0;
+		Integer boisJoueurACrediter = 0;
+		Integer orJoueurACrediter = 0;
+		Integer nourritureJoueurACrediter = 0;
+
+		
+		if(pierreJoueurARetirer > 0) { // Pierre
+			if(pierreJoueurARetirer> jou.getPierrePossession()) {
+				throw new MessageResponseException("Vous manquez de pierre");
+			}
+			// Echange contre pierre
+			if(echangeRessourceDto.getEtatPierre() == true) {
+				throw new MessageResponseException("Il n'est pas possible d'échanger de la pierre contre de la pierre... pas très utile");
+			} else if (echangeRessourceDto.getEtatBois() == true) { // Echange contre Bois
+				boisJoueurACrediter = (int) Math.round((double)pierreJoueurARetirer * 1.5);
+				if((jou.getBoisPossession()+boisJoueurACrediter) >jou.getBoisMaximum()) {
+					throw new MessageResponseException("Limite de stockage de bois dépassée");
+				}
+			} else if (echangeRessourceDto.getEtatOr() == true) { // Echange contre Or
+				orJoueurACrediter = (int) Math.round((double)pierreJoueurARetirer * 0.66);
+				if((jou.getOrPossession()+orJoueurACrediter) >jou.getOrMaximum()) {
+					throw new MessageResponseException("Limite de stockage d'or dépassée");
+				}
+			} else if (echangeRessourceDto.getEtatNourriture() == true) { // Echange contre Nourriture
+				nourritureJoueurACrediter = (int) Math.round((double)pierreJoueurARetirer * 3);
+				if((jou.getNourriturePossession()+nourritureJoueurACrediter) >jou.getNourritureMaximum()) {
+					throw new MessageResponseException("Limite de stockage de nourriture dépassée");
+				}
+			}
+		} else if (boisJoueurARetirer > 0) { // Bois
+			if(boisJoueurARetirer> jou.getBoisPossession()) {
+				throw new MessageResponseException("Vous manquez de bois");
+			}
+			// Echange contre pierre
+			if(echangeRessourceDto.getEtatPierre() == true) {
+				pierreJoueurACrediter = (int) Math.round((double)boisJoueurARetirer * 0.66);
+				if((jou.getPierrePossession()+pierreJoueurACrediter) >jou.getPierreMaximum()) {
+					throw new MessageResponseException("Limite de stockage de pierre dépassée");
+				}
+			} else if (echangeRessourceDto.getEtatBois() == true) { // Echange contre Bois
+				throw new MessageResponseException("Il n'est pas possible d'échanger du bois contre du bois... pas très utile");
+			} else if (echangeRessourceDto.getEtatOr() == true) { // Echange contre Or
+				orJoueurACrediter = (int) Math.round((double)boisJoueurARetirer * 0.4);
+				if((jou.getOrPossession()+orJoueurACrediter) >jou.getOrMaximum()) {
+					throw new MessageResponseException("Limite de stockage d'or dépassée");
+				}
+			} else if (echangeRessourceDto.getEtatNourriture() == true) { // Echange contre Nourriture
+				nourritureJoueurACrediter = (int) Math.round((double)boisJoueurARetirer * 2);
+				if((jou.getNourriturePossession()+nourritureJoueurACrediter) >jou.getNourritureMaximum()) {
+					throw new MessageResponseException("Limite de stockage de nourriture dépassée");
+				}
+			}
+		} else if (orJoueurARetirer > 0 ) { // Or
+			if(orJoueurARetirer> jou.getOrPossession()) {
+				throw new MessageResponseException("Vous manquez d'or");
+			}
+			// Echange contre pierre
+			if(echangeRessourceDto.getEtatPierre() == true) {
+				pierreJoueurACrediter = (int) Math.round((double)orJoueurARetirer * 1.66);
+				if((jou.getPierrePossession()+pierreJoueurACrediter) >jou.getPierreMaximum()) {
+					throw new MessageResponseException("Limite de stockage de pierre dépassée");
+				}
+			} else if (echangeRessourceDto.getEtatBois() == true) { // Echange contre Bois
+				boisJoueurACrediter = (int) Math.round((double)orJoueurARetirer * 2.5);
+				if((jou.getBoisPossession()+boisJoueurACrediter) >jou.getBoisMaximum()) {
+					throw new MessageResponseException("Limite de stockage de bois dépassée");
+				}
+			} else if (echangeRessourceDto.getEtatOr() == true) { // Echange contre Or
+				throw new MessageResponseException("Il n'est pas possible d'échanger de l'or contre de l'or... pas très utile");
+			} else if (echangeRessourceDto.getEtatNourriture() == true) { // Echange contre Nourriture
+				nourritureJoueurACrediter = (int) Math.round((double)orJoueurARetirer * 5);
+				if((jou.getNourriturePossession()+nourritureJoueurACrediter) >jou.getNourritureMaximum()) {
+					throw new MessageResponseException("Limite de stockage de nourriture dépassée");
+				}
+			}
+		} else if (nourritureJoueurARetirer > 0) { // Nourriture
+			if(nourritureJoueurARetirer > jou.getNourriturePossession()) {
+				throw new MessageResponseException("Vous manquez de nourriture");
+			}
+			// Echange contre pierre
+			if(echangeRessourceDto.getEtatPierre() == true) {
+				pierreJoueurACrediter = (int) Math.round((double)nourritureJoueurARetirer * 0.33);
+				if((jou.getPierrePossession()+pierreJoueurACrediter) >jou.getPierreMaximum()) {
+					throw new MessageResponseException("Limite de stockage de pierre dépassée");
+				}
+			} else if (echangeRessourceDto.getEtatBois() == true) { // Echange contre Bois
+				boisJoueurACrediter = (int) Math.round((double)nourritureJoueurARetirer * 0.5);
+				if((jou.getBoisPossession()+boisJoueurACrediter) >jou.getBoisMaximum()) {
+					throw new MessageResponseException("Limite de stockage de bois dépassée");
+				}
+			} else if (echangeRessourceDto.getEtatOr() == true) { // Echange contre Or
+				orJoueurACrediter = (int) Math.round((double)nourritureJoueurARetirer * 0.2);
+				if((jou.getOrPossession()+orJoueurACrediter) >jou.getOrMaximum()) {
+					throw new MessageResponseException("Limite de stockage d'or dépassée");
+				}
+			} else if (echangeRessourceDto.getEtatNourriture() == true) { // Echange contre Nourriture
+				throw new MessageResponseException("Il n'est pas possible d'échanger de la nourriture contre de la nourriture... pas très utile");
+			}
+		} else { // Erreur aucun cas > 0
+			throw new MessageResponseException("Erreur dans la saisie.");
+		}
+
+		Joueur joueur = new Joueur(jou.getArmee(), jou.getIcone(), jou.getPseudo(), jou.getEmail(), jou.getMotDePasse(),
+				jou.getDescriptif(), jou.getNiveau(), jou.getExperience(), 
+				jou.getPierrePossession()-pierreJoueurARetirer+pierreJoueurACrediter,
+				jou.getBoisPossession()-boisJoueurARetirer+boisJoueurACrediter, 
+				jou.getOrPossession()-orJoueurARetirer+orJoueurACrediter,
+				jou.getNourriturePossession()-nourritureJoueurARetirer+nourritureJoueurACrediter,
+				jou.getGemmePossession(),
+				jou.getPierreMaximum(), jou.getBoisMaximum(), jou.getOrMaximum(), jou.getNourritureMaximum(),
+				jou.getPierreBoostProduction(), jou.getBoisBoostProduction(), jou.getOrBoostProduction(),
+				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getRoles(), jou.getDerniereConnexion());
+		joueur.setId(jou.getId());
+		
+		// SAUVEGARDE
+		joueurRepo.save(joueur);
+		return echangeRessourceDto;
+	}
 }

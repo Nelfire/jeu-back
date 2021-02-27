@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.controller.dto.batiment.BatimentDto;
+import dev.controller.dto.divers.EchangeRessourceDto;
 import dev.controller.dto.divers.GainRessourceDto;
 import dev.controller.dto.joueur.InformationRessourcesJoueur;
 import dev.controller.dto.joueur.JoueurDto;
@@ -102,6 +103,13 @@ public class JoueurController {
 	public JoueurDto administrationModificationJoueur (@RequestBody @Valid JoueurDto joueurDto, @RequestParam("id") Integer id) {
 		System.out.println("Controller");
 		return this.joueurService.administrationModificationJoueur(joueurDto,id);
+	}
+	
+	
+	
+	@PostMapping("/echangeRessource")
+	public EchangeRessourceDto echangeRessource(@RequestBody @Valid EchangeRessourceDto echangeRessourceDto) {
+		return this.joueurService.echangeRessource(echangeRessourceDto);
 	}
 
 }
