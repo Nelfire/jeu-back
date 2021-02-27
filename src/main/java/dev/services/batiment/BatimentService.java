@@ -10,19 +10,23 @@ import org.springframework.stereotype.Service;
 import dev.controller.dto.batiment.BatimentDto;
 import dev.controller.dto.unitee.UniteeDto;
 import dev.entites.batiment.Batiment;
+import dev.entites.batiment.BatimentJoueur;
 import dev.entites.unitee.Unitee;
 import dev.repository.batiment.BatimentRepo;
+import dev.repository.joueur.BatimentJoueurRepo;
 
 @Service
 public class BatimentService {
 	
 	private BatimentRepo batimentRepo;
+	private BatimentJoueurRepo batimentJoueurRepo;
 
 	/**
 	 * @param batimentRepo
 	 */
-	public BatimentService(BatimentRepo batimentRepo) {
+	public BatimentService(BatimentRepo batimentRepo, BatimentJoueurRepo batimentJoueurRepo) {
 		this.batimentRepo = batimentRepo;
+		this.batimentJoueurRepo = batimentJoueurRepo;
 	}
 	
 	/**
@@ -234,6 +238,8 @@ public class BatimentService {
 	 * MODIFICATION D'UN BÂTIMENT (Menu administrateur, Via ID)
 	 */
 	public BatimentDto administrationModificationBatiment(@Valid BatimentDto batimentDto, Integer id) {
+		
+		// BATIMENT
 		BatimentDto batiment = this.detailsBatiment(id);
 
 		batiment.setId(batimentDto.getId());
@@ -285,7 +291,37 @@ public class BatimentService {
 				batiment.getMultiplicateurCout());
 		bat.setId(batiment.getId());
 		this.batimentRepo.save(bat);
+		
+		
+		// TOUS LES BATIMENTS DE CE TYPE QUE POSSEDENT LES JOUEURS
+		BatimentJoueur batimentJoueur = new BatimentJoueur();
+		for (BatimentJoueur batimentsJoueur : this.batimentJoueurRepo.findByBatimentIdTypeBatiment(batimentDto.getIdTypeBatiment())) {
+			batimentJoueur.setId(batimentsJoueur.getId());
+			batimentJoueur.setJoueur(batimentsJoueur.getJoueur());
+			batimentJoueur.setBatiment(batimentsJoueur.getBatiment());
+			batimentJoueur.setNiveau(batimentsJoueur.getNiveau());
+			batimentJoueur.setOuvrierNecessaireAmelioration(batimentDto.getOuvrierNecessaireConstruction() * ((int)Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1)));
+			batimentJoueur.setTempsAmelioration(batimentDto.getTempsDeConstruction() * ((int)Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1)));
+			batimentJoueur.setCoutPierreAmelioration(batimentDto.getCoutPierreConstruction() * ((int)Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1)));
+			batimentJoueur.setCoutBoisAmelioration(batimentDto.getCoutBoisConstruction() * ((int)Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1)));
+			batimentJoueur.setCoutOreAmelioration(batimentDto.getCoutOrConstruction() * ((int)Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1)));
+			batimentJoueur.setCoutNourritureAmelioration(batimentDto.getCoutNourritureConstruction() * ((int)Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1)));
+			batimentJoueur.setQuantiteeStockagePierre(batimentDto.getQuantiteeStockagePierre() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1)));
+			batimentJoueur.setQuantiteeStockageBois(batimentDto.getQuantiteeStockageBois() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1)));
+			batimentJoueur.setQuantiteeStockageOre((batimentDto.getQuantiteeStockageOre() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1))));
+			batimentJoueur.setQuantiteeStockageNourriture(batimentDto.getQuantiteeStockageNourriture() * (batimentDto.getMultiplicateurApport()^(batimentsJoueur.getNiveau()-1)));
+			batimentJoueur.setApportPierreHeure(batimentDto.getApportPierreHeure() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1)));
+			batimentJoueur.setApportBoisHeure(batimentDto.getApportBoisHeure() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1)));
+			batimentJoueur.setApportOreHeure(batimentDto.getApportOreHeure() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1)));
+			batimentJoueur.setApportNourritureHeure(batimentDto.getApportNourritureHeure() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1)));
+			batimentJoueur.setDateDebutConstruction(batimentsJoueur.getDateDebutConstruction());
+			batimentJoueur.setDateFinConstruction(batimentsJoueur.getDateFinConstruction());
+		
+			this.batimentJoueurRepo.save(batimentJoueur);
+		}
+		
 		return batiment;
+		
 	}
 
 }

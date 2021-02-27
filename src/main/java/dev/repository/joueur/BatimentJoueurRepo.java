@@ -9,7 +9,7 @@ import dev.entites.batiment.BatimentJoueur;
 public interface BatimentJoueurRepo extends JpaRepository<BatimentJoueur, Integer> {
 
 	List<BatimentJoueur> findByJoueurId(Integer id);
-	BatimentJoueur findByBatimentIdTypeBatiment(Integer id);
+	//BatimentJoueur findByBatimentIdTypeBatiment(Integer id);
 
 	// Bâtiments donnant un apport de ressources
 	List<BatimentJoueur> findByApportPierreHeureGreaterThanAndJoueurId(Integer apportPierreHeure,Integer idJoueur);
@@ -21,6 +21,8 @@ public interface BatimentJoueurRepo extends JpaRepository<BatimentJoueur, Intege
 	List<BatimentJoueur> findByQuantiteeStockageBoisGreaterThanAndJoueurId(Integer stockageBois,Integer idJoueur);
 	List<BatimentJoueur> findByQuantiteeStockageOreGreaterThanAndJoueurId(Integer stockageOr,Integer idJoueur);
 	List<BatimentJoueur> findByQuantiteeStockageNourritureGreaterThanAndJoueurId(Integer stockageNourriture,Integer idJoueur);
+	
+	List<BatimentJoueur> findByBatimentIdTypeBatiment(Integer id);
 	
 	
 	
