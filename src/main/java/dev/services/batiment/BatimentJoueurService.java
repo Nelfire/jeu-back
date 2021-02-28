@@ -452,7 +452,7 @@ public class BatimentJoueurService {
 		if(batimentJoueurDto.getBatiment().getIdTypeBatiment() == 1) // 1 = Hotel de ville
 		{
 			ouvrierNecessaireAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration());
-			tempsAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getTempsAmelioration());
+			tempsAmelioration = (batimentJoueurDto.getBatiment().getMultiplicateurCout()/4)*(batimentJoueurDto.getTempsAmelioration());
 			coutPierreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration());
 			coutBoisAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration());
 			coutOreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration());
@@ -469,7 +469,7 @@ public class BatimentJoueurService {
 		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 2) // 2 = Chaumière
 		{
 			ouvrierNecessaireAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration());;
-			tempsAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getTempsAmelioration());
+			tempsAmelioration = (batimentJoueurDto.getBatiment().getMultiplicateurCout()/4)*(batimentJoueurDto.getTempsAmelioration());
 			coutPierreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration());
 			coutBoisAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration());
 			coutOreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration());
@@ -479,7 +479,7 @@ public class BatimentJoueurService {
 		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 3) // 3 = Carrière
 		{
 			ouvrierNecessaireAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration());;
-			tempsAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getTempsAmelioration());
+			tempsAmelioration = (batimentJoueurDto.getBatiment().getMultiplicateurCout()/4)*(batimentJoueurDto.getTempsAmelioration());
 			coutPierreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration());
 			coutBoisAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration());
 			coutOreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration());
@@ -489,7 +489,7 @@ public class BatimentJoueurService {
 		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 4) // 4 = Camp de bucheron
 		{
 			ouvrierNecessaireAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration());;
-			tempsAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getTempsAmelioration());
+			tempsAmelioration = (batimentJoueurDto.getBatiment().getMultiplicateurCout()/4)*(batimentJoueurDto.getTempsAmelioration());
 			coutPierreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration());
 			coutBoisAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration());
 			coutOreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration());
@@ -500,7 +500,7 @@ public class BatimentJoueurService {
 		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 5) // 5 = Camp de mineur
 		{
 			ouvrierNecessaireAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration());;
-			tempsAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getTempsAmelioration());
+			tempsAmelioration = (batimentJoueurDto.getBatiment().getMultiplicateurCout()/4)*(batimentJoueurDto.getTempsAmelioration());
 			coutPierreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration());
 			coutBoisAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration());
 			coutOreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration());
@@ -510,7 +510,7 @@ public class BatimentJoueurService {
 		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 6) // 6 = Ferme
 		{
 			ouvrierNecessaireAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration());;
-			tempsAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getTempsAmelioration());
+			tempsAmelioration = (batimentJoueurDto.getBatiment().getMultiplicateurCout()/4)*(batimentJoueurDto.getTempsAmelioration());
 			coutPierreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration());
 			coutBoisAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration());
 			coutOreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration());
@@ -520,7 +520,7 @@ public class BatimentJoueurService {
 		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 7) // 7 = Stockage Pierre
 		{
 			ouvrierNecessaireAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration());;
-			tempsAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getTempsAmelioration());
+			tempsAmelioration = (batimentJoueurDto.getBatiment().getMultiplicateurCout()/4)*(batimentJoueurDto.getTempsAmelioration());
 			coutPierreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration());
 			coutBoisAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration());
 			coutOreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration());
@@ -530,7 +530,7 @@ public class BatimentJoueurService {
 		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 8) // 8 = Stockage Bois
 		{
 			ouvrierNecessaireAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration());;
-			tempsAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getTempsAmelioration());
+			tempsAmelioration = (batimentJoueurDto.getBatiment().getMultiplicateurCout()/4)*(batimentJoueurDto.getTempsAmelioration());
 			coutPierreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration());
 			coutBoisAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration());
 			coutOreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration());
@@ -540,7 +540,7 @@ public class BatimentJoueurService {
 		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 9) // 9 = Stockage Or
 		{
 			ouvrierNecessaireAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration());;
-			tempsAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getTempsAmelioration());
+			tempsAmelioration = (batimentJoueurDto.getBatiment().getMultiplicateurCout()/4)*(batimentJoueurDto.getTempsAmelioration());
 			coutPierreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration());
 			coutBoisAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration());
 			coutOreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration());
@@ -550,7 +550,7 @@ public class BatimentJoueurService {
 		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 10) // 10 = Stockage Nourriture
 		{
 			ouvrierNecessaireAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration());;
-			tempsAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getTempsAmelioration());
+			tempsAmelioration = (batimentJoueurDto.getBatiment().getMultiplicateurCout()/4)*(batimentJoueurDto.getTempsAmelioration());
 			coutPierreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration());
 			coutBoisAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration());
 			coutOreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration());
@@ -560,7 +560,7 @@ public class BatimentJoueurService {
 		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 11) // 11 = Caserne Militaire
 		{
 			ouvrierNecessaireAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration());;
-			tempsAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getTempsAmelioration());
+			tempsAmelioration = (batimentJoueurDto.getBatiment().getMultiplicateurCout()/4)*(batimentJoueurDto.getTempsAmelioration());
 			coutPierreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration());
 			coutBoisAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration());
 			coutOreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration());
@@ -569,7 +569,7 @@ public class BatimentJoueurService {
 		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 12) // 12 = Ecurie
 		{
 			ouvrierNecessaireAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration());;
-			tempsAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getTempsAmelioration());
+			tempsAmelioration = (batimentJoueurDto.getBatiment().getMultiplicateurCout()/4)*(batimentJoueurDto.getTempsAmelioration());
 			coutPierreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration());
 			coutBoisAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration());
 			coutOreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration());
@@ -578,7 +578,7 @@ public class BatimentJoueurService {
 		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 13) // 13 = Port
 		{
 			ouvrierNecessaireAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration());;
-			tempsAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getTempsAmelioration());
+			tempsAmelioration = (batimentJoueurDto.getBatiment().getMultiplicateurCout()/4)*(batimentJoueurDto.getTempsAmelioration());
 			coutPierreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration());
 			coutBoisAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration());
 			coutOreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration());
@@ -587,7 +587,7 @@ public class BatimentJoueurService {
 		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 14) // 14 = Atelier de siege
 		{
 			ouvrierNecessaireAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration());;
-			tempsAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getTempsAmelioration());
+			tempsAmelioration = (batimentJoueurDto.getBatiment().getMultiplicateurCout()/4)*(batimentJoueurDto.getTempsAmelioration());
 			coutPierreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration());
 			coutBoisAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration());
 			coutOreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration());
@@ -596,7 +596,7 @@ public class BatimentJoueurService {
 		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 15) // 15 = Forge
 		{
 			ouvrierNecessaireAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration());;
-			tempsAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getTempsAmelioration());
+			tempsAmelioration = (batimentJoueurDto.getBatiment().getMultiplicateurCout()/4)*(batimentJoueurDto.getTempsAmelioration());
 			coutPierreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration());
 			coutBoisAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration());
 			coutOreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration());
@@ -605,7 +605,7 @@ public class BatimentJoueurService {
 		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 16) // 16 = Universite
 		{
 			ouvrierNecessaireAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration());;
-			tempsAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getTempsAmelioration());
+			tempsAmelioration = (batimentJoueurDto.getBatiment().getMultiplicateurCout()/4)*(batimentJoueurDto.getTempsAmelioration());
 			coutPierreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration());
 			coutBoisAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration());
 			coutOreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration());
@@ -614,7 +614,7 @@ public class BatimentJoueurService {
 		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 17) // 17 = Marché
 		{
 			ouvrierNecessaireAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration());;
-			tempsAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getTempsAmelioration());
+			tempsAmelioration = (batimentJoueurDto.getBatiment().getMultiplicateurCout()/4)*(batimentJoueurDto.getTempsAmelioration());
 			coutPierreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration());
 			coutBoisAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration());
 			coutOreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration());
@@ -623,7 +623,7 @@ public class BatimentJoueurService {
 		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 18) // 18 = Table d'expéditions
 		{
 			ouvrierNecessaireAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration());;
-			tempsAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getTempsAmelioration());
+			tempsAmelioration = (batimentJoueurDto.getBatiment().getMultiplicateurCout()/4)*(batimentJoueurDto.getTempsAmelioration());
 			coutPierreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration());
 			coutBoisAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration());
 			coutOreAmelioration = batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration());

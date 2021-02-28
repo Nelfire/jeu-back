@@ -301,7 +301,7 @@ public class BatimentService {
 			batimentJoueur.setBatiment(batimentsJoueur.getBatiment());
 			batimentJoueur.setNiveau(batimentsJoueur.getNiveau());
 			batimentJoueur.setOuvrierNecessaireAmelioration(batimentDto.getOuvrierNecessaireConstruction() * ((int)Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1)));
-			batimentJoueur.setTempsAmelioration(batimentDto.getTempsDeConstruction() * ((int)Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1)));
+			batimentJoueur.setTempsAmelioration(batimentDto.getTempsDeConstruction() * ((int)Math.pow(batimentDto.getMultiplicateurCout()/4, batimentsJoueur.getNiveau()-1)));
 			batimentJoueur.setCoutPierreAmelioration(batimentDto.getCoutPierreConstruction() * ((int)Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1)));
 			batimentJoueur.setCoutBoisAmelioration(batimentDto.getCoutBoisConstruction() * ((int)Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1)));
 			batimentJoueur.setCoutOreAmelioration(batimentDto.getCoutOrConstruction() * ((int)Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1)));
