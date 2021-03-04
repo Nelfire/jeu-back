@@ -5,15 +5,15 @@ public class InformationRessourcesJoueur {
 	private Integer apportBoisSeconde;
 	private Integer apportOrSeconde;
 	private Integer apportNourritureSeconde;
-	private Integer quantiteMaximaleStockagePierre;
-	private Integer quantiteMaximaleStockageBois;
-	private Integer quantiteMaximaleStockageOr;
-	private Integer quantiteMaximaleStockageNourriture;
-	private Integer pierrePossession;
-	private Integer boisPossession;
-	private Integer orPossession;
-	private Integer nourriturePossession;
-	private Integer gemmePossession;
+	private Long quantiteMaximaleStockagePierre;
+	private Long quantiteMaximaleStockageBois;
+	private Long quantiteMaximaleStockageOr;
+	private Long quantiteMaximaleStockageNourriture;
+	private Long pierrePossession;
+	private Long boisPossession;
+	private Long orPossession;
+	private Long nourriturePossession;
+	private Long gemmePossession;
 	
 	
 	
@@ -40,10 +40,10 @@ public class InformationRessourcesJoueur {
 	 * @param gemmePossession
 	 */
 	public InformationRessourcesJoueur(Integer apportPierreSeconde, Integer apportBoisSeconde, Integer apportOrSeconde,
-			Integer apportNourritureSeconde, Integer quantiteMaximaleStockagePierre,
-			Integer quantiteMaximaleStockageBois, Integer quantiteMaximaleStockageOr,
-			Integer quantiteMaximaleStockageNourriture, Integer pierrePossession, Integer boisPossession,
-			Integer orPossession, Integer nourriturePossession, Integer gemmePossession) {
+			Integer apportNourritureSeconde, Long quantiteMaximaleStockagePierre,
+			Long quantiteMaximaleStockageBois, Long quantiteMaximaleStockageOr,
+			Long quantiteMaximaleStockageNourriture, Long pierrePossession, Long boisPossession,
+			Long orPossession, Long nourriturePossession, Long gemmePossession) {
 		super();
 		this.apportPierreSeconde = apportPierreSeconde;
 		this.apportBoisSeconde = apportBoisSeconde;
@@ -86,55 +86,55 @@ public class InformationRessourcesJoueur {
 	/**
 	 * @return the quantiteMaximaleStockagePierre
 	 */
-	public Integer getQuantiteMaximaleStockagePierre() {
+	public Long getQuantiteMaximaleStockagePierre() {
 		return quantiteMaximaleStockagePierre;
 	}
 	/**
 	 * @return the quantiteMaximaleStockageBois
 	 */
-	public Integer getQuantiteMaximaleStockageBois() {
+	public Long getQuantiteMaximaleStockageBois() {
 		return quantiteMaximaleStockageBois;
 	}
 	/**
 	 * @return the quantiteMaximaleStockageOr
 	 */
-	public Integer getQuantiteMaximaleStockageOr() {
+	public Long getQuantiteMaximaleStockageOr() {
 		return quantiteMaximaleStockageOr;
 	}
 	/**
 	 * @return the quantiteMaximaleStockageNourriture
 	 */
-	public Integer getQuantiteMaximaleStockageNourriture() {
+	public Long getQuantiteMaximaleStockageNourriture() {
 		return quantiteMaximaleStockageNourriture;
 	}
 	/**
 	 * @return the pierrePossession
 	 */
-	public Integer getPierrePossession() {
+	public Long getPierrePossession() {
 		return pierrePossession;
 	}
 	/**
 	 * @return the boisPossession
 	 */
-	public Integer getBoisPossession() {
+	public Long getBoisPossession() {
 		return boisPossession;
 	}
 	/**
 	 * @return the orPossession
 	 */
-	public Integer getOrPossession() {
+	public Long getOrPossession() {
 		return orPossession;
 	}
 	/**
 	 * @return the nourriturePossession
 	 */
-	public Integer getNourriturePossession() {
+	public Long getNourriturePossession() {
 		return nourriturePossession;
 	}
 	/**
 	 * @return the gemmePossession
 	 */
-	public Integer getGemmePossession() {
+	public Long getGemmePossession() {
 		return gemmePossession;
 	}
 	/**
@@ -164,55 +164,55 @@ public class InformationRessourcesJoueur {
 	/**
 	 * @param quantiteMaximaleStockagePierre the quantiteMaximaleStockagePierre to set
 	 */
-	public void setQuantiteMaximaleStockagePierre(Integer quantiteMaximaleStockagePierre) {
+	public void setQuantiteMaximaleStockagePierre(Long quantiteMaximaleStockagePierre) {
 		this.quantiteMaximaleStockagePierre = quantiteMaximaleStockagePierre;
 	}
 	/**
 	 * @param quantiteMaximaleStockageBois the quantiteMaximaleStockageBois to set
 	 */
-	public void setQuantiteMaximaleStockageBois(Integer quantiteMaximaleStockageBois) {
+	public void setQuantiteMaximaleStockageBois(Long quantiteMaximaleStockageBois) {
 		this.quantiteMaximaleStockageBois = quantiteMaximaleStockageBois;
 	}
 	/**
 	 * @param quantiteMaximaleStockageOr the quantiteMaximaleStockageOr to set
 	 */
-	public void setQuantiteMaximaleStockageOr(Integer quantiteMaximaleStockageOr) {
+	public void setQuantiteMaximaleStockageOr(Long quantiteMaximaleStockageOr) {
 		this.quantiteMaximaleStockageOr = quantiteMaximaleStockageOr;
 	}
 	/**
 	 * @param quantiteMaximaleStockageNourriture the quantiteMaximaleStockageNourriture to set
 	 */
-	public void setQuantiteMaximaleStockageNourriture(Integer quantiteMaximaleStockageNourriture) {
+	public void setQuantiteMaximaleStockageNourriture(Long quantiteMaximaleStockageNourriture) {
 		this.quantiteMaximaleStockageNourriture = quantiteMaximaleStockageNourriture;
 	}
 	/**
 	 * @param pierrePossession the pierrePossession to set
 	 */
-	public void setPierrePossession(Integer pierrePossession) {
+	public void setPierrePossession(Long pierrePossession) {
 		this.pierrePossession = pierrePossession;
 	}
 	/**
 	 * @param boisPossession the boisPossession to set
 	 */
-	public void setBoisPossession(Integer boisPossession) {
+	public void setBoisPossession(Long boisPossession) {
 		this.boisPossession = boisPossession;
 	}
 	/**
 	 * @param orPossession the orPossession to set
 	 */
-	public void setOrPossession(Integer orPossession) {
+	public void setOrPossession(Long orPossession) {
 		this.orPossession = orPossession;
 	}
 	/**
 	 * @param nourriturePossession the nourriturePossession to set
 	 */
-	public void setNourriturePossession(Integer nourriturePossession) {
+	public void setNourriturePossession(Long nourriturePossession) {
 		this.nourriturePossession = nourriturePossession;
 	}
 	/**
 	 * @param gemmePossession the gemmePossession to set
 	 */
-	public void setGemmePossession(Integer gemmePossession) {
+	public void setGemmePossession(Long gemmePossession) {
 		this.gemmePossession = gemmePossession;
 	}
 	@Override

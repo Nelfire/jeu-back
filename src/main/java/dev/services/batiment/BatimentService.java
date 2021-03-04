@@ -58,6 +58,9 @@ public class BatimentService {
 			batimentDto.setApportBoisHeure(batiment.getApportBoisHeure());
 			batimentDto.setApportOreHeure(batiment.getApportOreHeure());
 			batimentDto.setApportNourritureHeure(batiment.getApportNourritureHeure());
+			batimentDto.setApportExperience(batiment.getApportExperience());
+			batimentDto.setMultiplicateurExperience(batiment.getMultiplicateurExperience());
+			batimentDto.setMultiplicateurTemps(batiment.getMultiplicateurTemps());
 			batimentDto.setMultiplicateurApport(batiment.getMultiplicateurApport());
 			batimentDto.setMultiplicateurCout(batiment.getMultiplicateurCout());
 
@@ -93,6 +96,9 @@ public class BatimentService {
 			batimentDto.setApportBoisHeure(batiment.getApportBoisHeure());
 			batimentDto.setApportOreHeure(batiment.getApportOreHeure());
 			batimentDto.setApportNourritureHeure(batiment.getApportNourritureHeure());
+			batimentDto.setApportExperience(batiment.getApportExperience());
+			batimentDto.setMultiplicateurExperience(batiment.getMultiplicateurExperience());
+			batimentDto.setMultiplicateurTemps(batiment.getMultiplicateurTemps());
 			batimentDto.setMultiplicateurApport(batiment.getMultiplicateurApport());
 			batimentDto.setMultiplicateurCout(batiment.getMultiplicateurCout());
 
@@ -128,6 +134,9 @@ public class BatimentService {
 			batimentDto.setApportBoisHeure(batiment.getApportBoisHeure());
 			batimentDto.setApportOreHeure(batiment.getApportOreHeure());
 			batimentDto.setApportNourritureHeure(batiment.getApportNourritureHeure());
+			batimentDto.setApportExperience(batiment.getApportExperience());
+			batimentDto.setMultiplicateurExperience(batiment.getMultiplicateurExperience());
+			batimentDto.setMultiplicateurTemps(batiment.getMultiplicateurTemps());
 			batimentDto.setMultiplicateurApport(batiment.getMultiplicateurApport());
 			batimentDto.setMultiplicateurCout(batiment.getMultiplicateurCout());
 
@@ -163,6 +172,9 @@ public class BatimentService {
 			batimentDto.setApportBoisHeure(batiment.getApportBoisHeure());
 			batimentDto.setApportOreHeure(batiment.getApportOreHeure());
 			batimentDto.setApportNourritureHeure(batiment.getApportNourritureHeure());
+			batimentDto.setApportExperience(batiment.getApportExperience());
+			batimentDto.setMultiplicateurExperience(batiment.getMultiplicateurExperience());
+			batimentDto.setMultiplicateurTemps(batiment.getMultiplicateurTemps());
 			batimentDto.setMultiplicateurApport(batiment.getMultiplicateurApport());
 			batimentDto.setMultiplicateurCout(batiment.getMultiplicateurCout());
 
@@ -198,6 +210,9 @@ public class BatimentService {
 			batimentDto.setApportBoisHeure(batiment.getApportBoisHeure());
 			batimentDto.setApportOreHeure(batiment.getApportOreHeure());
 			batimentDto.setApportNourritureHeure(batiment.getApportNourritureHeure());
+			batimentDto.setApportExperience(batiment.getApportExperience());
+			batimentDto.setMultiplicateurExperience(batiment.getMultiplicateurExperience());
+			batimentDto.setMultiplicateurTemps(batiment.getMultiplicateurTemps());
 			batimentDto.setMultiplicateurApport(batiment.getMultiplicateurApport());
 			batimentDto.setMultiplicateurCout(batiment.getMultiplicateurCout());
 
@@ -229,6 +244,9 @@ public class BatimentService {
 				batiment.getApportBoisHeure(),
 				batiment.getApportOreHeure(),
 				batiment.getApportNourritureHeure(),
+				batiment.getApportExperience(),
+				batiment.getMultiplicateurExperience(),
+				batiment.getMultiplicateurTemps(),
 				batiment.getMultiplicateurApport(),
 				batiment.getMultiplicateurCout());
 		return bat;
@@ -238,7 +256,9 @@ public class BatimentService {
 	 * MODIFICATION D'UN BÂTIMENT (Menu administrateur, Via ID)
 	 */
 	public BatimentDto administrationModificationBatiment(@Valid BatimentDto batimentDto, Integer id) {
-		
+
+		System.out.println(batimentDto.getApportExperience());
+		System.out.println(batimentDto.getMultiplicateurExperience());
 		// BATIMENT
 		BatimentDto batiment = this.detailsBatiment(id);
 
@@ -263,6 +283,9 @@ public class BatimentService {
 		batiment.setApportBoisHeure(batimentDto.getApportBoisHeure());
 		batiment.setApportOreHeure(batimentDto.getApportOreHeure());
 		batiment.setApportNourritureHeure(batimentDto.getApportNourritureHeure());
+		batiment.setApportExperience(batimentDto.getApportExperience());
+		batiment.setMultiplicateurExperience(batimentDto.getMultiplicateurExperience());
+		batiment.setMultiplicateurTemps(batimentDto.getMultiplicateurTemps());
 		batiment.setMultiplicateurApport(batimentDto.getMultiplicateurApport());
 		batiment.setMultiplicateurCout(batimentDto.getMultiplicateurCout());
 
@@ -287,6 +310,9 @@ public class BatimentService {
 				batiment.getApportBoisHeure(),
 				batiment.getApportOreHeure(),
 				batiment.getApportNourritureHeure(),
+				batiment.getApportExperience(),
+				batiment.getMultiplicateurExperience(),
+				batiment.getMultiplicateurTemps(),
 				batiment.getMultiplicateurApport(),
 				batiment.getMultiplicateurCout());
 		bat.setId(batiment.getId());
@@ -300,20 +326,20 @@ public class BatimentService {
 			batimentJoueur.setJoueur(batimentsJoueur.getJoueur());
 			batimentJoueur.setBatiment(batimentsJoueur.getBatiment());
 			batimentJoueur.setNiveau(batimentsJoueur.getNiveau());
-			batimentJoueur.setOuvrierNecessaireAmelioration(batimentDto.getOuvrierNecessaireConstruction() * ((int)Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1)));
-			batimentJoueur.setTempsAmelioration(batimentDto.getTempsDeConstruction() * ((int)Math.pow(batimentDto.getMultiplicateurCout()/4, batimentsJoueur.getNiveau()-1)));
-			batimentJoueur.setCoutPierreAmelioration(batimentDto.getCoutPierreConstruction() * ((int)Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1)));
-			batimentJoueur.setCoutBoisAmelioration(batimentDto.getCoutBoisConstruction() * ((int)Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1)));
-			batimentJoueur.setCoutOreAmelioration(batimentDto.getCoutOrConstruction() * ((int)Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1)));
-			batimentJoueur.setCoutNourritureAmelioration(batimentDto.getCoutNourritureConstruction() * ((int)Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1)));
-			batimentJoueur.setQuantiteeStockagePierre(batimentDto.getQuantiteeStockagePierre() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1)));
-			batimentJoueur.setQuantiteeStockageBois(batimentDto.getQuantiteeStockageBois() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1)));
-			batimentJoueur.setQuantiteeStockageOre(batimentDto.getQuantiteeStockageOre() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1)));
-			batimentJoueur.setQuantiteeStockageNourriture(batimentDto.getQuantiteeStockageNourriture() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1)));
-			batimentJoueur.setApportPierreHeure(batimentDto.getApportPierreHeure() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1)));
-			batimentJoueur.setApportBoisHeure(batimentDto.getApportBoisHeure() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1)));
-			batimentJoueur.setApportOreHeure(batimentDto.getApportOreHeure() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1)));
-			batimentJoueur.setApportNourritureHeure(batimentDto.getApportNourritureHeure() * ((int)Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1)));
+			batimentJoueur.setOuvrierNecessaireAmelioration((int)(batimentDto.getOuvrierNecessaireConstruction() * (Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1))));
+			batimentJoueur.setTempsAmelioration((int) (batimentDto.getTempsDeConstruction() * (Math.pow(batimentDto.getMultiplicateurTemps(), batimentsJoueur.getNiveau()-1))));
+			batimentJoueur.setCoutPierreAmelioration((long) (batimentDto.getCoutPierreConstruction() * (Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1))));
+			batimentJoueur.setCoutBoisAmelioration((long) (batimentDto.getCoutBoisConstruction() * (Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1))));
+			batimentJoueur.setCoutOreAmelioration((long) (batimentDto.getCoutOrConstruction() * (Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1))));
+			batimentJoueur.setCoutNourritureAmelioration((long) (batimentDto.getCoutNourritureConstruction() * (Math.pow(batimentDto.getMultiplicateurCout(), batimentsJoueur.getNiveau()-1))));
+			batimentJoueur.setQuantiteeStockagePierre((long) (batimentDto.getQuantiteeStockagePierre() * (Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1))));
+			batimentJoueur.setQuantiteeStockageBois((long) (batimentDto.getQuantiteeStockageBois() * (Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1))));
+			batimentJoueur.setQuantiteeStockageOre((long) (batimentDto.getQuantiteeStockageOre() * (Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1))));
+			batimentJoueur.setQuantiteeStockageNourriture((long) (batimentDto.getQuantiteeStockageNourriture() * (Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1))));
+			batimentJoueur.setApportPierreHeure((int) (batimentDto.getApportPierreHeure() * (Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1))));
+			batimentJoueur.setApportBoisHeure((int) (batimentDto.getApportBoisHeure() * (Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1))));
+			batimentJoueur.setApportOreHeure((int) (batimentDto.getApportOreHeure() * (Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1))));
+			batimentJoueur.setApportNourritureHeure((int) (batimentDto.getApportNourritureHeure() * (Math.pow(batimentDto.getMultiplicateurApport(), batimentsJoueur.getNiveau()-1))));
 			batimentJoueur.setDateDebutConstruction(batimentsJoueur.getDateDebutConstruction());
 			batimentJoueur.setDateFinConstruction(batimentsJoueur.getDateFinConstruction());
 		

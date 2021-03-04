@@ -86,6 +86,8 @@ public class JoueurService {
 			joueurDto.setOrBoostProduction(joueur.getOrBoostProduction());
 			joueurDto.setNourritureBoostProduction(joueur.getNourritureBoostProduction());
 			joueurDto.setTempsDeJeu(joueur.getTempsDeJeu());
+			joueurDto.setPositionX(joueur.getPositionX());
+			joueurDto.setPositionY(joueur.getPositionY());
 
 			listeJoueurs.add(joueurDto);
 
@@ -107,6 +109,9 @@ public class JoueurService {
 			joueurDto.setPseudo(joueur.getPseudo());
 			joueurDto.setNiveau(joueur.getNiveau());
 			joueurDto.setTempsDeJeu(joueur.getTempsDeJeu());
+			joueurDto.setDonateur(joueur.getDonateur());
+			joueurDto.setPositionX(joueur.getPositionX());
+			joueurDto.setPositionY(joueur.getPositionY());
 			listeJoueurs.add(joueurDto);
 
 		}
@@ -141,6 +146,10 @@ public class JoueurService {
 		joueur.setNourritureBoostProduction(jou.get().getNourritureBoostProduction());
 		joueur.setTempsDeJeu(jou.get().getTempsDeJeu());
 		joueur.setDerniereConnexion(jou.get().getDerniereConnexion());
+		joueur.setDonateur(jou.get().getDonateur());
+		joueur.setPositionX(jou.get().getPositionX());
+		joueur.setPositionY(jou.get().getPositionY());
+		
 		return joueur;
 	}
 
@@ -150,7 +159,7 @@ public class JoueurService {
 	public JoueurInfoDto getInfoJoueur() {
 		// RÉCUPÉRATION DU JOUEUR CONNECTÉ
 		Joueur jou = recuperationJoueur();
-		
+
 		// INITIALISATION
 		// Calcul ressources à donner au joueur pour son absence :
 		// - Date de maintenant
@@ -170,13 +179,11 @@ public class JoueurService {
 		//////////////////////////////////
 		// -- ATTRIBUTION RESSOURCES -- //
 		//////////////////////////////////
-		
+
 		// PIERRE : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
 		Integer apportPierreSeconde = apportPierreSeconde();
-
 		// - CAS INACTIVITEE -
 		Integer apportPierreFinal = (apportPierreSeconde * millisecondesDifference/1000);
-		
 		// BOIS : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
 		Integer apportBoisSeconde = apportBoisSeconde();
 		// - CAS INACTIVITEE -
@@ -191,23 +198,22 @@ public class JoueurService {
 		Integer apportNourritureSeconde = apportNourritureSeconde();
 		// - CAS INACTIVITEE -
 		Integer apportNourritureFinal = (apportNourritureSeconde * millisecondesDifference/1000);
-		
 		//////////////////////////////////////
 		// -- LIMITE STOCKAGE RESSOURCES -- //
 		//////////////////////////////////////
 
 		// PIERRE
-		Integer stockageMaximalPierre = quantiteMaximaleStockagePierre();	
+		Long stockageMaximalPierre = quantiteMaximaleStockagePierre();	
 		
 		// BOIS
-		Integer stockageMaximalBois = quantiteMaximaleStockageBois();
+		Long stockageMaximalBois = quantiteMaximaleStockageBois();
 		
 		// OR
-		Integer stockageMaximalOr = quantiteMaximaleStockageOr();
+		Long stockageMaximalOr = quantiteMaximaleStockageOr();
 		
 		// NOURRITURE
-		Integer stockageMaximalNourriture = quantiteMaximaleStockageNourriture();
-		
+		Long stockageMaximalNourriture = quantiteMaximaleStockageNourriture();
+
 		
 		// ACTUALISATION DES DONNEES DU JOUEUR
 		// APPORT
@@ -232,15 +238,16 @@ public class JoueurService {
 		Date dateAujourdhui  = new Date(); 
 		jou.setDerniereConnexion(dateAujourdhui);
 
+		
 		// MISE A JOUR DU JOUEUR
 		Joueur joueur = new Joueur(jou.getArmee(), jou.getIcone(), jou.getPseudo(), jou.getEmail(), jou.getMotDePasse(),
 				jou.getDescriptif(), jou.getNiveau(), jou.getExperience(), jou.getPierrePossession(),
 				jou.getBoisPossession(), jou.getOrPossession(), jou.getNourriturePossession(), jou.getGemmePossession(),
 				jou.getPierreMaximum(), jou.getBoisMaximum(), jou.getOrMaximum(), jou.getNourritureMaximum(),
 				jou.getPierreBoostProduction(), jou.getBoisBoostProduction(), jou.getOrBoostProduction(),
-				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getRoles(), jou.getDerniereConnexion());
+				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getRoles(), jou.getDerniereConnexion(), jou.getDonateur(), jou.getPositionX(), jou.getPositionY());
 		joueur.setId(jou.getId());
-		
+
 		// SAUVEGARDE
 		this.joueurRepo.save(joueur);
 
@@ -250,8 +257,10 @@ public class JoueurService {
 				jou.getBoisPossession(), jou.getOrPossession(), jou.getNourriturePossession(), jou.getGemmePossession(),
 				jou.getPierreMaximum(), jou.getBoisMaximum(), jou.getOrMaximum(), jou.getNourritureMaximum(),
 				jou.getPierreBoostProduction(), jou.getBoisBoostProduction(), jou.getOrBoostProduction(),
-				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getDerniereConnexion());
+				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getDerniereConnexion(), jou.getDonateur(), jou.getPositionX(),jou.getPositionY());
+
 		return co;
+		
 	}
 	
 	/**
@@ -267,16 +276,16 @@ public class JoueurService {
 		Integer apportOrSeconde = apportOrSeconde();
 		Integer apportNourritureSeconde = apportNourritureSeconde();
 		// Ses limites
-		Integer quantiteMaximaleStockagePierre = quantiteMaximaleStockagePierre();
-		Integer quantiteMaximaleStockageBois = quantiteMaximaleStockageBois();
-		Integer quantiteMaximaleStockageOr = quantiteMaximaleStockageOr();
-		Integer quantiteMaximaleStockageNourriture = quantiteMaximaleStockageNourriture();
+		Long quantiteMaximaleStockagePierre = quantiteMaximaleStockagePierre();
+		Long quantiteMaximaleStockageBois = quantiteMaximaleStockageBois();
+		Long quantiteMaximaleStockageOr = quantiteMaximaleStockageOr();
+		Long quantiteMaximaleStockageNourriture = quantiteMaximaleStockageNourriture();
 		// Ses ressources actuelle
-		Integer pierrePossession = jou.getPierrePossession();
-		Integer boisPossession = jou.getBoisPossession();
-		Integer orPossession = jou.getOrPossession();
-		Integer nourriturePossession = jou.getNourriturePossession();
-		Integer gemmePossession = jou.getGemmePossession();
+		Long pierrePossession = jou.getPierrePossession();
+		Long boisPossession = jou.getBoisPossession();
+		Long orPossession = jou.getOrPossession();
+		Long nourriturePossession = jou.getNourriturePossession();
+		Long gemmePossession = jou.getGemmePossession();
 		
 		//////////////////
 		// SET : Apports
@@ -295,7 +304,7 @@ public class JoueurService {
 		informationRessourcesJoueur.setOrPossession(orPossession);
 		informationRessourcesJoueur.setNourriturePossession(nourriturePossession);
 		informationRessourcesJoueur.setGemmePossession(gemmePossession);
-		
+
 		// RETOUR
 		return informationRessourcesJoueur;
 	}
@@ -309,13 +318,14 @@ public class JoueurService {
 	/**
 	 * STOCKAGE : QUANTITE MAXIMALE DE STOCKAGE DE PIERRE POUR LE JOUEUR
 	 */
-	private Integer quantiteMaximaleStockagePierre() {
+	private Long quantiteMaximaleStockagePierre() {
 		// Récupération du joueur connecté
 		Joueur jou = recuperationJoueur();
 		// -- PIERRE -
-		Integer stockageMaximalPierre = 10000;
+		Long stockageMaximalPierre = 10000L;
+
 		// -- TOUS LES BATIMENTS QUI AUGMENTENT LA LIMITE DE STOCKAGE DE PIERRE
-		for (BatimentJoueur batimentStockagePierre : batimentJoueurRepo.findByQuantiteeStockagePierreGreaterThanAndJoueurId(1,jou.getId())) {
+		for (BatimentJoueur batimentStockagePierre : batimentJoueurRepo.findByQuantiteeStockagePierreGreaterThanAndJoueurId(1L,jou.getId())) {
 			long maintenant = new Date().getTime();
 			long fin = batimentStockagePierre.getDateFinConstruction();
 			// Si le batiment est en cours d'amélioration, augmentation pas prise en compte
@@ -331,19 +341,20 @@ public class JoueurService {
 				}
 			}
 		}
+
 		return stockageMaximalPierre;
 	}
 	
 	/**
 	 * STOCKAGE : QUANTITE MAXIMALE DE STOCKAGE DE BOIS POUR LE JOUEUR
 	 */
-	private Integer quantiteMaximaleStockageBois() {
+	private Long quantiteMaximaleStockageBois() {
 		// Récupération du joueur connecté
 		Joueur jou = recuperationJoueur();
 		// -- BOIS --
-		Integer stockageMaximalBois = 10000;
+		Long stockageMaximalBois = 10000L;
 		// -- TOUS LES BATIMENTS QUI AUGMENTENT LA LIMITE DE STOCKAGE DE BOIS
-		for (BatimentJoueur batimentStockageBois : batimentJoueurRepo.findByQuantiteeStockageBoisGreaterThanAndJoueurId(1,jou.getId())) {
+		for (BatimentJoueur batimentStockageBois : batimentJoueurRepo.findByQuantiteeStockageBoisGreaterThanAndJoueurId(1L,jou.getId())) {
 			long maintenant = new Date().getTime();
 			long fin = batimentStockageBois.getDateFinConstruction();
 			// Si le batiment est en cours d'amélioration, augmentation pas prise en compte
@@ -365,13 +376,13 @@ public class JoueurService {
 	/**
 	 * STOCKAGE : QUANTITE MAXIMALE DE STOCKAGE D'OR POUR LE JOUEUR
 	 */
-	private Integer quantiteMaximaleStockageOr() {
+	private Long quantiteMaximaleStockageOr() {
 		// Récupération du joueur connecté
 		Joueur jou = recuperationJoueur();
 		// -- OR --
-		Integer stockageMaximalOr = 10000;
+		Long stockageMaximalOr = 10000L;
 		// -- TOUS LES BATIMENTS QUI AUGMENTENT LA LIMITE DE STOCKAGE DE OR
-		for (BatimentJoueur batimentStockageOr : batimentJoueurRepo.findByQuantiteeStockageOreGreaterThanAndJoueurId(1,jou.getId())) {
+		for (BatimentJoueur batimentStockageOr : batimentJoueurRepo.findByQuantiteeStockageOreGreaterThanAndJoueurId(1L,jou.getId())) {
 			long maintenant = new Date().getTime();
 			long fin = batimentStockageOr.getDateFinConstruction();
 			// Si le batiment est en cours d'amélioration, augmentation pas prise en compte
@@ -393,13 +404,13 @@ public class JoueurService {
 	/**
 	 * STOCKAGE : QUANTITE MAXIMALE DE STOCKAGE DE NOURRITURE POUR LE JOUEUR
 	 */
-	private Integer quantiteMaximaleStockageNourriture() {
+	private Long quantiteMaximaleStockageNourriture() {
 		// Récupération du joueur connecté
 		Joueur jou = recuperationJoueur();
 		// -- NOURRITURE --
-		Integer stockageMaximalNourriture = 10000;
+		Long stockageMaximalNourriture = 10000L;
 		// -- TOUS LES BATIMENTS QUI AUGMENTENT LA LIMITE DE STOCKAGE DE NOURRITURE
-		for (BatimentJoueur batimentStockageNourriture : batimentJoueurRepo.findByQuantiteeStockageNourritureGreaterThanAndJoueurId(1,jou.getId())) {
+		for (BatimentJoueur batimentStockageNourriture : batimentJoueurRepo.findByQuantiteeStockageNourritureGreaterThanAndJoueurId(1L,jou.getId())) {
 			long maintenant = new Date().getTime();
 			long fin = batimentStockageNourriture.getDateFinConstruction();
 			// Si le batiment est en cours d'amélioration, augmentation pas prise en compte
@@ -528,7 +539,7 @@ public class JoueurService {
 				jou.getBoisPossession(), jou.getOrPossession(), jou.getNourriturePossession(), jou.getGemmePossession(),
 				jou.getPierreMaximum(), jou.getBoisMaximum(), jou.getOrMaximum(), jou.getNourritureMaximum(),
 				jou.getPierreBoostProduction(), jou.getBoisBoostProduction(), jou.getOrBoostProduction(),
-				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getRoles(), jou.getDerniereConnexion());
+				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getRoles(), jou.getDerniereConnexion(), jou.getDonateur(), jou.getPositionX(), jou.getPositionY());
 		joueur.setId(jou.getId());
 		
 		// SAUVEGARDE
@@ -551,7 +562,7 @@ public class JoueurService {
 				jou.getBoisPossession()+gainRessourceDto.getGainBois(), jou.getOrPossession()+gainRessourceDto.getGainOr(), jou.getNourriturePossession()+gainRessourceDto.getGainNourriture(), jou.getGemmePossession(),
 				jou.getPierreMaximum(), jou.getBoisMaximum(), jou.getOrMaximum(), jou.getNourritureMaximum(),
 				jou.getPierreBoostProduction(), jou.getBoisBoostProduction(), jou.getOrBoostProduction(),
-				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getRoles(), jou.getDerniereConnexion());
+				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getRoles(), jou.getDerniereConnexion(), jou.getDonateur(), jou.getPositionX(), jou.getPositionY());
 		joueur.setId(jou.getId());
 		joueur.getPierrePossession();
 		
@@ -568,7 +579,6 @@ public class JoueurService {
 	 * MODIFICATION D'UN BÂTIMENT (Menu administrateur, Via ID)
 	 */
 	public JoueurDto administrationModificationJoueur(@Valid JoueurDto joueurDto, Integer id) {
-		System.out.println("Service");
 		Joueur jou = joueurRepo.findById(id).orElseThrow(() -> new JoueurAuthentifieNonRecupereException("Le joueur authentifié n'a pas pu être récupéré"));
 		
 		Joueur joueur = new Joueur(
@@ -595,7 +605,10 @@ public class JoueurService {
 				joueurDto.getNourritureBoostProduction(), 
 				jou.getTempsDeJeu(), 
 				jou.getRoles(), 
-				jou.getDerniereConnexion());
+				jou.getDerniereConnexion(), 
+				joueurDto.getDonateur(),
+				joueurDto.getPositionX(),
+				joueurDto.getPositionY());
 		joueur.setId(jou.getId());
 		
 		this.joueurRepo.save(joueur);
@@ -727,11 +740,25 @@ public class JoueurService {
 				jou.getGemmePossession(),
 				jou.getPierreMaximum(), jou.getBoisMaximum(), jou.getOrMaximum(), jou.getNourritureMaximum(),
 				jou.getPierreBoostProduction(), jou.getBoisBoostProduction(), jou.getOrBoostProduction(),
-				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getRoles(), jou.getDerniereConnexion());
+				jou.getNourritureBoostProduction(), jou.getTempsDeJeu(), jou.getRoles(), jou.getDerniereConnexion(), jou.getDonateur(), jou.getPositionX(), jou.getPositionY());
 		joueur.setId(jou.getId());
 		
 		// SAUVEGARDE
 		joueurRepo.save(joueur);
 		return echangeRessourceDto;
 	}
+	
+	public Integer determinerNiveau(Long experience) {
+		Integer niveau = 1;
+		Long seuil = 5000L;
+		while(experience>0) {
+			experience = experience-seuil;
+			if(experience>=0) {
+				niveau++;
+			}
+			seuil = seuil *2;
+		}
+		return niveau;
+	}
+	
 }

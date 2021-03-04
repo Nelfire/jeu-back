@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import dev.entites.campagne.CampagneJoueur;
 import dev.entites.expedition.ExpeditionJoueur;
 import dev.entites.unitee.Unitee;
 
@@ -29,6 +30,11 @@ public class Armee {
 	@ManyToOne
 	@JoinColumn(name = "expeditionJoueur_id")
     private ExpeditionJoueur expeditionJoueur;
+	
+    /** Campagne Joueur **/
+	@ManyToOne
+	@JoinColumn(name = "campagneJoueur_id")
+    private CampagneJoueur campagneJoueur;
     
 	@ManyToOne
 	@JoinColumn(name = "unitee_id")

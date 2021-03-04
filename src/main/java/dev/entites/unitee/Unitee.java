@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import dev.entites.campagne.CampagneArmee;
 import dev.entites.joueur.Armee;
 
 @Entity
@@ -20,6 +22,11 @@ public class Unitee {
     @OneToMany(mappedBy = "unitee")
     @JsonIgnore 
 	private List<Armee> armee;
+    
+    /** Mode campagne **/
+    @OneToMany(mappedBy = "unitee")
+    @JsonIgnore 
+	private List<CampagneArmee> campagneArmee;
     
     /** id unitee : 
     //1 villageois 
@@ -91,15 +98,19 @@ public class Unitee {
 
     /** points d'armure de l'unitée **/
     private Integer armure;
+    
+    private Integer vitesse;
 
     /** niveau necessaire du bâtiment pour débloquer la formation **/
     private Integer niveauBatimentNecessaireFormation;
+    
     
     /** apport de ressource par heure de l'unitée **/
     private Integer apportRessourcePierreHeure;
     private Integer apportRessourceBoisHeure;
     private Integer apportRessourceOrHeure;
     private Integer apportRessourceNourritureHeure;
+    private Integer apportExperience;
     
     
 	public Unitee() {
@@ -132,9 +143,9 @@ public class Unitee {
 	public Unitee(Integer idTypeUnitee, Integer idBatimentProvenance, String icone, String libelle, String descriptif,
 			Integer coutPierreFormation, Integer coutBoisFormation, Integer coutOrFormation,
 			Integer coutNourritureFormation, Integer coutHumain, Integer tempsFormation, Integer vie, Integer attaque,
-			Integer portee, Integer armure, Integer niveauBatimentNecessaireFormation,
+			Integer portee, Integer armure, Integer vitesse, Integer niveauBatimentNecessaireFormation,
 			Integer apportRessourcePierreHeure, Integer apportRessourceBoisHeure, Integer apportRessourceOrHeure,
-			Integer apportRessourceNourritureHeure) {
+			Integer apportRessourceNourritureHeure, Integer apportExperience) {
 		super();
 		this.idTypeUnitee = idTypeUnitee;
 		this.idBatimentProvenance = idBatimentProvenance;
@@ -151,11 +162,13 @@ public class Unitee {
 		this.attaque = attaque;
 		this.portee = portee;
 		this.armure = armure;
+		this.vitesse = vitesse;
 		this.niveauBatimentNecessaireFormation = niveauBatimentNecessaireFormation;
 		this.apportRessourcePierreHeure = apportRessourcePierreHeure;
 		this.apportRessourceBoisHeure = apportRessourceBoisHeure;
 		this.apportRessourceOrHeure = apportRessourceOrHeure;
 		this.apportRessourceNourritureHeure = apportRessourceNourritureHeure;
+		this.apportExperience = apportExperience;
 	}
 	/**
 	 * @return the id
@@ -349,6 +362,21 @@ public class Unitee {
 	public void setArmure(Integer armure) {
 		this.armure = armure;
 	}
+	
+	
+	
+	/**
+	 * @return the vitesse
+	 */
+	public Integer getVitesse() {
+		return vitesse;
+	}
+	/**
+	 * @param vitesse the vitesse to set
+	 */
+	public void setVitesse(Integer vitesse) {
+		this.vitesse = vitesse;
+	}
 	/**
 	 * @return the niveauBatimentNecessaireFormation
 	 */
@@ -420,6 +448,21 @@ public class Unitee {
 	 */
 	public void setArmee(List<Armee> armee) {
 		this.armee = armee;
+	}
+	
+	
+	
+	/**
+	 * @return the apportExperience
+	 */
+	public Integer getApportExperience() {
+		return apportExperience;
+	}
+	/**
+	 * @param apportExperience the apportExperience to set
+	 */
+	public void setApportExperience(Integer apportExperience) {
+		this.apportExperience = apportExperience;
 	}
 	@Override
 	public String toString() {

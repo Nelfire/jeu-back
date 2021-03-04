@@ -33,34 +33,34 @@ public class JoueurDto {
 	    private Integer niveau;
 	    
 	    /** experience du joueur **/
-	    private Integer experience;
+	    private Long experience;
 	    
 	    /** ressources de pierre que possède le joueur **/
-	    private Integer pierrePossession;
+	    private Long pierrePossession;
 
 	    /** ressources de bois que possède le joueur **/
-	    private Integer boisPossession;
+	    private Long boisPossession;
 
 	    /** ressources d'or que possède le joueur **/
-	    private Integer orPossession;
+	    private Long orPossession;
 
 	    /** ressources de nourriture que possède le joueur **/
-	    private Integer nourriturePossession;
+	    private Long nourriturePossession;
 
 	    /** ressources de gemme que possède le joueur **/
-	    private Integer gemmePossession;
+	    private Long gemmePossession;
 
 	    /** montant maximum de pierre que peut posséder le joueur **/
-	    private Integer pierreMaximum;
+	    private Long pierreMaximum;
 	    
 	    /** montant maximum de bois que peut posséder le joueur **/
-	    private Integer boisMaximum;
+	    private Long boisMaximum;
 	    
 	    /** montant maximum d'or que peut posséder le joueur **/
-	    private Integer orMaximum;
+	    private Long orMaximum;
 	    
 	    /** montant maximum de nourriture que peut posséder le joueur **/
-	    private Integer nourritureMaximum;
+	    private Long nourritureMaximum;
 	    
 	    /** montant du boost de production de pierre pour le joueur **/
 	    private Integer pierreBoostProduction;
@@ -78,10 +78,14 @@ public class JoueurDto {
 	    private Integer tempsDeJeu;
 	    
 	    private Date derniereConnexion;
+	    
+	    private Boolean donateur;
 
 	    /** roles du joueur **/
 	    private List<Role> roles = new ArrayList<>();
 
+	    private Integer positionX;
+	    private Integer positionY;
 	    
 	    public JoueurDto() {
 	    	
@@ -139,6 +143,9 @@ public class JoueurDto {
 			this.tempsDeJeu = jou.getTempsDeJeu();
 			this.roles = jou.getRoles().stream().map(roleJoueur -> roleJoueur.getRole()).collect(Collectors.toList());
 			this.derniereConnexion = jou.getDerniereConnexion();
+			this.donateur = jou.getDonateur();
+			this.positionX = jou.getPositionX();
+			this.positionY = jou.getPositionY();
 		}
 
 		/**
@@ -242,140 +249,140 @@ public class JoueurDto {
 		/**
 		 * @return the experience
 		 */
-		public Integer getExperience() {
+		public Long getExperience() {
 			return experience;
 		}
 
 		/**
 		 * @param experience the experience to set
 		 */
-		public void setExperience(Integer experience) {
+		public void setExperience(Long experience) {
 			this.experience = experience;
 		}
 
 		/**
 		 * @return the pierrePossession
 		 */
-		public Integer getPierrePossession() {
+		public Long getPierrePossession() {
 			return pierrePossession;
 		}
 
 		/**
 		 * @param pierrePossession the pierrePossession to set
 		 */
-		public void setPierrePossession(Integer pierrePossession) {
+		public void setPierrePossession(Long pierrePossession) {
 			this.pierrePossession = pierrePossession;
 		}
 
 		/**
 		 * @return the boisPossession
 		 */
-		public Integer getBoisPossession() {
+		public Long getBoisPossession() {
 			return boisPossession;
 		}
 
 		/**
 		 * @param boisPossession the boisPossession to set
 		 */
-		public void setBoisPossession(Integer boisPossession) {
+		public void setBoisPossession(Long boisPossession) {
 			this.boisPossession = boisPossession;
 		}
 
 		/**
 		 * @return the orPossession
 		 */
-		public Integer getOrPossession() {
+		public Long getOrPossession() {
 			return orPossession;
 		}
 
 		/**
 		 * @param orPossession the orPossession to set
 		 */
-		public void setOrPossession(Integer orPossession) {
+		public void setOrPossession(Long orPossession) {
 			this.orPossession = orPossession;
 		}
 
 		/**
 		 * @return the nourriturePossession
 		 */
-		public Integer getNourriturePossession() {
+		public Long getNourriturePossession() {
 			return nourriturePossession;
 		}
 
 		/**
 		 * @param nourriturePossession the nourriturePossession to set
 		 */
-		public void setNourriturePossession(Integer nourriturePossession) {
+		public void setNourriturePossession(Long nourriturePossession) {
 			this.nourriturePossession = nourriturePossession;
 		}
 
 		/**
 		 * @return the gemmePossession
 		 */
-		public Integer getGemmePossession() {
+		public Long getGemmePossession() {
 			return gemmePossession;
 		}
 
 		/**
 		 * @param gemmePossession the gemmePossession to set
 		 */
-		public void setGemmePossession(Integer gemmePossession) {
+		public void setGemmePossession(Long gemmePossession) {
 			this.gemmePossession = gemmePossession;
 		}
 
 		/**
 		 * @return the pierreMaximum
 		 */
-		public Integer getPierreMaximum() {
+		public Long getPierreMaximum() {
 			return pierreMaximum;
 		}
 
 		/**
 		 * @param pierreMaximum the pierreMaximum to set
 		 */
-		public void setPierreMaximum(Integer pierreMaximum) {
+		public void setPierreMaximum(Long pierreMaximum) {
 			this.pierreMaximum = pierreMaximum;
 		}
 
 		/**
 		 * @return the boisMaximum
 		 */
-		public Integer getBoisMaximum() {
+		public Long getBoisMaximum() {
 			return boisMaximum;
 		}
 
 		/**
 		 * @param boisMaximum the boisMaximum to set
 		 */
-		public void setBoisMaximum(Integer boisMaximum) {
+		public void setBoisMaximum(Long boisMaximum) {
 			this.boisMaximum = boisMaximum;
 		}
 
 		/**
 		 * @return the orMaximum
 		 */
-		public Integer getOrMaximum() {
+		public Long getOrMaximum() {
 			return orMaximum;
 		}
 
 		/**
 		 * @param orMaximum the orMaximum to set
 		 */
-		public void setOrMaximum(Integer orMaximum) {
+		public void setOrMaximum(Long orMaximum) {
 			this.orMaximum = orMaximum;
 		}
 
 		/**
 		 * @return the nourritureMaximum
 		 */
-		public Integer getNourritureMaximum() {
+		public Long getNourritureMaximum() {
 			return nourritureMaximum;
 		}
 
 		/**
 		 * @param nourritureMaximum the nourritureMaximum to set
 		 */
-		public void setNourritureMaximum(Integer nourritureMaximum) {
+		public void setNourritureMaximum(Long nourritureMaximum) {
 			this.nourritureMaximum = nourritureMaximum;
 		}
 
@@ -475,6 +482,48 @@ public class JoueurDto {
 		 */
 		public void setDerniereConnexion(Date derniereConnexion) {
 			this.derniereConnexion = derniereConnexion;
+		}
+
+		/**
+		 * @return the donateur
+		 */
+		public Boolean getDonateur() {
+			return donateur;
+		}
+
+		/**
+		 * @param donateur the donateur to set
+		 */
+		public void setDonateur(Boolean donateur) {
+			this.donateur = donateur;
+		}
+
+		/**
+		 * @return the positionX
+		 */
+		public Integer getPositionX() {
+			return positionX;
+		}
+
+		/**
+		 * @param positionX the positionX to set
+		 */
+		public void setPositionX(Integer positionX) {
+			this.positionX = positionX;
+		}
+
+		/**
+		 * @return the positionY
+		 */
+		public Integer getPositionY() {
+			return positionY;
+		}
+
+		/**
+		 * @param positionY the positionY to set
+		 */
+		public void setPositionY(Integer positionY) {
+			this.positionY = positionY;
 		}
 
 

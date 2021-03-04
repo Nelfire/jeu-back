@@ -31,7 +31,7 @@ public class UniteeService {
 	 * CREATION D'UN NOUVEAU TYPE D'UNITEE (Menu administrateur)
 	 */
 	public Unitee administrationCreerUnitee(Unitee unitee) {
-		Unitee unite = new Unitee(unitee.getIdTypeUnitee(),unitee.getIdBatimentProvenance(),unitee.getIcone(),unitee.getLibelle() ,unitee.getDescriptif(), unitee.getCoutPierreFormation(), unitee.getCoutBoisFormation(), unitee.getCoutOrFormation(), unitee.getCoutNourritureFormation(), unitee.getCoutHumain(), unitee.getTempsFormation(), unitee.getVie(), unitee.getAttaque(), unitee.getPortee(), unitee.getArmure(), unitee.getNiveauBatimentNecessaireFormation(), unitee.getApportRessourcePierreHeure(), unitee.getApportRessourceBoisHeure(), unitee.getApportRessourceOrHeure(), unitee.getApportRessourceNourritureHeure());
+		Unitee unite = new Unitee(unitee.getIdTypeUnitee(),unitee.getIdBatimentProvenance(),unitee.getIcone(),unitee.getLibelle() ,unitee.getDescriptif(), unitee.getCoutPierreFormation(), unitee.getCoutBoisFormation(), unitee.getCoutOrFormation(), unitee.getCoutNourritureFormation(), unitee.getCoutHumain(), unitee.getTempsFormation(), unitee.getVie(), unitee.getAttaque(), unitee.getPortee(), unitee.getArmure(), unitee.getVitesse(), unitee.getNiveauBatimentNecessaireFormation(), unitee.getApportRessourcePierreHeure(), unitee.getApportRessourceBoisHeure(), unitee.getApportRessourceOrHeure(), unitee.getApportRessourceNourritureHeure(), unitee.getApportExperience());
 		uniteeRepo.save(unite);
 		return unite;
 	}
@@ -41,7 +41,7 @@ public class UniteeService {
 	 */
 	public List<UniteeDto> listerDifferentesUnitees() {
 		List<UniteeDto> listeUnitees = new ArrayList<>();
-		for (Unitee unitee : uniteeRepo.findAll()) {
+		for (Unitee unitee : uniteeRepo.findAllByOrderByAttaqueAsc()) {
 			UniteeDto uniteeDto = new UniteeDto();
 			uniteeDto.setId(unitee.getId());
 			uniteeDto.setIdTypeUnitee(unitee.getIdTypeUnitee());
@@ -59,11 +59,13 @@ public class UniteeService {
 			uniteeDto.setAttaque(unitee.getAttaque());
 			uniteeDto.setPortee(unitee.getPortee());
 			uniteeDto.setArmure(unitee.getArmure());
+			uniteeDto.setVitesse(unitee.getVitesse());
 			uniteeDto.setNiveauBatimentNecessaireFormation(unitee.getNiveauBatimentNecessaireFormation());
 			uniteeDto.setApportRessourcePierreHeure(unitee.getApportRessourcePierreHeure());
 			uniteeDto.setApportRessourceBoisHeure(unitee.getApportRessourceBoisHeure());
 			uniteeDto.setApportRessourceOrHeure(unitee.getApportRessourceOrHeure());
 			uniteeDto.setApportRessourceNourritureHeure(unitee.getApportRessourceNourritureHeure());
+			uniteeDto.setApportExperience(unitee.getApportExperience());
 			listeUnitees.add(uniteeDto);
 		}
 		return listeUnitees;
@@ -92,11 +94,13 @@ public class UniteeService {
 			uniteeDto.setAttaque(unitee.getAttaque());
 			uniteeDto.setPortee(unitee.getPortee());
 			uniteeDto.setArmure(unitee.getArmure());
+			uniteeDto.setVitesse(unitee.getVitesse());
 			uniteeDto.setNiveauBatimentNecessaireFormation(unitee.getNiveauBatimentNecessaireFormation());
 			uniteeDto.setApportRessourcePierreHeure(unitee.getApportRessourcePierreHeure());
 			uniteeDto.setApportRessourceBoisHeure(unitee.getApportRessourceBoisHeure());
 			uniteeDto.setApportRessourceOrHeure(unitee.getApportRessourceOrHeure());
 			uniteeDto.setApportRessourceNourritureHeure(unitee.getApportRessourceNourritureHeure());
+			uniteeDto.setApportExperience(unitee.getApportExperience());
 			listeUniteeDivers.add(uniteeDto);
 		}
 		return listeUniteeDivers;
@@ -125,11 +129,13 @@ public class UniteeService {
 			uniteeDto.setAttaque(unitee.getAttaque());
 			uniteeDto.setPortee(unitee.getPortee());
 			uniteeDto.setArmure(unitee.getArmure());
+			uniteeDto.setVitesse(unitee.getVitesse());
 			uniteeDto.setNiveauBatimentNecessaireFormation(unitee.getNiveauBatimentNecessaireFormation());
 			uniteeDto.setApportRessourcePierreHeure(unitee.getApportRessourcePierreHeure());
 			uniteeDto.setApportRessourceBoisHeure(unitee.getApportRessourceBoisHeure());
 			uniteeDto.setApportRessourceOrHeure(unitee.getApportRessourceOrHeure());
 			uniteeDto.setApportRessourceNourritureHeure(unitee.getApportRessourceNourritureHeure());
+			uniteeDto.setApportExperience(unitee.getApportExperience());
 			listeUniteeInfanterie.add(uniteeDto);
 		}
 		return listeUniteeInfanterie;
@@ -158,11 +164,13 @@ public class UniteeService {
 			uniteeDto.setAttaque(unitee.getAttaque());
 			uniteeDto.setPortee(unitee.getPortee());
 			uniteeDto.setArmure(unitee.getArmure());
+			uniteeDto.setVitesse(unitee.getVitesse());
 			uniteeDto.setNiveauBatimentNecessaireFormation(unitee.getNiveauBatimentNecessaireFormation());
 			uniteeDto.setApportRessourcePierreHeure(unitee.getApportRessourcePierreHeure());
 			uniteeDto.setApportRessourceBoisHeure(unitee.getApportRessourceBoisHeure());
 			uniteeDto.setApportRessourceOrHeure(unitee.getApportRessourceOrHeure());
 			uniteeDto.setApportRessourceNourritureHeure(unitee.getApportRessourceNourritureHeure());
+			uniteeDto.setApportExperience(unitee.getApportExperience());
 			listeUniteeCavalerie.add(uniteeDto);
 		}
 		return listeUniteeCavalerie;
@@ -191,11 +199,13 @@ public class UniteeService {
 			uniteeDto.setAttaque(unitee.getAttaque());
 			uniteeDto.setPortee(unitee.getPortee());
 			uniteeDto.setArmure(unitee.getArmure());
+			uniteeDto.setVitesse(unitee.getVitesse());
 			uniteeDto.setNiveauBatimentNecessaireFormation(unitee.getNiveauBatimentNecessaireFormation());
 			uniteeDto.setApportRessourcePierreHeure(unitee.getApportRessourcePierreHeure());
 			uniteeDto.setApportRessourceBoisHeure(unitee.getApportRessourceBoisHeure());
 			uniteeDto.setApportRessourceOrHeure(unitee.getApportRessourceOrHeure());
 			uniteeDto.setApportRessourceNourritureHeure(unitee.getApportRessourceNourritureHeure());
+			uniteeDto.setApportExperience(unitee.getApportExperience());
 			listeUniteeSiege.add(uniteeDto);
 		}
 		return listeUniteeSiege;
@@ -224,11 +234,13 @@ public class UniteeService {
 			uniteeDto.setAttaque(unitee.getAttaque());
 			uniteeDto.setPortee(unitee.getPortee());
 			uniteeDto.setArmure(unitee.getArmure());
+			uniteeDto.setVitesse(unitee.getVitesse());
 			uniteeDto.setNiveauBatimentNecessaireFormation(unitee.getNiveauBatimentNecessaireFormation());
 			uniteeDto.setApportRessourcePierreHeure(unitee.getApportRessourcePierreHeure());
 			uniteeDto.setApportRessourceBoisHeure(unitee.getApportRessourceBoisHeure());
 			uniteeDto.setApportRessourceOrHeure(unitee.getApportRessourceOrHeure());
 			uniteeDto.setApportRessourceNourritureHeure(unitee.getApportRessourceNourritureHeure());
+			uniteeDto.setApportExperience(unitee.getApportExperience());
 			listeUniteeNavale.add(uniteeDto);
 		}
 		return listeUniteeNavale;
@@ -265,11 +277,13 @@ public class UniteeService {
 		unitee.setAttaque(uniteeDto.getAttaque());
 		unitee.setPortee(uniteeDto.getPortee());
 		unitee.setArmure(uniteeDto.getArmure());
+		unitee.setVitesse(uniteeDto.getVitesse());
 		unitee.setNiveauBatimentNecessaireFormation(uniteeDto.getNiveauBatimentNecessaireFormation());
 		unitee.setApportRessourcePierreHeure(uniteeDto.getApportRessourcePierreHeure());
 		unitee.setApportRessourceBoisHeure(uniteeDto.getApportRessourceBoisHeure());
 		unitee.setApportRessourceOrHeure(uniteeDto.getApportRessourceOrHeure());
 		unitee.setApportRessourceNourritureHeure(uniteeDto.getApportRessourceNourritureHeure());
+		unitee.setApportExperience(uniteeDto.getApportExperience());
 		
 		Unitee uni = new Unitee(unitee.getIdTypeUnitee(),
 				unitee.getIdBatimentProvenance(),
@@ -286,11 +300,13 @@ public class UniteeService {
 				unitee.getAttaque(),
 				unitee.getPortee(),
 				unitee.getArmure(),
+				unitee.getVitesse(),
 				unitee.getNiveauBatimentNecessaireFormation(),
 				unitee.getApportRessourcePierreHeure(),
 				unitee.getApportRessourceBoisHeure(),
 				unitee.getApportRessourceOrHeure(),
-				unitee.getApportRessourceNourritureHeure());
+				unitee.getApportRessourceNourritureHeure(),
+				unitee.getApportExperience());
 		uni.setId(unitee.getId());
 		this.uniteeRepo.save(uni);
 		return unitee;

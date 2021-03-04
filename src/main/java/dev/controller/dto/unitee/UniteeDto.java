@@ -70,6 +70,8 @@ public class UniteeDto {
 
     /** points d'armure de l'unitée **/
     private Integer armure;
+    
+    private Integer vitesse;
 
     /** niveau necessaire du bâtiment pour débloquer la formation **/
     private Integer niveauBatimentNecessaireFormation;
@@ -79,6 +81,8 @@ public class UniteeDto {
     private Integer apportRessourceBoisHeure;
     private Integer apportRessourceOrHeure;
     private Integer apportRessourceNourritureHeure;
+    private Integer apportExperience;
+
     
 	public UniteeDto() {
 	}
@@ -123,11 +127,13 @@ public class UniteeDto {
 		this.attaque = unitee.getAttaque();
 		this.portee = unitee.getPortee();
 		this.armure = unitee.getArmure();
+		this.vitesse = unitee.getVitesse();
 		this.niveauBatimentNecessaireFormation = unitee.getNiveauBatimentNecessaireFormation();
 		this.apportRessourcePierreHeure = unitee.getApportRessourcePierreHeure();
 		this.apportRessourceBoisHeure = unitee.getApportRessourceBoisHeure();
 		this.apportRessourceOrHeure = unitee.getApportRessourceOrHeure();
 		this.apportRessourceNourritureHeure = unitee.getApportRessourceNourritureHeure();
+		this.apportExperience = unitee.getApportExperience();
 	}
 	/**
 	 * @return the id
@@ -321,6 +327,20 @@ public class UniteeDto {
 	public void setArmure(Integer armure) {
 		this.armure = armure;
 	}
+	
+	
+	/**
+	 * @return the vitesse
+	 */
+	public Integer getVitesse() {
+		return vitesse;
+	}
+	/**
+	 * @param vitesse the vitesse to set
+	 */
+	public void setVitesse(Integer vitesse) {
+		this.vitesse = vitesse;
+	}
 	/**
 	 * @return the niveauBatimentNecessaireFormation
 	 */
@@ -380,6 +400,21 @@ public class UniteeDto {
 	 */
 	public void setApportRessourceNourritureHeure(Integer apportRessourceNourritureHeure) {
 		this.apportRessourceNourritureHeure = apportRessourceNourritureHeure;
+	}
+	
+	
+	
+	/**
+	 * @return the apportExperience
+	 */
+	public Integer getApportExperience() {
+		return apportExperience;
+	}
+	/**
+	 * @param apportExperience the apportExperience to set
+	 */
+	public void setApportExperience(Integer apportExperience) {
+		this.apportExperience = apportExperience;
 	}
 	@Override
 	public String toString() {

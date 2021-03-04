@@ -76,7 +76,7 @@ public class DefenseService {
 	 */
 	public DefenseDto detailsDefense(Integer idDefense) {
 		Optional<Defense> defense = defenseRepo.findById(idDefense);
-		DefenseDto def = new DefenseDto(defense.get().getIdTypeDefense(),defense.get().getTypeDefense(),defense.get().getIcone(),defense.get().getLibelle(),defense.get().getDescription(),defense.get().getCoutPierreConstruction(),defense.get().getCoutBoisConstruction(),defense.get().getCoutOrConstruction(),defense.get().getCoutNourritureConstruction(),defense.get().getVie(),defense.get().getAttaque(),defense.get().getBouclier(),defense.get().getTempsConstruction(),defense.get().getNiveauBatimentNecessaireConstruction(),defense.get().getIdBatimentProvenance());
+		DefenseDto def = new DefenseDto(defense.get().getIdTypeDefense(),defense.get().getTypeDefense(),defense.get().getIcone(),defense.get().getLibelle(),defense.get().getDescription(),defense.get().getCoutPierreConstruction(),defense.get().getCoutBoisConstruction(),defense.get().getCoutOrConstruction(),defense.get().getCoutNourritureConstruction(),defense.get().getVie(),defense.get().getAttaque(),defense.get().getPortee(),defense.get().getArmure(),defense.get().getTempsConstruction(),defense.get().getNiveauBatimentNecessaireConstruction(),defense.get().getIdBatimentProvenance(), defense.get().getApportExperience());
 		return def;
 	}
 
@@ -98,10 +98,12 @@ public class DefenseService {
 		defense.setCoutNourritureConstruction(defenseDto.getCoutNourritureConstruction());
 		defense.setVie(defenseDto.getVie());
 		defense.setAttaque(defenseDto.getAttaque());
-		defense.setBouclier(defenseDto.getBouclier());
+		defense.setPortee(defenseDto.getPortee());
+		defense.setArmure(defenseDto.getArmure());
 		defense.setTempsConstruction(defenseDto.getTempsConstruction());
 		defense.setNiveauBatimentNecessaireConstruction(defenseDto.getNiveauBatimentNecessaireConstruction());
 		defense.setIdBatimentProvenance(defenseDto.getIdBatimentProvenance());
+		defense.setApportExperience(defenseDto.getApportExperience());
 
 
 		Defense def = new Defense(
@@ -116,10 +118,12 @@ public class DefenseService {
 				defense.getCoutNourritureConstruction(),
 				defense.getVie(),
 				defense.getAttaque(),
-				defense.getBouclier(),
+				defense.getPortee(),
+				defense.getArmure(),
 				defense.getTempsConstruction(),
 				defense.getNiveauBatimentNecessaireConstruction(),
-				defense.getIdBatimentProvenance());
+				defense.getIdBatimentProvenance(),
+				defense.getApportExperience());
 		def.setId(defense.getId());
 		this.defenseRepo.save(def);
 		return defense;

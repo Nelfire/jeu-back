@@ -11,4 +11,6 @@ public interface UniteeRepo extends JpaRepository<Unitee, Integer> {
 
 	List<Unitee> findByIdTypeUnitee(Integer idTypeUnitee);
 	
+	List<Unitee> findAllByOrderByAttaqueAsc();
+	
 }

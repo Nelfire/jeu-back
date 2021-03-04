@@ -3,7 +3,12 @@ package dev.services.joueur;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Service;
+
+import dev.controller.dto.batiment.BatimentJoueurDto;
 import dev.controller.dto.joueur.ArmeeDto;
 import dev.controller.dto.joueur.ArmeeJoueurCreationDto;
 import dev.controller.dto.unitee.UniteeDto;
@@ -46,10 +51,10 @@ public class ArmeeService {
 		Boolean flag = false;
 		Integer idArmee = 0;
 		Integer quantitee = 0;
-		Integer quantiteePierreManquante;
-		Integer quantiteeBoisManquant;
-		Integer quantiteeOrManquant;
-		Integer quantiteeNourritureManquante;
+		Long quantiteePierreManquante;
+		Long quantiteeBoisManquant;
+		Long quantiteeOrManquant;
+		Long quantiteeNourritureManquante;
 		Long tempsDebutFormation = 0L;
 		Long tempsFinFormation = 0L;
 		Long finProduction = 0L;
@@ -78,12 +83,14 @@ public class ArmeeService {
 		uni.setApportRessourceBoisHeure(un.getApportRessourceBoisHeure());
 		uni.setApportRessourceOrHeure(un.getApportRessourceOrHeure());
 		uni.setApportRessourceNourritureHeure(un.getApportRessourceNourritureHeure());
+		uni.setApportExperience(un.getApportExperience());
 
 		// INITIALISATIONS DES COÛTS DE FORMATIONS (COÛT UNITÉE RESSOURCE X QUANTITÉE)
 		Integer coutPierreOperation = uni.getCoutPierreFormation() * armeeJoueurCreationDto.getQuantitee();
 		Integer coutBoisOperation = uni.getCoutBoisFormation() * armeeJoueurCreationDto.getQuantitee();
 		Integer coutOrOperation = uni.getCoutOrFormation() * armeeJoueurCreationDto.getQuantitee();
 		Integer coutNourritureOperation = uni.getCoutNourritureFormation() * armeeJoueurCreationDto.getQuantitee();
+		Integer experienceOperation = uni.getApportExperience() * armeeJoueurCreationDto.getQuantitee();
 
 		/* VÉRIFICATIONS : LE JOUEUR À T'IL ASSEZ DE RESSOURCES ?? */
 		// - SI RESSOURCES INSUFFISANTES 
@@ -155,8 +162,13 @@ public class ArmeeService {
 		jou.setBoisPossession(jou.getBoisPossession()-coutBoisOperation);
 		jou.setOrPossession(jou.getOrPossession()-coutOrOperation);
 		jou.setNourriturePossession(jou.getNourriturePossession()-coutNourritureOperation);
+		jou.setExperience(jou.getExperience() + experienceOperation);
 		
-		Joueur joueur = new Joueur(jou.getArmee(),jou.getIcone(),jou.getPseudo(),jou.getEmail(),jou.getMotDePasse(),jou.getDescriptif(),jou.getNiveau(),jou.getExperience(),jou.getPierrePossession(),jou.getBoisPossession(),jou.getOrPossession(),jou.getNourriturePossession(),jou.getGemmePossession(),jou.getPierreMaximum(),jou.getBoisMaximum(),jou.getOrMaximum(),jou.getNourritureMaximum(),jou.getPierreBoostProduction(),jou.getBoisBoostProduction(),jou.getOrBoostProduction(),jou.getNourritureBoostProduction(),jou.getTempsDeJeu(),jou.getRoles(), jou.getDerniereConnexion());
+		// DETERMINE LE NIVEAU DU JOUEUR EN FONCTION DE SON XP
+		Integer niveau = this.joueurService.determinerNiveau(jou.getExperience());
+		jou.setNiveau(niveau);
+		
+		Joueur joueur = new Joueur(jou.getArmee(),jou.getIcone(),jou.getPseudo(),jou.getEmail(),jou.getMotDePasse(),jou.getDescriptif(),jou.getNiveau(),jou.getExperience(),jou.getPierrePossession(),jou.getBoisPossession(),jou.getOrPossession(),jou.getNourriturePossession(),jou.getGemmePossession(),jou.getPierreMaximum(),jou.getBoisMaximum(),jou.getOrMaximum(),jou.getNourritureMaximum(),jou.getPierreBoostProduction(),jou.getBoisBoostProduction(),jou.getOrBoostProduction(),jou.getNourritureBoostProduction(),jou.getTempsDeJeu(),jou.getRoles(), jou.getDerniereConnexion(), jou.getDonateur(), jou.getPositionX(), jou.getPositionY());
 		joueur.setId(jou.getId());
 		
 		// MISE A JOUR DE L'ARMEE
@@ -193,5 +205,63 @@ public class ArmeeService {
 		
 		// RETOUR
 		return listeArmeesDuJoueur;
+	}
+	
+	public ArmeeDto accelerationFormationUnite(@Valid ArmeeDto arm, Integer id) {
+		this.joueurService.getInfoJoueur();
+		// RÉCUPÉRATION DU JOUEUR CONNECTÉ.
+		Joueur jou = joueurService.recuperationJoueur();
+		
+		// INITIALISATION
+		Date now = new Date();
+		Double coutGemmeAcceleration = null;
+		
+		
+		ArmeeDto armeeDto = new ArmeeDto();
+
+		// PARCOURIR LES ARMÉES QUE POSSÈDE DÉJÀ LE JOUEUR
+		for (Armee arme : armeeRepo.findByJoueur(jou)) {
+			// - S'il possède déjà un type d'unitée, récupération des données (L'id de l'armée, et la quantitée d'unitées)
+			if(arme.getUnitee().getId()==id) {
+				Armee armeeGemmee = new Armee();
+				armeeGemmee.setId(arme.getId());
+				armeeGemmee.setJoueur(jou);
+				armeeGemmee.setUnitee(arme.getUnitee());
+				armeeGemmee.setQuantitee(arme.getQuantitee());
+				armeeGemmee.setDateDebutProduction(arme.getDateDebutProduction());
+				armeeGemmee.setDateFinProduction(now.getTime());
+				
+				// Vérification temps restant à la construction
+				Integer secondesRestantes = (int)Math.ceil((arme.getDateFinProduction()-now.getTime())/1000);;
+				// Cout en gemmes
+				coutGemmeAcceleration = Math.ceil((double) secondesRestantes/60);
+
+				
+				if(jou.getGemmePossession() < coutGemmeAcceleration) {
+					Integer quantiteeGemmeManquante = (int) (coutGemmeAcceleration-jou.getGemmePossession());
+					throw new RessourceManquanteException("Il vous manque "+quantiteeGemmeManquante+" gemmes pour lancer l'accélération de vos troupes.");
+				}	
+
+				this.armeeRepo.save(armeeGemmee);
+				
+				armeeDto.setId(armeeGemmee.getId());
+				armeeDto.setJoueur(armeeGemmee.getJoueur());
+				armeeDto.setUnitee(armeeGemmee.getUnitee());
+				armeeDto.setQuantitee(armeeGemmee.getQuantitee());
+				armeeDto.setDateDebutProduction(armeeGemmee.getDateDebutProduction());
+				armeeDto.setDateFinProduction(armeeGemmee.getDateFinProduction());
+			}
+		}
+		
+		jou.setGemmePossession( (long) (jou.getGemmePossession() - coutGemmeAcceleration));
+		
+		// MISE A JOUR DONNEES
+		Joueur joueur = new Joueur(jou.getArmee(),jou.getIcone(),jou.getPseudo(),jou.getEmail(),jou.getMotDePasse(),jou.getDescriptif(),jou.getNiveau(),jou.getExperience(),jou.getPierrePossession(),jou.getBoisPossession(),jou.getOrPossession(),jou.getNourriturePossession(),jou.getGemmePossession(),jou.getPierreMaximum(),jou.getBoisMaximum(),jou.getOrMaximum(),jou.getNourritureMaximum(),jou.getPierreBoostProduction(),jou.getBoisBoostProduction(),jou.getOrBoostProduction(),jou.getNourritureBoostProduction(),jou.getTempsDeJeu(),jou.getRoles(), jou.getDerniereConnexion(), jou.getDonateur(), jou.getPositionX(), jou.getPositionY());
+		joueur.setId(jou.getId());
+		
+		// SAUVEGARDE
+		this.joueurRepo.save(jou);
+
+		return armeeDto;
 	}
 }

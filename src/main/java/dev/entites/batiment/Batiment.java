@@ -70,19 +70,19 @@ public class Batiment {
     
     
     /** coût en pierre construction du batiment **/
-    private Integer coutPierreConstruction;
+    private Long coutPierreConstruction;
     
     
     /** coût en bois construction du batiment **/
-    private Integer coutBoisConstruction;
+    private Long coutBoisConstruction;
     
 
     /** coût en or construction du batiment **/
-    private Integer coutOrConstruction;
+    private Long coutOrConstruction;
     
 
     /** coût en nourriture construction du batiment **/
-    private Integer coutNourritureConstruction;
+    private Long coutNourritureConstruction;
 
     
     /** niveau necessaire de l'hotel de ville pour la construction du bâtiment **/
@@ -90,13 +90,13 @@ public class Batiment {
     
     
     /** quantitée de pierre stockable dans la chambre forte du batiment**/
-    private Integer quantiteeStockagePierre;
+    private Long quantiteeStockagePierre;
     /** quantitée de bois stockable dans la chambre forte du batiment**/
-    private Integer quantiteeStockageBois;
+    private Long quantiteeStockageBois;
     /** quantitée d'or stockable dans la chambre forte du batiment**/
-    private Integer quantiteeStockageOre;
+    private Long quantiteeStockageOre;
     /** quantitée de nourriture stockable dans la chambre forte du batiment**/
-    private Integer quantiteeStockageNourriture;
+    private Long quantiteeStockageNourriture;
     /** montant de l'apport de ressource (pierre) par heure (pour 100% exploitants) **/
     private Integer apportPierreHeure;
     /** montant de l'apport de ressource (bois) par heure (pour 100% exploitants) **/
@@ -105,10 +105,14 @@ public class Batiment {
     private Integer apportOreHeure;
     /** montant de l'apport de ressource (nourriture) par heure (pour 100% exploitants) **/
     private Integer apportNourritureHeure;
+    
+    private Long apportExperience;
 
 
-    private Integer multiplicateurApport;
-    private Integer multiplicateurCout;
+    private Double multiplicateurExperience;
+    private Double multiplicateurTemps;
+    private Double multiplicateurApport;
+    private Double multiplicateurCout;
 
     /**
      * CONSTRUCTEUR VIDE
@@ -139,11 +143,11 @@ public class Batiment {
 	 * @param apportNourritureHeure
 	 */
 	public Batiment(Integer idTypeBatiment,Integer idCategorieBatiment, String icone, String libelle, String descriptif,
-			Integer ouvrierNecessaireConstruction, Integer tempsDeConstruction, Integer coutPierreConstruction,
-			Integer coutBoisConstruction, Integer coutOrConstruction, Integer coutNourritureConstruction,
-			Integer niveauHotelDeVilleNecessaireConstruction, Integer quantiteeStockagePierre,
-			Integer quantiteeStockageBois, Integer quantiteeStockageOre, Integer quantiteeStockageNourriture,
-			Integer apportPierreHeure, Integer apportBoisHeure, Integer apportOreHeure, Integer apportNourritureHeure, Integer multiplicateurApport, Integer multiplicateurCout) {
+			Integer ouvrierNecessaireConstruction, Integer tempsDeConstruction, Long coutPierreConstruction,
+			Long coutBoisConstruction, Long coutOrConstruction, Long coutNourritureConstruction,
+			Integer niveauHotelDeVilleNecessaireConstruction, Long quantiteeStockagePierre,
+			Long quantiteeStockageBois, Long quantiteeStockageOre, Long quantiteeStockageNourriture,
+			Integer apportPierreHeure, Integer apportBoisHeure, Integer apportOreHeure, Integer apportNourritureHeure, Long apportExperience, Double multiplicateurExperience, Double multiplicateurTemps, Double multiplicateurApport, Double multiplicateurCout) {
 		super();
 		this.idTypeBatiment = idTypeBatiment;
 		this.idCategorieBatiment = idCategorieBatiment;
@@ -165,6 +169,9 @@ public class Batiment {
 		this.apportBoisHeure = apportBoisHeure;
 		this.apportOreHeure = apportOreHeure;
 		this.apportNourritureHeure = apportNourritureHeure;
+		this.apportExperience = apportExperience;
+		this.multiplicateurExperience = multiplicateurExperience;
+		this.multiplicateurTemps = multiplicateurTemps;
 		this.multiplicateurApport = multiplicateurApport;
 		this.multiplicateurCout = multiplicateurCout;
 	}
@@ -318,7 +325,7 @@ public class Batiment {
 	/**
 	 * @return the coutPierreConstruction
 	 */
-	public Integer getCoutPierreConstruction() {
+	public Long getCoutPierreConstruction() {
 		return coutPierreConstruction;
 	}
 
@@ -326,7 +333,7 @@ public class Batiment {
 	/**
 	 * @param coutPierreConstruction the coutPierreConstruction to set
 	 */
-	public void setCoutPierreConstruction(Integer coutPierreConstruction) {
+	public void setCoutPierreConstruction(Long coutPierreConstruction) {
 		this.coutPierreConstruction = coutPierreConstruction;
 	}
 
@@ -334,7 +341,7 @@ public class Batiment {
 	/**
 	 * @return the coutBoisConstruction
 	 */
-	public Integer getCoutBoisConstruction() {
+	public Long getCoutBoisConstruction() {
 		return coutBoisConstruction;
 	}
 
@@ -342,7 +349,7 @@ public class Batiment {
 	/**
 	 * @param coutBoisConstruction the coutBoisConstruction to set
 	 */
-	public void setCoutBoisConstruction(Integer coutBoisConstruction) {
+	public void setCoutBoisConstruction(Long coutBoisConstruction) {
 		this.coutBoisConstruction = coutBoisConstruction;
 	}
 
@@ -350,7 +357,7 @@ public class Batiment {
 	/**
 	 * @return the coutOrConstruction
 	 */
-	public Integer getCoutOrConstruction() {
+	public Long getCoutOrConstruction() {
 		return coutOrConstruction;
 	}
 
@@ -358,7 +365,7 @@ public class Batiment {
 	/**
 	 * @param coutOrConstruction the coutOrConstruction to set
 	 */
-	public void setCoutOrConstruction(Integer coutOrConstruction) {
+	public void setCoutOrConstruction(Long coutOrConstruction) {
 		this.coutOrConstruction = coutOrConstruction;
 	}
 
@@ -366,7 +373,7 @@ public class Batiment {
 	/**
 	 * @return the coutNourritureConstruction
 	 */
-	public Integer getCoutNourritureConstruction() {
+	public Long getCoutNourritureConstruction() {
 		return coutNourritureConstruction;
 	}
 
@@ -374,7 +381,7 @@ public class Batiment {
 	/**
 	 * @param coutNourritureConstruction the coutNourritureConstruction to set
 	 */
-	public void setCoutNourritureConstruction(Integer coutNourritureConstruction) {
+	public void setCoutNourritureConstruction(Long coutNourritureConstruction) {
 		this.coutNourritureConstruction = coutNourritureConstruction;
 	}
 
@@ -398,7 +405,7 @@ public class Batiment {
 	/**
 	 * @return the quantiteeStockagePierre
 	 */
-	public Integer getQuantiteeStockagePierre() {
+	public Long getQuantiteeStockagePierre() {
 		return quantiteeStockagePierre;
 	}
 
@@ -406,7 +413,7 @@ public class Batiment {
 	/**
 	 * @param quantiteeStockagePierre the quantiteeStockagePierre to set
 	 */
-	public void setQuantiteeStockagePierre(Integer quantiteeStockagePierre) {
+	public void setQuantiteeStockagePierre(Long quantiteeStockagePierre) {
 		this.quantiteeStockagePierre = quantiteeStockagePierre;
 	}
 
@@ -414,7 +421,7 @@ public class Batiment {
 	/**
 	 * @return the quantiteeStockageBois
 	 */
-	public Integer getQuantiteeStockageBois() {
+	public Long getQuantiteeStockageBois() {
 		return quantiteeStockageBois;
 	}
 
@@ -422,7 +429,7 @@ public class Batiment {
 	/**
 	 * @param quantiteeStockageBois the quantiteeStockageBois to set
 	 */
-	public void setQuantiteeStockageBois(Integer quantiteeStockageBois) {
+	public void setQuantiteeStockageBois(Long quantiteeStockageBois) {
 		this.quantiteeStockageBois = quantiteeStockageBois;
 	}
 
@@ -430,7 +437,7 @@ public class Batiment {
 	/**
 	 * @return the quantiteeStockageOre
 	 */
-	public Integer getQuantiteeStockageOre() {
+	public Long getQuantiteeStockageOre() {
 		return quantiteeStockageOre;
 	}
 
@@ -438,7 +445,7 @@ public class Batiment {
 	/**
 	 * @param quantiteeStockageOre the quantiteeStockageOre to set
 	 */
-	public void setQuantiteeStockageOre(Integer quantiteeStockageOre) {
+	public void setQuantiteeStockageOre(Long quantiteeStockageOre) {
 		this.quantiteeStockageOre = quantiteeStockageOre;
 	}
 
@@ -446,7 +453,7 @@ public class Batiment {
 	/**
 	 * @return the quantiteeStockageNourriture
 	 */
-	public Integer getQuantiteeStockageNourriture() {
+	public Long getQuantiteeStockageNourriture() {
 		return quantiteeStockageNourriture;
 	}
 
@@ -454,7 +461,7 @@ public class Batiment {
 	/**
 	 * @param quantiteeStockageNourriture the quantiteeStockageNourriture to set
 	 */
-	public void setQuantiteeStockageNourriture(Integer quantiteeStockageNourriture) {
+	public void setQuantiteeStockageNourriture(Long quantiteeStockageNourriture) {
 		this.quantiteeStockageNourriture = quantiteeStockageNourriture;
 	}
 
@@ -523,10 +530,60 @@ public class Batiment {
 	}
 
 
+
+
+	/**
+	 * @return the apportExperience
+	 */
+	public Long getApportExperience() {
+		return apportExperience;
+	}
+
+
+	/**
+	 * @param apportExperience the apportExperience to set
+	 */
+	public void setApportExperience(Long apportExperience) {
+		this.apportExperience = apportExperience;
+	}
+
+
+	/**
+	 * @return the multiplicateurExperience
+	 */
+	public Double getMultiplicateurExperience() {
+		return multiplicateurExperience;
+	}
+
+
+	/**
+	 * @param multiplicateurExperience the multiplicateurExperience to set
+	 */
+	public void setMultiplicateurExperience(Double multiplicateurExperience) {
+		this.multiplicateurExperience = multiplicateurExperience;
+	}
+
+
+	/**
+	 * @return the multiplicateurTemps
+	 */
+	public Double getMultiplicateurTemps() {
+		return multiplicateurTemps;
+	}
+
+
+	/**
+	 * @param multiplicateurTemps the multiplicateurTemps to set
+	 */
+	public void setMultiplicateurTemps(Double multiplicateurTemps) {
+		this.multiplicateurTemps = multiplicateurTemps;
+	}
+
+
 	/**
 	 * @return the multiplicateurApport
 	 */
-	public Integer getMultiplicateurApport() {
+	public Double getMultiplicateurApport() {
 		return multiplicateurApport;
 	}
 
@@ -534,7 +591,7 @@ public class Batiment {
 	/**
 	 * @param multiplicateurApport the multiplicateurApport to set
 	 */
-	public void setMultiplicateurApport(Integer multiplicateurApport) {
+	public void setMultiplicateurApport(Double multiplicateurApport) {
 		this.multiplicateurApport = multiplicateurApport;
 	}
 
@@ -542,7 +599,7 @@ public class Batiment {
 	/**
 	 * @return the multiplicateurCout
 	 */
-	public Integer getMultiplicateurCout() {
+	public Double getMultiplicateurCout() {
 		return multiplicateurCout;
 	}
 
@@ -550,9 +607,11 @@ public class Batiment {
 	/**
 	 * @param multiplicateurCout the multiplicateurCout to set
 	 */
-	public void setMultiplicateurCout(Integer multiplicateurCout) {
+	public void setMultiplicateurCout(Double multiplicateurCout) {
 		this.multiplicateurCout = multiplicateurCout;
 	}
+
+
 	
 
 	

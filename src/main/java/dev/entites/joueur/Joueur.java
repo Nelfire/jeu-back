@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.entites.social.Message;
 import dev.entites.batiment.BatimentJoueur;
 import dev.entites.batiment.DefenseJoueur;
+import dev.entites.campagne.CampagneJoueur;
 import dev.entites.expedition.ExpeditionJoueur;
 import dev.entites.social.ChatGuilde;
 import dev.entites.social.Guilde;
@@ -52,6 +53,12 @@ public class Joueur {
     @JsonIgnore
 	private List<ExpeditionJoueur> expeditionJoueur;
     
+    // Mapping CampagneJoueur
+    /** Un joueur peut avoir plusieures expeditionJoueur **/
+    @OneToMany(mappedBy = "joueur")
+    @JsonIgnore
+	private List<CampagneJoueur> campagneJoueur;
+    
     // Mapping Armées
     /** Un joueur peut avoir plusieurs batimentsJoueur **/
     @OneToMany(mappedBy = "joueur")
@@ -69,23 +76,9 @@ public class Joueur {
 	private List<Message> messages;
 	
 	
-	
-	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// !!!!!!!!!!!!!!!!!!!!!!!!!!! ICI BOWDEL !!!!!!!!!!!!!!!!!!!!!!!!!!!
-	
 //	// Mapping Chef de Guilde
 //    @OneToOne(mappedBy="chefGuilde",  cascade = CascadeType.ALL)
 //    private Guilde chefDeGuilde;
-    
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!! ICI BOWDEL !!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    
-    
-    
-    
-    
     
 
     
@@ -113,34 +106,34 @@ public class Joueur {
     private Integer niveau;
     
     /** experience du joueur **/
-    private Integer experience;
+    private Long experience;
     
     /** ressources de pierre que possède le joueur **/
-    private Integer pierrePossession;
+    private Long pierrePossession;
 
     /** ressources de bois que possède le joueur **/
-    private Integer boisPossession;
+    private Long boisPossession;
 
     /** ressources d'or que possède le joueur **/
-    private Integer orPossession;
+    private Long orPossession;
 
     /** ressources de nourriture que possède le joueur **/
-    private Integer nourriturePossession;
+    private Long nourriturePossession;
 
     /** ressources de gemme que possède le joueur **/
-    private Integer gemmePossession;
+    private Long gemmePossession;
 
     /** montant maximum de pierre que peut posséder le joueur **/
-    private Integer pierreMaximum;
+    private Long pierreMaximum;
     
     /** montant maximum de bois que peut posséder le joueur **/
-    private Integer boisMaximum;
+    private Long boisMaximum;
     
     /** montant maximum d'or que peut posséder le joueur **/
-    private Integer orMaximum;
+    private Long orMaximum;
     
     /** montant maximum de nourriture que peut posséder le joueur **/
-    private Integer nourritureMaximum;
+    private Long nourritureMaximum;
     
     /** montant du boost de production de pierre pour le joueur **/
     private Integer pierreBoostProduction;
@@ -158,6 +151,11 @@ public class Joueur {
     private Integer tempsDeJeu;
     
     private Date derniereConnexion;
+    
+    private Boolean donateur;
+    
+    private Integer positionX;
+    private Integer positionY;
 
     /** roles du joueur **/
     @OneToMany(mappedBy = "joueur", cascade = CascadeType.PERSIST)
@@ -196,10 +194,11 @@ public class Joueur {
 	 * @param roles
 	 */
 	public Joueur(List<Armee> armee, String icone, String pseudo, String email, String motDePasse, String descriptif,
-			Integer niveau, Integer experience, Integer pierrePossession, Integer boisPossession, Integer orPossession,
-			Integer nourriturePossession, Integer gemmePossession, Integer pierreMaximum, Integer boisMaximum,
-			Integer orMaximum, Integer nourritureMaximum, Integer pierreBoostProduction, Integer boisBoostProduction,
-			Integer orBoostProduction, Integer nourritureBoostProduction, Integer tempsDeJeu, List<RoleJoueur> roles, Date derniereConnexion) {
+			Integer niveau, Long experience, Long pierrePossession, Long boisPossession, Long orPossession,
+			Long nourriturePossession, Long gemmePossession, Long pierreMaximum, Long boisMaximum,
+			Long orMaximum, Long nourritureMaximum, Integer pierreBoostProduction, Integer boisBoostProduction,
+			Integer orBoostProduction, Integer nourritureBoostProduction, Integer tempsDeJeu, List<RoleJoueur> roles, Date derniereConnexion, Boolean donateur,
+			Integer positionX, Integer positionY) {
 		super();
 		this.armee = armee;
 		this.icone = icone;
@@ -225,6 +224,9 @@ public class Joueur {
 		this.tempsDeJeu = tempsDeJeu;
 		this.roles = roles;
 		this.derniereConnexion = derniereConnexion;
+		this.donateur = donateur;
+		this.positionX = positionX;
+		this.positionY = positionY;
 	}
 
 	/**
@@ -328,140 +330,140 @@ public class Joueur {
 	/**
 	 * @return the experience
 	 */
-	public Integer getExperience() {
+	public Long getExperience() {
 		return experience;
 	}
 
 	/**
 	 * @param experience the experience to set
 	 */
-	public void setExperience(Integer experience) {
+	public void setExperience(Long experience) {
 		this.experience = experience;
 	}
 
 	/**
 	 * @return the pierrePossession
 	 */
-	public Integer getPierrePossession() {
+	public Long getPierrePossession() {
 		return pierrePossession;
 	}
 
 	/**
 	 * @param pierrePossession the pierrePossession to set
 	 */
-	public void setPierrePossession(Integer pierrePossession) {
+	public void setPierrePossession(Long pierrePossession) {
 		this.pierrePossession = pierrePossession;
 	}
 
 	/**
 	 * @return the boisPossession
 	 */
-	public Integer getBoisPossession() {
+	public Long getBoisPossession() {
 		return boisPossession;
 	}
 
 	/**
 	 * @param boisPossession the boisPossession to set
 	 */
-	public void setBoisPossession(Integer boisPossession) {
+	public void setBoisPossession(Long boisPossession) {
 		this.boisPossession = boisPossession;
 	}
 
 	/**
 	 * @return the orPossession
 	 */
-	public Integer getOrPossession() {
+	public Long getOrPossession() {
 		return orPossession;
 	}
 
 	/**
 	 * @param orPossession the orPossession to set
 	 */
-	public void setOrPossession(Integer orPossession) {
+	public void setOrPossession(Long orPossession) {
 		this.orPossession = orPossession;
 	}
 
 	/**
 	 * @return the nourriturePossession
 	 */
-	public Integer getNourriturePossession() {
+	public Long getNourriturePossession() {
 		return nourriturePossession;
 	}
 
 	/**
 	 * @param nourriturePossession the nourriturePossession to set
 	 */
-	public void setNourriturePossession(Integer nourriturePossession) {
+	public void setNourriturePossession(Long nourriturePossession) {
 		this.nourriturePossession = nourriturePossession;
 	}
 
 	/**
 	 * @return the gemmePossession
 	 */
-	public Integer getGemmePossession() {
+	public Long getGemmePossession() {
 		return gemmePossession;
 	}
 
 	/**
 	 * @param gemmePossession the gemmePossession to set
 	 */
-	public void setGemmePossession(Integer gemmePossession) {
+	public void setGemmePossession(Long gemmePossession) {
 		this.gemmePossession = gemmePossession;
 	}
 
 	/**
 	 * @return the pierreMaximum
 	 */
-	public Integer getPierreMaximum() {
+	public Long getPierreMaximum() {
 		return pierreMaximum;
 	}
 
 	/**
 	 * @param pierreMaximum the pierreMaximum to set
 	 */
-	public void setPierreMaximum(Integer pierreMaximum) {
+	public void setPierreMaximum(Long pierreMaximum) {
 		this.pierreMaximum = pierreMaximum;
 	}
 
 	/**
 	 * @return the boisMaximum
 	 */
-	public Integer getBoisMaximum() {
+	public Long getBoisMaximum() {
 		return boisMaximum;
 	}
 
 	/**
 	 * @param boisMaximum the boisMaximum to set
 	 */
-	public void setBoisMaximum(Integer boisMaximum) {
+	public void setBoisMaximum(Long boisMaximum) {
 		this.boisMaximum = boisMaximum;
 	}
 
 	/**
 	 * @return the orMaximum
 	 */
-	public Integer getOrMaximum() {
+	public Long getOrMaximum() {
 		return orMaximum;
 	}
 
 	/**
 	 * @param orMaximum the orMaximum to set
 	 */
-	public void setOrMaximum(Integer orMaximum) {
+	public void setOrMaximum(Long orMaximum) {
 		this.orMaximum = orMaximum;
 	}
 
 	/**
 	 * @return the nourritureMaximum
 	 */
-	public Integer getNourritureMaximum() {
+	public Long getNourritureMaximum() {
 		return nourritureMaximum;
 	}
 
 	/**
 	 * @param nourritureMaximum the nourritureMaximum to set
 	 */
-	public void setNourritureMaximum(Integer nourritureMaximum) {
+	public void setNourritureMaximum(Long nourritureMaximum) {
 		this.nourritureMaximum = nourritureMaximum;
 	}
 
@@ -592,6 +594,51 @@ public class Joueur {
 	 */
 	public void setDerniereConnexion(Date derniereConnexion) {
 		this.derniereConnexion = derniereConnexion;
+	}
+	
+	/**
+	 * @return the donateur
+	 */
+	public Boolean getDonateur() {
+		return donateur;
+	}
+
+	/**
+	 * @param donateur the donateur to set
+	 */
+	public void setDonateur(Boolean donateur) {
+		this.donateur = donateur;
+	}
+
+	
+	
+	
+	/**
+	 * @return the positionX
+	 */
+	public Integer getPositionX() {
+		return positionX;
+	}
+
+	/**
+	 * @param positionX the positionX to set
+	 */
+	public void setPositionX(Integer positionX) {
+		this.positionX = positionX;
+	}
+
+	/**
+	 * @return the positionY
+	 */
+	public Integer getPositionY() {
+		return positionY;
+	}
+
+	/**
+	 * @param positionY the positionY to set
+	 */
+	public void setPositionY(Integer positionY) {
+		this.positionY = positionY;
 	}
 
 	@Override

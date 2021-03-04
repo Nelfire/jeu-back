@@ -17,10 +17,10 @@ public interface BatimentJoueurRepo extends JpaRepository<BatimentJoueur, Intege
 	List<BatimentJoueur> findByApportOreHeureGreaterThanAndJoueurId(Integer apportOrHeure,Integer idJoueur);
 	List<BatimentJoueur> findByApportNourritureHeureGreaterThanAndJoueurId(Integer apportNourritureHeure,Integer idJoueur);
 	
-	List<BatimentJoueur> findByQuantiteeStockagePierreGreaterThanAndJoueurId(Integer stockagePierre,Integer idJoueur);
-	List<BatimentJoueur> findByQuantiteeStockageBoisGreaterThanAndJoueurId(Integer stockageBois,Integer idJoueur);
-	List<BatimentJoueur> findByQuantiteeStockageOreGreaterThanAndJoueurId(Integer stockageOr,Integer idJoueur);
-	List<BatimentJoueur> findByQuantiteeStockageNourritureGreaterThanAndJoueurId(Integer stockageNourriture,Integer idJoueur);
+	List<BatimentJoueur> findByQuantiteeStockagePierreGreaterThanAndJoueurId(Long stockagePierre,Integer idJoueur);
+	List<BatimentJoueur> findByQuantiteeStockageBoisGreaterThanAndJoueurId(Long stockageBois,Integer idJoueur);
+	List<BatimentJoueur> findByQuantiteeStockageOreGreaterThanAndJoueurId(Long stockageOr,Integer idJoueur);
+	List<BatimentJoueur> findByQuantiteeStockageNourritureGreaterThanAndJoueurId(Long stockageNourriture,Integer idJoueur);
 	
 	List<BatimentJoueur> findByBatimentIdTypeBatiment(Integer id);
 	

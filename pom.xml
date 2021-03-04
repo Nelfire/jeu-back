@@ -102,8 +102,8 @@
         <profile>
             <id>heroku</id>
             <properties>
-                <jpa.hibernate.ddl>update</jpa.hibernate.ddl>
-<!--                 <jpa.hibernate.ddl>create-drop</jpa.hibernate.ddl> -->
+<!--                 <jpa.hibernate.ddl>update</jpa.hibernate.ddl> -->
+                <jpa.hibernate.ddl>create-drop</jpa.hibernate.ddl>
 <!--                 <jpa.hibernate.ddl>none</jpa.hibernate.ddl> -->
             </properties>
             <dependencies>

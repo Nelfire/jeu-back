@@ -57,7 +57,6 @@ public class BatimentJoueurController {
 	 */
 	@PostMapping
 	public ResponseEntity<?> creationBatimentJoueur(@RequestBody BatimentJoueurCreationDto batimentJoueurCreationDto) {
-		System.out.println(batimentJoueurCreationDto);
 		BatimentJoueurCreationDto saveBatiment = batimentJoueurService.creationBatimentJoueur(batimentJoueurCreationDto);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).header("resultat", "Batiment construit").body(saveBatiment);
 	}
@@ -69,6 +68,16 @@ public class BatimentJoueurController {
 	public BatimentJoueurDto putBatimentJoueur(@RequestBody @Valid BatimentJoueurDto batimentJoueurDto, @RequestParam("id") Integer id) {
 		return this.batimentJoueurService.putBatimentJoueur(batimentJoueurDto, id);
 	}
+	/**
+	 * ACCELERATION CONSTRUCTION D'UN BATIMENT JOUEUR (Contre gemmes)
+	 */
+	@PutMapping("/accelerationConstructionBatiment")
+	public BatimentJoueurDto accelerationConstructionBatiment(@RequestBody @Valid BatimentJoueurDto batimentJoueurDto, @RequestParam("id") Integer id) {
+		return this.batimentJoueurService.accelerationConstructionBatiment(batimentJoueurDto, id);
+	}
+	
+	
+	
 	
 //	/**
 //	 * RECHERCHE POPULATION MAXIMALE DU JOUEUR

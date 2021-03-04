@@ -40,12 +40,15 @@ public class Defense {
 	private Integer coutNourritureConstruction;
 	private Integer vie;
 	private Integer attaque;
-	private Integer bouclier;
+	private Integer portee;
+	private Integer armure;
 	private Integer tempsConstruction;
 	
     /** niveau necessaire du bâtiment pour débloquer la formation **/
     private Integer niveauBatimentNecessaireConstruction;
 	private Integer idBatimentProvenance;
+	
+	private Long apportExperience;
 	
 	public Defense() {
 		super();
@@ -63,16 +66,16 @@ public class Defense {
 	 * @param coutNourritureConstruction
 	 * @param vie
 	 * @param attaque
-	 * @param bouclier
+	 * @param armure
 	 * @param tempsConstruction
 	 * @param niveauBatimentNecessaireConstruction
 	 * @param idBatimentProvenance
 	 */
 	public Defense(Integer idTypeDefense, Integer typeDefense, String icone, String libelle,
 			String description, Integer coutPierreConstruction, Integer coutBoisConstruction,
-			Integer coutOrConstruction, Integer coutNourritureConstruction, Integer vie, Integer attaque,
-			Integer bouclier, Integer tempsConstruction, Integer niveauBatimentNecessaireConstruction,
-			Integer idBatimentProvenance) {
+			Integer coutOrConstruction, Integer coutNourritureConstruction, Integer vie, Integer attaque, Integer portee,
+			Integer armure, Integer tempsConstruction, Integer niveauBatimentNecessaireConstruction,
+			Integer idBatimentProvenance, Long apportExperience) {
 		super();
 		this.idTypeDefense = idTypeDefense;
 		this.typeDefense = typeDefense;
@@ -85,10 +88,12 @@ public class Defense {
 		this.coutNourritureConstruction = coutNourritureConstruction;
 		this.vie = vie;
 		this.attaque = attaque;
-		this.bouclier = bouclier;
+		this.portee = portee;
+		this.armure = armure;
 		this.tempsConstruction = tempsConstruction;
 		this.niveauBatimentNecessaireConstruction = niveauBatimentNecessaireConstruction;
 		this.idBatimentProvenance = idBatimentProvenance;
+		this.apportExperience = apportExperience;
 	}
 
 	/**
@@ -259,18 +264,33 @@ public class Defense {
 		this.attaque = attaque;
 	}
 
+	
 	/**
-	 * @return the bouclier
+	 * @return the portee
 	 */
-	public Integer getBouclier() {
-		return bouclier;
+	public Integer getPortee() {
+		return portee;
 	}
 
 	/**
-	 * @param bouclier the bouclier to set
+	 * @param portee the portee to set
 	 */
-	public void setBouclier(Integer bouclier) {
-		this.bouclier = bouclier;
+	public void setPortee(Integer portee) {
+		this.portee = portee;
+	}
+
+	/**
+	 * @return the armure
+	 */
+	public Integer getArmure() {
+		return armure;
+	}
+
+	/**
+	 * @param armure the armure to set
+	 */
+	public void setArmure(Integer armure) {
+		this.armure = armure;
 	}
 
 	/**
@@ -329,6 +349,22 @@ public class Defense {
 	 */
 	public void setTypeDefense(Integer typeDefense) {
 		this.typeDefense = typeDefense;
+	}
+	
+	
+
+	/**
+	 * @return the apportExperience
+	 */
+	public Long getApportExperience() {
+		return apportExperience;
+	}
+
+	/**
+	 * @param apportExperience the apportExperience to set
+	 */
+	public void setApportExperience(Long apportExperience) {
+		this.apportExperience = apportExperience;
 	}
 
 	@Override
