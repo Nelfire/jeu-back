@@ -322,7 +322,7 @@ public class JoueurService {
 		// Récupération du joueur connecté
 		Joueur jou = recuperationJoueur();
 		// -- PIERRE -
-		Long stockageMaximalPierre = 10000L;
+		Long stockageMaximalPierre = 20_000L;
 
 		// -- TOUS LES BATIMENTS QUI AUGMENTENT LA LIMITE DE STOCKAGE DE PIERRE
 		for (BatimentJoueur batimentStockagePierre : batimentJoueurRepo.findByQuantiteeStockagePierreGreaterThanAndJoueurId(1L,jou.getId())) {
@@ -352,7 +352,7 @@ public class JoueurService {
 		// Récupération du joueur connecté
 		Joueur jou = recuperationJoueur();
 		// -- BOIS --
-		Long stockageMaximalBois = 10000L;
+		Long stockageMaximalBois = 20_000L;
 		// -- TOUS LES BATIMENTS QUI AUGMENTENT LA LIMITE DE STOCKAGE DE BOIS
 		for (BatimentJoueur batimentStockageBois : batimentJoueurRepo.findByQuantiteeStockageBoisGreaterThanAndJoueurId(1L,jou.getId())) {
 			long maintenant = new Date().getTime();
@@ -380,7 +380,7 @@ public class JoueurService {
 		// Récupération du joueur connecté
 		Joueur jou = recuperationJoueur();
 		// -- OR --
-		Long stockageMaximalOr = 10000L;
+		Long stockageMaximalOr = 20_000L;
 		// -- TOUS LES BATIMENTS QUI AUGMENTENT LA LIMITE DE STOCKAGE DE OR
 		for (BatimentJoueur batimentStockageOr : batimentJoueurRepo.findByQuantiteeStockageOreGreaterThanAndJoueurId(1L,jou.getId())) {
 			long maintenant = new Date().getTime();
@@ -408,7 +408,7 @@ public class JoueurService {
 		// Récupération du joueur connecté
 		Joueur jou = recuperationJoueur();
 		// -- NOURRITURE --
-		Long stockageMaximalNourriture = 10000L;
+		Long stockageMaximalNourriture = 20_000L;
 		// -- TOUS LES BATIMENTS QUI AUGMENTENT LA LIMITE DE STOCKAGE DE NOURRITURE
 		for (BatimentJoueur batimentStockageNourriture : batimentJoueurRepo.findByQuantiteeStockageNourritureGreaterThanAndJoueurId(1L,jou.getId())) {
 			long maintenant = new Date().getTime();

@@ -110,14 +110,14 @@ public class StartupListener {
         joueur1.setDescriptif("Je broierai bien un café moi dis donc...");
         joueur1.setNiveau(1);
         joueur1.setExperience(0L);
-        joueur1.setPierrePossession(1000L);
-        joueur1.setBoisPossession(1000L);
-        joueur1.setOrPossession(1000L);
-        joueur1.setNourriturePossession(1000L);
-        joueur1.setPierreMaximum(20000L);
-        joueur1.setBoisMaximum(20000L);
-        joueur1.setOrMaximum(20000L);
-        joueur1.setNourritureMaximum(2000000000000L);
+        joueur1.setPierrePossession(10_000L);
+        joueur1.setBoisPossession(10_000L);
+        joueur1.setOrPossession(10_000L);
+        joueur1.setNourriturePossession(10_000L);
+        joueur1.setPierreMaximum(20_000L);
+        joueur1.setBoisMaximum(20_000L);
+        joueur1.setOrMaximum(20_000L);
+        joueur1.setNourritureMaximum(20_000L);
         joueur1.setPierreBoostProduction(0);
         joueur1.setBoisBoostProduction(0);
         joueur1.setOrBoostProduction(0);
@@ -237,33 +237,6 @@ public class StartupListener {
         hdv.setMultiplicateurTemps(1.888);
         hdv.setMultiplicateurApport(1.500);
         hdv.setMultiplicateurCout(3.200);
-        
-        Batiment chantier = new Batiment();
-        chantier.setIdTypeBatiment(2);
-        chantier.setIdCategorieBatiment(0);
-        chantier.setIcone("https://cdn.discordapp.com/attachments/794876433842831361/794876520338161704/Chaumiere.png");
-        chantier.setLibelle("Chantier");
-        chantier.setDescriptif("Le chantier permet la création de bâtiments de défense.");
-        chantier.setOuvrierNecessaireConstruction(1);
-        chantier.setTempsDeConstruction(2_100);
-        chantier.setCoutPierreConstruction(3_000L);
-        chantier.setCoutBoisConstruction(2_000L);
-        chantier.setCoutOrConstruction(1_000L);
-        chantier.setCoutNourritureConstruction(0L);
-        chantier.setNiveauHotelDeVilleNecessaireConstruction(4);
-        chantier.setQuantiteeStockagePierre(0L);
-        chantier.setQuantiteeStockageBois(0L);
-        chantier.setQuantiteeStockageOre(0L);
-        chantier.setQuantiteeStockageNourriture(0L);
-        chantier.setApportPierreHeure(0);
-        chantier.setApportBoisHeure(0);
-        chantier.setApportOreHeure(0);
-        chantier.setApportNourritureHeure(0);
-        chantier.setApportExperience(500L);
-        chantier.setMultiplicateurExperience(3.000);
-        chantier.setMultiplicateurTemps(1.555);
-        chantier.setMultiplicateurApport(2.000);
-        chantier.setMultiplicateurCout(3.043);
         
         Batiment carriere = new Batiment();
         carriere.setIdTypeBatiment(3);
@@ -480,6 +453,33 @@ public class StartupListener {
         grenier.setMultiplicateurTemps(1.762);
         grenier.setMultiplicateurApport(2.900);
         grenier.setMultiplicateurCout(3.158);
+        
+        Batiment chantier = new Batiment();
+        chantier.setIdTypeBatiment(2);
+        chantier.setIdCategorieBatiment(0);
+        chantier.setIcone("https://cdn.discordapp.com/attachments/794876433842831361/794876520338161704/Chaumiere.png");
+        chantier.setLibelle("Chantier");
+        chantier.setDescriptif("Le chantier permet la création de bâtiments de défense.");
+        chantier.setOuvrierNecessaireConstruction(1);
+        chantier.setTempsDeConstruction(2_100);
+        chantier.setCoutPierreConstruction(3_000L);
+        chantier.setCoutBoisConstruction(2_000L);
+        chantier.setCoutOrConstruction(1_000L);
+        chantier.setCoutNourritureConstruction(0L);
+        chantier.setNiveauHotelDeVilleNecessaireConstruction(4);
+        chantier.setQuantiteeStockagePierre(0L);
+        chantier.setQuantiteeStockageBois(0L);
+        chantier.setQuantiteeStockageOre(0L);
+        chantier.setQuantiteeStockageNourriture(0L);
+        chantier.setApportPierreHeure(0);
+        chantier.setApportBoisHeure(0);
+        chantier.setApportOreHeure(0);
+        chantier.setApportNourritureHeure(0);
+        chantier.setApportExperience(500L);
+        chantier.setMultiplicateurExperience(3.000);
+        chantier.setMultiplicateurTemps(1.555);
+        chantier.setMultiplicateurApport(2.000);
+        chantier.setMultiplicateurCout(3.043);
         
         Batiment caserneMillitaire = new Batiment();
         caserneMillitaire.setIdTypeBatiment(11);
@@ -698,7 +698,6 @@ public class StartupListener {
         tableExpedition.setMultiplicateurCout(2.528);
                 
         this.batimentRepo.save(hdv);
-        this.batimentRepo.save(chantier);
         this.batimentRepo.save(carriere);
         this.batimentRepo.save(campDeBucheron);
         this.batimentRepo.save(campDeMineur);
@@ -707,6 +706,7 @@ public class StartupListener {
         this.batimentRepo.save(scierie);
         this.batimentRepo.save(banque);
         this.batimentRepo.save(grenier);
+        this.batimentRepo.save(chantier);
         this.batimentRepo.save(caserneMillitaire);
         this.batimentRepo.save(ecurie);
         this.batimentRepo.save(port);
@@ -894,15 +894,17 @@ public class StartupListener {
         ////////////////////BATIMENT JOUEUR/////////////////////
         ////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////
-//		long debut = new Date().getTime();
-//		long fin = new Date().getTime();
-//
-//		BatimentJoueur batimentJoueur1 = new BatimentJoueur(joueur1,hdv,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
-//		BatimentJoueur batimentJoueur2 = new BatimentJoueur(joueur1,tableExpedition,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
-//		BatimentJoueur batimentJoueur3 = new BatimentJoueur(joueur1,chantier,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
-//		this.batimentJoueurRepo.save(batimentJoueur1);
-//		this.batimentJoueurRepo.save(batimentJoueur2);
-//		this.batimentJoueurRepo.save(batimentJoueur3);
+		long debut = new Date().getTime();
+		long fin = new Date().getTime();
+
+		BatimentJoueur batimentJoueur1 = new BatimentJoueur(joueur1,hdv,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
+		BatimentJoueur batimentJoueur2 = new BatimentJoueur(joueur1,tableExpedition,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
+		BatimentJoueur batimentJoueur3 = new BatimentJoueur(joueur1,chantier,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
+		BatimentJoueur batimentJoueur4 = new BatimentJoueur(joueur1,marche,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
+		this.batimentJoueurRepo.save(batimentJoueur1);
+		this.batimentJoueurRepo.save(batimentJoueur2);
+		this.batimentJoueurRepo.save(batimentJoueur3);
+		this.batimentJoueurRepo.save(batimentJoueur4);
 		
 		
         ////////////////////////////////////////////////////////

@@ -114,6 +114,9 @@ public class BatimentService {
 		List<BatimentDto> listeBatimentsRecolte = new ArrayList<>();
 
 		for (Batiment batiment : batimentRepo.findByIdCategorieBatiment(1)) {
+			if(batiment.getIdTypeBatiment()!=1) {
+				
+			
 			BatimentDto batimentDto = new BatimentDto();
 			batimentDto.setIdTypeBatiment(batiment.getIdTypeBatiment());
 			batimentDto.setIcone(batiment.getIcone());
@@ -141,6 +144,7 @@ public class BatimentService {
 			batimentDto.setMultiplicateurCout(batiment.getMultiplicateurCout());
 
 			listeBatimentsRecolte.add(batimentDto);
+			}
 		}
 		return listeBatimentsRecolte;
 	}

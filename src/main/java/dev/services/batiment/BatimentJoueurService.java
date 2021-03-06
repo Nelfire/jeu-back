@@ -207,187 +207,20 @@ public class BatimentJoueurService {
 		/////DEFINIR COUT D'AMELIORATION/////
 		/////////////////////////////////////
 		
-		if(batiment.getIdTypeBatiment() == 1) // 1 = Hotel de ville
-		{
-			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
-			tempsAmelioration = batiment.getTempsDeConstruction();
-			coutPierreAmelioration = batiment.getCoutPierreConstruction();
-			coutBoisAmelioration = batiment.getCoutBoisConstruction();
-			coutOreAmelioration = batiment.getCoutOrConstruction();
-			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
-			quantiteeStockagePierre =batiment.getQuantiteeStockagePierre();
-			quantiteeStockageBois = batiment.getQuantiteeStockageBois();
-			quantiteeStockageOre = batiment.getQuantiteeStockageOre();
-			quantiteeStockageNourriture = batiment.getQuantiteeStockageNourriture();
-			apportPierreHeure = batiment.getApportPierreHeure();
-			apportBoisHeure = batiment.getApportBoisHeure();
-			apportOreHeure = batiment.getApportOreHeure();
-			apportNourritureHeure = batiment.getApportNourritureHeure();
-
-		} 
-		else if (batiment.getIdTypeBatiment() == 2) // 2 = Chaumière
-		{
-			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
-			tempsAmelioration = batiment.getTempsDeConstruction();
-			coutPierreAmelioration = batiment.getCoutPierreConstruction();
-			coutBoisAmelioration = batiment.getCoutBoisConstruction();
-			coutOreAmelioration = batiment.getCoutOrConstruction();
-			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
-
-		} 
-		else if (batiment.getIdTypeBatiment() == 3) // 3 = Carrière
-		{
-			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
-			tempsAmelioration = batiment.getTempsDeConstruction();
-			coutPierreAmelioration = batiment.getCoutPierreConstruction();
-			coutBoisAmelioration = batiment.getCoutBoisConstruction();
-			coutOreAmelioration = batiment.getCoutOrConstruction();
-			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
-			apportPierreHeure = batiment.getApportPierreHeure();
-		} 
-		else if (batiment.getIdTypeBatiment() == 4) // 4 = Camp de bucheron
-		{
-			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
-			tempsAmelioration = batiment.getTempsDeConstruction();
-			coutPierreAmelioration = batiment.getCoutPierreConstruction();
-			coutBoisAmelioration = batiment.getCoutBoisConstruction();
-			coutOreAmelioration = batiment.getCoutOrConstruction();
-			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
-			apportBoisHeure = batiment.getApportBoisHeure();
-
-		} 
-		else if (batiment.getIdTypeBatiment() == 5) // 5 = Camp de mineur
-		{
-			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
-			tempsAmelioration = batiment.getTempsDeConstruction();
-			coutPierreAmelioration = batiment.getCoutPierreConstruction();
-			coutBoisAmelioration = batiment.getCoutBoisConstruction();
-			coutOreAmelioration = batiment.getCoutOrConstruction();
-			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
-			apportOreHeure = batiment.getApportOreHeure();
-		} 
-		else if (batiment.getIdTypeBatiment() == 6) // 6 = Ferme
-		{
-			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
-			tempsAmelioration = batiment.getTempsDeConstruction();
-			coutPierreAmelioration = batiment.getCoutPierreConstruction();
-			coutBoisAmelioration = batiment.getCoutBoisConstruction();
-			coutOreAmelioration = batiment.getCoutOrConstruction();
-			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
-			apportNourritureHeure = batiment.getApportNourritureHeure();
-		} 
-		else if (batiment.getIdTypeBatiment() == 7) // 7 = Stockage Pierre
-		{
-			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
-			tempsAmelioration = batiment.getTempsDeConstruction();
-			coutPierreAmelioration = batiment.getCoutPierreConstruction();
-			coutBoisAmelioration = batiment.getCoutBoisConstruction();
-			coutOreAmelioration = batiment.getCoutOrConstruction();
-			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
-			quantiteeStockagePierre =batiment.getQuantiteeStockagePierre();
-		} 
-		else if (batiment.getIdTypeBatiment() == 8) // 8 = Stockage Bois
-		{
-			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
-			tempsAmelioration = batiment.getTempsDeConstruction();
-			coutPierreAmelioration = batiment.getCoutPierreConstruction();
-			coutBoisAmelioration = batiment.getCoutBoisConstruction();
-			coutOreAmelioration = batiment.getCoutOrConstruction();
-			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
-			quantiteeStockageBois = batiment.getQuantiteeStockageBois();
-		} 
-		else if (batiment.getIdTypeBatiment() == 9) // 9 = Stockage Or
-		{
-			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
-			tempsAmelioration = batiment.getTempsDeConstruction();
-			coutPierreAmelioration = batiment.getCoutPierreConstruction();
-			coutBoisAmelioration = batiment.getCoutBoisConstruction();
-			coutOreAmelioration = batiment.getCoutOrConstruction();
-			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
-			quantiteeStockageOre = batiment.getQuantiteeStockageOre();
-		} 
-		else if (batiment.getIdTypeBatiment() == 10) // 10 = Stockage Nourriture
-		{
-			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
-			tempsAmelioration = batiment.getTempsDeConstruction();
-			coutPierreAmelioration = batiment.getCoutPierreConstruction();
-			coutBoisAmelioration = batiment.getCoutBoisConstruction();
-			coutOreAmelioration = batiment.getCoutOrConstruction();
-			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
-			quantiteeStockageNourriture = batiment.getQuantiteeStockageNourriture();
-		} 
-		else if (batiment.getIdTypeBatiment() == 11) // 11 = Caserne Militaire
-		{
-			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
-			tempsAmelioration = batiment.getTempsDeConstruction();
-			coutPierreAmelioration = batiment.getCoutPierreConstruction();
-			coutBoisAmelioration = batiment.getCoutBoisConstruction();
-			coutOreAmelioration = batiment.getCoutOrConstruction();
-			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
-		} 
-		else if (batiment.getIdTypeBatiment() == 12) // 12 = Ecurie
-		{
-			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
-			tempsAmelioration = batiment.getTempsDeConstruction();
-			coutPierreAmelioration = batiment.getCoutPierreConstruction();
-			coutBoisAmelioration = batiment.getCoutBoisConstruction();
-			coutOreAmelioration = batiment.getCoutOrConstruction();
-			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
-		} 
-		else if (batiment.getIdTypeBatiment() == 13) // 13 = Port
-		{
-			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
-			tempsAmelioration = batiment.getTempsDeConstruction();
-			coutPierreAmelioration = batiment.getCoutPierreConstruction();
-			coutBoisAmelioration = batiment.getCoutBoisConstruction();
-			coutOreAmelioration = batiment.getCoutOrConstruction();
-			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
-		} 
-		else if (batiment.getIdTypeBatiment() == 14) // 14 = Atelier de siege
-		{
-			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
-			tempsAmelioration = batiment.getTempsDeConstruction();
-			coutPierreAmelioration = batiment.getCoutPierreConstruction();
-			coutBoisAmelioration = batiment.getCoutBoisConstruction();
-			coutOreAmelioration = batiment.getCoutOrConstruction();
-			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
-		} 
-		else if (batiment.getIdTypeBatiment() == 15) // 15 = Forge
-		{
-			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
-			tempsAmelioration = batiment.getTempsDeConstruction();
-			coutPierreAmelioration = batiment.getCoutPierreConstruction();
-			coutBoisAmelioration = batiment.getCoutBoisConstruction();
-			coutOreAmelioration = batiment.getCoutOrConstruction();
-			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
-		} 
-		else if (batiment.getIdTypeBatiment() == 16) // 16 = Universite
-		{
-			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
-			tempsAmelioration = batiment.getTempsDeConstruction();
-			coutPierreAmelioration = batiment.getCoutPierreConstruction();
-			coutBoisAmelioration = batiment.getCoutBoisConstruction();
-			coutOreAmelioration = batiment.getCoutOrConstruction();
-			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
-		} 
-		else if (batiment.getIdTypeBatiment() == 17) // 17 = Marché
-		{
-			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
-			tempsAmelioration = batiment.getTempsDeConstruction();
-			coutPierreAmelioration = batiment.getCoutPierreConstruction();
-			coutBoisAmelioration = batiment.getCoutBoisConstruction();
-			coutOreAmelioration = batiment.getCoutOrConstruction();
-			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
-		} 
-		else if (batiment.getIdTypeBatiment() == 18) // 18 = Table d'expéditions
-		{
-			ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
-			tempsAmelioration = batiment.getTempsDeConstruction();
-			coutPierreAmelioration = batiment.getCoutPierreConstruction();
-			coutBoisAmelioration = batiment.getCoutBoisConstruction();
-			coutOreAmelioration = batiment.getCoutOrConstruction();
-			coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
-		}
+		ouvrierNecessaireAmelioration = batiment.getOuvrierNecessaireConstruction();
+		tempsAmelioration = batiment.getTempsDeConstruction();
+		coutPierreAmelioration = batiment.getCoutPierreConstruction();
+		coutBoisAmelioration = batiment.getCoutBoisConstruction();
+		coutOreAmelioration = batiment.getCoutOrConstruction();
+		coutNourritureAmelioration = batiment.getCoutNourritureConstruction();
+		quantiteeStockagePierre =batiment.getQuantiteeStockagePierre();
+		quantiteeStockageBois = batiment.getQuantiteeStockageBois();
+		quantiteeStockageOre = batiment.getQuantiteeStockageOre();
+		quantiteeStockageNourriture = batiment.getQuantiteeStockageNourriture();
+		apportPierreHeure = batiment.getApportPierreHeure();
+		apportBoisHeure = batiment.getApportBoisHeure();
+		apportOreHeure = batiment.getApportOreHeure();
+		apportNourritureHeure = batiment.getApportNourritureHeure();
 
 		// MISE A JOUR DE BATIMENT JOUEUR
 		BatimentJoueur batimentJoueur = new BatimentJoueur(
@@ -452,186 +285,21 @@ public class BatimentJoueurService {
 		/////DEFINIR COUT D'AMELIORATION/////
 		/////////////////////////////////////
 		
-		if(batimentJoueurDto.getBatiment().getIdTypeBatiment() == 1) // 1 = Hotel de ville
-		{
-			ouvrierNecessaireAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration()));
-			tempsAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurTemps()*(batimentJoueurDto.getTempsAmelioration()));
-			coutPierreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration()));
-			coutBoisAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration()));
-			coutOreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration()));
-			coutNourritureAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutNourritureAmelioration()));
-			quantiteeStockagePierre = (long) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getQuantiteeStockagePierre()));
-			quantiteeStockageBois = (long) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getQuantiteeStockageBois()));
-			quantiteeStockageOre = (long) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getQuantiteeStockageOre()));
-			quantiteeStockageNourriture = (long) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getQuantiteeStockageNourriture()));
-			apportPierreHeure = (int) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getApportPierreHeure()));
-			apportBoisHeure = (int) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getApportBoisHeure()));
-			apportOreHeure = (int) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getApportOreHeure()));
-			apportNourritureHeure = (int) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getApportNourritureHeure()));
-		} 
-		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 2) // 2 = Chaumière
-		{
-			ouvrierNecessaireAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration()));
-			tempsAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurTemps()*(batimentJoueurDto.getTempsAmelioration()));
-			coutPierreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration()));
-			coutBoisAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration()));
-			coutOreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration()));
-			coutNourritureAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutNourritureAmelioration()));
+		ouvrierNecessaireAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration()));
+		tempsAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurTemps()*(batimentJoueurDto.getTempsAmelioration()));
+		coutPierreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration()));
+		coutBoisAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration()));
+		coutOreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration()));
+		coutNourritureAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutNourritureAmelioration()));
+		quantiteeStockagePierre = (long) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getQuantiteeStockagePierre()));
+		quantiteeStockageBois = (long) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getQuantiteeStockageBois()));
+		quantiteeStockageOre = (long) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getQuantiteeStockageOre()));
+		quantiteeStockageNourriture = (long) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getQuantiteeStockageNourriture()));
+		apportPierreHeure = (int) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getApportPierreHeure()));
+		apportBoisHeure = (int) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getApportBoisHeure()));
+		apportOreHeure = (int) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getApportOreHeure()));
+		apportNourritureHeure = (int) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getApportNourritureHeure()));
 		
-		} 
-		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 3) // 3 = Carrière
-		{
-			ouvrierNecessaireAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration()));;
-			tempsAmelioration = (int) ((batimentJoueurDto.getBatiment().getMultiplicateurTemps())*(batimentJoueurDto.getTempsAmelioration()));
-			coutPierreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration()));
-			coutBoisAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration()));
-			coutOreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration()));
-			coutNourritureAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutNourritureAmelioration()));
-			apportPierreHeure = (int) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getApportPierreHeure()));
-		} 
-		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 4) // 4 = Camp de bucheron
-		{
-			ouvrierNecessaireAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration()));;
-			tempsAmelioration = (int) ((batimentJoueurDto.getBatiment().getMultiplicateurTemps())*(batimentJoueurDto.getTempsAmelioration()));
-			coutPierreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration()));
-			coutBoisAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration()));
-			coutOreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration()));
-			coutNourritureAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutNourritureAmelioration()));
-			apportBoisHeure = (int) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getApportBoisHeure()));
-		
-		} 
-		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 5) // 5 = Camp de mineur
-		{
-			ouvrierNecessaireAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration()));;
-			tempsAmelioration = (int) ((batimentJoueurDto.getBatiment().getMultiplicateurTemps())*(batimentJoueurDto.getTempsAmelioration()));
-			coutPierreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration()));
-			coutBoisAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration()));
-			coutOreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration()));
-			coutNourritureAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutNourritureAmelioration()));
-			apportOreHeure = (int) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getApportOreHeure()));
-		} 
-		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 6) // 6 = Ferme
-		{
-			ouvrierNecessaireAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration()));;
-			tempsAmelioration = (int) ((batimentJoueurDto.getBatiment().getMultiplicateurTemps())*(batimentJoueurDto.getTempsAmelioration()));
-			coutPierreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration()));
-			coutBoisAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration()));
-			coutOreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration()));
-			coutNourritureAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutNourritureAmelioration()));
-			apportNourritureHeure = (int) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getApportNourritureHeure()));
-		} 
-		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 7) // 7 = Stockage Pierre
-		{
-			ouvrierNecessaireAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration()));;
-			tempsAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurTemps()*batimentJoueurDto.getTempsAmelioration());
-			coutPierreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration()));
-			coutBoisAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration()));
-			coutOreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration()));
-			coutNourritureAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutNourritureAmelioration()));
-			quantiteeStockagePierre = (long) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getQuantiteeStockagePierre()));
-		} 
-		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 8) // 8 = Stockage Bois
-		{
-			ouvrierNecessaireAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration()));;
-			tempsAmelioration = (int) ((batimentJoueurDto.getBatiment().getMultiplicateurTemps())*(batimentJoueurDto.getTempsAmelioration()));
-			coutPierreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration()));
-			coutBoisAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration()));
-			coutOreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration()));
-			coutNourritureAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutNourritureAmelioration()));
-			quantiteeStockageBois = (long) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getQuantiteeStockageBois()));
-		} 
-		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 9) // 9 = Stockage Or
-		{
-			ouvrierNecessaireAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration()));;
-			tempsAmelioration = (int) ((batimentJoueurDto.getBatiment().getMultiplicateurTemps())*(batimentJoueurDto.getTempsAmelioration()));
-			coutPierreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration()));
-			coutBoisAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration()));
-			coutOreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration()));
-			coutNourritureAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutNourritureAmelioration()));
-			quantiteeStockageOre = (long) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getQuantiteeStockageOre()));
-		} 
-		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 10) // 10 = Stockage Nourriture
-		{
-			ouvrierNecessaireAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration()));;
-			tempsAmelioration = (int) ((batimentJoueurDto.getBatiment().getMultiplicateurTemps())*(batimentJoueurDto.getTempsAmelioration()));
-			coutPierreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration()));
-			coutBoisAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration()));
-			coutOreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration()));
-			coutNourritureAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutNourritureAmelioration()));
-			quantiteeStockageNourriture = (long) (batimentJoueurDto.getBatiment().getMultiplicateurApport()*(batimentJoueurDto.getQuantiteeStockageNourriture()));
-		} 
-		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 11) // 11 = Caserne Militaire
-		{
-			ouvrierNecessaireAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration()));;
-			tempsAmelioration = (int) ((batimentJoueurDto.getBatiment().getMultiplicateurTemps())*(batimentJoueurDto.getTempsAmelioration()));
-			coutPierreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration()));
-			coutBoisAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration()));
-			coutOreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration()));
-			coutNourritureAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutNourritureAmelioration()));
-		} 
-		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 12) // 12 = Ecurie
-		{
-			ouvrierNecessaireAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration()));;
-			tempsAmelioration = (int) ((batimentJoueurDto.getBatiment().getMultiplicateurTemps())*(batimentJoueurDto.getTempsAmelioration()));
-			coutPierreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration()));
-			coutBoisAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration()));
-			coutOreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration()));
-			coutNourritureAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutNourritureAmelioration()));
-		} 
-		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 13) // 13 = Port
-		{
-			ouvrierNecessaireAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration()));;
-			tempsAmelioration = (int) ((batimentJoueurDto.getBatiment().getMultiplicateurTemps())*(batimentJoueurDto.getTempsAmelioration()));
-			coutPierreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration()));
-			coutBoisAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration()));
-			coutOreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration()));
-			coutNourritureAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutNourritureAmelioration()));
-		} 
-		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 14) // 14 = Atelier de siege
-		{
-			ouvrierNecessaireAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration()));;
-			tempsAmelioration = (int) ((batimentJoueurDto.getBatiment().getMultiplicateurTemps())*(batimentJoueurDto.getTempsAmelioration()));
-			coutPierreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration()));
-			coutBoisAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration()));
-			coutOreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration()));
-			coutNourritureAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutNourritureAmelioration()));
-		} 
-		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 15) // 15 = Forge
-		{
-			ouvrierNecessaireAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration()));;
-			tempsAmelioration = (int) ((batimentJoueurDto.getBatiment().getMultiplicateurTemps())*(batimentJoueurDto.getTempsAmelioration()));
-			coutPierreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration()));
-			coutBoisAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration()));
-			coutOreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration()));
-			coutNourritureAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutNourritureAmelioration()));
-		} 
-		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 16) // 16 = Universite
-		{
-			ouvrierNecessaireAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration()));;
-			tempsAmelioration = (int) ((batimentJoueurDto.getBatiment().getMultiplicateurTemps())*(batimentJoueurDto.getTempsAmelioration()));
-			coutPierreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration()));
-			coutBoisAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration()));
-			coutOreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration()));
-			coutNourritureAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutNourritureAmelioration()));
-		} 
-		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 17) // 17 = Marché
-		{
-			ouvrierNecessaireAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration()));;
-			tempsAmelioration = (int) ((batimentJoueurDto.getBatiment().getMultiplicateurTemps())*(batimentJoueurDto.getTempsAmelioration()));
-			coutPierreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration()));
-			coutBoisAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration()));
-			coutOreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration()));
-			coutNourritureAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutNourritureAmelioration()));
-		} 
-		else if (batimentJoueurDto.getBatiment().getIdTypeBatiment() == 18) // 18 = Table d'expéditions
-		{
-			ouvrierNecessaireAmelioration = (int) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getOuvrierNecessaireAmelioration()));;
-			tempsAmelioration = (int) ((batimentJoueurDto.getBatiment().getMultiplicateurTemps())*(batimentJoueurDto.getTempsAmelioration()));
-			coutPierreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutPierreAmelioration()));
-			coutBoisAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutBoisAmelioration()));
-			coutOreAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutOreAmelioration()));
-			coutNourritureAmelioration = (long) (batimentJoueurDto.getBatiment().getMultiplicateurCout()*(batimentJoueurDto.getCoutNourritureAmelioration()));
-		}
 		
 		batimentJoueurDto.setOuvrierNecessaireAmelioration(ouvrierNecessaireAmelioration);
 		batimentJoueurDto.setTempsAmelioration(tempsAmelioration);
