@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import dev.entites.campagne.Campagne;
 import dev.entites.campagne.CampagneArmee;
 import dev.entites.joueur.Armee;
 
@@ -23,10 +24,10 @@ public class Unitee {
     @JsonIgnore 
 	private List<Armee> armee;
     
-    /** Mode campagne **/
+    /** Une unitee peut concerner plusieures armées **/
     @OneToMany(mappedBy = "unitee")
     @JsonIgnore 
-	private List<CampagneArmee> campagneArmee;
+	private List<Campagne> campagne;
     
     /** id unitee : 
     //1 villageois 

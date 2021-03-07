@@ -6,9 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import dev.entites.unitee.Unitee;
 
 
 @Entity
@@ -28,9 +32,11 @@ public class Campagne {
 	private Integer duree;
 	private Integer niveau;
 
-	// Une campagne peut être constituée de plusieurs armées différentes
-    @OneToMany(mappedBy = "campagne")
-	private List<CampagneArmee> campagneArmee;
+	@ManyToOne
+	@JoinColumn(name = "unitee_id")
+    private Unitee unitee;
+    
+    private Integer quantitee;
 
 	private Boolean isBoss;
 	private Long recompensePierre;
@@ -39,11 +45,9 @@ public class Campagne {
 	private Long recompenseNourriture;
 	private Integer recompenseGemme;
 	
-	
 	public Campagne() {
 		
 	}
-
 	/**
 	 * @param campagneJoueur
 	 * @param icone
@@ -51,7 +55,8 @@ public class Campagne {
 	 * @param description
 	 * @param duree
 	 * @param niveau
-	 * @param campagneArmee
+	 * @param unitee
+	 * @param quantitee
 	 * @param isBoss
 	 * @param recompensePierre
 	 * @param recompenseBois
@@ -59,16 +64,18 @@ public class Campagne {
 	 * @param recompenseNourriture
 	 * @param recompenseGemme
 	 */
-	public Campagne(String icone, String libelle, String description,
-			Integer duree, Integer niveau, List<CampagneArmee> campagneArmee, Boolean isBoss, Long recompensePierre,
+	public Campagne(List<CampagneJoueur> campagneJoueur, String icone, String libelle, String description,
+			Integer duree, Integer niveau, Unitee unitee, Integer quantitee, Boolean isBoss, Long recompensePierre,
 			Long recompenseBois, Long recompenseOr, Long recompenseNourriture, Integer recompenseGemme) {
 		super();
+		this.campagneJoueur = campagneJoueur;
 		this.icone = icone;
 		this.libelle = libelle;
 		this.description = description;
 		this.duree = duree;
 		this.niveau = niveau;
-		this.campagneArmee = campagneArmee;
+		this.unitee = unitee;
+		this.quantitee = quantitee;
 		this.isBoss = isBoss;
 		this.recompensePierre = recompensePierre;
 		this.recompenseBois = recompenseBois;
@@ -161,16 +168,28 @@ public class Campagne {
 		this.niveau = niveau;
 	}
 	/**
-	 * @return the campagneArmee
+	 * @return the unitee
 	 */
-	public List<CampagneArmee> getCampagneArmee() {
-		return campagneArmee;
+	public Unitee getUnitee() {
+		return unitee;
 	}
 	/**
-	 * @param campagneArmee the campagneArmee to set
+	 * @param unitee the unitee to set
 	 */
-	public void setCampagneArmee(List<CampagneArmee> campagneArmee) {
-		this.campagneArmee = campagneArmee;
+	public void setUnitee(Unitee unitee) {
+		this.unitee = unitee;
+	}
+	/**
+	 * @return the quantitee
+	 */
+	public Integer getQuantitee() {
+		return quantitee;
+	}
+	/**
+	 * @param quantitee the quantitee to set
+	 */
+	public void setQuantitee(Integer quantitee) {
+		this.quantitee = quantitee;
 	}
 	/**
 	 * @return the isBoss
@@ -244,16 +263,9 @@ public class Campagne {
 	public void setRecompenseGemme(Integer recompenseGemme) {
 		this.recompenseGemme = recompenseGemme;
 	}
-	@Override
-	public String toString() {
-		return "Campagne [id=" + id + ", icone=" + icone + ", libelle=" + libelle
-				+ ", description=" + description + ", duree=" + duree + ", niveau=" + niveau + ", campagneArmee="
-				+ campagneArmee + ", isBoss=" + isBoss + ", recompensePierre=" + recompensePierre + ", recompenseBois="
-				+ recompenseBois + ", recompenseOr=" + recompenseOr + ", recompenseNourriture=" + recompenseNourriture
-				+ ", recompenseGemme=" + recompenseGemme + "]";
-	}
-
 	
+	
+
 	
 	
 }
