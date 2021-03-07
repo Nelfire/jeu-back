@@ -126,8 +126,8 @@ public class StartupListener {
         joueur1.setGemmePossession(99999L);
         joueur1.setRoles(Arrays.asList(new RoleJoueur(joueur1, Role.ROLE_ADMINISTRATEUR), new RoleJoueur(joueur1, Role.ROLE_JOUEUR)));
         joueur1.setDonateur(true);
-        joueur1.setPositionX(50);
-        joueur1.setPositionY(50);
+        joueur1.setPositionX(15);
+        joueur1.setPositionY(15);
         this.joueurRepo.save(joueur1);
         
         Joueur joueur2 = new Joueur();
@@ -154,8 +154,8 @@ public class StartupListener {
         joueur2.setGemmePossession(40L);
         joueur2.setRoles(Arrays.asList(new RoleJoueur(joueur2, Role.ROLE_ADMINISTRATEUR), new RoleJoueur(joueur2, Role.ROLE_JOUEUR)));
         joueur2.setDonateur(false);
-        joueur2.setPositionX(1);
-        joueur2.setPositionY(1);
+        joueur2.setPositionX(8);
+        joueur2.setPositionY(24);
         this.joueurRepo.save(joueur2);
 
         Joueur joueur3 = new Joueur();
@@ -182,8 +182,8 @@ public class StartupListener {
         joueur3.setGemmePossession(40L);
         joueur3.setRoles(Arrays.asList(new RoleJoueur(joueur3, Role.ROLE_JOUEUR)));
         joueur3.setDonateur(false);
-        joueur3.setPositionX(1);
-        joueur3.setPositionY(2);
+        joueur3.setPositionX(21);
+        joueur3.setPositionY(17);
         this.joueurRepo.save(joueur3);
         
         ////////////////////////////////////////////////////////
@@ -894,17 +894,17 @@ public class StartupListener {
         ////////////////////BATIMENT JOUEUR/////////////////////
         ////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////
-		long debut = new Date().getTime();
-		long fin = new Date().getTime();
-
-		BatimentJoueur batimentJoueur1 = new BatimentJoueur(joueur1,hdv,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
-		BatimentJoueur batimentJoueur2 = new BatimentJoueur(joueur1,tableExpedition,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
-		BatimentJoueur batimentJoueur3 = new BatimentJoueur(joueur1,chantier,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
-		BatimentJoueur batimentJoueur4 = new BatimentJoueur(joueur1,marche,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
-		this.batimentJoueurRepo.save(batimentJoueur1);
-		this.batimentJoueurRepo.save(batimentJoueur2);
-		this.batimentJoueurRepo.save(batimentJoueur3);
-		this.batimentJoueurRepo.save(batimentJoueur4);
+//		long debut = new Date().getTime();
+//		long fin = new Date().getTime();
+//
+//		BatimentJoueur batimentJoueur1 = new BatimentJoueur(joueur1,hdv,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
+//		BatimentJoueur batimentJoueur2 = new BatimentJoueur(joueur1,tableExpedition,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
+//		BatimentJoueur batimentJoueur3 = new BatimentJoueur(joueur1,chantier,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
+//		BatimentJoueur batimentJoueur4 = new BatimentJoueur(joueur1,marche,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
+//		this.batimentJoueurRepo.save(batimentJoueur1);
+//		this.batimentJoueurRepo.save(batimentJoueur2);
+//		this.batimentJoueurRepo.save(batimentJoueur3);
+//		this.batimentJoueurRepo.save(batimentJoueur4);
 		
 		
         ////////////////////////////////////////////////////////

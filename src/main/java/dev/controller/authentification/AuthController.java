@@ -113,8 +113,8 @@ public class AuthController {
 		}
         
         // Définir une position pour le joueur
-        Integer positionJoueurX = getChiffreRandom(1,100);
-        Integer positionJoueurY = getChiffreRandom(1,100);
+        Integer positionJoueurX = getChiffreRandom(1,30);
+        Integer positionJoueurY = getChiffreRandom(1,30);
 
         // Vérification position disponible
         while(positionDejaPrise==true) {
@@ -129,8 +129,8 @@ public class AuthController {
 	          if(mapentry.getKey() == positionJoueurX && mapentry.getValue() == positionJoueurY) {
 	             // Définir une nouvelle position
 	        	 positionDejaPrise = true;
-	             positionJoueurX = getChiffreRandom(1,100);
-	             positionJoueurY = getChiffreRandom(1,100);
+	             positionJoueurX = getChiffreRandom(1,30);
+	             positionJoueurY = getChiffreRandom(1,30);
 	          } 		        
 	        }
         }
