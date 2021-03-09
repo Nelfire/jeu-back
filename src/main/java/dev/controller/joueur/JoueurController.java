@@ -13,15 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import dev.controller.dto.batiment.BatimentDto;
 import dev.controller.dto.divers.EchangeRessourceDto;
 import dev.controller.dto.divers.GainRessourceDto;
 import dev.controller.dto.joueur.InformationRessourcesJoueur;
 import dev.controller.dto.joueur.JoueurDto;
 import dev.controller.dto.joueur.JoueurInfoDto;
 import dev.controller.dto.joueur.ModificationJoueurDto;
-import dev.controller.dto.social.MessageAjoutDto;
 import dev.entites.joueur.Joueur;
 import dev.services.joueur.JoueurService;
 
@@ -101,7 +98,6 @@ public class JoueurController {
 	 */
 	@PutMapping("/administrationModificationJoueur")
 	public JoueurDto administrationModificationJoueur (@RequestBody @Valid JoueurDto joueurDto, @RequestParam("id") Integer id) {
-		System.out.println("Controller");
 		return this.joueurService.administrationModificationJoueur(joueurDto,id);
 	}
 	

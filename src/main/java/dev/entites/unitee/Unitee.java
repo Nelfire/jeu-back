@@ -9,7 +9,6 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import dev.entites.campagne.Campagne;
-import dev.entites.campagne.CampagneArmee;
 import dev.entites.joueur.Armee;
 
 @Entity

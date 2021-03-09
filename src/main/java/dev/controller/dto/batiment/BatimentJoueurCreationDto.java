@@ -26,8 +26,5 @@ public class BatimentJoueurCreationDto {
 	public void setIdBatiment(Integer idBatiment) {
 		this.idBatiment = idBatiment;
 	}
-
-	
-	
 	
 }

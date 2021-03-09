@@ -3,18 +3,13 @@ package dev.services.social;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.validation.Valid;
-
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import dev.controller.dto.social.MessageAjoutDto;
 import dev.entites.joueur.Joueur;
 import dev.entites.social.Message;
 import dev.repository.social.MessageRepo;
 import dev.services.joueur.JoueurService;
-
 
 @Service
 public class MessageService {

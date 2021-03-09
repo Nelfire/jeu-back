@@ -2,16 +2,11 @@ package dev.services.batiment;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.validation.Valid;
-
 import org.springframework.stereotype.Service;
-
 import dev.controller.dto.batiment.BatimentDto;
-import dev.controller.dto.unitee.UniteeDto;
 import dev.entites.batiment.Batiment;
 import dev.entites.batiment.BatimentJoueur;
-import dev.entites.unitee.Unitee;
 import dev.repository.batiment.BatimentRepo;
 import dev.repository.joueur.BatimentJoueurRepo;
 
@@ -261,8 +256,6 @@ public class BatimentService {
 	 */
 	public BatimentDto administrationModificationBatiment(@Valid BatimentDto batimentDto, Integer id) {
 
-		System.out.println(batimentDto.getApportExperience());
-		System.out.println(batimentDto.getMultiplicateurExperience());
 		// BATIMENT
 		BatimentDto batiment = this.detailsBatiment(id);
 

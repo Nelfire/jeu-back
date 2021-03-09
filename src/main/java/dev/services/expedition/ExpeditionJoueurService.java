@@ -32,13 +32,13 @@ public class ExpeditionJoueurService {
 	 * MODIFIER LE FONCTIONNEMENT DE envoiUniteeEnExpedition, POUR RACOURSIR
 	 */
 
-	ExpeditionJoueurRepo expeditionJoueurRepo;
-	ArmeeRepo armeeRepo;
-	JoueurService joueurService;
-	JoueurRepo joueurRepo;
-	ExpeditionRepo expeditionRepo;
-	ExpeditionUniteeRepo expeditionUniteeRepo;
-	UniteeRepo uniteeRepo;
+	private ExpeditionJoueurRepo expeditionJoueurRepo;
+	private ArmeeRepo armeeRepo;
+	private JoueurService joueurService;
+	private JoueurRepo joueurRepo;
+	private ExpeditionRepo expeditionRepo;
+	private ExpeditionUniteeRepo expeditionUniteeRepo;
+	private UniteeRepo uniteeRepo;
 
 	/**
 	 * @param expeditionRepo
@@ -438,27 +438,27 @@ public class ExpeditionJoueurService {
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
 			} 
-			else if(arme.getUnitee().getId()==5)  // nombreHommeDArme
+			else if(arme.getUnitee().getId()==5)  // nombrePiquier
 			{
-				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreHommeDArme()<0) {
-					throw new UniteeManquanteException("Vous manquez d'hommes d'arme.");
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombrePiquier()<0) {
+					throw new UniteeManquanteException("Vous manquez de piquiers.");
 
 				} else {
 					// - Calcul des dégats émis
-					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreHommeDArme());
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombrePiquier());
 					armee.setId(arme.getId());
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
-					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreHommeDArme());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombrePiquier());
 					armee.setDateDebutProduction(arme.getDateDebutProduction());
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 					
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreHommeDArme());
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombrePiquier());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
-			} 
+			}  
 			else if(arme.getUnitee().getId()==6)  // nombreLanceurDeHache
 			{
 				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreLanceurDeHache()<0) {
@@ -500,28 +500,28 @@ public class ExpeditionJoueurService {
 					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreMilicien());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
-			} 
-			else if(arme.getUnitee().getId()==8)  // nombrePiquier
+			}
+			else if(arme.getUnitee().getId()==8)  // nombreHommeDArme
 			{
-				if(arme.getQuantitee()-compositionArmeeExpedition.getNombrePiquier()<0) {
-					throw new UniteeManquanteException("Vous manquez de piquiers.");
+				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreHommeDArme()<0) {
+					throw new UniteeManquanteException("Vous manquez d'hommes d'arme.");
 
 				} else {
 					// - Calcul des dégats émis
-					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombrePiquier());
+					degatsEmis = degatsEmis + (arme.getUnitee().getAttaque() * compositionArmeeExpedition.getNombreHommeDArme());
 					armee.setId(arme.getId());
 					armee.setJoueur(jou);
 					armee.setUnitee(arme.getUnitee());
-					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombrePiquier());
+					armee.setQuantitee(arme.getQuantitee()-compositionArmeeExpedition.getNombreHommeDArme());
 					armee.setDateDebutProduction(arme.getDateDebutProduction());
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 					
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombrePiquier());
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),arme.getUnitee().getId(),compositionArmeeExpedition.getNombreHommeDArme());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
-			} 
+			}
 			else if(arme.getUnitee().getId()==9)  // nombreCavalierArcher
 			{
 				if(arme.getQuantitee()-compositionArmeeExpedition.getNombreCavalierArcher()<0) {
@@ -861,8 +861,8 @@ public class ExpeditionJoueurService {
 		 * 3 = DEFAITE
 		 */
 		// CALCUL DU POURCENTAGE DE RÉUSSITE DE L'EXPÉDITION
-	    int vieRestanteExpedition = expedition.getVie() - degatsEmis;
-	    int pourcentageReussite = 100 - (((vieRestanteExpedition * 100) / expedition.getVie()));
+	    long vieRestanteExpedition = expedition.getVie() - degatsEmis;
+	    int pourcentageReussite = (int) (100 - (((vieRestanteExpedition * 100) / expedition.getVie())));
 	    if (vieRestanteExpedition < 0) {
 	      pourcentageReussite = 100;
 	    }
@@ -883,7 +883,7 @@ public class ExpeditionJoueurService {
 		return null;
 	}
 	
-	public String recupererRecompense(Integer idExpedition) {
+	public ExpeditionJoueur recupererRecompense(Integer idExpedition) {
 		
 		// RÉCUPÉRATION INFORMATIONS EXPEDITIONJOUER
 		ExpeditionJoueur expdJoueur = this.rechercherExpeditionJoueurById(idExpedition);
@@ -917,7 +917,9 @@ public class ExpeditionJoueurService {
 			jou.setNourriturePossession(jou.getNourriturePossession() + expdJoueur.getExpedition().getRecompenseNourriture());
 			jou.setGemmePossession(jou.getGemmePossession() + expdJoueur.getExpedition().getRecompenseGemme());
 			jou.setExperience(jou.getExperience() + expdJoueur.getExpedition().getRecompenseExperience());
-			jou.setNiveau(1+Math.round(jou.getExperience() / 5000)); // /!\ Temporaire : 1 Niveau = 5000 Experience
+
+			Integer niveau = this.joueurService.determinerNiveau(jou.getExperience());
+			jou.setNiveau(niveau);
 			
 			// - Changement de l'état, pour définir l'expédition comme "réussite"
 			expeditionJoueur.setEtatExpedition(2);
@@ -958,6 +960,6 @@ public class ExpeditionJoueurService {
 		// SAUVEGARDE DE L'EXPÉDITION JOUEUR
 		expeditionJoueurRepo.save(expeditionJoueur);
 		
-		return "Ok";
+		return expeditionJoueur;
 	}
 }

@@ -1,8 +1,8 @@
-package dev.controller.dto.expedition;
+package dev.controller.dto.campagne;
 
-public class CompositionArmeeExpeditionDto {
+public class CompositionArmeeCampagneDto {
 
-	private Integer idExpedition;
+	private Integer idCampagne;
 	private Integer nombreVillageois;
 	private Integer nombreArcher;
     private Integer nombreArcherComposite;
@@ -29,10 +29,10 @@ public class CompositionArmeeExpeditionDto {
     private Integer pourcentageReussite;
     
 	/**
-	 * @return the idExpedition
+	 * @return the idCampagne
 	 */
-	public Integer getIdExpedition() {
-		return idExpedition;
+	public Integer getIdCampagne() {
+		return idCampagne;
 	}
 	/**
 	 * @return the nombreVillageois
@@ -179,10 +179,10 @@ public class CompositionArmeeExpeditionDto {
 		return pourcentageReussite;
 	}
 	/**
-	 * @param idExpedition the idExpedition to set
+	 * @param idCampagne the idCampagne to set
 	 */
-	public void setIdExpedition(Integer idExpedition) {
-		this.idExpedition = idExpedition;
+	public void setIdCampagne(Integer idCampagne) {
+		this.idCampagne = idCampagne;
 	}
 	/**
 	 * @param nombreVillageois the nombreVillageois to set

@@ -4,9 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
-
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import dev.entites.expedition.Expedition;
 import dev.repository.expedition.ExpeditionRepo;
@@ -81,53 +78,79 @@ public class ExpeditionService {
 		LocalDate dateAujourdhui  = LocalDate.now(); 
 		Integer vieDifficulteMin = 0;
 		Integer vieDifficulteMax = 0;
-		for (int i = 0; i < 9; i++) {
+		Integer difficultee = 0;
+		Integer dureeExpedition = 0;
+		for (int i = 0; i < 18; i++) {
 			Expedition nouvelleExpedition = new Expedition();
-
+			
 			if(i>=0 && i<3) {
-				vieDifficulteMin = 1000;
-				vieDifficulteMax = 8000;
+				vieDifficulteMin = 50;
+				vieDifficulteMax = 1000;
+		    	difficultee = 1;
+		    	dureeExpedition = 600;
 			} else if (i>=3 && i<6) {
-				vieDifficulteMin = 9000;
-				vieDifficulteMax = 35000;
+				vieDifficulteMin = 5000;
+				vieDifficulteMax = 50_000;
+		    	difficultee = 2;
+		    	dureeExpedition = 2000;
 			} else if (i>=6 && i<9) {
-				vieDifficulteMin = 40000;
-				vieDifficulteMax = 100000;
+				vieDifficulteMin = 50_000;
+				vieDifficulteMax = 1_000_000;
+		    	difficultee = 3;
+		    	dureeExpedition = 6000;
+			} else if (i>=9 && i<12) {
+				vieDifficulteMin = 1_000_000;
+				vieDifficulteMax = 100_000_000;
+		    	difficultee = 4;
+		    	dureeExpedition = 10_000;
+			} else if (i>=12 && i<15) {
+				vieDifficulteMin = 100_000_000;
+				vieDifficulteMax = 500_000_000;
+		    	difficultee = 5;
+		    	dureeExpedition = 14_000;
+			} else if (i>=15 && i<18) {
+				vieDifficulteMin = 500_000_000;
+				vieDifficulteMax = 1_500_000_000;
+		    	difficultee = 6;
+		    	dureeExpedition = 18_000;
 			}
+
 			// vie aléatoire (poid : 0.2) (Ex : 20000)
-		    Integer vie = getChiffreRandom(vieDifficulteMin,vieDifficulteMax);
+		    Long vie = getChiffeRandomLong(vieDifficulteMin,vieDifficulteMax);
 		    
 		    // armure aléatoire (poid : 0.4) (Ex : 7000)
-		    Integer armure = getChiffreRandom(vie/3,(vie+5000)/3);
+		    Long armure = vie/20;
 		    
 		    // degats aléatoire (poid : 0.5) (Ex : 7000)
-		    Integer degats = getChiffreRandom(vie/3,(vie+5000)/3);
+		    Long degats = vie/30;
 
 		    // 1 600 à 130 000
-		    Integer sommeVieArmureDegats = vie+armure+degats;
+		    //Long sommeVieArmureDegats = vie+armure+degats;
 			// coutPierre aléatoire (Ex : 34 000 / 10 = 3400 à 4800)
-		    Integer coutPierre = getChiffreRandom((sommeVieArmureDegats)/6,(sommeVieArmureDegats)/3);
-			// coutBois aléatoire
-		    Integer coutBois = getChiffreRandom((sommeVieArmureDegats)/7,(sommeVieArmureDegats)/4);
-			// coutOr aléatoire
-		    Integer coutOr = getChiffreRandom((sommeVieArmureDegats)/8,(sommeVieArmureDegats)/5);
-			// coutNourriture aléatoire
-		    Integer coutNourriture = getChiffreRandom((sommeVieArmureDegats)/5,(sommeVieArmureDegats)/2);
+//		    Integer coutPierre = getChiffreRandom((sommeVieArmureDegats)/6,(sommeVieArmureDegats)/3);
+//			// coutBois aléatoire
+//		    Integer coutBois = getChiffreRandom((sommeVieArmureDegats)/7,(sommeVieArmureDegats)/4);
+//			// coutOr aléatoire
+//		    Integer coutOr = getChiffreRandom((sommeVieArmureDegats)/8,(sommeVieArmureDegats)/5);
+//			// coutNourriture aléatoire
+//		    Integer coutNourriture = getChiffreRandom((sommeVieArmureDegats)/5,(sommeVieArmureDegats)/2);
 
 			// recompensePierre aléatoire
-		    Integer recompensePierre = getChiffreRandom(coutPierre*2,coutPierre*3);
+		    Long recompenseRessoureTotalePoid = 900*vie;
+		    
+		    Long recompensePierre =  (recompenseRessoureTotalePoid/12);
 			// recompenseBois aléatoire
-		    Integer recompenseBois = getChiffreRandom(coutBois*2,coutBois*3);
+		    Long recompenseBois =  (recompenseRessoureTotalePoid/8);
 			// recompenseOr aléatoire
-		    Integer recompenseOr = getChiffreRandom(coutOr*2,coutOr*3);
+		    Long recompenseOr =  (recompenseRessoureTotalePoid/20);
 			// recompenseNourriture aléatoire
-		    Integer recompenseNourriture = getChiffreRandom(coutNourriture*2,coutNourriture*3);
+		    Long recompenseNourriture =  (recompenseRessoureTotalePoid/4);
 			// recompenseGemme aléatoire
-		    Integer recompenseGemme = getChiffreRandom(sommeVieArmureDegats/250,sommeVieArmureDegats/200);
+		    Long recompenseGemme =  (recompenseRessoureTotalePoid/40_000);
 			// recompenseExperience aléatoire
-		    Integer recompenseExperience = sommeVieArmureDegats;
+		    Long recompenseExperience =  (recompenseRessoureTotalePoid/100);
 			// dureeExpedition aléatoire	    
-		    Integer dureeExpedition = sommeVieArmureDegats / 6;
+//		    Integer dureeExpedition = sommeVieArmureDegats / 6;
 			// icone aléatoire
 		    String icone = "https://media.discordapp.net/attachments/794876433842831361/796753858625142804/thumb-1920-1013122.jpg?width=1278&height=497";
 			// libelle aléatoire
@@ -135,18 +158,18 @@ public class ExpeditionService {
 			// description aléatoire
 		    String description = "Description expedition";
 		    // difficultee aléatoire
-		    Integer difficultee = 0;
-		    if(sommeVieArmureDegats <= 2000) {
-		    	difficultee = 1;
-		    } else if (sommeVieArmureDegats >2000 && sommeVieArmureDegats <= 20000 ) {
-		    	difficultee = 2;
-		    } else if (sommeVieArmureDegats >20000 && sommeVieArmureDegats <= 50000 ) {
-		    	difficultee = 3;
-		    } else if (sommeVieArmureDegats >50000 && sommeVieArmureDegats <= 100000 ) {
-		    	difficultee = 4;
-		    } else if (sommeVieArmureDegats >100000) {
-		    	difficultee = 5;
-		    }
+//		    Integer difficultee = 0;
+//		    if(sommeVieArmureDegats <= 1000) {
+//		    	difficultee = 1;
+//		    } else if (sommeVieArmureDegats >2000 && sommeVieArmureDegats <= 20_000 ) {
+//		    	difficultee = 2;
+//		    } else if (sommeVieArmureDegats >20_000 && sommeVieArmureDegats <= 100_000 ) {
+//		    	difficultee = 3;
+//		    } else if (sommeVieArmureDegats >100_000 && sommeVieArmureDegats <= 1_000_000 ) {
+//		    	difficultee = 4;
+//		    } else if (sommeVieArmureDegats >100000) {
+//		    	difficultee = 5;
+//		    }
 		    
 		    nouvelleExpedition.setIcone(icone);
 		    nouvelleExpedition.setLibelle(libelle);
@@ -156,10 +179,10 @@ public class ExpeditionService {
 		    nouvelleExpedition.setDegats(degats);
 		    nouvelleExpedition.setVie(vie);
 		    nouvelleExpedition.setArmure(armure);
-		    nouvelleExpedition.setCoutPierre(coutPierre);
-		    nouvelleExpedition.setCoutBois(coutBois);
-		    nouvelleExpedition.setCoutOr(coutOr);
-		    nouvelleExpedition.setCoutNourriture(coutNourriture);
+		    nouvelleExpedition.setCoutPierre(0);
+		    nouvelleExpedition.setCoutBois(0);
+		    nouvelleExpedition.setCoutOr(0);
+		    nouvelleExpedition.setCoutNourriture(0);
 		    nouvelleExpedition.setRecompensePierre(recompensePierre);
 		    nouvelleExpedition.setRecompenseBois(recompenseBois);
 		    nouvelleExpedition.setRecompenseOr(recompenseOr);
@@ -173,13 +196,17 @@ public class ExpeditionService {
 		}
 
 		
-		
 	}
+
 	
+//	public static int getChiffreRandom(int minimum, int maximum) {
+//	    if (minimum < maximum)
+//	        return minimum + new Random().nextInt(Math.abs(maximum - minimum));
+//	    return minimum - new Random().nextInt(Math.abs(maximum - minimum));
+//	}
 	
-	public static int getChiffreRandom(int minimum, int maximum) {
-	    if (minimum < maximum)
-	        return minimum + new Random().nextInt(Math.abs(maximum - minimum));
-	    return minimum - new Random().nextInt(Math.abs(maximum - minimum));
+	public static long getChiffeRandomLong(long minimum, long maximum) {
+	    return minimum + (long) (Math.random() * (maximum - minimum));
 	}
+
 }

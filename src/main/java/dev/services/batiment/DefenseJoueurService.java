@@ -3,22 +3,13 @@ package dev.services.batiment;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.validation.Valid;
-
 import org.springframework.stereotype.Service;
-
-import dev.controller.dto.batiment.BatimentJoueurDto;
-import dev.controller.dto.batiment.DefenseDto;
 import dev.controller.dto.batiment.DefenseJoueurCreationDto;
 import dev.controller.dto.batiment.DefenseJoueurDto;
-import dev.controller.dto.joueur.ArmeeDto;
-import dev.entites.batiment.BatimentJoueur;
 import dev.entites.batiment.Defense;
 import dev.entites.batiment.DefenseJoueur;
-import dev.entites.joueur.Armee;
 import dev.entites.joueur.Joueur;
-import dev.exceptions.BatimentJoueurNonRecupereException;
 import dev.exceptions.MessageResponseException;
 import dev.exceptions.RessourceManquanteException;
 import dev.repository.JoueurRepo;

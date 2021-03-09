@@ -13,115 +13,108 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Batiment {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    /** Un batiment peut concerner plusieurs batimentsJoueur **/
-    @OneToMany(mappedBy = "batiment")
-    @JsonIgnore 
+	/** Un batiment peut concerner plusieurs batimentsJoueur **/
+	@OneToMany(mappedBy = "batiment")
+	@JsonIgnore
 	private List<BatimentJoueur> batimentJoueur;
-    
-    /* 
- 	1 /- Hotel de ville	
-	2 /- Chaumière (augmenter limite population)
-	3 /- Carrière (farm pierre)
-	4 /- Camp de bucheron (farm bois)		
-	5 /- Camp de mineur (farm or)
-	6 /- Ferme (farm nourriture)
-	7 /- Stockage Pierre (Entrepot)	
-	8 /- Stockage Bois (Scierie)
-	9 /- Stockage Or (Banque)
-	10 /- Stockage Nourriture (Grenier)
-	11 /- Caserne Militaire	
-	12 /- Ecurie
-	13 /- Port
-	14 /- Atelier de siege
-	15 /- Forge		
-	16 /- Universite
-	17 /- Marché
-	18 - Table d'expéditions
-     */
-    private Integer idTypeBatiment;
-    /*
-     * 0 = Divers
-     * 1 = Ressource
-     * 2 = Stockage
-     * 3 = Millitaire
-     */
-    private Integer idCategorieBatiment;
-    
-    /** icone du batiment **/
-    private String icone;
-    
-    /** nom du batiment **/
-    private String libelle;
-    
-    /** descriptif du batiment **/
-    private String descriptif;
-    
 
-    /** nombre ouvriers necessaire pour construction du batiment **/
-    private Integer ouvrierNecessaireConstruction;
-    
-    
-    /** temps de construction du batiment **/
-    private Integer tempsDeConstruction;
-    
-    
-    /** coût en pierre construction du batiment **/
-    private Long coutPierreConstruction;
-    
-    
-    /** coût en bois construction du batiment **/
-    private Long coutBoisConstruction;
-    
+	/**
+	 * 1 /- Hotel de ville 2 /- Chaumière (augmenter limite population) 3 /-
+	 * Carrière (farm pierre) 4 /- Camp de bucheron (farm bois) 5 /- Camp de mineur
+	 * (farm or) 6 /- Ferme (farm nourriture) 7 /- Stockage Pierre (Entrepot) 8 /-
+	 * Stockage Bois (Scierie) 9 /- Stockage Or (Banque) 10 /- Stockage Nourriture
+	 * (Grenier) 11 /- Caserne Militaire 12 /- Ecurie 13 /- Port 14 /- Atelier de
+	 * siege 15 /- Forge 16 /- Universite 17 /- Marché 18 - Table d'expéditions
+	 */
+	private Integer idTypeBatiment;
 
-    /** coût en or construction du batiment **/
-    private Long coutOrConstruction;
-    
+	/**
+	 * 0 = Divers 1 = Ressource 2 = Stockage 3 = Millitaire
+	 */
+	private Integer idCategorieBatiment;
 
-    /** coût en nourriture construction du batiment **/
-    private Long coutNourritureConstruction;
+	/** icone du batiment **/
+	private String icone;
 
-    
-    /** niveau necessaire de l'hotel de ville pour la construction du bâtiment **/
-    private Integer niveauHotelDeVilleNecessaireConstruction;
-    
-    
-    /** quantitée de pierre stockable dans la chambre forte du batiment**/
-    private Long quantiteeStockagePierre;
-    /** quantitée de bois stockable dans la chambre forte du batiment**/
-    private Long quantiteeStockageBois;
-    /** quantitée d'or stockable dans la chambre forte du batiment**/
-    private Long quantiteeStockageOre;
-    /** quantitée de nourriture stockable dans la chambre forte du batiment**/
-    private Long quantiteeStockageNourriture;
-    /** montant de l'apport de ressource (pierre) par heure (pour 100% exploitants) **/
-    private Integer apportPierreHeure;
-    /** montant de l'apport de ressource (bois) par heure (pour 100% exploitants) **/
-    private Integer apportBoisHeure;
-    /** montant de l'apport de ressource (or) par heure (pour 100% exploitants) **/
-    private Integer apportOreHeure;
-    /** montant de l'apport de ressource (nourriture) par heure (pour 100% exploitants) **/
-    private Integer apportNourritureHeure;
-    
-    private Long apportExperience;
+	/** nom du batiment **/
+	private String libelle;
 
+	/** descriptif du batiment **/
+	private String descriptif;
 
-    private Double multiplicateurExperience;
-    private Double multiplicateurTemps;
-    private Double multiplicateurApport;
-    private Double multiplicateurCout;
+	/** nombre ouvriers necessaire pour construction du batiment **/
+	private Integer ouvrierNecessaireConstruction;
 
-    /**
-     * CONSTRUCTEUR VIDE
-     */
+	/** temps de construction du batiment **/
+	private Integer tempsDeConstruction;
+
+	/** coût en pierre construction du batiment **/
+	private Long coutPierreConstruction;
+
+	/** coût en bois construction du batiment **/
+	private Long coutBoisConstruction;
+
+	/** coût en or construction du batiment **/
+	private Long coutOrConstruction;
+
+	/** coût en nourriture construction du batiment **/
+	private Long coutNourritureConstruction;
+
+	/** niveau necessaire de l'hotel de ville pour la construction du bâtiment **/
+	private Integer niveauHotelDeVilleNecessaireConstruction;
+
+	/** quantitée de pierre stockable dans la chambre forte du batiment **/
+	private Long quantiteeStockagePierre;
+
+	/** quantitée de bois stockable dans la chambre forte du batiment **/
+	private Long quantiteeStockageBois;
+
+	/** quantitée d'or stockable dans la chambre forte du batiment **/
+	private Long quantiteeStockageOre;
+
+	/** quantitée de nourriture stockable dans la chambre forte du batiment **/
+	private Long quantiteeStockageNourriture;
+
+	/** montant de l'apport de ressource (pierre) par heure **/
+	private Integer apportPierreHeure;
+
+	/** montant de l'apport de ressource (bois) par heure **/
+	private Integer apportBoisHeure;
+
+	/** montant de l'apport de ressource (or) par heure **/
+	private Integer apportOreHeure;
+
+	/** montant de l'apport de ressource (nourriture) par heure **/
+	private Integer apportNourritureHeure;
+
+	/** montant gain experience construction **/
+	private Long apportExperience;
+
+	/** montant du multiplicateur d'experience **/
+	private Double multiplicateurExperience;
+
+	/** montant du multiplicateur de temps **/
+	private Double multiplicateurTemps;
+
+	/** montant du multiplicateur d'apport de ressource **/
+	private Double multiplicateurApport;
+
+	/** montant du multiplicateur de coût **/
+	private Double multiplicateurCout;
+
+	/**
+	 * CONSTRUCTEUR VIDE
+	 */
 	public Batiment() {
 	}
 
-
 	/**
+	 * CONSTRUCTEUR AVEC PARAMETRES
+	 * 
 	 * @param idTypeBatiment
 	 * @param icone
 	 * @param libelle
@@ -142,12 +135,15 @@ public class Batiment {
 	 * @param apportOreHeure
 	 * @param apportNourritureHeure
 	 */
-	public Batiment(Integer idTypeBatiment,Integer idCategorieBatiment, String icone, String libelle, String descriptif,
-			Integer ouvrierNecessaireConstruction, Integer tempsDeConstruction, Long coutPierreConstruction,
-			Long coutBoisConstruction, Long coutOrConstruction, Long coutNourritureConstruction,
-			Integer niveauHotelDeVilleNecessaireConstruction, Long quantiteeStockagePierre,
-			Long quantiteeStockageBois, Long quantiteeStockageOre, Long quantiteeStockageNourriture,
-			Integer apportPierreHeure, Integer apportBoisHeure, Integer apportOreHeure, Integer apportNourritureHeure, Long apportExperience, Double multiplicateurExperience, Double multiplicateurTemps, Double multiplicateurApport, Double multiplicateurCout) {
+	public Batiment(Integer idTypeBatiment, Integer idCategorieBatiment, String icone, String libelle,
+			String descriptif, Integer ouvrierNecessaireConstruction, Integer tempsDeConstruction,
+			Long coutPierreConstruction, Long coutBoisConstruction, Long coutOrConstruction,
+			Long coutNourritureConstruction, Integer niveauHotelDeVilleNecessaireConstruction,
+			Long quantiteeStockagePierre, Long quantiteeStockageBois, Long quantiteeStockageOre,
+			Long quantiteeStockageNourriture, Integer apportPierreHeure, Integer apportBoisHeure,
+			Integer apportOreHeure, Integer apportNourritureHeure, Long apportExperience,
+			Double multiplicateurExperience, Double multiplicateurTemps, Double multiplicateurApport,
+			Double multiplicateurCout) {
 		super();
 		this.idTypeBatiment = idTypeBatiment;
 		this.idCategorieBatiment = idCategorieBatiment;
@@ -176,15 +172,12 @@ public class Batiment {
 		this.multiplicateurCout = multiplicateurCout;
 	}
 
-	
-
 	/**
 	 * @return the idCategorieBatiment
 	 */
 	public Integer getIdCategorieBatiment() {
 		return idCategorieBatiment;
 	}
-
 
 	/**
 	 * @param idCategorieBatiment the idCategorieBatiment to set
@@ -193,14 +186,12 @@ public class Batiment {
 		this.idCategorieBatiment = idCategorieBatiment;
 	}
 
-
 	/**
 	 * @return the id
 	 */
 	public Integer getId() {
 		return id;
 	}
-
 
 	/**
 	 * @param id the id to set
@@ -209,14 +200,12 @@ public class Batiment {
 		this.id = id;
 	}
 
-
 	/**
 	 * @return the batimentJoueur
 	 */
 	public List<BatimentJoueur> getBatimentJoueur() {
 		return batimentJoueur;
 	}
-
 
 	/**
 	 * @param batimentJoueur the batimentJoueur to set
@@ -225,14 +214,12 @@ public class Batiment {
 		this.batimentJoueur = batimentJoueur;
 	}
 
-
 	/**
 	 * @return the idTypeBatiment
 	 */
 	public Integer getIdTypeBatiment() {
 		return idTypeBatiment;
 	}
-
 
 	/**
 	 * @param idTypeBatiment the idTypeBatiment to set
@@ -241,14 +228,12 @@ public class Batiment {
 		this.idTypeBatiment = idTypeBatiment;
 	}
 
-
 	/**
 	 * @return the icone
 	 */
 	public String getIcone() {
 		return icone;
 	}
-
 
 	/**
 	 * @param icone the icone to set
@@ -257,14 +242,12 @@ public class Batiment {
 		this.icone = icone;
 	}
 
-
 	/**
 	 * @return the libelle
 	 */
 	public String getLibelle() {
 		return libelle;
 	}
-
 
 	/**
 	 * @param libelle the libelle to set
@@ -273,14 +256,12 @@ public class Batiment {
 		this.libelle = libelle;
 	}
 
-
 	/**
 	 * @return the descriptif
 	 */
 	public String getDescriptif() {
 		return descriptif;
 	}
-
 
 	/**
 	 * @param descriptif the descriptif to set
@@ -289,14 +270,12 @@ public class Batiment {
 		this.descriptif = descriptif;
 	}
 
-
 	/**
 	 * @return the ouvrierNecessaireConstruction
 	 */
 	public Integer getOuvrierNecessaireConstruction() {
 		return ouvrierNecessaireConstruction;
 	}
-
 
 	/**
 	 * @param ouvrierNecessaireConstruction the ouvrierNecessaireConstruction to set
@@ -305,14 +284,12 @@ public class Batiment {
 		this.ouvrierNecessaireConstruction = ouvrierNecessaireConstruction;
 	}
 
-
 	/**
 	 * @return the tempsDeConstruction
 	 */
 	public Integer getTempsDeConstruction() {
 		return tempsDeConstruction;
 	}
-
 
 	/**
 	 * @param tempsDeConstruction the tempsDeConstruction to set
@@ -321,14 +298,12 @@ public class Batiment {
 		this.tempsDeConstruction = tempsDeConstruction;
 	}
 
-
 	/**
 	 * @return the coutPierreConstruction
 	 */
 	public Long getCoutPierreConstruction() {
 		return coutPierreConstruction;
 	}
-
 
 	/**
 	 * @param coutPierreConstruction the coutPierreConstruction to set
@@ -337,14 +312,12 @@ public class Batiment {
 		this.coutPierreConstruction = coutPierreConstruction;
 	}
 
-
 	/**
 	 * @return the coutBoisConstruction
 	 */
 	public Long getCoutBoisConstruction() {
 		return coutBoisConstruction;
 	}
-
 
 	/**
 	 * @param coutBoisConstruction the coutBoisConstruction to set
@@ -353,14 +326,12 @@ public class Batiment {
 		this.coutBoisConstruction = coutBoisConstruction;
 	}
 
-
 	/**
 	 * @return the coutOrConstruction
 	 */
 	public Long getCoutOrConstruction() {
 		return coutOrConstruction;
 	}
-
 
 	/**
 	 * @param coutOrConstruction the coutOrConstruction to set
@@ -369,14 +340,12 @@ public class Batiment {
 		this.coutOrConstruction = coutOrConstruction;
 	}
 
-
 	/**
 	 * @return the coutNourritureConstruction
 	 */
 	public Long getCoutNourritureConstruction() {
 		return coutNourritureConstruction;
 	}
-
 
 	/**
 	 * @param coutNourritureConstruction the coutNourritureConstruction to set
@@ -385,7 +354,6 @@ public class Batiment {
 		this.coutNourritureConstruction = coutNourritureConstruction;
 	}
 
-
 	/**
 	 * @return the niveauHotelDeVilleNecessaireConstruction
 	 */
@@ -393,14 +361,14 @@ public class Batiment {
 		return niveauHotelDeVilleNecessaireConstruction;
 	}
 
-
 	/**
-	 * @param niveauHotelDeVilleNecessaireConstruction the niveauHotelDeVilleNecessaireConstruction to set
+	 * @param niveauHotelDeVilleNecessaireConstruction the
+	 *                                                 niveauHotelDeVilleNecessaireConstruction
+	 *                                                 to set
 	 */
 	public void setNiveauHotelDeVilleNecessaireConstruction(Integer niveauHotelDeVilleNecessaireConstruction) {
 		this.niveauHotelDeVilleNecessaireConstruction = niveauHotelDeVilleNecessaireConstruction;
 	}
-
 
 	/**
 	 * @return the quantiteeStockagePierre
@@ -409,14 +377,12 @@ public class Batiment {
 		return quantiteeStockagePierre;
 	}
 
-
 	/**
 	 * @param quantiteeStockagePierre the quantiteeStockagePierre to set
 	 */
 	public void setQuantiteeStockagePierre(Long quantiteeStockagePierre) {
 		this.quantiteeStockagePierre = quantiteeStockagePierre;
 	}
-
 
 	/**
 	 * @return the quantiteeStockageBois
@@ -425,14 +391,12 @@ public class Batiment {
 		return quantiteeStockageBois;
 	}
 
-
 	/**
 	 * @param quantiteeStockageBois the quantiteeStockageBois to set
 	 */
 	public void setQuantiteeStockageBois(Long quantiteeStockageBois) {
 		this.quantiteeStockageBois = quantiteeStockageBois;
 	}
-
 
 	/**
 	 * @return the quantiteeStockageOre
@@ -441,14 +405,12 @@ public class Batiment {
 		return quantiteeStockageOre;
 	}
 
-
 	/**
 	 * @param quantiteeStockageOre the quantiteeStockageOre to set
 	 */
 	public void setQuantiteeStockageOre(Long quantiteeStockageOre) {
 		this.quantiteeStockageOre = quantiteeStockageOre;
 	}
-
 
 	/**
 	 * @return the quantiteeStockageNourriture
@@ -457,14 +419,12 @@ public class Batiment {
 		return quantiteeStockageNourriture;
 	}
 
-
 	/**
 	 * @param quantiteeStockageNourriture the quantiteeStockageNourriture to set
 	 */
 	public void setQuantiteeStockageNourriture(Long quantiteeStockageNourriture) {
 		this.quantiteeStockageNourriture = quantiteeStockageNourriture;
 	}
-
 
 	/**
 	 * @return the apportPierreHeure
@@ -473,14 +433,12 @@ public class Batiment {
 		return apportPierreHeure;
 	}
 
-
 	/**
 	 * @param apportPierreHeure the apportPierreHeure to set
 	 */
 	public void setApportPierreHeure(Integer apportPierreHeure) {
 		this.apportPierreHeure = apportPierreHeure;
 	}
-
 
 	/**
 	 * @return the apportBoisHeure
@@ -489,14 +447,12 @@ public class Batiment {
 		return apportBoisHeure;
 	}
 
-
 	/**
 	 * @param apportBoisHeure the apportBoisHeure to set
 	 */
 	public void setApportBoisHeure(Integer apportBoisHeure) {
 		this.apportBoisHeure = apportBoisHeure;
 	}
-
 
 	/**
 	 * @return the apportOreHeure
@@ -505,14 +461,12 @@ public class Batiment {
 		return apportOreHeure;
 	}
 
-
 	/**
 	 * @param apportOreHeure the apportOreHeure to set
 	 */
 	public void setApportOreHeure(Integer apportOreHeure) {
 		this.apportOreHeure = apportOreHeure;
 	}
-
 
 	/**
 	 * @return the apportNourritureHeure
@@ -521,16 +475,12 @@ public class Batiment {
 		return apportNourritureHeure;
 	}
 
-
 	/**
 	 * @param apportNourritureHeure the apportNourritureHeure to set
 	 */
 	public void setApportNourritureHeure(Integer apportNourritureHeure) {
 		this.apportNourritureHeure = apportNourritureHeure;
 	}
-
-
-
 
 	/**
 	 * @return the apportExperience
@@ -539,14 +489,12 @@ public class Batiment {
 		return apportExperience;
 	}
 
-
 	/**
 	 * @param apportExperience the apportExperience to set
 	 */
 	public void setApportExperience(Long apportExperience) {
 		this.apportExperience = apportExperience;
 	}
-
 
 	/**
 	 * @return the multiplicateurExperience
@@ -555,14 +503,12 @@ public class Batiment {
 		return multiplicateurExperience;
 	}
 
-
 	/**
 	 * @param multiplicateurExperience the multiplicateurExperience to set
 	 */
 	public void setMultiplicateurExperience(Double multiplicateurExperience) {
 		this.multiplicateurExperience = multiplicateurExperience;
 	}
-
 
 	/**
 	 * @return the multiplicateurTemps
@@ -571,14 +517,12 @@ public class Batiment {
 		return multiplicateurTemps;
 	}
 
-
 	/**
 	 * @param multiplicateurTemps the multiplicateurTemps to set
 	 */
 	public void setMultiplicateurTemps(Double multiplicateurTemps) {
 		this.multiplicateurTemps = multiplicateurTemps;
 	}
-
 
 	/**
 	 * @return the multiplicateurApport
@@ -587,14 +531,12 @@ public class Batiment {
 		return multiplicateurApport;
 	}
 
-
 	/**
 	 * @param multiplicateurApport the multiplicateurApport to set
 	 */
 	public void setMultiplicateurApport(Double multiplicateurApport) {
 		this.multiplicateurApport = multiplicateurApport;
 	}
-
 
 	/**
 	 * @return the multiplicateurCout
@@ -603,7 +545,6 @@ public class Batiment {
 		return multiplicateurCout;
 	}
 
-
 	/**
 	 * @param multiplicateurCout the multiplicateurCout to set
 	 */
@@ -611,12 +552,4 @@ public class Batiment {
 		this.multiplicateurCout = multiplicateurCout;
 	}
 
-
-	
-
-	
-	
-	
-	
-    
 }

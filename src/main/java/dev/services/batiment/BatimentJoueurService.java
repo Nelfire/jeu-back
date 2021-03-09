@@ -18,9 +18,6 @@ import dev.repository.batiment.BatimentRepo;
 import dev.repository.joueur.BatimentJoueurRepo;
 import dev.services.joueur.JoueurService;
 
-/*
- * Dans creationBatimentJoueur, prendre en compte le cas ou "Lvl batiment insufisant" (Je crois)
- */
 @Service
 public class BatimentJoueurService {
 

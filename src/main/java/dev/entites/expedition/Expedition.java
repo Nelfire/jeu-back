@@ -29,23 +29,23 @@ public class Expedition {
 	// Difficultée
 	private Integer difficultee;
 	// -- Dégats qu'émet l'expédition
-	private Integer degats;
+	private Long degats;
 	// -- Vie que possède l'expédition
-	private Integer vie;
+	private Long vie;
 	// -- Armure que possède l'expédition
-	private Integer armure;
+	private Long armure;
 	// Coût envoi
 	private Integer coutPierre;
 	private Integer coutBois;
 	private Integer coutOr;
 	private Integer coutNourriture;
 	// Récompense ressources
-	private Integer recompensePierre;
-	private Integer recompenseBois;
-	private Integer recompenseOr;
-	private Integer recompenseNourriture;
-	private Integer recompenseGemme;
-	private Integer recompenseExperience;
+	private Long recompensePierre;
+	private Long recompenseBois;
+	private Long recompenseOr;
+	private Long recompenseNourriture;
+	private Long recompenseGemme;
+	private Long recompenseExperience;
 	
 	private LocalDate dateParution;
 	
@@ -75,10 +75,10 @@ public class Expedition {
 	 * @param recompenseGemme
 	 */
 	public Expedition(String icone, String libelle, String description,
-			Integer dureeExpedition, Integer difficultee, Integer degats, Integer vie,
-			Integer armure, Integer coutPierre, Integer coutBois, Integer coutOr, Integer coutNourriture,
-			Integer recompensePierre, Integer recompenseBois, Integer recompenseOr, Integer recompenseNourriture,
-			Integer recompenseGemme, Integer recompenseExperience, LocalDate dateParution) {
+			Integer dureeExpedition, Integer difficultee, Long degats, Long vie,
+			Long armure, Integer coutPierre, Integer coutBois, Integer coutOr, Integer coutNourriture,
+			Long recompensePierre, Long recompenseBois, Long recompenseOr, Long recompenseNourriture,
+			Long recompenseGemme, Long recompenseExperience, LocalDate dateParution) {
 		super();
 		this.icone = icone;
 		this.libelle = libelle;
@@ -102,7 +102,6 @@ public class Expedition {
 	}
 
 
-
 	/**
 	 * @return the id
 	 */
@@ -110,209 +109,12 @@ public class Expedition {
 		return id;
 	}
 
+
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-
-	/**
-	 * @return the dureeExpedition
-	 */
-	public Integer getDureeExpedition() {
-		return dureeExpedition;
-	}
-
-	/**
-	 * @param dureeExpedition the dureeExpedition to set
-	 */
-	public void setDureeExpedition(Integer dureeExpedition) {
-		this.dureeExpedition = dureeExpedition;
-	}
-
-
-	/**
-	 * @return the difficultee
-	 */
-	public Integer getDifficultee() {
-		return difficultee;
-	}
-
-	/**
-	 * @param difficultee the difficultee to set
-	 */
-	public void setDifficultee(Integer difficultee) {
-		this.difficultee = difficultee;
-	}
-
-	/**
-	 * @return the degats
-	 */
-	public Integer getDegats() {
-		return degats;
-	}
-
-	/**
-	 * @param degats the degats to set
-	 */
-	public void setDegats(Integer degats) {
-		this.degats = degats;
-	}
-
-	/**
-	 * @return the vie
-	 */
-	public Integer getVie() {
-		return vie;
-	}
-
-	/**
-	 * @param vie the vie to set
-	 */
-	public void setVie(Integer vie) {
-		this.vie = vie;
-	}
-
-	/**
-	 * @return the armure
-	 */
-	public Integer getArmure() {
-		return armure;
-	}
-
-	/**
-	 * @param armure the armure to set
-	 */
-	public void setArmure(Integer armure) {
-		this.armure = armure;
-	}
-
-	/**
-	 * @return the coutPierre
-	 */
-	public Integer getCoutPierre() {
-		return coutPierre;
-	}
-
-	/**
-	 * @param coutPierre the coutPierre to set
-	 */
-	public void setCoutPierre(Integer coutPierre) {
-		this.coutPierre = coutPierre;
-	}
-
-	/**
-	 * @return the coutBois
-	 */
-	public Integer getCoutBois() {
-		return coutBois;
-	}
-
-	/**
-	 * @param coutBois the coutBois to set
-	 */
-	public void setCoutBois(Integer coutBois) {
-		this.coutBois = coutBois;
-	}
-
-	/**
-	 * @return the coutOr
-	 */
-	public Integer getCoutOr() {
-		return coutOr;
-	}
-
-	/**
-	 * @param coutOr the coutOr to set
-	 */
-	public void setCoutOr(Integer coutOr) {
-		this.coutOr = coutOr;
-	}
-
-	/**
-	 * @return the coutNourriture
-	 */
-	public Integer getCoutNourriture() {
-		return coutNourriture;
-	}
-
-	/**
-	 * @param coutNourriture the coutNourriture to set
-	 */
-	public void setCoutNourriture(Integer coutNourriture) {
-		this.coutNourriture = coutNourriture;
-	}
-
-	/**
-	 * @return the recompensePierre
-	 */
-	public Integer getRecompensePierre() {
-		return recompensePierre;
-	}
-
-	/**
-	 * @param recompensePierre the recompensePierre to set
-	 */
-	public void setRecompensePierre(Integer recompensePierre) {
-		this.recompensePierre = recompensePierre;
-	}
-
-	/**
-	 * @return the recompenseBois
-	 */
-	public Integer getRecompenseBois() {
-		return recompenseBois;
-	}
-
-	/**
-	 * @param recompenseBois the recompenseBois to set
-	 */
-	public void setRecompenseBois(Integer recompenseBois) {
-		this.recompenseBois = recompenseBois;
-	}
-
-	/**
-	 * @return the recompenseOr
-	 */
-	public Integer getRecompenseOr() {
-		return recompenseOr;
-	}
-
-	/**
-	 * @param recompenseOr the recompenseOr to set
-	 */
-	public void setRecompenseOr(Integer recompenseOr) {
-		this.recompenseOr = recompenseOr;
-	}
-
-	/**
-	 * @return the recompenseNourriture
-	 */
-	public Integer getRecompenseNourriture() {
-		return recompenseNourriture;
-	}
-
-	/**
-	 * @param recompenseNourriture the recompenseNourriture to set
-	 */
-	public void setRecompenseNourriture(Integer recompenseNourriture) {
-		this.recompenseNourriture = recompenseNourriture;
-	}
-
-	/**
-	 * @return the recompenseGemme
-	 */
-	public Integer getRecompenseGemme() {
-		return recompenseGemme;
-	}
-
-	/**
-	 * @param recompenseGemme the recompenseGemme to set
-	 */
-	public void setRecompenseGemme(Integer recompenseGemme) {
-		this.recompenseGemme = recompenseGemme;
 	}
 
 
@@ -329,6 +131,22 @@ public class Expedition {
 	 */
 	public void setExpeditionJoueur(List<ExpeditionJoueur> expeditionJoueur) {
 		this.expeditionJoueur = expeditionJoueur;
+	}
+
+
+	/**
+	 * @return the icone
+	 */
+	public String getIcone() {
+		return icone;
+	}
+
+
+	/**
+	 * @param icone the icone to set
+	 */
+	public void setIcone(String icone) {
+		this.icone = icone;
 	}
 
 
@@ -365,25 +183,233 @@ public class Expedition {
 
 
 	/**
-	 * @return the icone
+	 * @return the dureeExpedition
 	 */
-	public String getIcone() {
-		return icone;
+	public Integer getDureeExpedition() {
+		return dureeExpedition;
 	}
 
 
 	/**
-	 * @param icone the icone to set
+	 * @param dureeExpedition the dureeExpedition to set
 	 */
-	public void setIcone(String icone) {
-		this.icone = icone;
+	public void setDureeExpedition(Integer dureeExpedition) {
+		this.dureeExpedition = dureeExpedition;
+	}
+
+
+	/**
+	 * @return the difficultee
+	 */
+	public Integer getDifficultee() {
+		return difficultee;
+	}
+
+
+	/**
+	 * @param difficultee the difficultee to set
+	 */
+	public void setDifficultee(Integer difficultee) {
+		this.difficultee = difficultee;
+	}
+
+
+	/**
+	 * @return the degats
+	 */
+	public Long getDegats() {
+		return degats;
+	}
+
+
+	/**
+	 * @param degats the degats to set
+	 */
+	public void setDegats(Long degats) {
+		this.degats = degats;
+	}
+
+
+	/**
+	 * @return the vie
+	 */
+	public Long getVie() {
+		return vie;
+	}
+
+
+	/**
+	 * @param vie the vie to set
+	 */
+	public void setVie(Long vie) {
+		this.vie = vie;
+	}
+
+
+	/**
+	 * @return the armure
+	 */
+	public Long getArmure() {
+		return armure;
+	}
+
+
+	/**
+	 * @param armure the armure to set
+	 */
+	public void setArmure(Long armure) {
+		this.armure = armure;
+	}
+
+
+	/**
+	 * @return the coutPierre
+	 */
+	public Integer getCoutPierre() {
+		return coutPierre;
+	}
+
+
+	/**
+	 * @param coutPierre the coutPierre to set
+	 */
+	public void setCoutPierre(Integer coutPierre) {
+		this.coutPierre = coutPierre;
+	}
+
+
+	/**
+	 * @return the coutBois
+	 */
+	public Integer getCoutBois() {
+		return coutBois;
+	}
+
+
+	/**
+	 * @param coutBois the coutBois to set
+	 */
+	public void setCoutBois(Integer coutBois) {
+		this.coutBois = coutBois;
+	}
+
+
+	/**
+	 * @return the coutOr
+	 */
+	public Integer getCoutOr() {
+		return coutOr;
+	}
+
+
+	/**
+	 * @param coutOr the coutOr to set
+	 */
+	public void setCoutOr(Integer coutOr) {
+		this.coutOr = coutOr;
+	}
+
+
+	/**
+	 * @return the coutNourriture
+	 */
+	public Integer getCoutNourriture() {
+		return coutNourriture;
+	}
+
+
+	/**
+	 * @param coutNourriture the coutNourriture to set
+	 */
+	public void setCoutNourriture(Integer coutNourriture) {
+		this.coutNourriture = coutNourriture;
+	}
+
+
+	/**
+	 * @return the recompensePierre
+	 */
+	public Long getRecompensePierre() {
+		return recompensePierre;
+	}
+
+
+	/**
+	 * @param recompensePierre the recompensePierre to set
+	 */
+	public void setRecompensePierre(Long recompensePierre) {
+		this.recompensePierre = recompensePierre;
+	}
+
+
+	/**
+	 * @return the recompenseBois
+	 */
+	public Long getRecompenseBois() {
+		return recompenseBois;
+	}
+
+
+	/**
+	 * @param recompenseBois the recompenseBois to set
+	 */
+	public void setRecompenseBois(Long recompenseBois) {
+		this.recompenseBois = recompenseBois;
+	}
+
+
+	/**
+	 * @return the recompenseOr
+	 */
+	public Long getRecompenseOr() {
+		return recompenseOr;
+	}
+
+
+	/**
+	 * @param recompenseOr the recompenseOr to set
+	 */
+	public void setRecompenseOr(Long recompenseOr) {
+		this.recompenseOr = recompenseOr;
+	}
+
+
+	/**
+	 * @return the recompenseNourriture
+	 */
+	public Long getRecompenseNourriture() {
+		return recompenseNourriture;
+	}
+
+
+	/**
+	 * @param recompenseNourriture the recompenseNourriture to set
+	 */
+	public void setRecompenseNourriture(Long recompenseNourriture) {
+		this.recompenseNourriture = recompenseNourriture;
+	}
+
+
+	/**
+	 * @return the recompenseGemme
+	 */
+	public Long getRecompenseGemme() {
+		return recompenseGemme;
+	}
+
+
+	/**
+	 * @param recompenseGemme the recompenseGemme to set
+	 */
+	public void setRecompenseGemme(Long recompenseGemme) {
+		this.recompenseGemme = recompenseGemme;
 	}
 
 
 	/**
 	 * @return the recompenseExperience
 	 */
-	public Integer getRecompenseExperience() {
+	public Long getRecompenseExperience() {
 		return recompenseExperience;
 	}
 
@@ -391,7 +417,7 @@ public class Expedition {
 	/**
 	 * @param recompenseExperience the recompenseExperience to set
 	 */
-	public void setRecompenseExperience(Integer recompenseExperience) {
+	public void setRecompenseExperience(Long recompenseExperience) {
 		this.recompenseExperience = recompenseExperience;
 	}
 
@@ -412,18 +438,6 @@ public class Expedition {
 	}
 
 
-	
-	@Override
-	public String toString() {
-		return "Expedition [id=" + id + ", expeditionJoueur=" + expeditionJoueur + ", icone=" + icone + ", libelle="
-				+ libelle + ", description=" + description + ", dureeExpedition=" + dureeExpedition + ", difficultee="
-				+ difficultee + ", degats=" + degats + ", vie=" + vie + ", armure=" + armure + ", coutPierre="
-				+ coutPierre + ", coutBois=" + coutBois + ", coutOr=" + coutOr + ", coutNourriture=" + coutNourriture
-				+ ", recompensePierre=" + recompensePierre + ", recompenseBois=" + recompenseBois + ", recompenseOr="
-				+ recompenseOr + ", recompenseNourriture=" + recompenseNourriture + ", recompenseGemme="
-				+ recompenseGemme + ", recompenseExperience=" + recompenseExperience + ", dateParution=" + dateParution
-				+ "]";
-	}
 
 
 

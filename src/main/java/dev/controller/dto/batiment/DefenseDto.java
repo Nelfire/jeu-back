@@ -1,7 +1,5 @@
 package dev.controller.dto.batiment;
 
-import dev.entites.batiment.Defense;
-
 public class DefenseDto {
 
 	private Integer id;

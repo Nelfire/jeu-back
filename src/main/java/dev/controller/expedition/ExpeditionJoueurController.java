@@ -80,7 +80,7 @@ public class ExpeditionJoueurController {
 	 * RECUPERATION DE LA RECOMPENSE D'EXPEDITION
 	 */
 	@GetMapping("/recupererRecompense")
-	public String recupererRecompense(@RequestParam("idExpedition") Integer idExpedition) {
+	public ExpeditionJoueur recupererRecompense(@RequestParam("idExpedition") Integer idExpedition) {
 		return this.expeditionJoueurService.recupererRecompense(idExpedition);
 	}
 }

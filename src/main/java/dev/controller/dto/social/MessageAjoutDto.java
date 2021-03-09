@@ -1,7 +1,5 @@
 package dev.controller.dto.social;
 
-import java.time.LocalDate;
-
 public class MessageAjoutDto {
 
 	// Déclarations

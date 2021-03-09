@@ -44,7 +44,7 @@ public class CampagneJoueur {
 	// 0 = En attente
 	// 1 = Réussie
 	// 2 = Echec
-	private Integer etatExpedition;
+	private Integer etatCampagne;
 	
 	private Integer nombreTentatives;
 
@@ -60,11 +60,11 @@ public class CampagneJoueur {
 	 * @param armeeEnvoiJoueur
 	 * @param recompenseRecuperee
 	 * @param pourcentageReussite
-	 * @param etatExpedition
+	 * @param etatCampagne
 	 */
 	public CampagneJoueur(Joueur joueur, Campagne campagne, Long dateDebutCampagne, Long dateFinCampagne,
 			List<Armee> armeeEnvoiJoueur, Boolean recompenseRecuperee, Integer pourcentageReussite,
-			Integer etatExpedition, Integer nombreTentatives) {
+			Integer etatCampagne, Integer nombreTentatives) {
 		super();
 		this.joueur = joueur;
 		this.campagne = campagne;
@@ -73,7 +73,7 @@ public class CampagneJoueur {
 		this.armeeEnvoiJoueur = armeeEnvoiJoueur;
 		this.recompenseRecuperee = recompenseRecuperee;
 		this.pourcentageReussite = pourcentageReussite;
-		this.etatExpedition = etatExpedition;
+		this.etatCampagne = etatCampagne;
 		this.nombreTentatives = nombreTentatives;
 	}
 	/**
@@ -115,25 +115,25 @@ public class CampagneJoueur {
 	/**
 	 * @return the dateDebutCampagne
 	 */
-	public Long getDateDebutExpedition() {
+	public Long getDateDebutCampagne() {
 		return dateDebutCampagne;
 	}
 	/**
 	 * @param dateDebutCampagne the dateDebutCampagne to set
 	 */
-	public void setDateDebutExpedition(Long dateDebutCampagne) {
+	public void setDateDebutCampagne(Long dateDebutCampagne) {
 		this.dateDebutCampagne = dateDebutCampagne;
 	}
 	/**
 	 * @return the dateFinCampagne
 	 */
-	public Long getDateFinExpedition() {
+	public Long getDateFinCampagne() {
 		return dateFinCampagne;
 	}
 	/**
 	 * @param dateFinCampagne the dateFinCampagne to set
 	 */
-	public void setDateFinExpedition(Long dateFinCampagne) {
+	public void setDateFinCampagne(Long dateFinCampagne) {
 		this.dateFinCampagne = dateFinCampagne;
 	}
 	/**
@@ -173,16 +173,16 @@ public class CampagneJoueur {
 		this.pourcentageReussite = pourcentageReussite;
 	}
 	/**
-	 * @return the etatExpedition
+	 * @return the etatCampagne
 	 */
-	public Integer getEtatExpedition() {
-		return etatExpedition;
+	public Integer getEtatCampagne() {
+		return etatCampagne;
 	}
 	/**
-	 * @param etatExpedition the etatExpedition to set
+	 * @param etatCampagne the etatCampagne to set
 	 */
-	public void setEtatExpedition(Integer etatExpedition) {
-		this.etatExpedition = etatExpedition;
+	public void setEtatCampagne(Integer etatCampagne) {
+		this.etatCampagne = etatCampagne;
 	}
 	/**
 	 * @return the nombreTentatives
@@ -196,6 +196,14 @@ public class CampagneJoueur {
 	public void setNombreTentatives(Integer nombreTentatives) {
 		this.nombreTentatives = nombreTentatives;
 	}
+	@Override
+	public String toString() {
+		return "CampagneJoueur [id=" + id + ", joueur=" + joueur + ", campagne=" + campagne + ", dateDebutCampagne="
+				+ dateDebutCampagne + ", dateFinCampagne=" + dateFinCampagne + ", armeeEnvoiJoueur=" + armeeEnvoiJoueur
+				+ ", recompenseRecuperee=" + recompenseRecuperee + ", pourcentageReussite=" + pourcentageReussite
+				+ ", etatCampagne=" + etatCampagne + ", nombreTentatives=" + nombreTentatives + "]";
+	}
+	
 	
 	
 	

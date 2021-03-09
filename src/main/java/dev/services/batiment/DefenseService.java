@@ -3,14 +3,9 @@ package dev.services.batiment;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import javax.validation.Valid;
-
 import org.springframework.stereotype.Service;
-
-import dev.controller.dto.batiment.BatimentDto;
 import dev.controller.dto.batiment.DefenseDto;
-import dev.entites.batiment.Batiment;
 import dev.entites.batiment.Defense;
 import dev.repository.batiment.DefenseRepo;
 

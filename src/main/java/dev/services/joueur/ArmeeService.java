@@ -3,12 +3,8 @@ package dev.services.joueur;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.validation.Valid;
-
 import org.springframework.stereotype.Service;
-
-import dev.controller.dto.batiment.BatimentJoueurDto;
 import dev.controller.dto.joueur.ArmeeDto;
 import dev.controller.dto.joueur.ArmeeJoueurCreationDto;
 import dev.controller.dto.unitee.UniteeDto;
@@ -191,7 +187,7 @@ public class ArmeeService {
 		Joueur jou = this.joueurService.recuperationJoueur();
 		
 		List<ArmeeDto> listeArmeesDuJoueur = new ArrayList<>();
-		for (Armee armee : armeeRepo.findByJoueur(jou)) {
+		for (Armee armee : armeeRepo.findByJoueurByOrderByAttaqueAsc(jou)) {
 			ArmeeDto armeeDto = new ArmeeDto();
 			armeeDto.setId(armee.getId());
 			armeeDto.setJoueur(armee.getJoueur());

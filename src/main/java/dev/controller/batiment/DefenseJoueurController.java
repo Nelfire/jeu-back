@@ -13,11 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import dev.controller.dto.batiment.DefenseDto;
 import dev.controller.dto.batiment.DefenseJoueurCreationDto;
 import dev.controller.dto.batiment.DefenseJoueurDto;
-import dev.controller.dto.joueur.ArmeeDto;
 import dev.entites.batiment.DefenseJoueur;
 import dev.services.batiment.DefenseJoueurService;
 

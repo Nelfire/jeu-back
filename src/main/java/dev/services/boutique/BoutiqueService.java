@@ -33,12 +33,12 @@ public class BoutiqueService {
 		// QUANTITEE RESSOURCE CORRESPONDANTE (10%)
 		Long quantite10pourcentpierre =  (long) (jou.getPierreMaximum()*0.1);
 		// CALCUL COUT GEMMES ( montant ressource / 100 )
-		Long coutGemme = quantite10pourcentpierre / 100;
-			
+		Long coutGemme = (long) Math.ceil((double) quantite10pourcentpierre / 3000);
+
 		// CAS ACHAT DE RESSOURCES SUPÉRIEURE À LA CAPACITÉE DE STOCKAGE
 		if(quantite10pourcentpierre+jou.getPierrePossession() > jou.getPierreMaximum()) {
 			quantite10pourcentpierre = jou.getPierreMaximum()-jou.getPierrePossession();
-			coutGemme = quantite10pourcentpierre / 100;
+			coutGemme = (long) Math.ceil((double)quantite10pourcentpierre / 3000);
 		}
 		
 		// CAS GEMMES INSUFISANTES
@@ -77,12 +77,12 @@ public class BoutiqueService {
 		// QUANTITEE RESSOURCE CORRESPONDANTE (50%)
 		Long quantite50pourcentpierre = (long) (jou.getPierreMaximum()*0.5);
 		// CALCUL COUT GEMMES ( montant ressource / 100 )
-		Long coutGemme = quantite50pourcentpierre / 100;
+		Long coutGemme = (long) Math.ceil((double)quantite50pourcentpierre / 3000);
 		
 		// CAS ACHAT DE RESSOURCES SUPÉRIEURE À LA CAPACITÉE DE STOCKAGE
 		if(quantite50pourcentpierre+jou.getPierrePossession() > jou.getPierreMaximum()) {
 			quantite50pourcentpierre = jou.getPierreMaximum()-jou.getPierrePossession();
-			coutGemme = quantite50pourcentpierre / 100;
+			coutGemme = (long) Math.ceil((double)quantite50pourcentpierre / 3000);
 		}
 		
 		// CAS GEMMES INSUFISANTES
@@ -110,12 +110,12 @@ public class BoutiqueService {
 		// QUANTITEE RESSOURCE CORRESPONDANTE (100%)
 		Long quantite100pourcentpierre = (long) (jou.getPierreMaximum());
 		// CALCUL COUT GEMMES ( montant ressource / 100 )
-		Long coutGemme = quantite100pourcentpierre / 100;
+		Long coutGemme = (long) Math.ceil((double)quantite100pourcentpierre / 3000);
 		
 		// CAS ACHAT DE RESSOURCES SUPÉRIEURE À LA CAPACITÉE DE STOCKAGE
 		if(quantite100pourcentpierre+jou.getPierrePossession() > jou.getPierreMaximum()) {
 			quantite100pourcentpierre = jou.getPierreMaximum()-jou.getPierrePossession();
-			coutGemme = quantite100pourcentpierre / 100;
+			coutGemme = (long) Math.ceil((double)quantite100pourcentpierre / 3000);
 		}
 		
 		// CAS GEMMES INSUFISANTES
@@ -146,12 +146,12 @@ public class BoutiqueService {
 		// QUANTITEE RESSOURCE CORRESPONDANTE (10%)
 		Long quantite10pourcentbois = (long) (jou.getBoisMaximum()*0.1);
 		// CALCUL COUT GEMMES ( montant ressource / 100 )
-		Long coutGemme = quantite10pourcentbois / 100;
+		Long coutGemme = (long) Math.ceil((double)quantite10pourcentbois / 2000);
 		
 		// CAS ACHAT DE RESSOURCES SUPÉRIEURE À LA CAPACITÉE DE STOCKAGE
 		if(quantite10pourcentbois+jou.getBoisPossession() > jou.getBoisMaximum()) {
 			quantite10pourcentbois = jou.getBoisMaximum()-jou.getBoisPossession();
-			coutGemme = quantite10pourcentbois / 100;
+			coutGemme = (long) Math.ceil((double)quantite10pourcentbois / 2000);
 		}
 		
 		// CAS GEMMES INSUFISANTES
@@ -179,12 +179,12 @@ public class BoutiqueService {
 		// QUANTITEE RESSOURCE CORRESPONDANTE (50%)
 		Long quantite50pourcentbois = (long) (jou.getBoisMaximum()*0.5);
 		// CALCUL COUT GEMMES ( montant ressource / 100 )
-		Long coutGemme = quantite50pourcentbois / 100;
+		Long coutGemme = (long) Math.ceil((double)quantite50pourcentbois / 2000);
 		
 		// CAS ACHAT DE RESSOURCES SUPÉRIEURE À LA CAPACITÉE DE STOCKAGE
 		if(quantite50pourcentbois+jou.getBoisPossession() > jou.getBoisMaximum()) {
 			quantite50pourcentbois = jou.getBoisMaximum()-jou.getBoisPossession();
-			coutGemme = quantite50pourcentbois / 100;
+			coutGemme = (long) Math.ceil((double)quantite50pourcentbois / 2000);
 		}
 		
 		// CAS GEMMES INSUFISANTES
@@ -213,12 +213,12 @@ public class BoutiqueService {
 		// QUANTITEE RESSOURCE CORRESPONDANTE (100%)
 		Long quantite100pourcentbois = (long) (jou.getBoisMaximum());
 		// CALCUL COUT GEMMES ( montant ressource / 100 )
-		Long coutGemme = quantite100pourcentbois / 100;
+		Long coutGemme = (long) Math.ceil((double)quantite100pourcentbois / 2000);
 		
 		// CAS ACHAT DE RESSOURCES SUPÉRIEURE À LA CAPACITÉE DE STOCKAGE
 		if(quantite100pourcentbois+jou.getBoisPossession() > jou.getBoisMaximum()) {
 			quantite100pourcentbois = jou.getBoisMaximum()-jou.getBoisPossession();
-			coutGemme = quantite100pourcentbois / 100;
+			coutGemme = (long) Math.ceil((double)quantite100pourcentbois / 2000);
 		}
 		
 		// CAS GEMMES INSUFISANTES
@@ -248,12 +248,12 @@ public class BoutiqueService {
 		// QUANTITEE RESSOURCE CORRESPONDANTE (10%)
 		Long quantite10pourcentor = (long) (jou.getOrMaximum()*0.1);
 		// CALCUL COUT GEMMES ( montant ressource / 100 )
-		Long coutGemme = quantite10pourcentor / 100;
+		Long coutGemme = (long) Math.ceil((double)quantite10pourcentor / 5000);
 		
 		// CAS ACHAT DE RESSOURCES SUPÉRIEURE À LA CAPACITÉE DE STOCKAGE
 		if(quantite10pourcentor+jou.getOrPossession() > jou.getOrMaximum()) {
 			quantite10pourcentor = jou.getOrMaximum()-jou.getOrPossession();
-			coutGemme = quantite10pourcentor / 100;
+			coutGemme = (long) Math.ceil((double)quantite10pourcentor / 5000);
 		}
 		
 		// CAS GEMMES INSUFISANTES
@@ -282,12 +282,12 @@ public class BoutiqueService {
 		// QUANTITEE RESSOURCE CORRESPONDANTE (50%)
 		Long quantite50pourcentor = (long) (jou.getOrMaximum()*0.5);
 		// CALCUL COUT GEMMES ( montant ressource / 100 )
-		Long coutGemme = quantite50pourcentor / 100;
+		Long coutGemme = (long) Math.ceil((double)quantite50pourcentor / 5000);
 		
 		// CAS ACHAT DE RESSOURCES SUPÉRIEURE À LA CAPACITÉE DE STOCKAGE
 		if(quantite50pourcentor+jou.getOrPossession() > jou.getOrMaximum()) {
 			quantite50pourcentor = jou.getOrMaximum()-jou.getOrPossession();
-			coutGemme = quantite50pourcentor / 100;
+			coutGemme = (long) Math.ceil((double)quantite50pourcentor / 5000);
 		}
 		
 		// CAS GEMMES INSUFISANTES
@@ -316,12 +316,12 @@ public class BoutiqueService {
 		// QUANTITEE RESSOURCE CORRESPONDANTE (100%)
 		Long quantite100pourcentor = (long) (jou.getOrMaximum());
 		// CALCUL COUT GEMMES ( montant ressource / 100 )
-		Long coutGemme = quantite100pourcentor / 100;
+		Long coutGemme = (long) Math.ceil((double)quantite100pourcentor / 5000);
 		
 		// CAS ACHAT DE RESSOURCES SUPÉRIEURE À LA CAPACITÉE DE STOCKAGE
 		if(quantite100pourcentor+jou.getOrPossession() > jou.getOrMaximum()) {
 			quantite100pourcentor = jou.getOrMaximum()-jou.getOrPossession();
-			coutGemme = quantite100pourcentor / 100;
+			coutGemme = (long) Math.ceil((double)quantite100pourcentor / 5000);
 		}
 		
 		// CAS GEMMES INSUFISANTES
@@ -351,12 +351,12 @@ public class BoutiqueService {
 		// QUANTITEE RESSOURCE CORRESPONDANTE (10%)
 		Long quantite10pourcentnourriture = (long) (jou.getNourritureMaximum()*0.1);
 		// CALCUL COUT GEMMES ( montant ressource / 100 )
-		Long coutGemme = quantite10pourcentnourriture / 100;
+		Long coutGemme = (long) Math.ceil((double)quantite10pourcentnourriture / 1000);
 		
 		// CAS ACHAT DE RESSOURCES SUPÉRIEURE À LA CAPACITÉE DE STOCKAGE
 		if(quantite10pourcentnourriture+jou.getNourriturePossession() > jou.getNourritureMaximum()) {
 			quantite10pourcentnourriture = jou.getNourritureMaximum()-jou.getNourriturePossession();
-			coutGemme = quantite10pourcentnourriture / 100;
+			coutGemme = (long) Math.ceil((double)quantite10pourcentnourriture / 1000);
 		}
 		
 		// CAS GEMMES INSUFISANTES
@@ -385,12 +385,12 @@ public class BoutiqueService {
 		// QUANTITEE RESSOURCE CORRESPONDANTE (50%)
 		Long quantite50pourcentnourriture = (long) (jou.getNourritureMaximum()*0.5);
 		// CALCUL COUT GEMMES ( montant ressource / 100 )
-		Long coutGemme = quantite50pourcentnourriture / 100;
+		Long coutGemme = (long) Math.ceil((double)quantite50pourcentnourriture / 1000);
 		
 		// CAS ACHAT DE RESSOURCES SUPÉRIEURE À LA CAPACITÉE DE STOCKAGE
 		if(quantite50pourcentnourriture+jou.getNourriturePossession() > jou.getNourritureMaximum()) {
 			quantite50pourcentnourriture = jou.getNourritureMaximum()-jou.getNourriturePossession();
-			coutGemme = quantite50pourcentnourriture / 100;
+			coutGemme = (long) Math.ceil((double)quantite50pourcentnourriture / 1000);
 		}
 		
 		// CAS GEMMES INSUFISANTES
@@ -419,12 +419,12 @@ public class BoutiqueService {
 		// QUANTITEE RESSOURCE CORRESPONDANTE (100%)
 		Long quantite100pourcentnourriture = (long) (jou.getNourritureMaximum());
 		// CALCUL COUT GEMMES ( montant ressource / 100 )
-		Long coutGemme = quantite100pourcentnourriture / 100;
+		Long coutGemme = (long) Math.ceil((double)quantite100pourcentnourriture / 1000);
 		
 		// CAS ACHAT DE RESSOURCES SUPÉRIEURE À LA CAPACITÉE DE STOCKAGE
 		if(quantite100pourcentnourriture+jou.getNourriturePossession() > jou.getNourritureMaximum()) {
 			quantite100pourcentnourriture = jou.getNourritureMaximum()-jou.getNourriturePossession();
-			coutGemme = quantite100pourcentnourriture / 100;
+			coutGemme = (long) Math.ceil((double)quantite100pourcentnourriture / 1000);
 		}
 		
 		// CAS GEMMES INSUFISANTES

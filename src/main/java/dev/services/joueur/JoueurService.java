@@ -4,28 +4,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
 import javax.validation.Valid;
-
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
-import dev.controller.dto.batiment.BatimentDto;
 import dev.controller.dto.divers.EchangeRessourceDto;
 import dev.controller.dto.divers.GainRessourceDto;
 import dev.controller.dto.joueur.InformationRessourcesJoueur;
 import dev.controller.dto.joueur.JoueurDto;
 import dev.controller.dto.joueur.JoueurInfoDto;
 import dev.controller.dto.joueur.ModificationJoueurDto;
-import dev.controller.dto.social.MessageAjoutDto;
-import dev.entites.batiment.Batiment;
 import dev.entites.batiment.BatimentJoueur;
 import dev.entites.joueur.Joueur;
-import dev.entites.social.Message;
 import dev.exceptions.JoueurAuthentifieNonRecupereException;
 import dev.exceptions.MessageResponseException;
-import dev.exceptions.RessourceManquanteException;
 import dev.repository.JoueurRepo;
 import dev.repository.joueur.BatimentJoueurRepo;
 

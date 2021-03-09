@@ -24,12 +24,14 @@ public class Campagne {
 
 	// Une campagne peut être réalisée par plusieurs joueurs
     @OneToMany(mappedBy = "campagne")
+    @JsonIgnore
 	private List<CampagneJoueur> campagneJoueur;
     
 	private String icone;
 	private String libelle;
 	private String description;
 	private Integer duree;
+	private Integer monde;
 	private Integer niveau;
 
 	@ManyToOne
@@ -44,6 +46,7 @@ public class Campagne {
 	private Long recompenseOr;
 	private Long recompenseNourriture;
 	private Integer recompenseGemme;
+	private Long recompenseExperience;
 	
 	public Campagne() {
 		
@@ -64,15 +67,15 @@ public class Campagne {
 	 * @param recompenseNourriture
 	 * @param recompenseGemme
 	 */
-	public Campagne(List<CampagneJoueur> campagneJoueur, String icone, String libelle, String description,
-			Integer duree, Integer niveau, Unitee unitee, Integer quantitee, Boolean isBoss, Long recompensePierre,
-			Long recompenseBois, Long recompenseOr, Long recompenseNourriture, Integer recompenseGemme) {
+	public Campagne(String icone, String libelle, String description,
+			Integer duree, Integer monde, Integer niveau, Unitee unitee, Integer quantitee, Boolean isBoss, Long recompensePierre,
+			Long recompenseBois, Long recompenseOr, Long recompenseNourriture, Integer recompenseGemme, Long recompenseExperience) {
 		super();
-		this.campagneJoueur = campagneJoueur;
 		this.icone = icone;
 		this.libelle = libelle;
 		this.description = description;
 		this.duree = duree;
+		this.monde = monde;
 		this.niveau = niveau;
 		this.unitee = unitee;
 		this.quantitee = quantitee;
@@ -82,6 +85,7 @@ public class Campagne {
 		this.recompenseOr = recompenseOr;
 		this.recompenseNourriture = recompenseNourriture;
 		this.recompenseGemme = recompenseGemme;
+		this.recompenseExperience =  recompenseExperience;
 	}
 	/**
 	 * @return the id
@@ -154,6 +158,19 @@ public class Campagne {
 	 */
 	public void setDuree(Integer duree) {
 		this.duree = duree;
+	}
+	
+	/**
+	 * @return the monde
+	 */
+	public Integer getMonde() {
+		return monde;
+	}
+	/**
+	 * @param monde the monde to set
+	 */
+	public void setMonde(Integer monde) {
+		this.monde = monde;
 	}
 	/**
 	 * @return the niveau
@@ -263,6 +280,29 @@ public class Campagne {
 	public void setRecompenseGemme(Integer recompenseGemme) {
 		this.recompenseGemme = recompenseGemme;
 	}
+	/**
+	 * @return the recompenseExperience
+	 */
+	public Long getRecompenseExperience() {
+		return recompenseExperience;
+	}
+	/**
+	 * @param recompenseExperience the recompenseExperience to set
+	 */
+	public void setRecompenseExperience(Long recompenseExperience) {
+		this.recompenseExperience = recompenseExperience;
+	}
+	@Override
+	public String toString() {
+		return "Campagne [id=" + id + ", icone=" + icone + ", libelle=" + libelle + ", description=" + description
+				+ ", duree=" + duree + ", monde=" + monde + ", niveau=" + niveau + ", unitee=" + unitee + ", quantitee="
+				+ quantitee + ", isBoss=" + isBoss + ", recompensePierre=" + recompensePierre + ", recompenseBois="
+				+ recompenseBois + ", recompenseOr=" + recompenseOr + ", recompenseNourriture=" + recompenseNourriture
+				+ ", recompenseGemme=" + recompenseGemme + ", recompenseExperience=" + recompenseExperience + "]";
+	}
+
+
+	
 	
 	
 

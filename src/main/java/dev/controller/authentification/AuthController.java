@@ -1,38 +1,28 @@
 package dev.controller.authentification;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import dev.controller.dto.joueur.CreationCompteJoueurDto;
 import dev.entites.joueur.Joueur;
 import dev.entites.joueur.Role;
 import dev.entites.joueur.RoleJoueur;
 import dev.exceptions.MessageResponseException;
-import dev.exceptions.RessourceManquanteException;
 import dev.repository.JoueurRepo;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
-
-
-
 
 @RestController
 @RequestMapping("auth")
@@ -105,7 +95,6 @@ public class AuthController {
         joueur1.setDonateur(false);
 
         Boolean positionDejaPrise = true;
-        Boolean fin = false;
         HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
         // Récupération de toutes les positions déjà occupées
         for (Joueur joueur : joueurRepo.findAll()) {
