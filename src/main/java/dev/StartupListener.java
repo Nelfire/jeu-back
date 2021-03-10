@@ -102,7 +102,7 @@ public class StartupListener {
         joueur1.setIcone("https://media.discordapp.net/attachments/794876433842831361/814268374242557972/ghost_PNG44.png?width=468&height=468");
         joueur1.setPseudo("Nelfire");
         joueur1.setEmail("girvincent@gmail.com");
-        joueur1.setMotDePasse(passwordEncoder.encode("password"));
+        joueur1.setMotDePasse(passwordEncoder.encode("VeXSP"));
         joueur1.setDescriptif("Je broierai bien un café moi dis donc...");
         joueur1.setNiveau(1);
         joueur1.setExperience(0L);
