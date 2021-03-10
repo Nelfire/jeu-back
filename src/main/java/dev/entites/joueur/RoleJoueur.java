@@ -12,8 +12,6 @@ import javax.persistence.ManyToOne;
 @Entity
 public class RoleJoueur {
 
-	// Déclarations
-	/** id du rôle joueur **/
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -28,7 +26,13 @@ public class RoleJoueur {
 	private Role role;
 
 	/**
-	 * Constructeur
+	 * Constructeur vide
+	 */
+	public RoleJoueur() {
+	}
+
+	/**
+	 * CONSTRUCTEUR AVEC PARAMETRES
 	 * 
 	 * @param joueur
 	 * @param rôle
@@ -38,16 +42,13 @@ public class RoleJoueur {
 		this.role = role;
 	}
 
-	/**
-	 * Constructeur vide
-	 */
-	public RoleJoueur() {
-	}
-
 	public Integer getId() {
 		return id;
 	}
 
+	/**
+	 * @param id
+	 */
 	public void setId(Long id) {
 	}
 

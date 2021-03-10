@@ -4,51 +4,59 @@ import dev.entites.joueur.Joueur;
 
 public class GuildeDto {
 
-    private Integer id;
+	private Integer id;
 
-    private String libelle;
+	/** libellé de la guilde **/
+	private String libelle;
 
-    private String icone;
+	/** icone de la guilde **/
+	private String icone;
 
-    private String messageAccueil;
-    
+	/** message accueil guilde **/
+	private String messageAccueil;
 
-    private Joueur chefGuilde;
+	/** chef de la guilde **/
+	private Joueur chefGuilde;
 
-//    private List<Joueur> listeMembres;
-    
-    private Integer niveau;
-    
-    private Integer experience;
-    
-    private Integer nombreMembresMaximal;
-    
-    private final Integer coutOrCreation = 1000;
+	/** niveau de la guilde **/
+	private Integer niveau;
 
-    public GuildeDto() {
-    	
-    }
+	/** experience de la guilde **/
+	private Integer experience;
+
+	/** nombre maximal de membres de la guilde **/
+	private Integer nombreMembresMaximal;
+
+	/** coût de création de la guilde **/
+	private final Integer coutOrCreation = 100;
+
 	/**
+	 * CONSTRUCTEUR VIDE
+	 */
+	public GuildeDto() {
+
+	}
+
+	/**
+	 * CONSTRUCTEUR AVEC PARAMETRES
+	 * 
 	 * @param id
 	 * @param libelle
 	 * @param icone
 	 * @param messageAccueil
 	 * @param chefGuilde
-	 * @param listeMembres
 	 * @param niveau
 	 * @param experience
 	 * @param nombreMembresMaximal
 	 */
-	public GuildeDto(Integer id, String libelle, String icone, String messageAccueil, Joueur chefGuilde,
-//			List<Joueur> listeMembres,
-			Integer niveau, Integer experience, Integer nombreMembresMaximal) {
+	public GuildeDto(Integer id, String libelle, String icone, String messageAccueil, Joueur chefGuilde, Integer niveau,
+			Integer experience, Integer nombreMembresMaximal) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
 		this.icone = icone;
 		this.messageAccueil = messageAccueil;
 		this.chefGuilde = chefGuilde;
-//		this.listeMembres = listeMembres;
 		this.niveau = niveau;
 		this.experience = experience;
 		this.nombreMembresMaximal = nombreMembresMaximal;
@@ -186,6 +194,5 @@ public class GuildeDto {
 	public Integer getCoutOrCreation() {
 		return coutOrCreation;
 	}
-    
-    
+
 }

@@ -17,40 +17,38 @@ import dev.services.batiment.DefenseService;
 @RestController
 @RequestMapping("defense")
 public class DefenseController {
-	
+
 	private DefenseService defenseService;
 
 	public DefenseController(DefenseService defenseService) {
 		this.defenseService = defenseService;
 	}
-	
+
 	/**
 	 * LISTE LES DIFFERENTS TYPES DE DEFENSE
 	 */
-	
 	@GetMapping("/listerDefense")
 	public List<Defense> listerDefense() {
 		return this.defenseService.listerDefense();
 	}
-	
-	
+
 	/**
-	 * DETAIL D'UN UNITEE (Via ID)
+	 * DETAIL D'UNE DEFENSE (Via ID)
 	 */
 	@GetMapping("/detailsDefense")
 	public DefenseDto detailsDefense(@RequestParam("id") Integer idDefense) {
 		return this.defenseService.detailsDefense(idDefense);
 	}
-	
-	
+
 	/**
 	 * MODIFICATION D'UNE DEFENSE (Menu administrateur, Via ID)
 	 */
 	@PutMapping("/modificationDefense")
-	public DefenseDto administrationModificationDefense (@RequestBody @Valid DefenseDto defenseDto, @RequestParam("id") Integer id) {
-		return this.defenseService.administrationModificationDefense(defenseDto,id);
+	public DefenseDto administrationModificationDefense(@RequestBody @Valid DefenseDto defenseDto,
+			@RequestParam("id") Integer id) {
+		return this.defenseService.administrationModificationDefense(defenseDto, id);
 	}
-	
+
 	/**
 	 * LISTER QUE LES DEFENSES DE TYPE OFFENSIVE = 1
 	 */
@@ -58,7 +56,7 @@ public class DefenseController {
 	public List<Defense> listerDefensesOffensive() {
 		return this.defenseService.listerDefensesOffensive();
 	}
-	
+
 	/**
 	 * LISTER QUE LES DEFENSES DE TYPE DEFENSIVE = 2
 	 */

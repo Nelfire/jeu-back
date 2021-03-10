@@ -22,6 +22,10 @@ public class ExpeditionController {
 	ExpeditionService expeditionService;
 	JoueurService joueurService;
 	
+	/**
+	 * @param expeditionService
+	 * @param joueurService
+	 */
 	public ExpeditionController(ExpeditionService expeditionService, JoueurService joueurService) {
 		this.expeditionService = expeditionService;
 		this.joueurService = joueurService;
@@ -43,7 +47,9 @@ public class ExpeditionController {
 		return this.expeditionService.detailExpedition(idExpedition);
 	}
 	
-	// Tous les jours à minuit
+	/**
+	 * EXECUTION CREATION NOUVELLES EXPEDITIONS A MINUIT
+	 */
 	@Scheduled(cron="0 0 0 * * ?", zone="Europe/Paris")
 	@PostMapping("/refeshExpedition")
 	public void creerNouvellesExpeditions() {

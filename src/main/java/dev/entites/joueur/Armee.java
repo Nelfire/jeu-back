@@ -14,47 +14,54 @@ import dev.entites.unitee.Unitee;
 @Entity
 public class Armee {
 
-	// https://www.baeldung.com/jpa-one-to-one
-	
-	// Déclarations
-    /** id de la Armee **/
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
+	/** joueur propriétaire **/
 	@ManyToOne
 	@JoinColumn(name = "joueur_id")
-    private Joueur joueur;
-	
-    /** Une armées ne concerne qu'une expeditionjoueur **/
+	private Joueur joueur;
+
+	/** Une armées ne concerne qu'une expeditionjoueur **/
 	@ManyToOne
 	@JoinColumn(name = "expeditionJoueur_id")
-    private ExpeditionJoueur expeditionJoueur;
-	
-    /** Campagne Joueur **/
+	private ExpeditionJoueur expeditionJoueur;
+
+	/** Campagne Joueur **/
 	@ManyToOne
 	@JoinColumn(name = "campagneJoueur_id")
-    private CampagneJoueur campagneJoueur;
-    
+	private CampagneJoueur campagneJoueur;
+
+	/** unité de l'armée **/
 	@ManyToOne
 	@JoinColumn(name = "unitee_id")
-    private Unitee unitee;
-    
-    private Integer quantitee;
-    
-    private Long dateDebutProduction;
-    private Long dateFinProduction;
+	private Unitee unitee;
 
-    // Constructeur vide
+	/** nombre d'unité de l'armée **/
+	private Integer quantitee;
+
+	/** date de début de production de l'armée **/
+	private Long dateDebutProduction;
+
+	/** date de fin de production de l'armée **/
+	private Long dateFinProduction;
+
+	/**
+	 * CONSTRUCTEUR VIDE
+	 */
 	public Armee() {
 		super();
 	}
 
 	/**
-	 * @param id
+	 * CONSTRUCTEUR VIDE
+	 * 
 	 * @param joueur
 	 * @param unitee
 	 * @param quantitee
+	 * @param dateDebutProduction
+	 * @param dateFinProduction
 	 */
 	public Armee(Joueur joueur, Unitee unitee, Integer quantitee, Long dateDebutProduction, Long dateFinProduction) {
 		super();
@@ -120,8 +127,6 @@ public class Armee {
 	public void setQuantitee(Integer quantitee) {
 		this.quantitee = quantitee;
 	}
-	
-	
 
 	/**
 	 * @return the dateDebutProduction
@@ -158,9 +163,4 @@ public class Armee {
 				+ ", dateFinProduction=" + dateFinProduction + "]";
 	}
 
-	
-	
-	
-	
 }
-

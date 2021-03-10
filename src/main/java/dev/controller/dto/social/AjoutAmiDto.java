@@ -4,12 +4,15 @@ public class AjoutAmiDto {
 
 	private Integer idAmi;
 
-	public AjoutAmiDto() {
-	
-	}
-	
 	/**
-	 * @param idAmi
+	 * CONSTRUCTEUR VIDE
+	 */
+	public AjoutAmiDto() {
+
+	}
+
+	/**
+	 * CONSTRUCTEUR AVEC PARAMETRES
 	 */
 	public AjoutAmiDto(Integer idAmi) {
 		super();
@@ -29,6 +32,5 @@ public class AjoutAmiDto {
 	public void setIdAmi(Integer idAmi) {
 		this.idAmi = idAmi;
 	}
-	
-	
+
 }

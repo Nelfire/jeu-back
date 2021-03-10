@@ -27,13 +27,18 @@ public class MessageController {
 		super();
 		this.messageService = messageService;
 	}
-	
+
+	/**
+	 * LISTER TOUS LES MESSAGES
+	 */
 	@GetMapping
 	public List<Message> listerMessages() {
 		return this.messageService.listerMessages();
 	}
-	
-	
+
+	/**
+	 * AJOUT D'UN MESSAGE
+	 */
 	@PostMapping
 	public MessageAjoutDto postMessage(@RequestBody @Valid MessageAjoutDto messageAjoutDto) {
 		return this.messageService.publierMessage(messageAjoutDto);

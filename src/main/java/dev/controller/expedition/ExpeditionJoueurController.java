@@ -20,11 +20,14 @@ import dev.services.expedition.ExpeditionJoueurService;
 public class ExpeditionJoueurController {
 
 	ExpeditionJoueurService expeditionJoueurService;
-	
+
+	/**
+	 * @param expeditionJoueurService
+	 */
 	public ExpeditionJoueurController(ExpeditionJoueurService expeditionJoueurService) {
 		this.expeditionJoueurService = expeditionJoueurService;
 	}
-	
+
 	/**
 	 * LISTES TOUTES LES EXPEDITIONS DU JOUEUR, TOUT CONFONDU
 	 */
@@ -32,7 +35,7 @@ public class ExpeditionJoueurController {
 	public List<ExpeditionJoueur> listerExpeditionJoueur() {
 		return this.expeditionJoueurService.listerExpeditionJoueur();
 	}
-	
+
 	/**
 	 * LISTER UNIQUEMENT LES EXPEDITIONS JOUEUR TERMINEES EN ECHEC = 3
 	 */
@@ -40,23 +43,25 @@ public class ExpeditionJoueurController {
 	public List<ExpeditionJoueur> listerExpeditionJoueurTermineesEchec() {
 		return this.expeditionJoueurService.listerExpeditionJoueurTermineesEchec();
 	}
-	
+
 	/**
-	 * LISTER UNIQUEMENT LES EXPEDITIONS JOUEUR VICTORIEUSE + RECOMPENSE EN ATTENTE DE RECUPERATION = 1
+	 * LISTER UNIQUEMENT LES EXPEDITIONS JOUEUR VICTORIEUSE + RECOMPENSE EN ATTENTE
+	 * DE RECUPERATION = 1
 	 */
 	@GetMapping("/listerExpeditionJoueurRecompenseEnAttente")
 	public List<ExpeditionJoueur> listerExpeditionJoueurRecompenseEnAttente() {
 		return this.expeditionJoueurService.listerExpeditionJoueurRecompenseEnAttente();
 	}
-	
+
 	/**
-	 * LISTER UNIQUEMENT LES EXPEDITIONS JOUEUR VICTORIEUSE + RECOMPENSE DEJA RECUPEREE = 2
+	 * LISTER UNIQUEMENT LES EXPEDITIONS JOUEUR VICTORIEUSE + RECOMPENSE DEJA
+	 * RECUPEREE = 2
 	 */
 	@GetMapping("/listerExpeditionJoueurTermineesVictoire")
 	public List<ExpeditionJoueur> listerExpeditionJoueurTermineesVictoire() {
 		return this.expeditionJoueurService.listerExpeditionJoueurTermineesVictoire();
 	}
-	
+
 	/**
 	 * LISTER UNIQUEMENT LES EXPEDITIONS JOUEUR EN COURS = 0
 	 */
@@ -64,18 +69,18 @@ public class ExpeditionJoueurController {
 	public List<ExpeditionJoueur> listerExpeditionJoueurEnCours() {
 		return this.expeditionJoueurService.listerExpeditionJoueurEnCours();
 	}
-	
-	
-	
+
 	/**
-	 * ENVOI D'UNITEES EN EXPEDITION (Création)
+	 * ENVOI D'UNITES EN EXPEDITION (Création)
 	 */
 	@PostMapping
-	public ResponseEntity<?> envoiUniteeEnExpedition(@RequestBody CompositionArmeeExpeditionDto compositionArmeeExpedition) {
-		CompositionArmeeExpeditionDto composition = expeditionJoueurService.envoiUniteeEnExpedition(compositionArmeeExpedition);
+	public ResponseEntity<?> envoiUniteeEnExpedition(
+			@RequestBody CompositionArmeeExpeditionDto compositionArmeeExpedition) {
+		CompositionArmeeExpeditionDto composition = expeditionJoueurService
+				.envoiUniteeEnExpedition(compositionArmeeExpedition);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).header("resultat", "Expédition lancée").body(composition);
 	}
-	
+
 	/**
 	 * RECUPERATION DE LA RECOMPENSE D'EXPEDITION
 	 */

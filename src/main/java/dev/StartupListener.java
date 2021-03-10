@@ -119,7 +119,7 @@ public class StartupListener {
         joueur1.setOrBoostProduction(0);
         joueur1.setNourritureBoostProduction(0);
         joueur1.setTempsDeJeu(61455);
-        joueur1.setGemmePossession(99999L);
+        joueur1.setGemmePossession(30L);
         joueur1.setRoles(Arrays.asList(new RoleJoueur(joueur1, Role.ROLE_ADMINISTRATEUR), new RoleJoueur(joueur1, Role.ROLE_JOUEUR)));
         joueur1.setDonateur(true);
         joueur1.setPositionX(15);
@@ -134,10 +134,10 @@ public class StartupListener {
         joueur2.setDescriptif("Compte administrateur.");
         joueur2.setNiveau(1);
         joueur2.setExperience(0L);
-        joueur2.setPierrePossession(1000L);
-        joueur2.setBoisPossession(1000L);
-        joueur2.setOrPossession(1000L);
-        joueur2.setNourriturePossession(1000L);
+        joueur2.setPierrePossession(10_000L);
+        joueur2.setBoisPossession(10_000L);
+        joueur2.setOrPossession(10_000L);
+        joueur2.setNourriturePossession(10_000L);
         joueur2.setPierreMaximum(20000L);
         joueur2.setBoisMaximum(20000L);
         joueur2.setOrMaximum(20000L);
@@ -147,7 +147,7 @@ public class StartupListener {
         joueur2.setOrBoostProduction(0);
         joueur2.setNourritureBoostProduction(0);
         joueur2.setTempsDeJeu(34140);
-        joueur2.setGemmePossession(40L);
+        joueur2.setGemmePossession(30L);
         joueur2.setRoles(Arrays.asList(new RoleJoueur(joueur2, Role.ROLE_ADMINISTRATEUR), new RoleJoueur(joueur2, Role.ROLE_JOUEUR)));
         joueur2.setDonateur(false);
         joueur2.setPositionX(8);
@@ -162,10 +162,10 @@ public class StartupListener {
         joueur3.setDescriptif("Compte administrateur.");
         joueur3.setNiveau(1);
         joueur3.setExperience(0L);
-        joueur3.setPierrePossession(1000L);
-        joueur3.setBoisPossession(1000L);
-        joueur3.setOrPossession(1000L);
-        joueur3.setNourriturePossession(1000L);
+        joueur3.setPierrePossession(10_000L);
+        joueur3.setBoisPossession(10_000L);
+        joueur3.setOrPossession(10_000L);
+        joueur3.setNourriturePossession(10_000L);
         joueur3.setPierreMaximum(20000L);
         joueur3.setBoisMaximum(20000L);
         joueur3.setOrMaximum(20000L);
@@ -175,7 +175,7 @@ public class StartupListener {
         joueur3.setOrBoostProduction(0);
         joueur3.setNourritureBoostProduction(0);
         joueur3.setTempsDeJeu(25200);
-        joueur3.setGemmePossession(40L);
+        joueur3.setGemmePossession(30L);
         joueur3.setRoles(Arrays.asList(new RoleJoueur(joueur3, Role.ROLE_JOUEUR)));
         joueur3.setDonateur(false);
         joueur3.setPositionX(21);
@@ -890,17 +890,17 @@ public class StartupListener {
         ////////////////////BATIMENT JOUEUR/////////////////////
         ////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////
-		long debut = new Date().getTime();
-		long fin = new Date().getTime();
-
-		BatimentJoueur batimentJoueur1 = new BatimentJoueur(joueur1,hdv,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
-		BatimentJoueur batimentJoueur2 = new BatimentJoueur(joueur1,tableExpedition,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
-		BatimentJoueur batimentJoueur3 = new BatimentJoueur(joueur1,chantier,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
-		BatimentJoueur batimentJoueur4 = new BatimentJoueur(joueur1,marche,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
-		this.batimentJoueurRepo.save(batimentJoueur1);
-		this.batimentJoueurRepo.save(batimentJoueur2);
-		this.batimentJoueurRepo.save(batimentJoueur3);
-		this.batimentJoueurRepo.save(batimentJoueur4);
+//		long debut = new Date().getTime();
+//		long fin = new Date().getTime();
+//
+//		BatimentJoueur batimentJoueur1 = new BatimentJoueur(joueur1,hdv,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
+//		BatimentJoueur batimentJoueur2 = new BatimentJoueur(joueur1,tableExpedition,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
+//		BatimentJoueur batimentJoueur3 = new BatimentJoueur(joueur1,chantier,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
+//		BatimentJoueur batimentJoueur4 = new BatimentJoueur(joueur1,marche,1,0,1,1l,1l,1l,1l,1l,1l,1l,1l,1,1,1,1,debut,fin);
+//		this.batimentJoueurRepo.save(batimentJoueur1);
+//		this.batimentJoueurRepo.save(batimentJoueur2);
+//		this.batimentJoueurRepo.save(batimentJoueur3);
+//		this.batimentJoueurRepo.save(batimentJoueur4);
 		
 		
         ////////////////////////////////////////////////////////
@@ -1527,54 +1527,54 @@ public class StartupListener {
 		pretre.setApportExperience(13_200_000);
 		
 		this.uniteeRepo.save(villageois);
-		System.out.println("villageois :"+villageois.getId());
+		//System.out.println("villageois :"+villageois.getId());
         this.uniteeRepo.save(archer);
-		System.out.println("archer :"+archer.getId());
+		//System.out.println("archer :"+archer.getId());
         this.uniteeRepo.save(archerComposite);
-		System.out.println("archerComposite :"+archerComposite.getId());
+		//System.out.println("archerComposite :"+archerComposite.getId());
         this.uniteeRepo.save(fantassinEpee);
-		System.out.println("fantassinEpee :"+fantassinEpee.getId());
+		//System.out.println("fantassinEpee :"+fantassinEpee.getId());
         this.uniteeRepo.save(piquier);
-		System.out.println("piquier :"+piquier.getId());
+		//System.out.println("piquier :"+piquier.getId());
         this.uniteeRepo.save(lanceurDeHache);
-		System.out.println("lanceurDeHache :"+lanceurDeHache.getId());
+		//System.out.println("lanceurDeHache :"+lanceurDeHache.getId());
         this.uniteeRepo.save(milicien);
-		System.out.println("milicien :"+milicien.getId());
+		//System.out.println("milicien :"+milicien.getId());
         this.uniteeRepo.save(hommeDArme);
-		System.out.println("hommeDArme :"+hommeDArme.getId());
+		//System.out.println("hommeDArme :"+hommeDArme.getId());
         this.uniteeRepo.save(cavalierArcher);
-		System.out.println("cavalierArcher :"+cavalierArcher.getId());
+		//System.out.println("cavalierArcher :"+cavalierArcher.getId());
         this.uniteeRepo.save(cavalier);
-		System.out.println("cavalier :"+cavalier.getId());
+		//System.out.println("cavalier :"+cavalier.getId());
         this.uniteeRepo.save(champion);
-		System.out.println("champion :"+champion.getId());
+		//System.out.println("champion :"+champion.getId());
         
         this.uniteeRepo.save(bateauDePeche);
-		System.out.println("bateauDePeche :"+bateauDePeche.getId());
+		//System.out.println("bateauDePeche :"+bateauDePeche.getId());
         this.uniteeRepo.save(bateauIncendiaire);
-		System.out.println("bateauIncendiaire :"+bateauIncendiaire.getId());
+		//System.out.println("bateauIncendiaire :"+bateauIncendiaire.getId());
         this.uniteeRepo.save(bateauDeDestruction);
-		System.out.println("bateauDeDestruction :"+bateauDeDestruction.getId());
+		//System.out.println("bateauDeDestruction :"+bateauDeDestruction.getId());
         this.uniteeRepo.save(galionACanon);
-		System.out.println("galionACanon :"+galionACanon.getId());
+		//System.out.println("galionACanon :"+galionACanon.getId());
         this.uniteeRepo.save(galion);
-		System.out.println("galion :"+galion.getId());
+		//System.out.println("galion :"+galion.getId());
         
         this.uniteeRepo.save(guerrierElite);
-		System.out.println("guerrierElite :"+guerrierElite.getId());
+		//System.out.println("guerrierElite :"+guerrierElite.getId());
         this.uniteeRepo.save(phalange);
-		System.out.println("phalange :"+phalange.getId());
+		//System.out.println("phalange :"+phalange.getId());
         this.uniteeRepo.save(samourai);
-		System.out.println("samourai :"+samourai.getId());
+		//System.out.println("samourai :"+samourai.getId());
         this.uniteeRepo.save(templier);
-		System.out.println("templier :"+templier.getId());
+		//System.out.println("templier :"+templier.getId());
         this.uniteeRepo.save(catapulte);
-		System.out.println("catapulte :"+catapulte.getId());
+		//System.out.println("catapulte :"+catapulte.getId());
         this.uniteeRepo.save(elephantDeCombat);
-		System.out.println("elephantDeCombat :"+elephantDeCombat.getId());
+		//System.out.println("elephantDeCombat :"+elephantDeCombat.getId());
         
         this.uniteeRepo.save(pretre);
-		System.out.println("pretre :"+pretre.getId());
+		//System.out.println("pretre :"+pretre.getId());
         
         ////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////
@@ -1607,14 +1607,14 @@ public class StartupListener {
         this.armeeRepo.save(armeeGalion);
         this.armeeRepo.save(armeePeche);
         
-
-        Armee ameeElephan2 = new Armee(joueur2,elephantDeCombat,6,161252348L,1612523480L);
-        Armee armeeGalion2 = new Armee(joueur2,galion,12,161252348L,1612523480L);
-        Armee armeePeche2 = new Armee(joueur2,bateauDePeche,4,161252348L,1612523480L);
-
-        this.armeeRepo.save(ameeElephan2);
-        this.armeeRepo.save(armeeGalion2);
-        this.armeeRepo.save(armeePeche2);
+//
+//        Armee ameeElephan2 = new Armee(joueur2,elephantDeCombat,6,161252348L,1612523480L);
+//        Armee armeeGalion2 = new Armee(joueur2,galion,12,161252348L,1612523480L);
+//        Armee armeePeche2 = new Armee(joueur2,bateauDePeche,4,161252348L,1612523480L);
+//
+//        this.armeeRepo.save(ameeElephan2);
+//        this.armeeRepo.save(armeeGalion2);
+//        this.armeeRepo.save(armeePeche2);
 
         // 1
         Campagne campagne = new Campagne();

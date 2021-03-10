@@ -1,6 +1,3 @@
-/**
- * 
- */
 package dev.controller.joueur;
 
 import java.util.List;
@@ -29,8 +26,6 @@ public class JoueurController {
 	private JoueurService joueurService;
 
 	/**
-	 * Constructeur
-	 * 
 	 * @param joueurService
 	 */
 	public JoueurController(JoueurService joueurService) {
@@ -44,7 +39,7 @@ public class JoueurController {
 	public List<JoueurDto> getAllJoueur() {
 		return this.joueurService.getAllJoueurs();
 	}
-	
+
 	/**
 	 * RECUPERATION DES INFORMATIONS DES JOUEURS
 	 */
@@ -52,7 +47,7 @@ public class JoueurController {
 	public List<JoueurInfoDto> getAllInfoJoueur() {
 		return this.joueurService.getAllInfoJoueurs();
 	}
-	
+
 	/**
 	 * RECUPERATION INFORMATIONS JOUEUR CONNECTE
 	 */
@@ -60,21 +55,23 @@ public class JoueurController {
 	public JoueurInfoDto getInfoJoueur() {
 		return this.joueurService.getInfoJoueur();
 	}
-	
+
 	/**
-	 * RECUPERATION INFORMATIONS JOUEUR CONNECTE
+	 * RECUPERATION INFORMATIONS JOUEUR VIA ID
 	 */
 	@GetMapping("/informationJoueurById")
 	public JoueurInfoDto informationJoueurById(@RequestParam("id") Integer id) {
 		return this.joueurService.informationJoueurById(id);
 	}
-	
-	
+
+	/**
+	 * MODIFICATION INFORMATIONS DU JOUEUR
+	 */
 	@PutMapping("/modifierInformationsJoueur")
 	public Joueur modifierInformationsJoueur(@RequestBody @Valid ModificationJoueurDto modificationJoueurDto) {
 		return this.joueurService.modifierInformationsJoueur(modificationJoueurDto);
 	}
-	
+
 	/**
 	 * RECAPITULATIF DES INFORMATIONS RESSOURCE DU JOUEUR
 	 */
@@ -82,27 +79,27 @@ public class JoueurController {
 	public InformationRessourcesJoueur informationRessourcesJoueur() {
 		return this.joueurService.informationRessourcesJoueur();
 	}
-	
-	
+
 	/**
-	 * Attribution de ressources
+	 * ATTRIBUTION DES RESSOURCES
 	 */
 	@PostMapping("/attributionRessources")
 	public GainRessourceDto attributionRessources(@RequestBody @Valid GainRessourceDto gainRessourceDto) {
 		return this.joueurService.attributionRessources(gainRessourceDto);
 	}
-	
-	
+
 	/**
 	 * MODIFICATION D'UN JOUEUR (Menu administrateur, Via ID)
 	 */
 	@PutMapping("/administrationModificationJoueur")
-	public JoueurDto administrationModificationJoueur (@RequestBody @Valid JoueurDto joueurDto, @RequestParam("id") Integer id) {
-		return this.joueurService.administrationModificationJoueur(joueurDto,id);
+	public JoueurDto administrationModificationJoueur(@RequestBody @Valid JoueurDto joueurDto,
+			@RequestParam("id") Integer id) {
+		return this.joueurService.administrationModificationJoueur(joueurDto, id);
 	}
-	
-	
-	
+
+	/**
+	 * ECHANGE DE RESSOURCES (Via marché)
+	 */
 	@PostMapping("/echangeRessource")
 	public EchangeRessourceDto echangeRessource(@RequestBody @Valid EchangeRessourceDto echangeRessourceDto) {
 		return this.joueurService.echangeRessource(echangeRessourceDto);

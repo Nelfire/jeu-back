@@ -22,11 +22,14 @@ import dev.services.campagne.CampagneService;
 public class CampagneController {
 
 	private CampagneService campagneService;
-	
+
+	/**
+	 * @param campagneService
+	 */
 	public CampagneController(CampagneService campagneService) {
 		this.campagneService = campagneService;
 	}
-	
+
 	/**
 	 * LISTER TOUTES LES CAMPAGNES EXISTANTES
 	 */
@@ -34,15 +37,15 @@ public class CampagneController {
 	public List<Campagne> listerLesCampagnes() {
 		return this.campagneService.listerLesCampagnes();
 	}
-	
+
 	/**
-	 * LISTER LES CAMPAGNES DU MONDE 1
+	 * LISTER LES CAMPAGNES VIA NUMERO DU MONDE
 	 */
 	@GetMapping("/listerLesCampagnesMonde")
 	public List<Campagne> listerLesCampagnesMonde(@RequestParam("numeroMonde") Integer numeroMonde) {
 		return this.campagneService.listerLesCampagnesMonde(numeroMonde);
 	}
-	
+
 	/**
 	 * DETAILS D'UNE CAMPAGNE (Via ID)
 	 */
@@ -50,7 +53,7 @@ public class CampagneController {
 	public Campagne detailsCampagne(@RequestParam("id") Integer idCampagne) {
 		return this.campagneService.detailsCampagne(idCampagne);
 	}
-	
+
 	/**
 	 * CREATION D'UNE CAMPAGNE (Menu administrateur)
 	 */
@@ -59,12 +62,13 @@ public class CampagneController {
 		CampagneDto creerUnitee = campagneService.administrationCreerCampagne(campagne);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).header("resultat", "Campagne Créée").body(creerUnitee);
 	}
-	
+
 	/**
 	 * MODIFICATION D'UNE CAMPAGNE (Menu administrateur, Via ID)
 	 */
 	@PutMapping("/modificationCampagne")
-	public CampagneDto administrationModificationCampagne (@RequestBody @Valid CampagneDto campagneDto, @RequestParam("id") Integer id) {
-		return this.campagneService.administrationModificationCampagne(campagneDto,id);
+	public CampagneDto administrationModificationCampagne(@RequestBody @Valid CampagneDto campagneDto,
+			@RequestParam("id") Integer id) {
+		return this.campagneService.administrationModificationCampagne(campagneDto, id);
 	}
 }

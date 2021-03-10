@@ -26,13 +26,19 @@ public class GuildeController {
 		super();
 		this.guildeService = guildeService;
 	}
-	
+
+	/**
+	 * CREER UNE NOUVELLE GUILDE
+	 */
 	@PostMapping
 	public ResponseEntity<?> creationGuilde(@RequestBody CreationGuildeDto creationGuildeDto) {
 		Guilde creationGuilde = guildeService.creationGuilde(creationGuildeDto);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).header("resultat", "Guilde créée").body(creationGuilde);
 	}
-	
+
+	/**
+	 * LISTE TOUTES LES GUILDES
+	 */
 	@GetMapping("/listerGuildes")
 	public List<Guilde> listerLesGuildes() {
 		return this.guildeService.listerLesGuildes();

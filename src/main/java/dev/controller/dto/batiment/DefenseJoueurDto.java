@@ -4,19 +4,23 @@ import dev.entites.batiment.Defense;
 import dev.entites.joueur.Joueur;
 
 public class DefenseJoueurDto {
+
 	private Integer id;
 	private Joueur joueur;
-    private Defense defense;
-	
+	private Defense defense;
 	private Integer quantite;
-	
-    private Long dateDebutConstruction;
-    private Long dateFinConstruction;
-    
-    public DefenseJoueurDto() {
-    }
+	private Long dateDebutConstruction;
+	private Long dateFinConstruction;
 
 	/**
+	 * CONSTRUCTEUR VIDE
+	 */
+	public DefenseJoueurDto() {
+	}
+
+	/**
+	 * CONSTRUCTEUR AVEC PARAMETRES
+	 * 
 	 * @param id
 	 * @param joueur
 	 * @param defense
@@ -118,7 +122,5 @@ public class DefenseJoueurDto {
 	public void setDateFinConstruction(Long dateFinConstruction) {
 		this.dateFinConstruction = dateFinConstruction;
 	}
-	
-	
-    
+
 }

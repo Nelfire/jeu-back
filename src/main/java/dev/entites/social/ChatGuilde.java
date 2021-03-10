@@ -13,26 +13,35 @@ import dev.entites.joueur.Joueur;
 
 @Entity
 public class ChatGuilde {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-	
-	/** Date d'envoi du message **/
-    private LocalDate dateMessage;
- 
-    /** Id de la guilde concernée par le chat**/
-    private Integer idGuilde;
-    
-    /** Contenu du message**/
-    private String message;
-    
-    /** Joueur émetteur du message**/
+	private Integer id;
+
+	/** Joueur émetteur du message **/
 	@ManyToOne
 	@JoinColumn(name = "joueur_id")
 	private Joueur joueur;
-	
+
+	/** Date d'envoi du message **/
+	private LocalDate dateMessage;
+
+	/** Id de la guilde concernée par le chat **/
+	private Integer idGuilde;
+
+	/** Contenu du message **/
+	private String message;
+
 	/**
+	 * CONSTRUCTEUR VIDE
+	 */
+	public ChatGuilde() {
+
+	}
+
+	/**
+	 * CONSTRUCTEUR AVEC PARAMETRES
+	 * 
 	 * @param dateMessage
 	 * @param idGuilde
 	 * @param message
@@ -115,6 +124,5 @@ public class ChatGuilde {
 	public void setJoueur(Joueur joueur) {
 		this.joueur = joueur;
 	}
-    
-	
+
 }

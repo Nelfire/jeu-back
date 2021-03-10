@@ -18,7 +18,11 @@ public class CampagneService {
 	private CampagneRepo campagneRepo;
 	private UniteeService uniteeService;
 
-	public CampagneService (CampagneRepo campagneRepo, UniteeService uniteeService) {
+	/**
+	 * @param campagneRepo
+	 * @param uniteeService
+	 */
+	public CampagneService(CampagneRepo campagneRepo, UniteeService uniteeService) {
 		this.campagneRepo = campagneRepo;
 		this.uniteeService = uniteeService;
 	}
@@ -27,6 +31,8 @@ public class CampagneService {
 	 * LISTER TOUTES LES CAMPAGNES EXISTANTES
 	 */
 	public List<Campagne> listerLesCampagnes() {
+		
+		// INITIALISATIONS
 		List<Campagne> listeCampagnes = new ArrayList<>();
 
 		// BOUCLE SUR TOUTES LES CAMPAGNES QU'IL EXISTE
@@ -37,11 +43,13 @@ public class CampagneService {
 		// RETOUR
 		return listeCampagnes;
 	}
-	
+
 	/**
 	 * LISTER LES CAMPAGNES VIA NUMERO DU MONDE
 	 */
 	public List<Campagne> listerLesCampagnesMonde(Integer numeroMonde) {
+		
+		// INITIALISATIONS
 		List<Campagne> listeCampagnesMonde = new ArrayList<>();
 
 		// BOUCLE SUR TOUTES LES CAMPAGNES QU'IL EXISTE
@@ -52,15 +60,15 @@ public class CampagneService {
 		// RETOUR
 		return listeCampagnesMonde;
 	}
-	
+
 	/**
 	 * DETAILS D'UNE CAMPAGNE (Via ID)
 	 */
 	public Campagne detailsCampagne(Integer idCampagne) {
-		
+
 		// RECUPERATION INFORMATIONS CAMPAGNE
 		Optional<Campagne> camp = campagneRepo.findById(idCampagne);
-		
+
 		// CREATION CAMPAGNE RETOUR
 		Campagne campagne = new Campagne();
 		campagne.setId(camp.get().getId());
@@ -79,17 +87,17 @@ public class CampagneService {
 		campagne.setRecompenseNourriture(camp.get().getRecompenseNourriture());
 		campagne.setRecompenseGemme(camp.get().getRecompenseGemme());
 		campagne.setRecompenseExperience(camp.get().getRecompenseExperience());
-		
+
 		// RETOUR
 		return campagne;
 	}
-	
+
 	/**
 	 * CREATION D'UNE NOUVELLE CAMPAGNE (Menu administrateur)
 	 */
 	public CampagneDto administrationCreerCampagne(CampagneDto infosCampagne) {
-		
-		// RECUPERATION UNITEE
+
+		// RECUPERATION DETAILS UNITE
 		UniteeDto uniteeDto = this.uniteeService.detailsUnitee(infosCampagne.getIdUnite());
 		Unitee unitee = new Unitee();
 		unitee.setId(uniteeDto.getId());
@@ -115,37 +123,37 @@ public class CampagneService {
 		unitee.setApportRessourceOrHeure(uniteeDto.getApportRessourceOrHeure());
 		unitee.setApportRessourceNourritureHeure(uniteeDto.getApportRessourceNourritureHeure());
 		unitee.setApportExperience(uniteeDto.getApportExperience());
-		
+
 		// CREATION CAMPAGNE
-        Campagne campagne = new Campagne();
-        campagne.setIcone(infosCampagne.getIcone());
-        campagne.setLibelle(infosCampagne.getIcone());
-        campagne.setDescription(infosCampagne.getIcone());
-        campagne.setDuree(infosCampagne.getDuree());
-        campagne.setMonde(infosCampagne.getMonde());
-        campagne.setNiveau(infosCampagne.getNiveau());
-        campagne.setUnitee(unitee);
-        campagne.setQuantitee(infosCampagne.getQuantitee());
-        campagne.setIsBoss(infosCampagne.getIsBoss());
-        campagne.setRecompensePierre(infosCampagne.getRecompensePierre());
-        campagne.setRecompenseBois(infosCampagne.getRecompenseBois());
-        campagne.setRecompenseOr(infosCampagne.getRecompenseOr());
-        campagne.setRecompenseNourriture(infosCampagne.getRecompenseNourriture());
-        campagne.setRecompenseGemme(infosCampagne.getRecompenseGemme());
-        campagne.setRecompenseExperience(infosCampagne.getRecompenseExperience());
-        
-        // SAUVEGARDE
-        this.campagneRepo.save(campagne);
-        
-        // RETOUR
-        return infosCampagne;
+		Campagne campagne = new Campagne();
+		campagne.setIcone(infosCampagne.getIcone());
+		campagne.setLibelle(infosCampagne.getIcone());
+		campagne.setDescription(infosCampagne.getIcone());
+		campagne.setDuree(infosCampagne.getDuree());
+		campagne.setMonde(infosCampagne.getMonde());
+		campagne.setNiveau(infosCampagne.getNiveau());
+		campagne.setUnitee(unitee);
+		campagne.setQuantitee(infosCampagne.getQuantitee());
+		campagne.setIsBoss(infosCampagne.getIsBoss());
+		campagne.setRecompensePierre(infosCampagne.getRecompensePierre());
+		campagne.setRecompenseBois(infosCampagne.getRecompenseBois());
+		campagne.setRecompenseOr(infosCampagne.getRecompenseOr());
+		campagne.setRecompenseNourriture(infosCampagne.getRecompenseNourriture());
+		campagne.setRecompenseGemme(infosCampagne.getRecompenseGemme());
+		campagne.setRecompenseExperience(infosCampagne.getRecompenseExperience());
+
+		// SAUVEGARDE
+		this.campagneRepo.save(campagne);
+
+		// RETOUR
+		return infosCampagne;
 	}
-	
+
 	/**
 	 * MODIFICATION D'UNE CAMPAGNE (Menu administrateur, Via ID)
 	 */
 	public CampagneDto administrationModificationCampagne(@Valid CampagneDto campagneDto, Integer id) {
-		
+
 		// RECUPERATION UNITEE
 		UniteeDto uniteeDto = this.uniteeService.detailsUnitee(campagneDto.getIdUnite());
 		Unitee unitee = new Unitee();
@@ -172,7 +180,7 @@ public class CampagneService {
 		unitee.setApportRessourceOrHeure(uniteeDto.getApportRessourceOrHeure());
 		unitee.setApportRessourceNourritureHeure(uniteeDto.getApportRessourceNourritureHeure());
 		unitee.setApportExperience(uniteeDto.getApportExperience());
-		
+
 		// CREATION CAMPAGNE
 		Campagne campagne = this.detailsCampagne(id);
 		campagne.setId(campagneDto.getId());
@@ -191,12 +199,12 @@ public class CampagneService {
 		campagne.setRecompenseNourriture(campagneDto.getRecompenseNourriture());
 		campagne.setRecompenseGemme(campagneDto.getRecompenseGemme());
 		campagne.setRecompenseExperience(campagneDto.getRecompenseExperience());
-		
+
 		// SAUVEGARDE
 		this.campagneRepo.save(campagne);
-		
+
 		// RETOUR
 		return campagneDto;
 	}
-	
+
 }

@@ -2,19 +2,15 @@ package dev.entites.joueur;
 
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import dev.entites.social.Message;
 import dev.entites.batiment.BatimentJoueur;
 import dev.entites.batiment.DefenseJoueur;
@@ -22,153 +18,141 @@ import dev.entites.campagne.CampagneJoueur;
 import dev.entites.expedition.ExpeditionJoueur;
 import dev.entites.social.ChatGuilde;
 import dev.entites.social.Guilde;
-import dev.entites.social.ListeAmis;
 
 @Entity
 public class Joueur {
 
-	// https://www.youtube.com/watch?time_continue=903&v=sFtXlT7ftgo&feature=emb_logo
-	// Déclarations
-    /** id du joueur **/
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    
-    // Mapping BâtimentJoueur
-    /** Un joueur peut avoir plusieurs batimentsJoueur **/
-    @OneToMany(mappedBy = "joueur")
-    @JsonIgnore
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
+	/** Un joueur peut avoir plusieures défenseJoueur **/
+	@OneToMany(mappedBy = "joueur")
+	@JsonIgnore
 	private List<DefenseJoueur> defenseJoueur;
-    
-    
-    // Mapping BâtimentJoueur
-    /** Un joueur peut avoir plusieurs batimentsJoueur **/
-    @OneToMany(mappedBy = "joueur")
-    @JsonIgnore
+
+	/** Un joueur peut avoir plusieurs batimentJoueur **/
+	@OneToMany(mappedBy = "joueur")
+	@JsonIgnore
 	private List<BatimentJoueur> batimentJoueur;
-    
-    // Mapping ExpéditionJoueur
-    /** Un joueur peut avoir plusieures expeditionJoueur **/
-    @OneToMany(mappedBy = "joueur")
-    @JsonIgnore
+
+	/** Un joueur peut avoir plusieures expeditionJoueur **/
+	@OneToMany(mappedBy = "joueur")
+	@JsonIgnore
 	private List<ExpeditionJoueur> expeditionJoueur;
-    
-    // Mapping CampagneJoueur
-    /** Un joueur peut avoir plusieures expeditionJoueur **/
-    @OneToMany(mappedBy = "joueur")
-    @JsonIgnore
+
+	/** Un joueur peut avoir plusieures campagneJoueur **/
+	@OneToMany(mappedBy = "joueur")
+	@JsonIgnore
 	private List<CampagneJoueur> campagneJoueur;
-    
-    // Mapping Armées
-    /** Un joueur peut avoir plusieurs batimentsJoueur **/
-    @OneToMany(mappedBy = "joueur")
-    @JsonIgnore
+
+	/** Un joueur peut avoir plusieures armées **/
+	@OneToMany(mappedBy = "joueur")
+	@JsonIgnore
 	private List<Armee> armee;
 
-    // Mapping Guilde
 	/** Tous les joueurs peuvent appartenir à une guilde **/
 	@ManyToOne
 	@JoinColumn(name = "guilde_id")
 	private Guilde guilde;
-	
-    // Messages du joueur
-    @OneToMany(mappedBy = "joueur", cascade = CascadeType.PERSIST)
+
+	/** un joueur peut être le propriétaire de plusieurs messages **/
+	@OneToMany(mappedBy = "joueur", cascade = CascadeType.PERSIST)
 	private List<Message> messages;
-	
-	
-//	// Mapping Chef de Guilde
-//    @OneToOne(mappedBy="chefGuilde",  cascade = CascadeType.ALL)
-//    private Guilde chefDeGuilde;
-    
 
-    
-    // Mapping Chat de guilde
-    @OneToMany(mappedBy = "joueur", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "joueur", cascade = CascadeType.PERSIST)
 	private List<ChatGuilde> messagesGuilde;
-    
-    
-    /** icone du joueur **/
-    private String icone;
 
-    /** pseudo du joueur **/
-    private String pseudo;
-    
-    /** email du joueur **/
-    private String email;
-    
+	/** roles du joueur **/
+	@OneToMany(mappedBy = "joueur", cascade = CascadeType.PERSIST)
+	@JsonIgnore
+	private List<RoleJoueur> roles;
+
+	/** icone du joueur **/
+	private String icone;
+
+	/** pseudo du joueur **/
+	private String pseudo;
+
+	/** email du joueur **/
+	private String email;
+
 	/** mot de passe du joueur **/
-    private String motDePasse;
-    
-    /** descriptif fiche perso du joueur **/
-    private String descriptif;
-    
-    /** niveau du joueur **/
-    private Integer niveau;
-    
-    /** experience du joueur **/
-    private Long experience;
-    
-    /** ressources de pierre que possède le joueur **/
-    private Long pierrePossession;
+	private String motDePasse;
 
-    /** ressources de bois que possède le joueur **/
-    private Long boisPossession;
+	/** descriptif fiche perso du joueur **/
+	private String descriptif;
 
-    /** ressources d'or que possède le joueur **/
-    private Long orPossession;
+	/** niveau du joueur **/
+	private Integer niveau;
 
-    /** ressources de nourriture que possède le joueur **/
-    private Long nourriturePossession;
+	/** experience du joueur **/
+	private Long experience;
 
-    /** ressources de gemme que possède le joueur **/
-    private Long gemmePossession;
+	/** ressources de pierre que possède le joueur **/
+	private Long pierrePossession;
 
-    /** montant maximum de pierre que peut posséder le joueur **/
-    private Long pierreMaximum;
-    
-    /** montant maximum de bois que peut posséder le joueur **/
-    private Long boisMaximum;
-    
-    /** montant maximum d'or que peut posséder le joueur **/
-    private Long orMaximum;
-    
-    /** montant maximum de nourriture que peut posséder le joueur **/
-    private Long nourritureMaximum;
-    
-    /** montant du boost de production de pierre pour le joueur **/
-    private Integer pierreBoostProduction;
+	/** ressources de bois que possède le joueur **/
+	private Long boisPossession;
 
-    /** montant du boost de production de bois pour le joueur **/
-    private Integer boisBoostProduction;
+	/** ressources d'or que possède le joueur **/
+	private Long orPossession;
 
-    /** montant du boost de production d'or pour le joueur **/
-    private Integer orBoostProduction;
+	/** ressources de nourriture que possède le joueur **/
+	private Long nourriturePossession;
 
-    /** montant du boost de production de nourriture pour le joueur **/
-    private Integer nourritureBoostProduction;
+	/** ressources de gemme que possède le joueur **/
+	private Long gemmePossession;
 
-    /** temps de connexion (en secondes) du joueur **/
-    private Integer tempsDeJeu;
-    
-    private Date derniereConnexion;
-    
-    private Boolean donateur;
-    
-    private Integer positionX;
-    private Integer positionY;
+	/** montant maximum de pierre que peut posséder le joueur **/
+	private Long pierreMaximum;
 
-    /** roles du joueur **/
-    @OneToMany(mappedBy = "joueur", cascade = CascadeType.PERSIST)
-    @JsonIgnore
-    private List<RoleJoueur> roles;
+	/** montant maximum de bois que peut posséder le joueur **/
+	private Long boisMaximum;
 
-    
-    public Joueur() {
-    	
-    }
+	/** montant maximum d'or que peut posséder le joueur **/
+	private Long orMaximum;
+
+	/** montant maximum de nourriture que peut posséder le joueur **/
+	private Long nourritureMaximum;
+
+	/** montant du boost de production de pierre pour le joueur **/
+	private Integer pierreBoostProduction;
+
+	/** montant du boost de production de bois pour le joueur **/
+	private Integer boisBoostProduction;
+
+	/** montant du boost de production d'or pour le joueur **/
+	private Integer orBoostProduction;
+
+	/** montant du boost de production de nourriture pour le joueur **/
+	private Integer nourritureBoostProduction;
+
+	/** temps de connexion (en secondes) du joueur **/
+	private Integer tempsDeJeu;
+
+	/** date de la derniere connexion du joueur **/
+	private Date derniereConnexion;
+
+	/** le joueur est un donateur (O/N) **/
+	private Boolean donateur;
+
+	/** position abscisse du joueur **/
+	private Integer positionX;
+
+	/** position ordonnée du joueur **/
+	private Integer positionY;
 
 	/**
-	 * @param base
+	 * CONSTRUCTEUR VIDE
+	 */
+	public Joueur() {
+
+	}
+
+	/**
+	 * CONSTRUCTEUR VIDE
+	 * 
 	 * @param armee
 	 * @param icone
 	 * @param pseudo
@@ -192,13 +176,17 @@ public class Joueur {
 	 * @param nourritureBoostProduction
 	 * @param tempsDeJeu
 	 * @param roles
+	 * @param derniereConnexion
+	 * @param donateur
+	 * @param positionX
+	 * @param positionY
 	 */
 	public Joueur(List<Armee> armee, String icone, String pseudo, String email, String motDePasse, String descriptif,
 			Integer niveau, Long experience, Long pierrePossession, Long boisPossession, Long orPossession,
-			Long nourriturePossession, Long gemmePossession, Long pierreMaximum, Long boisMaximum,
-			Long orMaximum, Long nourritureMaximum, Integer pierreBoostProduction, Integer boisBoostProduction,
-			Integer orBoostProduction, Integer nourritureBoostProduction, Integer tempsDeJeu, List<RoleJoueur> roles, Date derniereConnexion, Boolean donateur,
-			Integer positionX, Integer positionY) {
+			Long nourriturePossession, Long gemmePossession, Long pierreMaximum, Long boisMaximum, Long orMaximum,
+			Long nourritureMaximum, Integer pierreBoostProduction, Integer boisBoostProduction,
+			Integer orBoostProduction, Integer nourritureBoostProduction, Integer tempsDeJeu, List<RoleJoueur> roles,
+			Date derniereConnexion, Boolean donateur, Integer positionX, Integer positionY) {
 		super();
 		this.armee = armee;
 		this.icone = icone;
@@ -551,9 +539,6 @@ public class Joueur {
 		this.roles = roles;
 	}
 
-
-	
-
 	/**
 	 * @return the armee
 	 */
@@ -595,7 +580,7 @@ public class Joueur {
 	public void setDerniereConnexion(Date derniereConnexion) {
 		this.derniereConnexion = derniereConnexion;
 	}
-	
+
 	/**
 	 * @return the donateur
 	 */
@@ -610,9 +595,6 @@ public class Joueur {
 		this.donateur = donateur;
 	}
 
-	
-	
-	
 	/**
 	 * @return the positionX
 	 */
@@ -647,31 +629,5 @@ public class Joueur {
 				+ ", boisPossession=" + boisPossession + ", orPossession=" + orPossession + ", nourriturePossession="
 				+ nourriturePossession + ", gemmePossession=" + gemmePossession + "]";
 	}
-	
-	
-	
-	
-	
 
-//	/**
-//	 * @return the chefGuilde
-//	 */
-//	public Guilde getChefGuilde() {
-//		return chefDeGuilde;
-//	}
-//
-//	/**
-//	 * @param chefGuilde the chefGuilde to set
-//	 */
-//	public void setChefGuilde(Guilde chefGuilde) {
-//		this.chefDeGuilde = chefGuilde;
-//	}
-    
-    
-	
-    
-
-
-
-	
 }

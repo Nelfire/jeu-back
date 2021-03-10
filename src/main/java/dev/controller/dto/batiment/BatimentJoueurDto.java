@@ -6,61 +6,72 @@ import dev.entites.joueur.Joueur;
 public class BatimentJoueurDto {
 
 	private Integer id;
-	
+
 	private Joueur joueur;
-	
+
 	private Batiment batiment;
-	
+
 	/** niveau du batiment **/
 	private Integer niveau;
-	
+
 	/** nombre ouvriers necessaire pour l'amélioration du batiment **/
 	private Integer ouvrierNecessaireAmelioration;
-	
+
 	/** temps d'amelioration du batiment **/
 	private Integer tempsAmelioration;
-	
+
 	/** coût en pierre amelioration du batiment **/
 	private Long coutPierreAmelioration;
-	
+
 	/** coût en bois amelioration du batiment **/
 	private Long coutBoisAmelioration;
-	
+
 	/** coût en or amelioration du batiment **/
 	private Long coutOreAmelioration;
-	
+
 	/** coût en nourriture amelioration du batiment **/
 	private Long coutNourritureAmelioration;
-	
-	/** quantitée de pierre stockable dans la chambre forte du batiment**/
+
+	/** quantitée de pierre stockable dans la chambre forte du batiment **/
 	private Long quantiteeStockagePierre;
-	
-	/** quantitée de bois stockable dans la chambre forte du batiment**/
+
+	/** quantitée de bois stockable dans la chambre forte du batiment **/
 	private Long quantiteeStockageBois;
-	
-	/** quantitée d'or stockable dans la chambre forte du batiment**/
+
+	/** quantitée d'or stockable dans la chambre forte du batiment **/
 	private Long quantiteeStockageOre;
-	
-	/** quantitée de nourriture stockable dans la chambre forte du batiment**/
+
+	/** quantitée de nourriture stockable dans la chambre forte du batiment **/
 	private Long quantiteeStockageNourriture;
-	
-	/** montant de l'apport de ressource (pierre) par heure (pour 100% exploitants) **/
+
+	/** montant de l'apport de ressource (pierre) par heure **/
 	private Integer apportPierreHeure;
-	/** montant de l'apport de ressource (bois) par heure (pour 100% exploitants) **/
-	private Integer apportBoisHeure;
-	/** montant de l'apport de ressource (or) par heure (pour 100% exploitants) **/
-	private Integer apportOreHeure;
-	/** montant de l'apport de ressource (nourriture) par heure (pour 100% exploitants) **/
-	private Integer apportNourritureHeure;
 	
+	/** montant de l'apport de ressource (bois) par heure **/
+	private Integer apportBoisHeure;
+	
+	/** montant de l'apport de ressource (or) par heure **/
+	private Integer apportOreHeure;
+	
+	/** montant de l'apport de ressource (nourriture) par heure **/
+	private Integer apportNourritureHeure;
+
+	/** date de début de la construction **/
 	private Long dateDebutConstruction;
+
+	/** date de fin de la construction **/
 	private Long dateFinConstruction;
 
-    public BatimentJoueurDto() {
-    	
-    }
+	/**
+	 * CONSTRUCTEUR VIDE
+	 */
+	public BatimentJoueurDto() {
+
+	}
 
 	/**
+	 * CONSTRUCTEUR AVEC PARAMETRES
+	 * 
 	 * @param id
 	 * @param joueur
 	 * @param batiment
@@ -391,8 +402,5 @@ public class BatimentJoueurDto {
 	public void setDateFinConstruction(Long dateFinConstruction) {
 		this.dateFinConstruction = dateFinConstruction;
 	}
-    
-    
-	
-    
+
 }

@@ -2,97 +2,92 @@ package dev.controller.dto.batiment;
 
 public class BatimentDto {
 
-    private Integer id;
+	private Integer id;
 
-    /* 
- 	1 /- Hotel de ville	
-	2 /- Chaumière (augmenter limite population)
-	3 /- Carrière (farm pierre)
-	4 /- Camp de bucheron (farm bois)		
-	5 /- Camp de mineur (farm or)
-	6 /- Ferme (farm nourriture)
-	7 /- Stockage Pierre (Entrepot)	
-	8 /- Stockage Bois (Scierie)
-	9 /- Stockage Or (Banque)
-	10 /- Stockage Nourriture (Grenier)
-	11 /- Caserne Militaire	
-	12 /- Ecurie
-	13 /- Port
-	14 /- Atelier de siege
-	15 /- Forge		
-	16 /- Universite
-	17 /- Marchév
-	18 - Table d'expéditions
-     */
-    private Integer idTypeBatiment;
-    /*
-     * 0 = Divers
-     * 1 = Ressource
-     * 2 = Stockage
-     * 3 = Millitaire
-     */
-    private Integer idCategorieBatiment;
-    
-    /** icone du batiment **/
-    private String icone;
-    
-    /** nom du batiment **/
-    private String libelle;
-    
-    /** descriptif du batiment **/
-    private String descriptif;
+	private Integer idTypeBatiment;
 
-    /** nombre ouvriers necessaire pour construction du batiment **/
-    private Integer ouvrierNecessaireConstruction;
-    
-    /** temps de construction du batiment **/
-    private Integer tempsDeConstruction;
-    
-    /** coût en pierre construction du batiment **/
-    private Long coutPierreConstruction;
-    
-    /** coût en bois construction du batiment **/
-    private Long coutBoisConstruction;
+	private Integer idCategorieBatiment;
 
-    /** coût en or construction du batiment **/
-    private Long coutOrConstruction;
+	/** icone du batiment **/
+	private String icone;
 
-    /** coût en nourriture construction du batiment **/
-    private Long coutNourritureConstruction;
-    
-    
-    /** niveau necessaire de l'hotel de ville pour la construction du bâtiment **/
-    private Integer niveauHotelDeVilleNecessaireConstruction;
-    
-    /** quantitée de pierre stockable dans la chambre forte du batiment**/
-    private Long quantiteeStockagePierre;
-    /** quantitée de bois stockable dans la chambre forte du batiment**/
-    private Long quantiteeStockageBois;
-    /** quantitée d'or stockable dans la chambre forte du batiment**/
-    private Long quantiteeStockageOre;
-    /** quantitée de nourriture stockable dans la chambre forte du batiment**/
-    private Long quantiteeStockageNourriture;
-    /** montant de l'apport de ressource (pierre) par heure (pour 100% exploitants) **/
-    private Integer apportPierreHeure;
-    /** montant de l'apport de ressource (bois) par heure (pour 100% exploitants) **/
-    private Integer apportBoisHeure;
-    /** montant de l'apport de ressource (or) par heure (pour 100% exploitants) **/
-    private Integer apportOreHeure;
-    /** montant de l'apport de ressource (nourriture) par heure (pour 100% exploitants) **/
-    private Integer apportNourritureHeure;
-    
-    private Long apportExperience;
-    
-    private Double multiplicateurExperience;
-    private Double multiplicateurTemps;
-    private Double multiplicateurApport;
-    private Double multiplicateurCout;
-    
+	/** nom du batiment **/
+	private String libelle;
+
+	/** descriptif du batiment **/
+	private String descriptif;
+
+	/** nombre ouvriers necessaire pour construction du batiment **/
+	private Integer ouvrierNecessaireConstruction;
+
+	/** temps de construction du batiment **/
+	private Integer tempsDeConstruction;
+
+	/** coût en pierre construction du batiment **/
+	private Long coutPierreConstruction;
+
+	/** coût en bois construction du batiment **/
+	private Long coutBoisConstruction;
+
+	/** coût en or construction du batiment **/
+	private Long coutOrConstruction;
+
+	/** coût en nourriture construction du batiment **/
+	private Long coutNourritureConstruction;
+
+	/** niveau necessaire de l'hotel de ville pour la construction du bâtiment **/
+	private Integer niveauHotelDeVilleNecessaireConstruction;
+
+	/** quantitée de pierre stockable dans la chambre forte du batiment **/
+	private Long quantiteeStockagePierre;
+
+	/** quantitée de bois stockable dans la chambre forte du batiment **/
+	private Long quantiteeStockageBois;
+
+	/** quantitée d'or stockable dans la chambre forte du batiment **/
+	private Long quantiteeStockageOre;
+
+	/** quantitée de nourriture stockable dans la chambre forte du batiment **/
+	private Long quantiteeStockageNourriture;
+
+	/** montant de l'apport de ressource (pierre) par heure **/
+	private Integer apportPierreHeure;
+
+	/** montant de l'apport de ressource (bois) par heure **/
+	private Integer apportBoisHeure;
+
+	/** montant de l'apport de ressource (or) par heure **/
+	private Integer apportOreHeure;
+
+	/** montant de l'apport de ressource (nourriture) par heure **/
+	private Integer apportNourritureHeure;
+
+	/** montant gain experience construction **/
+	private Long apportExperience;
+
+	/** montant du multiplicateur d'experience **/
+	private Double multiplicateurExperience;
+
+	/** montant du multiplicateur de temps **/
+	private Double multiplicateurTemps;
+
+	/** montant du multiplicateur d'apport de ressource **/
+	private Double multiplicateurApport;
+
+	/** montant du multiplicateur de coût **/
+	private Double multiplicateurCout;
+
+	/**
+	 * CONSTRUCTEUR VIDE
+	 */
 	public BatimentDto() {
 	}
 
 	/**
+	 * CONSTRUCTEUR AVEC PARAMETRES
+	 * 
 	 * @param idTypeBatiment
+	 * @param idCategorieBatiment
 	 * @param icone
 	 * @param libelle
 	 * @param descriptif
@@ -111,15 +106,21 @@ public class BatimentDto {
 	 * @param apportBoisHeure
 	 * @param apportOreHeure
 	 * @param apportNourritureHeure
+	 * @param apportExperience
+	 * @param multiplicateurExperience
+	 * @param multiplicateurTemps
+	 * @param multiplicateurApport
+	 * @param multiplicateurCout
 	 */
-	public BatimentDto(Integer idTypeBatiment, Integer idCategorieBatiment, String icone, String libelle, String descriptif,
-			Integer ouvrierNecessaireConstruction, Integer tempsDeConstruction, Long coutPierreConstruction,
-			Long coutBoisConstruction, Long coutOrConstruction, Long coutNourritureConstruction,
-			Integer niveauHotelDeVilleNecessaireConstruction, Long quantiteeStockagePierre,
-			Long quantiteeStockageBois, Long quantiteeStockageOre, Long quantiteeStockageNourriture,
-			Integer apportPierreHeure, Integer apportBoisHeure, Integer apportOreHeure, Integer apportNourritureHeure, 
-			Long apportExperience, Double multiplicateurExperience, Double multiplicateurTemps,
-			Double multiplicateurApport, Double multiplicateurCout) {
+	public BatimentDto(Integer idTypeBatiment, Integer idCategorieBatiment, String icone, String libelle,
+			String descriptif, Integer ouvrierNecessaireConstruction, Integer tempsDeConstruction,
+			Long coutPierreConstruction, Long coutBoisConstruction, Long coutOrConstruction,
+			Long coutNourritureConstruction, Integer niveauHotelDeVilleNecessaireConstruction,
+			Long quantiteeStockagePierre, Long quantiteeStockageBois, Long quantiteeStockageOre,
+			Long quantiteeStockageNourriture, Integer apportPierreHeure, Integer apportBoisHeure,
+			Integer apportOreHeure, Integer apportNourritureHeure, Long apportExperience,
+			Double multiplicateurExperience, Double multiplicateurTemps, Double multiplicateurApport,
+			Double multiplicateurCout) {
 		super();
 		this.idTypeBatiment = idTypeBatiment;
 		this.idCategorieBatiment = idCategorieBatiment;
@@ -176,7 +177,6 @@ public class BatimentDto {
 		this.idTypeBatiment = idTypeBatiment;
 	}
 
-	
 	/**
 	 * @return the idCategorieBatiment
 	 */
@@ -325,7 +325,9 @@ public class BatimentDto {
 	}
 
 	/**
-	 * @param niveauHotelDeVilleNecessaireConstruction the niveauHotelDeVilleNecessaireConstruction to set
+	 * @param niveauHotelDeVilleNecessaireConstruction the
+	 *                                                 niveauHotelDeVilleNecessaireConstruction
+	 *                                                 to set
 	 */
 	public void setNiveauHotelDeVilleNecessaireConstruction(Integer niveauHotelDeVilleNecessaireConstruction) {
 		this.niveauHotelDeVilleNecessaireConstruction = niveauHotelDeVilleNecessaireConstruction;
@@ -513,6 +515,4 @@ public class BatimentDto {
 		this.multiplicateurExperience = multiplicateurExperience;
 	}
 
-	
-    
 }

@@ -15,82 +15,65 @@ import dev.entites.joueur.Joueur;
 public class Guilde {
 
 	/** id de la guilde **/
-    @Id
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    
-    /** libellé de la guilde **/
-    private String libelle;
-    
-    /** icone de la guilde **/
-    private String icone;
-    
-    /** message accueil guilde **/
-    private String messageAccueil;
-    
+	private Integer id;
 
-//    /** membres de la guilde **/
-//    /** "Une guilde peut avoir 1 seul chef**/
-//    @OneToOne
-//    @JoinColumn(name="id")
-//    private Joueur chefGuilde;
+	/** membres de la guilde **/
+	/** "Une guilde peut avoir plusieurs membres **/
+	@OneToMany(mappedBy = "guilde", cascade = CascadeType.PERSIST)
+	private List<Joueur> listeMembres;
 
-    
-    /** membres de la guilde **/
-    /** "Une guilde peut avoir plusieurs membres **/
-    @OneToMany(mappedBy = "guilde", cascade = CascadeType.PERSIST)
-    private List<Joueur> listeMembres;
-    
-    private Integer niveau;
-    
-    private Integer experience;
-    
-    private Integer nombreMembresMaximal;
-    
-    private final Integer coutOrCreation = 100;
-    
+	/** libellé de la guilde **/
+	private String libelle;
 
-    /**
-	 * 
+	/** icone de la guilde **/
+	private String icone;
+
+	/** message accueil guilde **/
+	private String messageAccueil;
+
+	/** niveau de la guilde **/
+	private Integer niveau;
+
+	/** experience de la guilde **/
+	private Integer experience;
+
+	/** nombre maximal de membres de la guilde **/
+	private Integer nombreMembresMaximal;
+
+	/** coût de création de la guilde **/
+	private final Integer coutOrCreation = 100;
+
+	/**
+	 * CONSTRUCTEUR VIDE
 	 */
 	public Guilde() {
 		super();
 	}
 
 	/**
-	 * @param id
+	 * CONSTRUCTEUR AVEC PARAMETRES
+	 * 
 	 * @param libelle
 	 * @param icone
 	 * @param messageAccueil
-	 * @param chefGuilde
 	 * @param listeMembres
 	 * @param niveau
 	 * @param experience
 	 * @param nombreMembresMaximal
 	 */
-	public Guilde(String libelle, String icone, String messageAccueil, 
-//			Joueur chefGuilde,
-			List<Joueur> listeMembres, Integer niveau, Integer experience, Integer nombreMembresMaximal) {
+	public Guilde(String libelle, String icone, String messageAccueil, List<Joueur> listeMembres, Integer niveau,
+			Integer experience, Integer nombreMembresMaximal) {
 		super();
 		this.libelle = libelle;
 		this.icone = icone;
 		this.messageAccueil = messageAccueil;
-//		this.chefGuilde = chefGuilde;
 		this.listeMembres = listeMembres;
 		this.niveau = niveau;
 		this.experience = experience;
 		this.nombreMembresMaximal = nombreMembresMaximal;
 	}
-
-	/** inviter dans la guilde **/
-    public void inviterGuilde() {
-    	
-    }
-    
-    /** dissoudre la guilde **/
-    public void dissoudreGuilde() {
-    	
-    }
 
 	/**
 	 * @return the id
@@ -147,20 +130,6 @@ public class Guilde {
 	public void setMessageAccueil(String messageAccueil) {
 		this.messageAccueil = messageAccueil;
 	}
-
-//	/**
-//	 * @return the chefGuilde
-//	 */
-//	public Joueur getChefGuilde() {
-//		return chefGuilde;
-//	}
-//
-//	/**
-//	 * @param chefGuilde the chefGuilde to set
-//	 */
-//	public void setChefGuilde(Joueur chefGuilde) {
-//		this.chefGuilde = chefGuilde;
-//	}
 
 	/**
 	 * @return the listeMembres
@@ -225,21 +194,19 @@ public class Guilde {
 		return coutOrCreation;
 	}
 
-
-
 	/** quitter la guilde **/
-    public void quitterGuilde() {
-    	
-    }
+	public void quitterGuilde() {
 
-//	@Override
-//	public String toString() {
-//		return "Guilde [id=" + id + ", libelle=" + libelle + ", icone=" + icone + ", messageAccueil=" + messageAccueil
-//				+ ", chefGuilde=" + chefGuilde + ", listeMembres=" + listeMembres + ", niveau=" + niveau
-//				+ ", experience=" + experience + ", nombreMembresMaximal=" + nombreMembresMaximal + ", coutOrCreation="
-//				+ coutOrCreation + "]";
-//	}
+	}
 
-    
-	
+	/** inviter dans la guilde **/
+	public void inviterGuilde() {
+
+	}
+
+	/** dissoudre la guilde **/
+	public void dissoudreGuilde() {
+
+	}
+
 }

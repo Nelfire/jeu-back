@@ -21,43 +21,65 @@ public class ExpeditionJoueur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	// Un joueur peut avoir plusieurs ExpeditionJoueur, mais une ExpeditionJoueur n'a qu'un seul joueur à la fois
+
+	/**
+	 * Un joueur peut avoir plusieurs ExpeditionJoueur, mais une ExpeditionJoueur
+	 * n'a qu'un seul joueur à la fois
+	 **/
 	@ManyToOne
 	@JoinColumn(name = "joueur_id")
 	private Joueur joueur;
-	
-	// Une expedition peut concerncé plusieures ExpeditionJoueur, mais une ExpeditionJoueur n'est concernée par qu'une seul Expédition à la fois
+
+	/**
+	 * Une expedition peut concerncé plusieures ExpeditionJoueur, mais une
+	 * ExpeditionJoueur n'est concernée par qu'une seul Expédition à la fois
+	 **/
 	@ManyToOne
 	@JoinColumn(name = "expedition_id")
 	private Expedition expedition;
-	
-    private Long dateDebutExpedition;
-    private Long dateFinExpedition;
-    
+
+	/** plusieurs armées peuvent être envoyées sur une expédition joueur **/
 	@OneToMany(mappedBy = "expeditionJoueur")
 	@JsonIgnore
-    private List<Armee> armeeEnvoiJoueur;
-	
+	private List<Armee> armeeEnvoiJoueur;
+
+	/** date de début de l'expédition **/
+	private Long dateDebutExpedition;
+
+	/** date de fin de l'expédition **/
+	private Long dateFinExpedition;
+
+	/** récompense récupérée (O/N) **/
 	private Boolean recompenseRecuperee;
-	
+
+	/** pourcentage de réussite de l'expédition **/
 	private Integer pourcentageReussite;
-	
-	// 0 = En attente
-	// 1 = Réussie
-	// 2 = Echec
+
+	/** 0 = En attente,1 = Réussie, 2 = Terminée, 3 = Echec **/
 	private Integer etatExpedition;
-    
-    public ExpeditionJoueur() {
-    	
-    }
 
 	/**
+	 * CONSTRUCTEUR VIDE
+	 */
+	public ExpeditionJoueur() {
+
+	}
+
+	/**
+	 * CONSTRUCTEUR AVEC PARAMETRES
+	 * 
+	 * @param joueur
 	 * @param expedition
 	 * @param dateDebutExpedition
 	 * @param dateFinExpedition
+	 * @param armeeEnvoiJoueur
+	 * @param recompenseRecuperee
+	 * @param pourcentageReussite
+	 * @param etatExpedition
 	 */
-	public ExpeditionJoueur(Joueur joueur, Expedition expedition, Long dateDebutExpedition, Long dateFinExpedition, List<Armee> armeeEnvoiJoueur, Boolean recompenseRecuperee, Integer pourcentageReussite, Integer etatExpedition) {
+	public ExpeditionJoueur(Joueur joueur, Expedition expedition, Long dateDebutExpedition, Long dateFinExpedition,
+			List<Armee> armeeEnvoiJoueur, Boolean recompenseRecuperee, Integer pourcentageReussite,
+			Integer etatExpedition) {
 		super();
 		this.joueur = joueur;
 		this.expedition = expedition;
@@ -195,7 +217,4 @@ public class ExpeditionJoueur {
 		this.etatExpedition = etatExpedition;
 	}
 
-	
-    
-    
 }

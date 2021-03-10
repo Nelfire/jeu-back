@@ -18,13 +18,16 @@ import dev.services.campagne.CampagneJoueurService;
 @RestController
 @RequestMapping("campagneJoueur")
 public class CampagneJoueurController {
-	
+
 	private CampagneJoueurService campagneJoueurService;
-	
+
+	/**
+	 * @param campagneJoueurService
+	 */
 	public CampagneJoueurController(CampagneJoueurService campagneJoueurService) {
 		this.campagneJoueurService = campagneJoueurService;
 	}
-	
+
 	/**
 	 * LISTES TOUTES LES CAMPAGNES DU JOUEUR, TOUT CONFONDU
 	 */
@@ -32,19 +35,18 @@ public class CampagneJoueurController {
 	public List<CampagneJoueur> listerCampagneJoueur() {
 		return this.campagneJoueurService.listerCampagneJoueur();
 	}
-	
-	
+
 	/**
-	 * ENVOI D'UNITEES EN CAMPAGNE (Création)
+	 * ENVOI D'UNITES EN CAMPAGNE (Création)
 	 */
 	@PostMapping
 	public ResponseEntity<?> envoiUniteeEnCampagne(@RequestBody CompositionArmeeCampagneDto compositionArmeeCampagne) {
 		CompositionArmeeCampagneDto composition = campagneJoueurService.envoiUniteeEnCampagne(compositionArmeeCampagne);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).header("resultat", "Campagne lancée").body(composition);
 	}
-	
+
 	/**
-	 * RECUPERATION DE LA RECOMPENSE D'CAMPAGNE
+	 * RECUPERATION DE LA RECOMPENSE
 	 */
 	@GetMapping("/recupererRecompense")
 	public CampagneJoueur recupererRecompense(@RequestParam("idCampagne") Integer idCampagne) {

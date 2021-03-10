@@ -32,23 +32,21 @@ public class ArmeeController {
 
 	/**
 	 * CREATION ARMEE DU JOUEUR (Nouvelles unitées)
-	 * */
+	 */
 	@PostMapping
 	public ResponseEntity<?> produireUnitee(@RequestBody ArmeeJoueurCreationDto batimentJoueurCreationDto) {
 		ArmeeJoueurCreationDto saveUnitee = armeeService.produireUnitee(batimentJoueurCreationDto);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).header("resultat", "Unitée construite").body(saveUnitee);
 	}
-	
+
 	/**
 	 * LISTER LES ARMEES DU JOUEURS
-	 * */
+	 */
 	@GetMapping("/listerArmeesDuJoueur")
 	public List<ArmeeDto> listerArmeesDuJoueur() {
 		return this.armeeService.listerArmeesDuJoueur();
 	}
-	
-	
-	
+
 	/**
 	 * ACCELERATION FORMATION DES UNITES (Contre gemmes)
 	 */
@@ -56,5 +54,5 @@ public class ArmeeController {
 	public ArmeeDto accelerationFormationUnite(@RequestBody @Valid ArmeeDto armeeDto, @RequestParam("id") Integer id) {
 		return this.armeeService.accelerationFormationUnite(armeeDto, id);
 	}
-	
+
 }

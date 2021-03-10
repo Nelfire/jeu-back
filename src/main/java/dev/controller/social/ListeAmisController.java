@@ -21,11 +21,14 @@ public class ListeAmisController {
 
 	private ListeAmisService listeAmisService;
 
+	/**
+	 * @param listeAmisService
+	 */
 	public ListeAmisController(ListeAmisService listeAmisService) {
 		super();
 		this.listeAmisService = listeAmisService;
 	}
-	
+
 	/**
 	 * AJOUTER UN NOUVEL AMI
 	 */
@@ -34,7 +37,7 @@ public class ListeAmisController {
 		AjoutAmiDto ami = listeAmisService.ajouterAmi(idAmi);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).header("resultat", "Ami ajouté").body(ami);
 	}
-	
+
 	/**
 	 * LISTER LES AMIS DU JOUEUR
 	 */
@@ -42,7 +45,6 @@ public class ListeAmisController {
 	public ListeAmis lister() {
 		return this.listeAmisService.lister();
 	}
-	
 
 	/**
 	 * MODIFICATION LISTE AMI (Retrait d'un ami)

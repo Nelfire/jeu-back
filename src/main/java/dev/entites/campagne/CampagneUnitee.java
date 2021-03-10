@@ -4,29 +4,33 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import dev.entites.unitee.Unitee;
 
 @Entity
 public class CampagneUnitee {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	/** id de la campagne **/
 	private Integer idCampagne;
-	
+
+	/** id de l'unité **/
 	private Integer idUnitee;
-	
+
+	/** quantité d'unités **/
 	private Integer quantite;
-	
+
+	/**
+	 * CONSTRUCTEUR VIDE
+	 */
 	public CampagneUnitee() {
-		
+
 	}
 
 	/**
+	 * CONSTRUCTEUR AVEC PARAMETRES
+	 * 
 	 * @param idCampagne
 	 * @param idUnitee
 	 * @param quantite
@@ -93,7 +97,5 @@ public class CampagneUnitee {
 	public void setQuantite(Integer quantite) {
 		this.quantite = quantite;
 	}
-
-	
 
 }

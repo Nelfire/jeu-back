@@ -1,6 +1,5 @@
 package dev.controller.dto.joueur;
 
-
 import java.util.Date;
 
 import dev.entites.joueur.Armee;
@@ -8,91 +7,96 @@ import dev.entites.social.Guilde;
 
 public class JoueurInfoDto {
 
+	/** id du joueur **/
+	private Integer id;
 
-	// Déclarations
-    /** id du joueur **/
-    private Integer id;
-    
-    
-    // Un joueur ne peut avoir qu'une seule armée
-    private Armee armee;
-    
+	private Armee armee;
+
 	/** Tous les joueurs peuvent appartenir à une guilde **/
 	private Guilde guilde;
-	
-	/** **/
-    
-    /** icone du joueur **/
-    private String icone;
 
-    /** pseudo du joueur **/
-    private String pseudo;
-    
-    /** email du joueur **/
-    private String email;
-    
-    /** descriptif fiche perso du joueur **/
-    private String descriptif;
-    
-    /** niveau du joueur **/
-    private Integer niveau;
-    
-    /** experience du joueur **/
-    private Long experience;
-    
-    /** ressources de pierre que possède le joueur **/
-    private Long pierrePossession;
+	/** icone du joueur **/
+	private String icone;
 
-    /** ressources de bois que possède le joueur **/
-    private Long boisPossession;
+	/** pseudo du joueur **/
+	private String pseudo;
 
-    /** ressources d'or que possède le joueur **/
-    private Long orPossession;
+	/** email du joueur **/
+	private String email;
 
-    /** ressources de nourriture que possède le joueur **/
-    private Long nourriturePossession;
+	/** descriptif fiche perso du joueur **/
+	private String descriptif;
 
-    /** ressources de gemme que possède le joueur **/
-    private Long gemmePossession;
+	/** niveau du joueur **/
+	private Integer niveau;
 
-    /** montant maximum de pierre que peut posséder le joueur **/
-    private Long pierreMaximum;
-    
-    /** montant maximum de bois que peut posséder le joueur **/
-    private Long boisMaximum;
-    
-    /** montant maximum d'or que peut posséder le joueur **/
-    private Long orMaximum;
-    
-    /** montant maximum de nourriture que peut posséder le joueur **/
-    private Long nourritureMaximum;
-    
-    /** montant du boost de production de pierre pour le joueur **/
-    private Integer pierreBoostProduction;
+	/** experience du joueur **/
+	private Long experience;
 
-    /** montant du boost de production de bois pour le joueur **/
-    private Integer boisBoostProduction;
+	/** ressources de pierre que possède le joueur **/
+	private Long pierrePossession;
 
-    /** montant du boost de production d'or pour le joueur **/
-    private Integer orBoostProduction;
+	/** ressources de bois que possède le joueur **/
+	private Long boisPossession;
 
-    /** montant du boost de production de nourriture pour le joueur **/
-    private Integer nourritureBoostProduction;
+	/** ressources d'or que possède le joueur **/
+	private Long orPossession;
 
-    /** temps de connexion (en secondes) du joueur **/
-    private Integer tempsDeJeu;
-    
-    private Date derniereConnexion;
-    
-    private Boolean donateur;
-    
-    private Integer positionX;
-    private Integer positionY;
+	/** ressources de nourriture que possède le joueur **/
+	private Long nourriturePossession;
 
-    public JoueurInfoDto() {
-    	
-    }
+	/** ressources de gemme que possède le joueur **/
+	private Long gemmePossession;
+
+	/** montant maximum de pierre que peut posséder le joueur **/
+	private Long pierreMaximum;
+
+	/** montant maximum de bois que peut posséder le joueur **/
+	private Long boisMaximum;
+
+	/** montant maximum d'or que peut posséder le joueur **/
+	private Long orMaximum;
+
+	/** montant maximum de nourriture que peut posséder le joueur **/
+	private Long nourritureMaximum;
+
+	/** montant du boost de production de pierre pour le joueur **/
+	private Integer pierreBoostProduction;
+
+	/** montant du boost de production de bois pour le joueur **/
+	private Integer boisBoostProduction;
+
+	/** montant du boost de production d'or pour le joueur **/
+	private Integer orBoostProduction;
+
+	/** montant du boost de production de nourriture pour le joueur **/
+	private Integer nourritureBoostProduction;
+
+	/** temps de connexion (en secondes) du joueur **/
+	private Integer tempsDeJeu;
+
+	/** date de la derniere connexion du joueur **/
+	private Date derniereConnexion;
+
+	/** le joueur est un donateur (O/N) **/
+	private Boolean donateur;
+
+	/** position abscisse du joueur **/
+	private Integer positionX;
+
+	/** position ordonnée du joueur **/
+	private Integer positionY;
+
 	/**
+	 * CONSTRUCTEUR VIDE
+	 */
+	public JoueurInfoDto() {
+
+	}
+
+	/**
+	 * CONSTRUCTEUR AVEC PARAMETRES
+	 * 
 	 * @param id
 	 * @param base
 	 * @param armee
@@ -122,10 +126,9 @@ public class JoueurInfoDto {
 	 * @param nourritureBoostProduction
 	 * @param tempsDeJeu
 	 */
-	public JoueurInfoDto(Integer id, String icone, String pseudo, String email
-			, String descriptif, Integer niveau, Long experience, Long pierrePossession,
-			Long boisPossession, Long orPossession, Long nourriturePossession, Long gemmePossession,
-			Long pierreMaximum, Long boisMaximum, Long orMaximum, Long nourritureMaximum,
+	public JoueurInfoDto(Integer id, String icone, String pseudo, String email, String descriptif, Integer niveau,
+			Long experience, Long pierrePossession, Long boisPossession, Long orPossession, Long nourriturePossession,
+			Long gemmePossession, Long pierreMaximum, Long boisMaximum, Long orMaximum, Long nourritureMaximum,
 			Integer pierreBoostProduction, Integer boisBoostProduction, Integer orBoostProduction,
 			Integer nourritureBoostProduction, Integer tempsDeJeu, Date derniereConnexion, Boolean donateur,
 			Integer positionX, Integer positionY) {
@@ -171,7 +174,6 @@ public class JoueurInfoDto {
 		this.id = id;
 	}
 
-
 	/**
 	 * @return the armee
 	 */
@@ -199,7 +201,6 @@ public class JoueurInfoDto {
 	public void setGuilde(Guilde guilde) {
 		this.guilde = guilde;
 	}
-
 
 	/**
 	 * @return the icone
@@ -242,7 +243,6 @@ public class JoueurInfoDto {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 	/**
 	 * @return the descriptif
@@ -406,7 +406,7 @@ public class JoueurInfoDto {
 	}
 
 	/**
-	 * @param nourritureMaximum the  nourritureMaximum to set
+	 * @param nourritureMaximum the nourritureMaximum to set
 	 */
 	public void setNourritureMaximum(Long nourritureMaximum) {
 		this.nourritureMaximum = nourritureMaximum;
@@ -481,54 +481,63 @@ public class JoueurInfoDto {
 	public void setTempsDeJeu(Integer tempsDeJeu) {
 		this.tempsDeJeu = tempsDeJeu;
 	}
+
 	/**
 	 * @return the derniereConnexion
 	 */
 	public Date getDerniereConnexion() {
 		return derniereConnexion;
 	}
+
 	/**
 	 * @param derniereConnexion the derniereConnexion to set
 	 */
 	public void setDerniereConnexion(Date derniereConnexion) {
 		this.derniereConnexion = derniereConnexion;
 	}
+
 	/**
 	 * @return the donateur
 	 */
 	public Boolean getDonateur() {
 		return donateur;
 	}
+
 	/**
 	 * @param donateur the donateur to set
 	 */
 	public void setDonateur(Boolean donateur) {
 		this.donateur = donateur;
 	}
+
 	/**
 	 * @return the positionX
 	 */
 	public Integer getPositionX() {
 		return positionX;
 	}
+
 	/**
 	 * @param positionX the positionX to set
 	 */
 	public void setPositionX(Integer positionX) {
 		this.positionX = positionX;
 	}
+
 	/**
 	 * @return the positionY
 	 */
 	public Integer getPositionY() {
 		return positionY;
 	}
+
 	/**
 	 * @param positionY the positionY to set
 	 */
 	public void setPositionY(Integer positionY) {
 		this.positionY = positionY;
 	}
+
 	@Override
 	public String toString() {
 		return "JoueurInfoDto [id=" + id + ", armee=" + armee + ", guilde=" + guilde + ", icone=" + icone + ", pseudo="
@@ -542,10 +551,5 @@ public class JoueurInfoDto {
 				+ nourritureBoostProduction + ", tempsDeJeu=" + tempsDeJeu + ", derniereConnexion=" + derniereConnexion
 				+ ", donateur=" + donateur + ", positionX=" + positionX + ", positionY=" + positionY + "]";
 	}
-    
-	
-	
-	
-    
-    
+
 }

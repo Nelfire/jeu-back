@@ -10,51 +10,80 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
 @Entity
 public class Defense {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
+	/** une défense peut concerner plusieures défense joueur **/
+	@OneToMany(mappedBy = "defense")
+	@JsonIgnore
+	private List<DefenseJoueur> defenseJoueur;
+
 	private Integer idTypeDefense;
-	
-	/*
-	 * 1 = Offensif
-	 * 2 = Defensif
+
+	/**
+	 * 1 = Offensif 2 = Defensif
 	 */
 	private Integer typeDefense;
-	
+
+	/** icone de la défense **/
 	private String icone;
-	
-    @OneToMany(mappedBy = "defense")
-    @JsonIgnore 
-	private List<DefenseJoueur> defenseJoueur;
-    
+
+	/** libellé de la défense **/
 	private String libelle;
+
+	/** description de la défense **/
 	private String description;
+
+	/** coût en pierre pour la construction de la défense **/
 	private Integer coutPierreConstruction;
+
+	/** coût en bois pour la construction de la défense **/
 	private Integer coutBoisConstruction;
+
+	/** coût en or pour la construction de la défense **/
 	private Integer coutOrConstruction;
+
+	/** coût en nourriture pour la construction de la défense **/
 	private Integer coutNourritureConstruction;
+
+	/** vie de la défense **/
 	private Integer vie;
+
+	/** attaque de la défense **/
 	private Integer attaque;
+
+	/** portée de la défense **/
 	private Integer portee;
+
+	/** armure de la défense **/
 	private Integer armure;
+
+	/** temps de construction de la défense **/
 	private Integer tempsConstruction;
-	
-    /** niveau necessaire du bâtiment pour débloquer la formation **/
-    private Integer niveauBatimentNecessaireConstruction;
+
+	/** niveau necessaire du bâtiment pour débloquer la construction **/
+	private Integer niveauBatimentNecessaireConstruction;
+
+	/** bâtiment de provenance de la défense **/
 	private Integer idBatimentProvenance;
-	
+
+	/** gain d'expérience construction de la défense **/
 	private Long apportExperience;
-	
+
+	/**
+	 * CONSTRUCTEUR VIDE
+	 */
 	public Defense() {
 		super();
 	}
 
 	/**
+	 * CONSTRUCTEUR AVEC PARAMETRES
+	 * 
 	 * @param idTypeDefense
 	 * @param icone
 	 * @param defenseJoueur
@@ -71,11 +100,11 @@ public class Defense {
 	 * @param niveauBatimentNecessaireConstruction
 	 * @param idBatimentProvenance
 	 */
-	public Defense(Integer idTypeDefense, Integer typeDefense, String icone, String libelle,
-			String description, Integer coutPierreConstruction, Integer coutBoisConstruction,
-			Integer coutOrConstruction, Integer coutNourritureConstruction, Integer vie, Integer attaque, Integer portee,
-			Integer armure, Integer tempsConstruction, Integer niveauBatimentNecessaireConstruction,
-			Integer idBatimentProvenance, Long apportExperience) {
+	public Defense(Integer idTypeDefense, Integer typeDefense, String icone, String libelle, String description,
+			Integer coutPierreConstruction, Integer coutBoisConstruction, Integer coutOrConstruction,
+			Integer coutNourritureConstruction, Integer vie, Integer attaque, Integer portee, Integer armure,
+			Integer tempsConstruction, Integer niveauBatimentNecessaireConstruction, Integer idBatimentProvenance,
+			Long apportExperience) {
 		super();
 		this.idTypeDefense = idTypeDefense;
 		this.typeDefense = typeDefense;
@@ -264,7 +293,6 @@ public class Defense {
 		this.attaque = attaque;
 	}
 
-	
 	/**
 	 * @return the portee
 	 */
@@ -315,7 +343,9 @@ public class Defense {
 	}
 
 	/**
-	 * @param niveauBatimentNecessaireConstruction the niveauBatimentNecessaireConstruction to set
+	 * @param niveauBatimentNecessaireConstruction the
+	 *                                             niveauBatimentNecessaireConstruction
+	 *                                             to set
 	 */
 	public void setNiveauBatimentNecessaireConstruction(Integer niveauBatimentNecessaireConstruction) {
 		this.niveauBatimentNecessaireConstruction = niveauBatimentNecessaireConstruction;
@@ -334,8 +364,6 @@ public class Defense {
 	public void setIdBatimentProvenance(Integer idBatimentProvenance) {
 		this.idBatimentProvenance = idBatimentProvenance;
 	}
-	
-	
 
 	/**
 	 * @return the typeDefense
@@ -350,8 +378,6 @@ public class Defense {
 	public void setTypeDefense(Integer typeDefense) {
 		this.typeDefense = typeDefense;
 	}
-	
-	
 
 	/**
 	 * @return the apportExperience
@@ -372,10 +398,4 @@ public class Defense {
 		return "Defense [libelle=" + libelle + "]";
 	}
 
-
-	
-
-
-
-	
 }

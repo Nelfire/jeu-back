@@ -15,13 +15,11 @@ import dev.services.batiment.BatimentService;
 @RequestMapping("batiment")
 public class BatimentController {
 
-	// Déclarations
 	private BatimentService batimentService;
 
 	/**
 	 * Constructeur
 	 * 
-	 * @param joueurService
 	 */
 	public BatimentController(BatimentService batimentService) {
 		this.batimentService = batimentService;

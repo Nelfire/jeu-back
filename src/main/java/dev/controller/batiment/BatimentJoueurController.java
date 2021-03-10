@@ -22,15 +22,11 @@ import dev.services.batiment.BatimentJoueurService;
 @RequestMapping("batimentsJoueur")
 public class BatimentJoueurController {
 
-	// Déclarations
 	private BatimentJoueurService batimentJoueurService;
 
 	/**
 	 * Constructeur
-	 * 
-	 * @param joueurService
 	 */
-	
 	public BatimentJoueurController(BatimentJoueurService batimentJoueurService) {
 		this.batimentJoueurService = batimentJoueurService;
 	}
@@ -50,40 +46,33 @@ public class BatimentJoueurController {
 	public BatimentJoueurDto rechercheBatimentJoueur(@RequestParam("idTypeBatiment") Integer idTypeBatiment) {
 		return this.batimentJoueurService.rechercheBatimentJoueur(idTypeBatiment);
 	}
-	
-	
+
 	/**
 	 * CREATION D'UN NOUVEAU BATIMENT JOUEUR (Construction)
 	 */
 	@PostMapping
 	public ResponseEntity<?> creationBatimentJoueur(@RequestBody BatimentJoueurCreationDto batimentJoueurCreationDto) {
-		BatimentJoueurCreationDto saveBatiment = batimentJoueurService.creationBatimentJoueur(batimentJoueurCreationDto);
+		BatimentJoueurCreationDto saveBatiment = batimentJoueurService
+				.creationBatimentJoueur(batimentJoueurCreationDto);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).header("resultat", "Batiment construit").body(saveBatiment);
 	}
-	
+
 	/**
 	 * MODIFICATION D'UN BATIMENT JOUEUR (Amélioration)
 	 */
 	@PutMapping("/modification")
-	public BatimentJoueurDto putBatimentJoueur(@RequestBody @Valid BatimentJoueurDto batimentJoueurDto, @RequestParam("id") Integer id) {
+	public BatimentJoueurDto putBatimentJoueur(@RequestBody @Valid BatimentJoueurDto batimentJoueurDto,
+			@RequestParam("id") Integer id) {
 		return this.batimentJoueurService.putBatimentJoueur(batimentJoueurDto, id);
 	}
+
 	/**
 	 * ACCELERATION CONSTRUCTION D'UN BATIMENT JOUEUR (Contre gemmes)
 	 */
 	@PutMapping("/accelerationConstructionBatiment")
-	public BatimentJoueurDto accelerationConstructionBatiment(@RequestBody @Valid BatimentJoueurDto batimentJoueurDto, @RequestParam("id") Integer id) {
+	public BatimentJoueurDto accelerationConstructionBatiment(@RequestBody @Valid BatimentJoueurDto batimentJoueurDto,
+			@RequestParam("id") Integer id) {
 		return this.batimentJoueurService.accelerationConstructionBatiment(batimentJoueurDto, id);
 	}
-	
-	
-	
-	
-//	/**
-//	 * RECHERCHE POPULATION MAXIMALE DU JOUEUR
-//	 */
-//	@GetMapping("/popultationMaximale")
-//	public Integer RecherchePopulationMaximaleJoueur() {
-//		return this.batimentJoueurService.RecherchePopulationMaximaleJoueur();
-//	}
+
 }

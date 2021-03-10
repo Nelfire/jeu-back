@@ -2,14 +2,19 @@ package dev.controller.dto.social;
 
 public class MessageAjoutDto {
 
-	// Déclarations
 	private String contenu;
 
 	/**
-	 * @param contenu
+	 * CONSTRUCTEUR VIDE
 	 */
 	public MessageAjoutDto() {
 	}
+
+	/**
+	 * CONSTRUCTEUR AVEC PARAMETRES
+	 * 
+	 * @param contenu
+	 */
 	public MessageAjoutDto(String contenu) {
 		super();
 		this.contenu = contenu;
@@ -29,6 +34,4 @@ public class MessageAjoutDto {
 		this.contenu = contenu;
 	}
 
-	
-	
 }

@@ -58,7 +58,7 @@ public class AuthController {
 
 		}
 
-		// Match email ?
+		// EMAIL CORRECT ?
 		String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
 		Pattern pattern = Pattern.compile(regex);
 	    Matcher matcher = pattern.matcher(signUpRequest.getEmail());
@@ -67,7 +67,7 @@ public class AuthController {
 	    }
 		
 
-		// Create new user's account
+		// CREATION D'UN NOUVEL UTILISATEUR
         Joueur joueur1 = new Joueur();
         joueur1.setIcone("https://cdn.discordapp.com/attachments/794876433842831361/815288917468512256/icone.png");
         joueur1.setPseudo(signUpRequest.getPseudo());
@@ -76,11 +76,11 @@ public class AuthController {
         joueur1.setDescriptif("");
         joueur1.setNiveau(1);
         joueur1.setExperience(0L);
-        joueur1.setPierrePossession(1000L);
-        joueur1.setBoisPossession(1000L);
-        joueur1.setOrPossession(1000L);
-        joueur1.setNourriturePossession(1000L);
-        joueur1.setGemmePossession(50L);
+        joueur1.setPierrePossession(10000L);
+        joueur1.setBoisPossession(10000L);
+        joueur1.setOrPossession(10000L);
+        joueur1.setNourriturePossession(10000L);
+        joueur1.setGemmePossession(30L);
         joueur1.setPierreMaximum(20000L);
         joueur1.setBoisMaximum(20000L);
         joueur1.setOrMaximum(20000L);
@@ -90,7 +90,6 @@ public class AuthController {
         joueur1.setOrBoostProduction(0);
         joueur1.setNourritureBoostProduction(0);
         joueur1.setTempsDeJeu(0);
-        joueur1.setGemmePossession(100L);
         joueur1.setRoles(Arrays.asList(new RoleJoueur(joueur1, Role.ROLE_JOUEUR)));
         joueur1.setDonateur(false);
 
@@ -124,11 +123,14 @@ public class AuthController {
 	        }
         }
 
+        // POSITION LIBRE TROUVEE
         joueur1.setPositionX(positionJoueurX);
         joueur1.setPositionX(positionJoueurY);
         
+        // SAUVEGARDE
         joueurRepo.save(joueur1);
 
+        // RETOUR
 		return ResponseEntity.ok(new MessageResponseException("Compte créé avec succès !"));
 	}
 	
