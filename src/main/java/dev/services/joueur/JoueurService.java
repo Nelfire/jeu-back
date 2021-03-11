@@ -358,8 +358,8 @@ public class JoueurService {
 			{
 				// Vérification que la bâtiment est déjà construit
 				if (batimentStockagePierre.getNiveau() > 1) {
-					stockageMaximalPierre = stockageMaximalPierre
-							+ batimentStockagePierre.getQuantiteeStockagePierre() / 2;
+					stockageMaximalPierre = (long) (stockageMaximalPierre
+							+ (batimentStockagePierre.getQuantiteeStockagePierre() / batimentStockagePierre.getBatiment().getMultiplicateurApport()));
 
 				}
 			}
@@ -392,7 +392,7 @@ public class JoueurService {
 			{
 				// Vérification que la bâtiment est déjà construit
 				if (batimentStockageBois.getNiveau() > 1) {
-					stockageMaximalBois = stockageMaximalBois + batimentStockageBois.getQuantiteeStockageBois() / 2;
+					stockageMaximalBois = (long) (stockageMaximalBois + (batimentStockageBois.getQuantiteeStockageBois() / batimentStockageBois.getBatiment().getMultiplicateurApport()));
 
 				}
 			}
@@ -425,7 +425,7 @@ public class JoueurService {
 			{
 				// Vérification que la bâtiment est déjà construit
 				if (batimentStockageOr.getNiveau() > 1) {
-					stockageMaximalOr = stockageMaximalOr + batimentStockageOr.getQuantiteeStockageOre() / 2;
+					stockageMaximalOr = (long) (stockageMaximalOr + (batimentStockageOr.getQuantiteeStockageOre() / batimentStockageOr.getBatiment().getMultiplicateurApport()));
 
 				}
 			}
@@ -455,12 +455,12 @@ public class JoueurService {
 			if (maintenant > fin) {
 				stockageMaximalNourriture = stockageMaximalNourriture
 						+ batimentStockageNourriture.getQuantiteeStockageNourriture();
-			} else // Sinon, prise en compte
+			} else // Bâtiment(s) en cours de construction
 			{
 				// Vérification que la bâtiment est déjà construit
 				if (batimentStockageNourriture.getNiveau() > 1) {
-					stockageMaximalNourriture = stockageMaximalNourriture
-							+ batimentStockageNourriture.getQuantiteeStockageNourriture() / 2;
+					stockageMaximalNourriture = (long) (stockageMaximalNourriture
+							+ (batimentStockageNourriture.getQuantiteeStockageNourriture() / batimentStockageNourriture.getBatiment().getMultiplicateurApport()));
 
 				}
 			}
