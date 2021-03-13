@@ -13,6 +13,7 @@ import dev.controller.dto.divers.GainRessourceDto;
 import dev.controller.dto.joueur.InformationRessourcesJoueur;
 import dev.controller.dto.joueur.JoueurDto;
 import dev.controller.dto.joueur.JoueurInfoDto;
+import dev.controller.dto.joueur.JoueurInfoMinimaleDto;
 import dev.controller.dto.joueur.ModificationJoueurDto;
 import dev.entites.batiment.BatimentJoueur;
 import dev.entites.joueur.Joueur;
@@ -94,19 +95,21 @@ public class JoueurService {
 	/**
 	 * RECUPERATION DES INFORMATIONS DES JOUEURS
 	 */
-	public List<JoueurInfoDto> getAllInfoJoueurs() {
+	public List<JoueurInfoMinimaleDto> getAllInfoJoueurs() {
 
 		// INITIALISATIONS
-		List<JoueurInfoDto> listeJoueurs = new ArrayList<>();
+		List<JoueurInfoMinimaleDto> listeJoueurs = new ArrayList<>();
 
 		// RECHERCHE DE TOUS LES JOUEURS, CLASSE PAR NIVEAU
 		for (Joueur joueur : joueurRepo.findAll((Sort.by(Sort.Direction.DESC, "niveau")))) {
 
-			JoueurInfoDto joueurDto = new JoueurInfoDto();
+			JoueurInfoMinimaleDto joueurDto = new JoueurInfoMinimaleDto();
 			joueurDto.setId(joueur.getId());
 			joueurDto.setIcone(joueur.getIcone());
 			joueurDto.setPseudo(joueur.getPseudo());
+			joueurDto.setDescriptif(joueur.getDescriptif());
 			joueurDto.setNiveau(joueur.getNiveau());
+			joueurDto.setExperience(joueur.getExperience());
 			joueurDto.setTempsDeJeu(joueur.getTempsDeJeu());
 			joueurDto.setDonateur(joueur.getDonateur());
 			joueurDto.setPositionX(joueur.getPositionX());
@@ -124,34 +127,19 @@ public class JoueurService {
 	/**
 	 * RECUPERATION INFORMATIONS JOUEUR CONNECTE
 	 */
-	public JoueurInfoDto informationJoueurById(Integer id) {
+	public JoueurInfoMinimaleDto informationJoueurById(Integer id) {
 
 		// RECHERCHE D'UN JOUEUR PAR ID
 		Optional<Joueur> jou = joueurRepo.findById(id);
 
-		JoueurInfoDto joueur = new JoueurInfoDto();
+		JoueurInfoMinimaleDto joueur = new JoueurInfoMinimaleDto();
 		joueur.setId(jou.get().getId());
 		joueur.setIcone(jou.get().getIcone());
 		joueur.setPseudo(jou.get().getPseudo());
-		joueur.setEmail(jou.get().getEmail());
 		joueur.setDescriptif(jou.get().getDescriptif());
 		joueur.setNiveau(jou.get().getNiveau());
 		joueur.setExperience(jou.get().getExperience());
-		joueur.setPierrePossession(jou.get().getPierrePossession());
-		joueur.setBoisPossession(jou.get().getBoisPossession());
-		joueur.setOrPossession(jou.get().getOrPossession());
-		joueur.setNourriturePossession(jou.get().getNourriturePossession());
-		joueur.setGemmePossession(jou.get().getGemmePossession());
-		joueur.setPierreMaximum(jou.get().getPierreMaximum());
-		joueur.setBoisMaximum(jou.get().getBoisMaximum());
-		joueur.setOrMaximum(jou.get().getOrMaximum());
-		joueur.setNourritureMaximum(jou.get().getNourritureMaximum());
-		joueur.setPierreBoostProduction(jou.get().getPierreBoostProduction());
-		joueur.setBoisBoostProduction(jou.get().getBoisBoostProduction());
-		joueur.setOrBoostProduction(jou.get().getOrBoostProduction());
-		joueur.setNourritureBoostProduction(jou.get().getNourritureBoostProduction());
 		joueur.setTempsDeJeu(jou.get().getTempsDeJeu());
-		joueur.setDerniereConnexion(jou.get().getDerniereConnexion());
 		joueur.setDonateur(jou.get().getDonateur());
 		joueur.setPositionX(jou.get().getPositionX());
 		joueur.setPositionY(jou.get().getPositionY());

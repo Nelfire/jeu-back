@@ -15,6 +15,7 @@ import dev.controller.dto.divers.GainRessourceDto;
 import dev.controller.dto.joueur.InformationRessourcesJoueur;
 import dev.controller.dto.joueur.JoueurDto;
 import dev.controller.dto.joueur.JoueurInfoDto;
+import dev.controller.dto.joueur.JoueurInfoMinimaleDto;
 import dev.controller.dto.joueur.ModificationJoueurDto;
 import dev.entites.joueur.Joueur;
 import dev.services.joueur.JoueurService;
@@ -44,7 +45,7 @@ public class JoueurController {
 	 * RECUPERATION DES INFORMATIONS DES JOUEURS
 	 */
 	@GetMapping("/all")
-	public List<JoueurInfoDto> getAllInfoJoueur() {
+	public List<JoueurInfoMinimaleDto> getAllInfoJoueur() {
 		return this.joueurService.getAllInfoJoueurs();
 	}
 
@@ -60,7 +61,7 @@ public class JoueurController {
 	 * RECUPERATION INFORMATIONS JOUEUR VIA ID
 	 */
 	@GetMapping("/informationJoueurById")
-	public JoueurInfoDto informationJoueurById(@RequestParam("id") Integer id) {
+	public JoueurInfoMinimaleDto informationJoueurById(@RequestParam("id") Integer id) {
 		return this.joueurService.informationJoueurById(id);
 	}
 
