@@ -125,7 +125,7 @@ public class AuthController {
 
         // POSITION LIBRE TROUVEE
         joueur1.setPositionX(positionJoueurX);
-        joueur1.setPositionX(positionJoueurY);
+        joueur1.setPositionY(positionJoueurY);
         
         // SAUVEGARDE
         joueurRepo.save(joueur1);
