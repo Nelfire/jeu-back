@@ -58,11 +58,19 @@ public class JoueurController {
 	}
 
 	/**
-	 * RECUPERATION INFORMATIONS JOUEUR VIA ID
+	 * RECUPERATION INFORMATIONS JOUEUR VIA ID (Informations Réduites)
 	 */
 	@GetMapping("/informationJoueurById")
 	public JoueurInfoMinimaleDto informationJoueurById(@RequestParam("id") Integer id) {
 		return this.joueurService.informationJoueurById(id);
+	}
+	
+	/**
+	 * RECUPERATION INFORMATIONS JOUEUR VIA ID (Informations Completes)
+	 */
+	@GetMapping("/informationJoueurFullById")
+	public JoueurInfoDto informationJoueurFullById(@RequestParam("id") Integer id) {
+		return this.joueurService.informationJoueurFullById(id);
 	}
 
 	/**

@@ -125,7 +125,7 @@ public class JoueurService {
 	}
 
 	/**
-	 * RECUPERATION INFORMATIONS JOUEUR CONNECTE
+	 * RECUPERATION INFORMATIONS JOUEUR CONNECTE (Informations Réduites)
 	 */
 	public JoueurInfoMinimaleDto informationJoueurById(Integer id) {
 
@@ -140,6 +140,46 @@ public class JoueurService {
 		joueur.setNiveau(jou.get().getNiveau());
 		joueur.setExperience(jou.get().getExperience());
 		joueur.setTempsDeJeu(jou.get().getTempsDeJeu());
+		joueur.setDonateur(jou.get().getDonateur());
+		joueur.setPositionX(jou.get().getPositionX());
+		joueur.setPositionY(jou.get().getPositionY());
+
+		// RETOUR
+		return joueur;
+	}
+	
+	
+	/**
+	 * RECUPERATION INFORMATIONS JOUEUR CONNECTE (Informations Completes)
+	 */
+	public JoueurInfoDto informationJoueurFullById(Integer id) {
+
+		// RECHERCHE D'UN JOUEUR PAR ID
+		Optional<Joueur> jou = joueurRepo.findById(id);
+
+		JoueurInfoDto joueur = new JoueurInfoDto();
+		joueur.setId(jou.get().getId());
+		joueur.setIcone(jou.get().getIcone());
+		joueur.setPseudo(jou.get().getPseudo());
+		joueur.setEmail(jou.get().getEmail());
+		joueur.setDescriptif(jou.get().getDescriptif());
+		joueur.setNiveau(jou.get().getNiveau());
+		joueur.setExperience(jou.get().getExperience());
+		joueur.setPierrePossession(jou.get().getPierrePossession());
+		joueur.setBoisPossession(jou.get().getBoisPossession());
+		joueur.setOrPossession(jou.get().getOrPossession());
+		joueur.setNourriturePossession(jou.get().getNourriturePossession());
+		joueur.setGemmePossession(jou.get().getGemmePossession());
+		joueur.setPierreMaximum(jou.get().getPierreMaximum());
+		joueur.setBoisMaximum(jou.get().getBoisMaximum());
+		joueur.setOrMaximum(jou.get().getOrMaximum());
+		joueur.setNourritureMaximum(jou.get().getNourritureMaximum());
+		joueur.setPierreBoostProduction(jou.get().getPierreBoostProduction());
+		joueur.setBoisBoostProduction(jou.get().getBoisBoostProduction());
+		joueur.setOrBoostProduction(jou.get().getOrBoostProduction());
+		joueur.setNourritureBoostProduction(jou.get().getNourritureBoostProduction());
+		joueur.setTempsDeJeu(jou.get().getTempsDeJeu());
+		joueur.setDerniereConnexion(jou.get().getDerniereConnexion());
 		joueur.setDonateur(jou.get().getDonateur());
 		joueur.setPositionX(jou.get().getPositionX());
 		joueur.setPositionY(jou.get().getPositionY());
