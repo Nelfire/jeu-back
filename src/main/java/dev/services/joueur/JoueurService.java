@@ -209,12 +209,9 @@ public class JoueurService {
 
 		// Premiere initialisation
 		millisecondesDifference = millisecondesDifference == 0 ? 1000 : millisecondesDifference;
-		System.out.println("------------------");
-		System.out.println("Joueur : " + jou.getPseudo());
-		System.out.println("[AVANT] - Pierre joueur : " + jou.getPierrePossession());
-		System.out.println("Derniere connexion : "+jou.getDerniereConnexion().getTime());
-		System.out.println("Maintenant : "+now.getTime());
-		System.out.println("Temps inactivité en ms : "+millisecondesDifference);
+
+
+
 
 		//////////////////////////////////
 		// -- ATTRIBUTION RESSOURCES -- //
@@ -222,11 +219,19 @@ public class JoueurService {
 
 		// PIERRE : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
 		Integer apportPierreSeconde = apportPierreSeconde();
-		System.out.println("Apport pierre seconde : "+apportPierreSeconde);
 		// - CAS INACTIVITEE -
 		Integer apportPierreFinal = (apportPierreSeconde * millisecondesDifference / 1000);
-		System.out.println("Apport pierre final : "+apportPierreFinal);
 
+		System.out.println("------------------\n" + 
+				" Joueur : " + jou.getPseudo()+"\n" + 
+					" [AVANT] - Pierre joueur : " + jou.getPierrePossession()+"\n"+ 
+						" Derniere connexion : "+jou.getDerniereConnexion().getTime()+"\n"+ 
+								" Maintenant : "+now.getTime()+"\n"+ 
+										" Temps inactivité en ms : "+millisecondesDifference+"\n"+ 
+												" [AVANT] - Pierre joueur : " + jou.getPierrePossession()+"\n "+
+												" Apport pierre seconde : " + apportPierreSeconde+"\n "+
+												" Apport pierre final : " + apportPierreFinal+"\n "
+														+ "------------------");
 		// BOIS : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
 		Integer apportBoisSeconde = apportBoisSeconde();
 		// - CAS INACTIVITEE -
@@ -270,8 +275,7 @@ public class JoueurService {
 		if (jou.getPierrePossession() < 0) {
 			jou.setPierrePossession(jou.getPierreMaximum());
 		}
-		System.out.println("[APRES] - Pierre joueur : " + jou.getPierrePossession());
-		System.out.println("------------------");
+		System.out.println("------------------ \n [APRES] - Pierre joueur : " + jou.getPierrePossession() +"\n ------------------");
 		jou.setBoisPossession((jou.getBoisPossession() + apportBoisFinal) > jou.getBoisMaximum() ? jou.getBoisMaximum()
 				: jou.getBoisPossession() + apportBoisFinal);
 		if (jou.getBoisPossession() < 0) {
