@@ -209,6 +209,12 @@ public class JoueurService {
 
 		// Premiere initialisation
 		millisecondesDifference = millisecondesDifference == 0 ? 1000 : millisecondesDifference;
+		System.out.println("------------------");
+		System.out.println("Joueur : " + jou.getPseudo());
+		System.out.println("[AVANT] - Pierre joueur : " + jou.getPierrePossession());
+		System.out.println("Derniere connexion : "+jou.getDerniereConnexion().getTime());
+		System.out.println("Maintenant : "+now.getTime());
+		System.out.println("Temps inactivité en ms : "+millisecondesDifference);
 
 		//////////////////////////////////
 		// -- ATTRIBUTION RESSOURCES -- //
@@ -216,8 +222,11 @@ public class JoueurService {
 
 		// PIERRE : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
 		Integer apportPierreSeconde = apportPierreSeconde();
+		System.out.println("Apport pierre seconde : "+apportPierreSeconde);
 		// - CAS INACTIVITEE -
 		Integer apportPierreFinal = (apportPierreSeconde * millisecondesDifference / 1000);
+		System.out.println("Apport pierre final : "+apportPierreFinal);
+
 		// BOIS : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
 		Integer apportBoisSeconde = apportBoisSeconde();
 		// - CAS INACTIVITEE -
@@ -261,6 +270,8 @@ public class JoueurService {
 		if (jou.getPierrePossession() < 0) {
 			jou.setPierrePossession(jou.getPierreMaximum());
 		}
+		System.out.println("[APRES] - Pierre joueur : " + jou.getPierrePossession());
+		System.out.println("------------------");
 		jou.setBoisPossession((jou.getBoisPossession() + apportBoisFinal) > jou.getBoisMaximum() ? jou.getBoisMaximum()
 				: jou.getBoisPossession() + apportBoisFinal);
 		if (jou.getBoisPossession() < 0) {
@@ -520,8 +531,10 @@ public class JoueurService {
 			// compte
 			long maintenant = new Date().getTime();
 			long fin = batimentPierre.getDateFinConstruction();
+			System.out.println("Date de fin de construction : " + fin);
 			if (maintenant > fin) {
 				apportPierreHeure = apportPierreHeure + batimentPierre.getApportPierreHeure();
+				System.out.println("[ok] - Apport de pierre :" + apportPierreHeure);
 			}
 		}
 		// -- APPORT PIERRE PAR SECONDES
