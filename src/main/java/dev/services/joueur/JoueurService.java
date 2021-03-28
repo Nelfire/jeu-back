@@ -205,7 +205,7 @@ public class JoueurService {
 			jou.setDerniereConnexion(now);
 		}
 		// Calcul du temps passé hors connexion, pour attribution des ressources
-		Integer millisecondesDifference = (int) (now.getTime() - jou.getDerniereConnexion().getTime());
+		Long millisecondesDifference = (long) (now.getTime() - jou.getDerniereConnexion().getTime());
 
 		// Premiere initialisation
 		millisecondesDifference = millisecondesDifference == 0 ? 1000 : millisecondesDifference;
@@ -220,14 +220,15 @@ public class JoueurService {
 		// PIERRE : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
 		Integer apportPierreSeconde = apportPierreSeconde();
 		// - CAS INACTIVITEE -
-		Integer apportPierreFinal = (apportPierreSeconde * millisecondesDifference / 1000);
+		Long apportPierreFinal = (apportPierreSeconde * (millisecondesDifference / 1000));
 
 		System.out.println("------------------\n" + 
 				" Joueur : " + jou.getPseudo()+"\n" + 
 					" [AVANT] - Pierre joueur : " + jou.getPierrePossession()+"\n"+ 
 						" Derniere connexion : "+jou.getDerniereConnexion().getTime()+"\n"+ 
 								" Maintenant : "+now.getTime()+"\n"+ 
-										" Temps inactivité en ms : "+millisecondesDifference+"\n"+ 
+								" Temps inactivité en ms : "+millisecondesDifference+"\n"+ 
+								" Temps inactivité en sc : "+millisecondesDifference/1000+"\n"+ 
 												" [AVANT] - Pierre joueur : " + jou.getPierrePossession()+"\n "+
 												" Apport pierre seconde : " + apportPierreSeconde+"\n "+
 												" Apport pierre final : " + apportPierreFinal+"\n "
@@ -235,17 +236,17 @@ public class JoueurService {
 		// BOIS : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
 		Integer apportBoisSeconde = apportBoisSeconde();
 		// - CAS INACTIVITEE -
-		Integer apportBoisFinal = (apportBoisSeconde * millisecondesDifference / 1000);
+		Long apportBoisFinal = (long) (apportBoisSeconde * (millisecondesDifference / 1000));
 
 		// OR : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
 		Integer apportOrSeconde = apportOrSeconde();
 		// - CAS INACTIVITEE -
-		Integer apportOrFinal = (apportOrSeconde * millisecondesDifference / 1000);
+		Long apportOrFinal = (long) (apportOrSeconde * (millisecondesDifference / 1000));
 
 		// NOURRITURE : CALCUL APPORT PAR SECONDE POUR LE JOUEUR
 		Integer apportNourritureSeconde = apportNourritureSeconde();
 		// - CAS INACTIVITEE -
-		Integer apportNourritureFinal = (apportNourritureSeconde * millisecondesDifference / 1000);
+		Long apportNourritureFinal = (long) (apportNourritureSeconde * (millisecondesDifference / 1000));
 		//////////////////////////////////////
 		// -- LIMITE STOCKAGE RESSOURCES -- //
 		//////////////////////////////////////
@@ -295,8 +296,8 @@ public class JoueurService {
 
 		// TEMPS DE JEU
 		// Grosse inactivitée ? Pas prise en compte (+10 de minutes)
-		Integer tempsActif = (millisecondesDifference / 1000) > 600 ? 0 : (millisecondesDifference / 1000);
-		jou.setTempsDeJeu(jou.getTempsDeJeu() + tempsActif);
+		Long tempsActif = (millisecondesDifference / 1000) > 600 ? 0 : (millisecondesDifference / 1000);
+		jou.setTempsDeJeu((int) (jou.getTempsDeJeu() + tempsActif));
 		Date dateAujourdhui = new Date();
 		jou.setDerniereConnexion(dateAujourdhui);
 
@@ -535,10 +536,8 @@ public class JoueurService {
 			// compte
 			long maintenant = new Date().getTime();
 			long fin = batimentPierre.getDateFinConstruction();
-			System.out.println("Date de fin de construction : " + fin);
 			if (maintenant > fin) {
 				apportPierreHeure = apportPierreHeure + batimentPierre.getApportPierreHeure();
-				System.out.println("[ok] - Apport de pierre :" + apportPierreHeure);
 			}
 		}
 		// -- APPORT PIERRE PAR SECONDES
