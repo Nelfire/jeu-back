@@ -351,6 +351,16 @@ public class ExpeditionJoueurService {
 		} else if (jou.getNourriturePossession() < expedition.getCoutNourriture()) {
 			throw new RessourceManquanteException("Nourriture insuffisante pour lancer l'expédition.");
 		}
+		// Récupérer le plus grand id d'expedition joueur
+		
+		Integer maxId = 0;
+		for (ExpeditionJoueur expeditionJoueur : this.expeditionJoueurRepo.findByJoueur(jou)) {
+			if(expeditionJoueur.getId()>maxId) {
+				maxId=expeditionJoueur.getId();
+			}
+		}
+		// Définir le nouveal id de l'expedition joueur
+		Integer maxIdPlusUn = maxId+1;
 
 		// RETRAIT UNITEES
 		// - Parcourir les armées que possède déjà le joueur, pour y soustraire les
@@ -373,8 +383,7 @@ public class ExpeditionJoueurService {
 					armee.setDateFinProduction(arme.getDateFinProduction());
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
-
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombreVillageois());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -396,7 +405,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombreArcher());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -418,7 +427,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombreArcherComposite());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -440,7 +449,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombreFantassinEpee());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -462,7 +471,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombrePiquier());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -484,7 +493,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombreLanceurDeHache());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -506,7 +515,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombreMilicien());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -528,7 +537,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombreHommeDArme());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -550,7 +559,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombreCavalierArcher());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -572,7 +581,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombreCavalier());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -594,7 +603,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombreChampion());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -616,7 +625,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombreBateauDePeche());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -638,7 +647,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombreBateauIncendiaire());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -660,7 +669,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombreBateauDeDestruction());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -682,7 +691,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombreGalionACanon());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -704,7 +713,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombreGalion());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -726,7 +735,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombreGuerrierElite());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -748,7 +757,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombrePhalange());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -770,7 +779,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombreSamourail());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -792,7 +801,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombreTemplier());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -814,7 +823,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombreCatapulte());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -836,7 +845,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombreElephantDeCombat());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -858,7 +867,7 @@ public class ExpeditionJoueurService {
 					armeeRepo.save(armee);
 					listeArmees.add(armee);
 
-					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(expedition.getId(),
+					ExpeditionUnitee expeditionUnitee = new ExpeditionUnitee(maxIdPlusUn,
 							arme.getUnitee().getId(), compositionArmeeExpedition.getNombrePretre());
 					expeditionUniteeRepo.save(expeditionUnitee);
 				}
@@ -902,6 +911,7 @@ public class ExpeditionJoueurService {
 
 		// CRÉATION DE L'EXPEDITION JOUEUR
 		ExpeditionJoueur expeditionJoueur = new ExpeditionJoueur();
+		expeditionJoueur.setId(maxIdPlusUn);
 		expeditionJoueur.setJoueur(jou);
 		expeditionJoueur.setExpedition(expedition);
 		expeditionJoueur.setDateDebutExpedition(debut);
@@ -965,7 +975,7 @@ public class ExpeditionJoueurService {
 			// Détection des unitées envoyées en expédition.
 			for (ExpeditionUnitee expeditionUnitee : expeditionUniteeRepo.findAll()) {
 				// SI EXPEDITION UNITEE
-				if (expeditionUnitee.getIdExpedition() == expeditionJoueur.getExpedition().getId()) {
+				if (expeditionUnitee.getIdExpedition() == idExpedition) {
 					// RECHERCHE UNITEE CORRESPONDANTE
 					for (Unitee unitee : uniteeRepo.findAll()) {
 						if (unitee.getId() == expeditionUnitee.getIdUnitee()) {
